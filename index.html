@@ -14,8 +14,10 @@
     text-align: center;
   }
 
- header {
+    header {
   background: linear-gradient(135deg, #f6c1d1, #fbe4ec);
+  background-size: 200% 200%;
+  animation: softGradient 12s ease-in-out infinite;
   color: #ffffff;
   padding: 3rem 1rem;
 }
@@ -50,6 +52,11 @@
     color: #444;
   }
 
+    section.highlight {
+  max-width: none;
+  margin: 0;
+}
+
   .links a {
     margin: 0 1rem;
     text-decoration: none;
@@ -70,9 +77,8 @@
   }
 
     .highlight {
-  width: 100%;
   background: linear-gradient(135deg, #f38fb1, #f6b1c8);
-  padding: 2rem 1rem;
+  padding: 2rem 0; }
   color: #ffffff;
 }
 
@@ -81,6 +87,7 @@
   margin: 0 auto;
   font-weight: 500;
   text-align: center;
+  padding: 0 1rem; }
 }
     
     .about-list {
@@ -97,12 +104,6 @@
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.05);
   text-align: left;
-}
-
-    /* --- Subtle gradient animation --- */
-header {
-  background-size: 200% 200%;
-  animation: softGradient 12s ease-in-out infinite;
 }
 
 .highlight {

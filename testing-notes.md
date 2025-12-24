@@ -43,4 +43,10 @@ This reflects how I approach problem-solving in professional support environment
 
 ## Project Status
 
-🚧 **In progress** — currently designing conversation flows and logic before implementation.
+✅ First working version of the chatbot built and tested using Dialogflow.
+
+Current focus:
+- Refining responses and conversational tone
+- Improving fallback handling
+- Iterating based on testing notes
+

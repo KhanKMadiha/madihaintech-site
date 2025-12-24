@@ -4,223 +4,218 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Madiha in Tech</title>
-  
-  <style>
- body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #fffafb;
-  color: #ffffff; /* DEFAULT TEXT IS WHITE */
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  }
 
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffafb;
+      color: #ffffff; /* default text is white (header/highlight areas) */
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
 
     header {
-  background: #f38fb1;
-  background-size: 200% 200%;
-  animation: softGradient 12s ease-in-out infinite;
-  color: #ffffff;
-  padding: 3rem 1rem;
-}
+      background: #f38fb1;
+      background-size: 200% 200%;
+      animation: softGradient 12s ease-in-out infinite;
+      color: #ffffff;
+      padding: 3rem 1rem;
+    }
 
- h1 {
-  margin-bottom: 1.25rem;
-  font-size: 3rem;
-  line-height: 1.1;
-}
+    h1 {
+      margin-bottom: 1.5rem;
+      font-size: 3rem;
+      line-height: 1.1;
+    }
 
- p.tagline {
-  margin-top: 0;
-  margin-bottom: 2rem;
-  font-size: 1.2rem;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.9);
-}
+    .headline-sub {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 1.6rem;
+      font-weight: 400;
+      opacity: 0.9;
+    }
 
-    <section class="about">
-  <h2>About Me</h2>
-  <ul class="about-list">
-    ...
-  </ul>
-</section>
+    p.tagline {
+      margin-top: 0;
+      margin-bottom: 0; /* keep header tight; spacing handled by .highlight margin */
+      font-size: 1.2rem;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.9);
+    }
 
-  section h2 {
-    color: #d63384;
-    margin-bottom: 0.75rem;
-  }
-
-  section p {
-    line-height: 1.6;
-    color: #444;
-  }
-
-    section.highlight {
-  max-width: none;
-  margin: 0;
-}
-
-  .links a {
-    margin: 0 1rem;
-    text-decoration: none;
-    color: #d63384;
-    font-weight: bold;
-  }
-
-  .links a:hover {
-    text-decoration: underline;
-  }
-
-  footer {
-    margin-top: 3rem;
-    padding: 1.5rem;
-    font-size: 0.9rem;
-    color: #888;
-    background-color: #fff0f5;
-  }
-
+    /* --- Highlight strip --- */
     .highlight {
-  background: #f38fb1;
-  padding: 2rem 0;
-  color: #ffffff;
-}
+      margin-top: 2.5rem; /* gap between header and highlight */
+      background: #f38fb1;
+      background-size: 200% 200%;
+      animation: softGradient 10s ease-in-out infinite;
+      padding: 2rem 0;
+      color: #ffffff;
+    }
 
-.highlight-inner {
-  max-width: 800px;
-  margin: 0 auto;
-  font-weight: 500;
-  text-align: center;
-  padding: 0 1rem; }
-}
-    
-    .about-list {
-  list-style: none;
-  padding: 0;
-  max-width: 700px;
-  margin: 0 auto;
-}
+    .highlight-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      font-weight: 500;
+      text-align: center;
+      padding: 0 1rem;
+    }
 
-.about-list li {
-  background: #ffffff;
-  margin: 0.75rem 0;
-  padding: 1rem 1.25rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-  text-align: left;
-}
+    /* --- Default sections (non-highlight) use dark text --- */
+    section:not(.highlight) {
+      color: #2b2b2b;
+    }
 
-.highlight {
-  background-size: 200% 200%;
-  animation: softGradient 10s ease-in-out infinite;
-}
+    section:not(.highlight) p,
+    section:not(.highlight) li,
+    section:not(.highlight) h2,
+    section:not(.highlight) h3 {
+      color: #2b2b2b;
+    }
 
-.about {
-  background-color: #fff0f6; /* light blush pink */
-  border-radius: 24px;
-  box-shadow: 0 12px 30px rgba(243, 143, 177, 0.25);
-}
-    
-section:not(.highlight) {
-  color: #2b2b2b;
-}
+    /* --- About section card --- */
+    #about {
+      background-color: #fff0f6; /* light blush pink */
+      padding: 3rem 1.5rem;
+      border-radius: 24px;
+      box-shadow: 0 12px 30px rgba(243, 143, 177, 0.25);
+      max-width: 900px;
+      margin: 2rem auto;
+    }
 
-section:not(.highlight) p,
-section:not(.highlight) li,
-section:not(.highlight) h2 {
-  color: #2b2b2b;
-}
+    #about h2 {
+      color: #d63384;
+      margin-bottom: 1rem;
+    }
 
-@keyframes softGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    #about p {
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
 
-/* Respect users who prefer less motion */
-@media (prefers-reduced-motion: reduce) {
-  header, .highlight { animation: none; }
-}
+    /* --- Casual subheading styling --- */
+    #about h3 {
+      margin-top: 2.25rem;
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+      font-weight: 500;
+      opacity: 0.95;
+    }
+
+    /* --- Bullet highlights list --- */
+    .highlights {
+      list-style: none;
+      padding: 0;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .highlights li {
+      background: rgba(255, 255, 255, 0.75);
+      margin: 0.75rem 0;
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    /* --- Links --- */
+    .links a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #d63384;
+      font-weight: bold;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: #888;
+      background-color: #fff0f5;
+    }
+
+    @keyframes softGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Respect users who prefer less motion */
+    @media (prefers-reduced-motion: reduce) {
+      header, .highlight { animation: none; }
+    }
 
     /* --- Dialogflow Messenger pink theme --- */
-df-messenger {
-  --df-messenger-button-titlebar-color: #f38fb1; /* chat bubble + titlebar */
-  --df-messenger-button-titlebar-font-color: #ffffff; /* title text */
-  --df-messenger-chat-background-color: #fffafb; /* chat background */
-  --df-messenger-font-color: #2b2b2b; /* message text */
-  --df-messenger-send-icon: #d63384; /* send icon */
-  --df-messenger-user-message: #f6b1c8; /* your message bubble */
-  --df-messenger-bot-message: #ffffff; /* bot bubble */
-  --df-messenger-input-box-color: #fff0f6; /* input area */
-  --df-messenger-input-font-color: #2b2b2b;
-  --df-messenger-input-placeholder-font-color: #7a003c;
-}
-
-    #about {
-  background-color: #fbe4ec; /* light pink you mentioned earlier */
-  padding: 3rem 1.5rem;
-}
-
-#about h2 {
-  margin-bottom: 1rem;
-}
-
-#about p {
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-</style>
-
+    df-messenger {
+      --df-messenger-button-titlebar-color: #f38fb1;
+      --df-messenger-button-titlebar-font-color: #ffffff;
+      --df-messenger-chat-background-color: #fffafb;
+      --df-messenger-font-color: #2b2b2b;
+      --df-messenger-send-icon: #d63384;
+      --df-messenger-user-message: #f6b1c8;
+      --df-messenger-bot-message: #ffffff;
+      --df-messenger-input-box-color: #fff0f6;
+      --df-messenger-input-font-color: #2b2b2b;
+      --df-messenger-input-placeholder-font-color: #7a003c;
+    }
+  </style>
 </head>
+
 <body>
   <header>
-  <h1>Hi, I’m Madiha — a Support Engineer who loves AI & documentation.</h1>
-  <p class="tagline">
-    Support Engineer • AI Enthusiast • Designing clear systems through documentation
-  </p>
-</header>
+    <h1>
+      Hi, I’m Madiha<br />
+      <span class="headline-sub">— a Support Engineer who loves AI & documentation</span>
+    </h1>
 
- <section class="highlight">
-  <div class="highlight-inner">
+    <p class="tagline">Support Engineer • AI Enthusiast • Designing clear systems through documentation</p>
+  </header>
+
+  <section class="highlight">
+    <div class="highlight-inner">
+      <p>💡 Passionate about documentation, AI support workflows, and making complex systems easy to understand.</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+
     <p>
-      💡 Passionate about documentation, AI support workflows, and making complex systems easy to understand.
+      Hi, I’m Madiha 👋<br /><br />
+      I’m a Support Engineer who loves helping people and making complex things feel simpler.
+      I care a lot about clear documentation and good systems, because they empower users to
+      actually use software confidently and efficiently. Lately, I’ve been exploring AI and
+      how it can support better knowledge-sharing, problem-solving, and overall user experience.
     </p>
-  </div>
-</section>
+
+    <h3>Here’s a bit about what I do</h3>
+
+    <ul class="highlights">
+      <li>🛠 5+ years supporting SaaS products and high-touch clients</li>
+      <li>🤖 Building conversational AI systems using intent-based design</li>
+      <li>📝 Deeply passionate about documentation as a tool for clarity & scale</li>
+      <li>🔍 Strong focus on troubleshooting, workflows, and user experience</li>
+    </ul>
+  </section>
 
   <section>
-   <h2>About Me</h2>
+    <p>💬 You can chat with my AI assistant in the bottom-right corner to learn more about my work and projects.</p>
+  </section>
 
-    <section id="about">
-  <h2>About Me</h2>
-      
-  <p>
-    I’m a Support Engineer who loves helping people and making complex things feel simpler.
-    I care a lot about clear documentation and good systems, because they empower users to
-    actually use software confidently and efficiently. Lately, I’ve been exploring AI and
-    how it can support better knowledge-sharing, problem-solving, and overall user experience.
-  </p>
-</section>
-
-  <ul class="about-list">
-    <li>🛠 5+ years supporting SaaS products and high-touch clients</li>
-    <li>🤖 Building conversational AI systems using intent-based design</li>
-    <li>📝 Deeply passionate about documentation as a tool for clarity & scale</li>
-    <li>🔍 Strong focus on troubleshooting, workflows, and user experience</li>
-  </ul>
-</section>
-
- <section>
-  <p>💬 You can chat with my AI assistant in the bottom-right corner to learn more about my work and projects.</p>
-</section>
-  
   <section class="links">
     <h2>Find Me Online</h2>
     <p>
-      <a href="https://github.com/TechTinker-1" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/madihakhan-tech" target="_blank">LinkedIn</a>
-      <!-- Add more links like Resume, Blog, etc. -->
+      <a href="https://github.com/TechTinker-1" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/madihakhan-tech" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </p>
   </section>
 
@@ -228,14 +223,13 @@ df-messenger {
     © 2025 Madiha Khan · MadihaInTech.me
   </footer>
 
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-<df-messenger
-  intent="WELCOME"
-  chat-title="Ask Madiha"
-  agent-id="58bf2f0d-1ce2-440c-94c4-5b88106819aa"
-  language-code="en"
-  expand="false"
-></df-messenger>
-  
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+  <df-messenger
+    intent="WELCOME"
+    chat-title="Ask Madiha"
+    agent-id="58bf2f0d-1ce2-440c-94c4-5b88106819aa"
+    language-code="en"
+    expand="false"
+  ></df-messenger>
 </body>
 </html>

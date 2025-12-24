@@ -89,6 +89,41 @@
   text-align: left;
 }
 
+    /* --- Subtle gradient animation --- */
+header {
+  background-size: 200% 200%;
+  animation: softGradient 12s ease-in-out infinite;
+}
+
+.highlight {
+  background-size: 200% 200%;
+  animation: softGradient 10s ease-in-out infinite;
+}
+
+@keyframes softGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  header, .highlight { animation: none; }
+}
+
+    /* --- Dialogflow Messenger pink theme --- */
+df-messenger {
+  --df-messenger-button-titlebar-color: #f38fb1; /* chat bubble + titlebar */
+  --df-messenger-button-titlebar-font-color: #ffffff; /* title text */
+  --df-messenger-chat-background-color: #fffafb; /* chat background */
+  --df-messenger-font-color: #2b2b2b; /* message text */
+  --df-messenger-send-icon: #d63384; /* send icon */
+  --df-messenger-user-message: #f6b1c8; /* your message bubble */
+  --df-messenger-bot-message: #ffffff; /* bot bubble */
+  --df-messenger-input-box-color: #fff0f6; /* input area */
+  --df-messenger-input-font-color: #2b2b2b;
+  --df-messenger-input-placeholder-font-color: #7a003c;
+}
 
 </style>
 

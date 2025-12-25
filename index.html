@@ -6,129 +6,153 @@
   <title>Madiha in Tech</title>
 
   <style>
+    :root {
+      --bg: #fffafb;
+      --pink-main: #fbe4ec;
+      --pink-accent: #f6c1d1;
+      --pink-strong: #e96a9a;
+      --card: #fff0f6;
+      --text-dark: #2b2b2b;
+      --muted-dark: rgba(43, 43, 43, 0.78);
+      --white: #ffffff;
+      --border: rgba(0, 0, 0, 0.08);
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #fffafb;
-      color: #ffffff; /* default text is white (header/highlight areas) */
+      background-color: var(--bg);
+      color: var(--text-dark);
       margin: 0;
       padding: 0;
       text-align: center;
     }
 
+    /* ---------- HEADER ---------- */
     header {
-      background: #f38fb1;
-      background-size: 200% 200%;
-      animation: softGradient 12s ease-in-out infinite;
-      color: #ffffff;
-      padding: 3rem 1rem;
+      background: linear-gradient(135deg, var(--pink-main), var(--pink-accent));
+      padding: 3.5rem 1rem 2.5rem;
     }
 
     h1 {
-      margin-bottom: 1.5rem;
+      margin: 0 0 0.75rem;
       font-size: 3rem;
       line-height: 1.1;
+      letter-spacing: -0.02em;
     }
 
-    .headline-sub {
+    .intro-line {
       display: block;
-      margin-top: 0.75rem;
-      font-size: 1.6rem;
-      font-weight: 400;
-      opacity: 0.9;
+      margin-top: 0.6rem;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      opacity: 0.85;
     }
 
     p.tagline {
-      margin-top: 0;
-      margin-bottom: 0; /* keep header tight; spacing handled by .highlight margin */
-      font-size: 1.2rem;
+      margin-top: 0.85rem;
+      font-size: 1.15rem;
       font-style: italic;
-      color: rgba(255, 255, 255, 0.9);
+      color: var(--muted-dark);
     }
 
-    /* --- Highlight strip --- */
+    /* ---------- CTA BUTTONS ---------- */
+    .cta-row {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.6rem;
+    }
+
+    .btn {
+      padding: 0.85rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      background: var(--white);
+      border: 1px solid var(--border);
+      color: var(--text-dark);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn.primary {
+      background: var(--pink-accent);
+    }
+
+    /* ---------- HIGHLIGHT STRIP ---------- */
     .highlight {
-      margin-top: 2.5rem; /* gap between header and highlight */
-      background: #f38fb1;
-      background-size: 200% 200%;
-      animation: softGradient 10s ease-in-out infinite;
+      margin-top: 2.25rem;
+      background: linear-gradient(135deg, var(--pink-main), #ffffff);
       padding: 2rem 0;
-      color: #ffffff;
     }
 
     .highlight-inner {
-      max-width: 800px;
+      max-width: 850px;
       margin: 0 auto;
-      font-weight: 500;
-      text-align: center;
       padding: 0 1rem;
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.6;
     }
 
-    /* --- Default sections (non-highlight) use dark text --- */
-    section:not(.highlight) {
-      color: #2b2b2b;
-    }
-
-    section:not(.highlight) p,
-    section:not(.highlight) li,
-    section:not(.highlight) h2,
-    section:not(.highlight) h3 {
-      color: #2b2b2b;
-    }
-
-    /* --- About section card --- */
+    /* ---------- ABOUT CARD ---------- */
     #about {
-      background-color: #fff0f6; /* light blush pink */
+      background-color: var(--card);
       padding: 3rem 1.5rem;
       border-radius: 24px;
-      box-shadow: 0 12px 30px rgba(243, 143, 177, 0.25);
+      box-shadow: 0 12px 30px rgba(246, 193, 209, 0.45);
       max-width: 900px;
       margin: 2rem auto;
     }
 
     #about h2 {
-      color: #d63384;
+      color: var(--pink-strong);
       margin-bottom: 1rem;
+      font-size: 1.9rem;
     }
 
     #about p {
-      max-width: 700px;
+      max-width: 720px;
       margin: 0 auto;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
-    /* --- Casual subheading styling --- */
     #about h3 {
       margin-top: 2.25rem;
-      margin-bottom: 1.25rem;
       font-size: 1.25rem;
-      font-weight: 500;
-      opacity: 0.95;
+      font-weight: 600;
     }
 
-    /* --- Bullet highlights list --- */
     .highlights {
       list-style: none;
       padding: 0;
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
     }
 
     .highlights li {
-      background: rgba(255, 255, 255, 0.75);
+      background: rgba(255, 255, 255, 0.85);
       margin: 0.75rem 0;
       padding: 1rem 1.25rem;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
       text-align: left;
       line-height: 1.6;
     }
 
-    /* --- Links --- */
+    /* ---------- LINKS ---------- */
     .links a {
       margin: 0 1rem;
+      color: var(--pink-strong);
+      font-weight: 800;
       text-decoration: none;
-      color: #d63384;
-      font-weight: bold;
     }
 
     .links a:hover {
@@ -139,50 +163,49 @@
       margin-top: 3rem;
       padding: 1.5rem;
       font-size: 0.9rem;
-      color: #888;
-      background-color: #fff0f5;
+      color: rgba(43, 43, 43, 0.7);
+      background: linear-gradient(135deg, #ffffff, var(--pink-main));
     }
 
-    @keyframes softGradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Respect users who prefer less motion */
-    @media (prefers-reduced-motion: reduce) {
-      header, .highlight { animation: none; }
-    }
-
-    /* --- Dialogflow Messenger pink theme --- */
+    /* ---------- CHATBOT THEME ---------- */
     df-messenger {
-      --df-messenger-button-titlebar-color: #f38fb1;
-      --df-messenger-button-titlebar-font-color: #ffffff;
-      --df-messenger-chat-background-color: #fffafb;
-      --df-messenger-font-color: #2b2b2b;
-      --df-messenger-send-icon: #d63384;
-      --df-messenger-user-message: #f6b1c8;
+      --df-messenger-button-titlebar-color: var(--pink-accent);
+      --df-messenger-button-titlebar-font-color: var(--text-dark);
+      --df-messenger-chat-background-color: var(--bg);
+      --df-messenger-font-color: var(--text-dark);
+      --df-messenger-user-message: var(--pink-main);
       --df-messenger-bot-message: #ffffff;
-      --df-messenger-input-box-color: #fff0f6;
-      --df-messenger-input-font-color: #2b2b2b;
-      --df-messenger-input-placeholder-font-color: #7a003c;
+      --df-messenger-input-box-color: var(--card);
+      --df-messenger-input-font-color: var(--text-dark);
+      --df-messenger-input-placeholder-font-color: rgba(43, 43, 43, 0.55);
+      --df-messenger-send-icon: var(--pink-strong);
     }
   </style>
 </head>
 
 <body>
+
   <header>
     <h1>
       Hi, I’m Madiha<br />
-      <span class="headline-sub">— a Support Engineer who loves AI & documentation</span>
+      <span class="intro-line">a Support Engineer who loves AI & documentation</span>
     </h1>
 
-    <p class="tagline">Support Engineer • AI Enthusiast • Designing clear systems through documentation</p>
+    <p class="tagline">
+      Support Engineer • AI Enthusiast • Designing clear systems through documentation
+    </p>
+
+    <div class="cta-row">
+      <a class="btn primary" href="./skills.html">Skills</a>
+      <a class="btn" href="./chatbot.html">Chatbot Project</a>
+      <a class="btn" href="./contact.html">Contact</a>
+    </div>
   </header>
 
   <section class="highlight">
     <div class="highlight-inner">
-      <p>💡 Passionate about documentation, AI support workflows, and making complex systems easy to understand.</p>
+      💡 Passionate about documentation, AI-assisted support workflows,
+      and turning complex problems into scalable solutions.
     </div>
   </section>
 
@@ -191,19 +214,28 @@
 
     <p>
       Hi, I’m Madiha 👋<br /><br />
-      I’m a Support Engineer who loves helping people and making complex things feel simpler.
-      I care a lot about clear documentation and good systems, because they empower users to
-      actually use software confidently and efficiently. Lately, I’ve been exploring AI and
-      how it can support better knowledge-sharing, problem-solving, and overall user experience.
+      I’m a Support Engineer with over five years of experience supporting SaaS products and high-touch clients.
+      I’m entirely self-taught — I’ve built my technical foundation through a mix of hands-on problem solving,
+      structured learning, and continuous exploration beyond day-to-day support work.
+      <br /><br />
+      As a Support Engineer, I’ve leaned into complexity: debugging APIs, supporting SSO integrations,
+      reproducing edge cases, and collaborating closely with engineering to resolve high-impact issues.
+      Over time, I’ve learned that the most meaningful support work doesn’t stop at resolving a ticket —
+      it looks for patterns, improves systems, and prevents the same problems from happening again.
+      <br /><br />
+      I care deeply about documentation and workflows because they scale clarity.
+      Clear systems empower users, reduce friction for support teams, and make products easier to trust.
+      More recently, I’ve been exploring how AI can assist support teams — not by replacing human judgment,
+      but by strengthening it through better context, better tooling, and better decisions.
     </p>
 
     <h3>Here’s a bit about what I do</h3>
 
     <ul class="highlights">
-      <li>🛠 5+ years supporting SaaS products and high-touch clients</li>
-      <li>🤖 Building conversational AI systems using intent-based design</li>
-      <li>📝 Deeply passionate about documentation as a tool for clarity & scale</li>
-      <li>🔍 Strong focus on troubleshooting, workflows, and user experience</li>
+      <li>🛠 5+ years supporting SaaS products and high-touch clients in production environments</li>
+      <li>🤖 Building AI-assisted support tools using intent-based design and structured prompts</li>
+      <li>📝 Designing documentation that reduces repeat issues and improves self-service</li>
+      <li>🔍 Strong focus on troubleshooting, workflows, and system-level thinking</li>
     </ul>
   </section>
 
@@ -214,8 +246,8 @@
   <section class="links">
     <h2>Find Me Online</h2>
     <p>
-      <a href="https://github.com/TechTinker-1" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/madihakhan-tech" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/TechTinker-1" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/madihakhan-tech" target="_blank">LinkedIn</a>
     </p>
   </section>
 
@@ -229,7 +261,8 @@
     chat-title="Ask Madiha"
     agent-id="58bf2f0d-1ce2-440c-94c4-5b88106819aa"
     language-code="en"
-    expand="false"
-  ></df-messenger>
+    expand="false">
+  </df-messenger>
+
 </body>
 </html>

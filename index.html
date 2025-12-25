@@ -29,19 +29,22 @@
       text-align: center;
     }
 
-    /* ---------- HERO (CENTERED INTRO) ---------- */
+    /* ---------- FULL-WIDTH HERO ---------- */
     .hero {
       min-height: 80vh;
       display: grid;
       place-items: center;
-      padding: 3.5rem 1rem 2.5rem;
+      padding: 4rem 1rem 3rem;
+      background: linear-gradient(
+        135deg,
+        var(--pink-main),
+        var(--pink-accent)
+      );
     }
 
-    .hero-card {
+    .hero-inner {
       max-width: 920px;
-      background: linear-gradient(135deg, var(--pink-main), rgba(255,255,255,0.95));
-      border-radius: 22px;
-      padding: 2.8rem 1.6rem;
+      width: 100%;
     }
 
     h1 {
@@ -65,7 +68,6 @@
       max-width: 780px;
       font-size: 1.05rem;
       line-height: 1.7;
-      color: var(--text-dark);
     }
 
     /* ---------- ULTRA-MINIMAL LINK-STYLE CTAs ---------- */
@@ -115,7 +117,8 @@
 
     /* ---------- SUMMARY SECTION ---------- */
     .summary {
-      padding: 0 1rem 2.75rem;
+      padding: 3rem 1rem 2.75rem;
+      background-color: var(--bg);
     }
 
     .summary h3 {
@@ -146,114 +149,5 @@
       padding: 0 1rem 1.5rem;
     }
 
-    .links h2 {
-      font-size: 1.4rem;
-      margin: 1.5rem 0 0.5rem;
-    }
+    .li
 
-    .links a {
-      margin: 0 1rem;
-      color: var(--pink-strong);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .links a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      margin-top: 2rem;
-      padding: 1.5rem 1rem;
-      font-size: 0.9rem;
-      color: rgba(43, 43, 43, 0.7);
-      background: linear-gradient(135deg, #ffffff, var(--pink-main));
-    }
-
-    /* ---------- CHATBOT THEME ---------- */
-    df-messenger {
-      --df-messenger-button-titlebar-color: var(--pink-accent);
-      --df-messenger-button-titlebar-font-color: var(--text-dark);
-      --df-messenger-chat-background-color: var(--bg);
-      --df-messenger-font-color: var(--text-dark);
-      --df-messenger-user-message: var(--pink-main);
-      --df-messenger-bot-message: #ffffff;
-      --df-messenger-input-box-color: var(--card);
-      --df-messenger-input-font-color: var(--text-dark);
-      --df-messenger-input-placeholder-font-color: rgba(43, 43, 43, 0.55);
-      --df-messenger-send-icon: var(--pink-strong);
-    }
-
-    @media (max-width: 480px) {
-      .cta-row {
-        gap: 1.1rem;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- CENTERED HERO INTRO -->
-  <section class="hero">
-    <div class="hero-card">
-      <h1>
-        Hi, I’m Madiha 👋🏼
-        <span class="intro-line">
-          A Support Engineer who loves empowering others to utilise products to their full capacity.
-        </span>
-      </h1>
-
-      <p class="hero-highlight">
-        💡 Passionate about documentation, AI-assisted support workflows,
-       and turning complex problems into scalable solutions.
-      </p>
-
-      <div class="cta-row">
-        <a class="btn" href="./about.html">About</a>
-        <a class="btn primary" href="./skills.html">Skills</a>
-        <a class="btn" href="./chatbot.html">Chatbot Project</a>
-        <a class="btn" href="./contact.html">Contact</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- LIGHT SUMMARY -->
-  <section class="summary">
-    <h3>Here’s a bit about me</h3>
-
-    <ul class="highlights">
-      <li>🛠 5+ years supporting SaaS products and high-touch clients in production environments</li>
-      <li>🤖 Building AI-assisted support tools using intent-based design and structured prompts</li>
-      <li>📝 Designing documentation that reduces repeat issues and improves self-service</li>
-      <li>🔍 Strong focus on troubleshooting, workflows, and system-level thinking</li>
-    </ul>
-  </section>
-
-  <section>
-    <p>💬 You can chat with my AI assistant in the bottom-right corner to learn more about my work and projects.</p>
-  </section>
-
-  <section class="links">
-    <h2>Find Me Online</h2>
-    <p>
-      <a href="https://github.com/TechTinker-1" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </p>
-  </section>
-
-  <footer>
-    © 2025 Madiha Khan · MadihaInTech.me
-  </footer>
-
-  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-  <df-messenger
-    intent="WELCOME"
-    chat-title="Ask Madiha"
-    agent-id="58bf2f0d-1ce2-440c-94c4-5b88106819aa"
-    language-code="en"
-    expand="false">
-  </df-messenger>
-
-</body>
-</html>

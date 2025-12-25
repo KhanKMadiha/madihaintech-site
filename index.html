@@ -46,7 +46,6 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      min-height: 100%;
     }
 
     h1 {
@@ -72,45 +71,43 @@
       line-height: 1.75;
     }
 
-    /* ---------- CTA ---------- */
-    .cta-wrapper {
-      margin-top: auto;
-      padding-top: 4rem;
+    /* ---------- NAV CTA (MATCHES ABOUT PAGE) ---------- */
+    .nav-cta {
+      max-width: 980px;
+      margin: -2.25rem auto 2.5rem;
+      padding: 0 1.5rem;
     }
 
-    .cta-row {
+    .nav-cta-inner {
       display: flex;
-      gap: 3.5rem;
-      justify-content: center;
+      gap: 1rem;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .btn {
-      padding: 0;
-      font-weight: 600;
-      font-size: 1.1rem;
+    .nav-btn {
+      flex: 1 1 220px;
+      max-width: 320px;
+      padding: 1.05rem 1.25rem;
+      border-radius: 14px;
+      font-size: 1.05rem;
+      font-weight: 700;
       text-decoration: none;
       color: var(--text-dark);
-      position: relative;
-      transition: opacity 0.15s ease;
+      border: 1.5px solid var(--border-soft);
+      background-color: rgba(255, 255, 255, 0.6);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
-    .btn::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 100%;
-      height: 1.5px;
-      background-color: currentColor;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.2s ease;
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+      border-color: var(--border-strong);
     }
 
-    .btn:hover { opacity: 0.7; }
-    .btn:hover::after { transform: scaleX(1); }
-    .btn.primary { font-weight: 700; }
+    .nav-btn.primary {
+      font-weight: 800;
+    }
 
     /* ---------- OUTLINED ABOUT CARD ---------- */
     .summary {
@@ -178,20 +175,9 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    .social-link svg {
-      width: 22px;
-      height: 22px;
-      fill: currentColor;
-      transition: transform 0.22s ease;
-    }
-
     .social-link:hover {
       opacity: 0.75;
       transform: translateY(-1px);
-    }
-
-    .social-link:hover svg {
-      transform: translateY(-2px) scale(1.08);
     }
 
     footer {
@@ -200,38 +186,12 @@
       color: rgba(43, 43, 43, 0.7);
     }
 
-    @media (max-width: 600px) {
-      .summary {
-        margin: 0 1rem 3rem;
-        padding: 2.25rem 1.5rem;
-      }
-
-      .nav-btn {
-        flex: 1 1 100%;
-        max-width: none;
-      }
-
-      .links p {
-        gap: 1.75rem;
-      }
-    }
-
-     /* ---------- DIALOGFLOW CHATBOT THEME ---------- */
+    /* ---------- CHATBOT THEME ---------- */
     df-messenger {
-      --df-messenger-bot-message: #ffffff;
-      --df-messenger-user-message: #fbe4ec;
-
-      --df-messenger-button-titlebar-color: #fbe4ec;
-      --df-messenger-button-titlebar-font-color: #2b2b2b;
-
-      --df-messenger-chat-background-color: #fff0f6;
-
-      --df-messenger-send-icon: #e96a9a;
-      --df-messenger-font-color: #2b2b2b;
-
       --df-messenger-button-background-color: #fbe4ec;
       --df-messenger-button-text-color: #2b2b2b;
-
+      --df-messenger-chat-background-color: #fff0f6;
+      --df-messenger-send-icon: #e96a9a;
       --df-messenger-focus-color: #e96a9a;
     }
 
@@ -261,11 +221,11 @@
     </div>
   </section>
 
-   <!-- NAV BUTTONS -->
+  <!-- NAV BUTTONS -->
   <section class="nav-cta">
     <div class="nav-cta-inner">
-      <a class="nav-btn" href="./index.html">Homepage</a>
-      <a class="nav-btn primary" href="./skills.html">Skills & Experience</a>
+      <a class="nav-btn primary" href="./about.html">About Me</a>
+      <a class="nav-btn" href="./skills.html">Skills & Experience</a>
       <a class="nav-btn" href="./chatbot.html">AI Chatbot Project</a>
       <a class="nav-btn" href="./contact.html">Get in Touch</a>
     </div>
@@ -273,25 +233,21 @@
 
   <!-- OUTLINED ABOUT SECTION -->
   <section class="summary">
-    <h3>Here’s a bit about me:</h3>
+    <h3>Here’s a bit about me</h3>
 
     <ul class="highlights">
-      <li>🛠 Lead complex technical investigations and own high priority escalations end to end in high impact environments</li>
-      <li>🤖 Apply AI assisted tools and contextual workflows to improve accuracy, consistency, and decision making at scale</li>
-      <li>📝 Design and maintain documentation and workflows that support customer and internal self service</li>
-      <li>🔍 Proactively identify systemic issues through pattern analysis and root cause investigation, driving long term improvements across support operations</li>
+      <li>🛠 Lead complex technical investigations and own high-priority escalations end to end in high-impact environments</li>
+      <li>🤖 Apply AI-assisted tools and contextual workflows to improve accuracy, consistency, and decision-making at scale</li>
+      <li>📝 Design and maintain documentation and workflows that support customer and internal self-service</li>
+      <li>🔍 Proactively identify systemic issues through pattern analysis and root cause investigation, driving long-term improvements across support operations</li>
     </ul>
-  </section>
-
-  <section>
-    <p>💬 You can chat with my AI assistant in the bottom right corner to learn more about my work and projects.</p>
   </section>
 
   <section class="links">
     <h2>Let’s connect! 👩🏻‍💻</h2>
     <p>
-      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank">GitHub</a>
+      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
     </p>
   </section>
 
@@ -308,10 +264,7 @@
     language-code="en"
   ></df-messenger>
 
-  <footer>
-    © 2025 Madiha Khan · MadihaInTech.me
-  </footer>
-
 </body>
 </html>
+
 

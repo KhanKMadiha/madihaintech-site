@@ -1,0 +1,366 @@
+<!-- =========================
+     chatbot.html
+     ========================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chatbot Project | Madiha Khan</title>
+
+  <style>
+    :root {
+      --pink-base: #fff0f6;
+      --pink-soft: #fbe4ec;
+      --pink-strong: #e96a9a;
+      --text-dark: #2b2b2b;
+      --muted-dark: rgba(43, 43, 43, 0.7);
+      --border-soft: rgba(233, 106, 154, 0.25);
+      --border-strong: rgba(233, 106, 154, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--pink-base);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      min-height: 55vh;
+      display: flex;
+      align-items: center;
+      padding: 5.25rem 1.5rem 2rem;
+      background: linear-gradient(180deg, var(--pink-soft) 0%, var(--pink-base) 100%);
+    }
+
+    .hero-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.6rem, 5vw, 3.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-highlight {
+      margin: 0.9rem auto 0;
+      max-width: 860px;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--muted-dark);
+    }
+
+    /* ---------- NAV CTA ---------- */
+    .nav-cta {
+      max-width: 980px;
+      margin: -1.25rem auto 2.25rem;
+      padding: 0 1.5rem;
+    }
+
+    .nav-cta-inner {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-btn {
+      flex: 1 1 220px;
+      max-width: 320px;
+      padding: 1.05rem 1.25rem;
+      border-radius: 14px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text-dark);
+      border: 1.5px solid var(--border-soft);
+      background-color: rgba(255, 255, 255, 0.6);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+      border-color: var(--border-strong);
+    }
+
+    .nav-btn.primary {
+      font-weight: 800;
+    }
+
+    /* ---------- CONTENT WRAP ---------- */
+    .content {
+      max-width: 980px;
+      margin: 0 auto 3.5rem;
+      padding: 0 1.5rem;
+      text-align: left;
+    }
+
+    /* ---------- CARDS ---------- */
+    .card {
+      margin: 0 auto 1.5rem;
+      padding: 2.25rem 2.25rem;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 26px;
+      background-color: rgba(255, 255, 255, 0.45);
+      line-height: 1.75;
+    }
+
+    .card h2 {
+      margin: 0 0 1.25rem;
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .card p {
+      margin: 0 0 1rem;
+      font-size: 1.05rem;
+    }
+
+    .steps {
+      list-style: none;
+      padding: 0;
+      margin: 1.15rem 0 0;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .step {
+      padding: 1.35rem 1.25rem;
+      border-radius: 18px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .step h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .meta {
+      margin: 0 0 0.85rem;
+      color: var(--muted-dark);
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: 0.55rem 0.75rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.55);
+      font-size: 0.95rem;
+      color: var(--text-dark);
+    }
+
+    .note {
+      margin-top: 1rem;
+      font-size: 1.02rem;
+      color: var(--muted-dark);
+    }
+
+    /* ---------- LINKS ---------- */
+    .links {
+      padding-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .links h2 {
+      font-size: 1.6rem;
+      margin: 2rem 0 0.75rem;
+    }
+
+    .links p {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--pink-strong);
+      text-decoration: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .social-link:hover {
+      opacity: 0.75;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      padding: 2rem 1.5rem;
+      font-size: 0.95rem;
+      color: rgba(43, 43, 43, 0.7);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 2rem 1.35rem; }
+      .nav-btn { flex: 1 1 100%; max-width: none; }
+      .links p { gap: 1.75rem; }
+    }
+
+    /* ---------- DIALOGFLOW CHATBOT THEME ---------- */
+    df-messenger {
+      --df-messenger-bot-message: #ffffff;
+      --df-messenger-user-message: #fbe4ec;
+
+      --df-messenger-button-titlebar-color: #fbe4ec;
+      --df-messenger-button-titlebar-font-color: #2b2b2b;
+
+      --df-messenger-chat-background-color: #fff0f6;
+
+      --df-messenger-send-icon: #e96a9a;
+      --df-messenger-font-color: #2b2b2b;
+
+      --df-messenger-button-background-color: #fbe4ec;
+      --df-messenger-button-text-color: #2b2b2b;
+
+      --df-messenger-focus-color: #e96a9a;
+    }
+
+    df-messenger::part(chat-button) {
+      box-shadow: 0 10px 25px rgba(233, 106, 154, 0.25);
+      border-radius: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>AI Chatbot Project</h1>
+      <p class="hero-highlight">
+        A practical chatbot project inspired by support workflows. Built to answer questions about my work and guide visitors across my portfolio.
+      </p>
+    </div>
+  </section>
+
+  <!-- NAV BUTTONS -->
+  <section class="nav-cta">
+    <div class="nav-cta-inner">
+      <a class="nav-btn" href="./index.html">Homepage</a>
+      <a class="nav-btn" href="./about.html">About Me</a>
+      <a class="nav-btn" href="./skills.html">Skills & Experience</a>
+      <a class="nav-btn primary" href="./chatbot.html">AI Chatbot Project</a>
+      <a class="nav-btn" href="./contact.html">Get in Touch</a>
+    </div>
+  </section>
+
+  <main class="content">
+
+    <section class="card">
+      <h2>What this chatbot does</h2>
+      <p>
+        This chatbot is designed as a lightweight portfolio assistant. It can answer common questions about my background,
+        highlight the areas I work in most often, and point visitors to relevant sections across my site.
+      </p>
+      <p class="note">
+        You can try it any time using the chat bubble in the bottom right corner.
+      </p>
+      <div class="tag-row">
+        <span class="tag">Support workflows</span>
+        <span class="tag">Conversation design</span>
+        <span class="tag">Intent routing</span>
+        <span class="tag">Portfolio assistant</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>How I built it</h2>
+      <ul class="steps">
+        <li class="step">
+          <h3>1. Learning foundation</h3>
+          <p class="meta">IBM AI Foundations learning path on Coursera</p>
+          <p>
+            I completed the IBM AI Foundations learning path and used it to ground my understanding of core AI concepts and practical use cases.
+          </p>
+        </li>
+
+        <li class="step">
+          <h3>2. First build</h3>
+          <p class="meta">IBM Watson chatbot prototype</p>
+          <p>
+            I built an initial chatbot using IBM Watson to explore dialogue structure, intents, and confidence-based responses.
+          </p>
+        </li>
+
+        <li class="step">
+          <h3>3. Iteration and deployment</h3>
+          <p class="meta">Dialogflow assistant integrated into my site</p>
+          <p>
+            I then applied what I learned to implement a Dialogflow chatbot and embedded it directly into this portfolio so visitors can explore it in context.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>What I am improving next</h2>
+      <p>
+        I am iterating on response quality, navigation accuracy, and helpfulness. The goal is to make it feel like a real support assistant,
+        not a gimmick, and to keep refining how it guides users to the right information.
+      </p>
+      <div class="tag-row">
+        <span class="tag">Better fallback handling</span>
+        <span class="tag">More guided navigation</span>
+        <span class="tag">Higher quality responses</span>
+        <span class="tag">Project documentation</span>
+      </div>
+    </section>
+
+  </main>
+
+  <section class="links">
+    <h2>Let’s connect! 👩🏻‍💻</h2>
+    <p>
+      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </p>
+  </section>
+
+  <footer>
+    © 2025 Madiha Khan · MadihaInTech.me
+  </footer>
+
+  <!-- CHATBOT -->
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+  <df-messenger
+    intent="WELCOME"
+    chat-title="MadihaAIPortfolioBot"
+    agent-id="58bf2f0d-1ce2-440c-94c4-5b88106819aa"
+    language-code="en"
+  ></df-messenger>
+
+</body>
+</html>

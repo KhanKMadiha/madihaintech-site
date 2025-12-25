@@ -7,39 +7,33 @@
 
   <style>
     :root {
-      --bg: #fffafb;
-      --pink-main: #fbe4ec;
-      --pink-accent: #fff0f6;
+      --pink-bg: #fff0f6;       /* page-wide pink */
+      --pink-soft: #fbe4ec;
       --pink-strong: #e96a9a;
-      --card: #fff0f6;
       --text-dark: #2b2b2b;
       --muted-dark: rgba(43, 43, 43, 0.7);
+      --border-soft: rgba(233, 106, 154, 0.25);
+      --border-strong: rgba(233, 106, 154, 0.45);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg);
+      background-color: var(--pink-bg);
       color: var(--text-dark);
       margin: 0;
       padding: 0;
       text-align: center;
     }
 
-    /* ---------- FULL-WIDTH HERO ---------- */
+    /* ---------- HERO ---------- */
     .hero {
       min-height: 82vh;
       display: flex;
       align-items: center;
       padding: 5.5rem 1.5rem 3.5rem;
-      background: linear-gradient(
-        135deg,
-        var(--pink-main),
-        var(--pink-accent)
-      );
+      background: linear-gradient(135deg, var(--pink-soft), var(--pink-bg));
     }
 
     .hero-inner {
@@ -49,11 +43,6 @@
       display: flex;
       flex-direction: column;
       min-height: 100%;
-    }
-
-    /* ---------- TOP CONTENT ---------- */
-    .hero-content {
-      max-width: 980px;
     }
 
     h1 {
@@ -79,20 +68,19 @@
       line-height: 1.75;
     }
 
-    /* ---------- CTA AREA (PUSHED DOWN) ---------- */
+    /* ---------- CTA (BOTTOM-ALIGNED) ---------- */
     .cta-wrapper {
-      margin-top: auto;              /* ⬅ pushes CTAs toward bottom */
-      padding-top: 4rem;             /* breathing room from text */
+      margin-top: auto;
+      padding-top: 4rem;
     }
 
     .cta-row {
       display: flex;
-      gap: 3.5rem;                   /* ⬅ bigger gap between buttons */
+      gap: 3.5rem;
       justify-content: center;
       flex-wrap: wrap;
     }
 
-    /* ---------- ULTRA-MINIMAL LINK-STYLE BUTTONS ---------- */
     .btn {
       padding: 0;
       font-weight: 600;
@@ -118,21 +106,29 @@
       transition: transform 0.2s ease;
     }
 
-    .btn:hover {
-      opacity: 0.7;
-    }
+    .btn:hover { opacity: 0.7; }
+    .btn:hover::after { transform: scaleX(1); }
+    .btn.primary { font-weight: 700; }
 
-    .btn:hover::after {
-      transform: scaleX(1);
-    }
-
-    .btn.primary {
-      font-weight: 700;
-    }
-
-    /* ---------- SUMMARY ---------- */
+    /* ---------- OUTLINED ABOUT CARD ---------- */
     .summary {
-      padding: 4rem 1.5rem 3.5rem;
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      padding: 2.75rem 2rem;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 26px;
+      background-color: rgba(255, 255, 255, 0.45);
+
+      /* hover shadow only */
+      box-shadow: none;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    /* Soft shadow ONLY on hover */
+    .summary:hover {
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
     }
 
     .summary h3 {
@@ -144,25 +140,46 @@
     .highlights {
       list-style: none;
       padding: 0;
-      max-width: 880px;
-      margin: 0 auto;
+      margin: 0;
       display: grid;
       gap: 1.1rem;
     }
 
     .highlights li {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 1.25rem 1.4rem;
-      border-radius: 16px;
-      text-align: left;
-      line-height: 1.7;
       font-size: 1.05rem;
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    /* ---------- SCROLL REVEAL ANIMATION (SUBTLE OUTLINE) ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      border-color: rgba(233, 106, 154, 0.15);
+      transition: opacity 0.7s ease, transform 0.7s ease, border-color 0.9s ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+      border-color: var(--border-soft);
+    }
+
+    /* Respect users who prefer less motion */
+    @media (prefers-reduced-motion: reduce) {
+      .summary,
+      .reveal,
+      .summary:hover {
+        transition: none;
+        transform: none;
+      }
+      .reveal {
+        opacity: 1;
+      }
     }
 
     /* ---------- LINKS ---------- */
-    .links {
-      padding: 0 1.5rem 2rem;
-    }
+    .links { padding-bottom: 2.5rem; }
 
     .links h2 {
       font-size: 1.6rem;
@@ -177,39 +194,20 @@
       font-size: 1.05rem;
     }
 
-    .links a:hover {
-      text-decoration: underline;
-    }
+    .links a:hover { text-decoration: underline; }
 
     footer {
-      margin-top: 2.5rem;
       padding: 2rem 1.5rem;
       font-size: 0.95rem;
       color: rgba(43, 43, 43, 0.7);
-      background: linear-gradient(135deg, #ffffff, var(--pink-main));
-    }
-
-    /* ---------- CHATBOT THEME ---------- */
-    df-messenger {
-      --df-messenger-button-titlebar-color: var(--pink-accent);
-      --df-messenger-button-titlebar-font-color: var(--text-dark);
-      --df-messenger-chat-background-color: var(--bg);
-      --df-messenger-font-color: var(--text-dark);
-      --df-messenger-user-message: var(--pink-main);
-      --df-messenger-bot-message: #ffffff;
-      --df-messenger-input-box-color: var(--card);
-      --df-messenger-input-font-color: var(--text-dark);
-      --df-messenger-input-placeholder-font-color: rgba(43, 43, 43, 0.55);
-      --df-messenger-send-icon: var(--pink-strong);
     }
 
     @media (max-width: 600px) {
-      .cta-row {
-        gap: 1.75rem;
-      }
+      .cta-row { gap: 1.75rem; }
 
-      .cta-wrapper {
-        padding-top: 3rem;
+      .summary {
+        padding: 2.25rem 1.5rem;
+        margin: 0 1rem 3rem;
       }
     }
   </style>
@@ -217,7 +215,7 @@
 
 <body>
 
-  <!-- FULL-WIDTH HERO -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
 
@@ -235,7 +233,6 @@
         </p>
       </div>
 
-      <!-- CTAs pushed toward bottom -->
       <div class="cta-wrapper">
         <div class="cta-row">
           <a class="btn" href="./about.html">About</a>
@@ -248,8 +245,8 @@
     </div>
   </section>
 
-  <!-- SUMMARY -->
-  <section class="summary">
+  <!-- OUTLINED ABOUT CARD (reveal on scroll) -->
+  <section class="summary reveal" id="summaryCard">
     <h3>Here’s a bit about me</h3>
 
     <ul class="highlights">
@@ -258,10 +255,6 @@
       <li>📝 Designing documentation that reduces repeat issues and improves self-service</li>
       <li>🔍 Strong focus on troubleshooting, workflows, and system-level thinking</li>
     </ul>
-  </section>
-
-  <section>
-    <p>💬 You can chat with my AI assistant in the bottom-right corner to learn more about my work and projects.</p>
   </section>
 
   <section class="links">
@@ -276,14 +269,34 @@
     © 2025 Madiha Khan · MadihaInTech.me
   </footer>
 
-  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-  <df-messenger
-    intent="WELCOME"
-    chat-title="Ask Madiha"
-    agent-id="58bf2f0d-1ce2-440c-94c4-5b88106819aa"
-    language-code="en"
-    expand="false">
-  </df-messenger>
+  <script>
+    // Subtle outline + fade-in on scroll (IntersectionObserver)
+    (function () {
+      const el = document.querySelector(".reveal");
+      if (!el) return;
+
+      // If browser doesn't support IntersectionObserver, just show it.
+      if (!("IntersectionObserver" in window)) {
+        el.classList.add("in-view");
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+              observer.unobserve(entry.target); // animate once
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      observer.observe(el);
+    })();
+  </script>
 
 </body>
 </html>
+

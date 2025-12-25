@@ -229,56 +229,7 @@
       .card { padding: 2rem 1.35rem; }
       .nav-btn { flex: 1 1 100%; max-width: none; }
       .links p { gap: 1.75rem; }
-    }
-
-    /* ---------- DIALOGFLOW CHATBOT THEME ---------- */
-    df-messenger {
-      --df-messenger-bot-message: #ffffff;
-      --df-messenger-user-message: #fbe4ec;
-
-      --df-messenger-button-titlebar-color: #fbe4ec;
-      --df-messenger-button-titlebar-font-color: #2b2b2b;
-
-      --df-messenger-chat-background-color: #fff0f6;
-
-      --df-messenger-send-icon: #e96a9a;
-      --df-messenger-font-color: #2b2b2b;
-
-      --df-messenger-button-background-color: #fbe4ec;
-      --df-messenger-button-text-color: #2b2b2b;
-
-      --df-messenger-focus-color: #e96a9a;
-    }
-
-    df-messenger::part(chat-button) {
-      box-shadow: 0 10px 25px rgba(233, 106, 154, 0.25);
-      border-radius: 18px;
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Skills & Experience</h1>
-      <p class="hero-highlight">
-        A snapshot of the work I do most often, the tools I use, and the impact areas I focus on in support engineering.
-      </p>
-    </div>
-  </section>
-
-  <!-- NAV BUTTONS -->
-  <section class="nav-cta">
-    <div class="nav-cta-inner">
-      <a class="nav-btn" href="./index.html">Homepage</a>
-      <a class="nav-btn" href="./about.html">About Me</a>
-      <a class="nav-btn primary" href="./skills.html">Skills & Experience</a>
-      <a class="nav-btn" href="./chatbot.html">AI Chatbot Project</a>
-      <a class="nav-btn" href="./contact.html">Get in Touch</a>
-    </div>
-  </section>
+    
 
   <main class="content">
 

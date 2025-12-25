@@ -7,7 +7,7 @@
 
   <style>
     :root {
-      --pink-bg: #fff0f6;       /* page-wide pink */
+      --pink-base: #fff0f6;
       --pink-soft: #fbe4ec;
       --pink-strong: #e96a9a;
       --text-dark: #2b2b2b;
@@ -20,7 +20,7 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--pink-bg);
+      background-color: var(--pink-base);
       color: var(--text-dark);
       margin: 0;
       padding: 0;
@@ -33,7 +33,11 @@
       display: flex;
       align-items: center;
       padding: 5.5rem 1.5rem 3.5rem;
-      background: linear-gradient(135deg, var(--pink-soft), var(--pink-bg));
+      background: linear-gradient(
+        180deg,
+        var(--pink-soft) 0%,
+        var(--pink-base) 100%
+      );
     }
 
     .hero-inner {
@@ -68,7 +72,7 @@
       line-height: 1.75;
     }
 
-    /* ---------- CTA (BOTTOM-ALIGNED) ---------- */
+    /* ---------- CTA ---------- */
     .cta-wrapper {
       margin-top: auto;
       padding-top: 4rem;
@@ -86,8 +90,6 @@
       font-weight: 600;
       font-size: 1.1rem;
       text-decoration: none;
-      background: transparent;
-      border: none;
       color: var(--text-dark);
       position: relative;
       transition: opacity 0.15s ease;
@@ -112,19 +114,15 @@
 
     /* ---------- OUTLINED ABOUT CARD ---------- */
     .summary {
-      max-width: 900px;
+      max-width: 980px;
       margin: 0 auto 4rem;
-      padding: 2.75rem 2rem;
+      padding: 2.75rem 2.5rem;
       border: 1.5px solid var(--border-soft);
       border-radius: 26px;
       background-color: rgba(255, 255, 255, 0.45);
-
-      /* hover shadow only */
-      box-shadow: none;
       transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
     }
 
-    /* Soft shadow ONLY on hover */
     .summary:hover {
       box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
       border-color: var(--border-strong);
@@ -132,7 +130,7 @@
     }
 
     .summary h3 {
-      margin: 0 0 1.75rem;
+      margin: 0 0 2rem;
       font-size: 1.6rem;
       font-weight: 700;
     }
@@ -142,44 +140,19 @@
       padding: 0;
       margin: 0;
       display: grid;
-      gap: 1.1rem;
+      gap: 1.25rem;
+      text-align: left;
     }
 
     .highlights li {
       font-size: 1.05rem;
       line-height: 1.7;
-      text-align: left;
-    }
-
-    /* ---------- SCROLL REVEAL ANIMATION (SUBTLE OUTLINE) ---------- */
-    .reveal {
-      opacity: 0;
-      transform: translateY(10px);
-      border-color: rgba(233, 106, 154, 0.15);
-      transition: opacity 0.7s ease, transform 0.7s ease, border-color 0.9s ease;
-    }
-
-    .reveal.in-view {
-      opacity: 1;
-      transform: translateY(0);
-      border-color: var(--border-soft);
-    }
-
-    /* Respect users who prefer less motion */
-    @media (prefers-reduced-motion: reduce) {
-      .summary,
-      .reveal,
-      .summary:hover {
-        transition: none;
-        transform: none;
-      }
-      .reveal {
-        opacity: 1;
-      }
     }
 
     /* ---------- LINKS ---------- */
-    .links { padding-bottom: 2.5rem; }
+    .links {
+      padding-bottom: 2.5rem;
+    }
 
     .links h2 {
       font-size: 1.6rem;
@@ -191,7 +164,6 @@
       color: var(--pink-strong);
       font-weight: 700;
       text-decoration: none;
-      font-size: 1.05rem;
     }
 
     .links a:hover { text-decoration: underline; }
@@ -206,8 +178,8 @@
       .cta-row { gap: 1.75rem; }
 
       .summary {
-        padding: 2.25rem 1.5rem;
         margin: 0 1rem 3rem;
+        padding: 2.25rem 1.5rem;
       }
     }
   </style>
@@ -219,19 +191,17 @@
   <section class="hero">
     <div class="hero-inner">
 
-      <div class="hero-content">
-        <h1>
-          Hi, I’m Madiha 👋🏼
-          <span class="intro-line">
-            A Support Engineer who loves empowering others to utilise products to their full capacity.
-          </span>
-        </h1>
+      <h1>
+        Hi, I’m Madiha 👋🏼
+        <span class="intro-line">
+          A Support Engineer who loves empowering others to utilise products to their full capacity.
+        </span>
+      </h1>
 
-        <p class="hero-highlight">
-          💡 Passionate about documentation, AI-assisted support workflows,
-          and turning complex problems into scalable solutions.
-        </p>
-      </div>
+      <p class="hero-highlight">
+        💡 Passionate about documentation, AI-assisted support workflows,
+        and turning complex problems into scalable solutions.
+      </p>
 
       <div class="cta-wrapper">
         <div class="cta-row">
@@ -245,57 +215,29 @@
     </div>
   </section>
 
-  <!-- OUTLINED ABOUT CARD (reveal on scroll) -->
-  <section class="summary reveal" id="summaryCard">
+  <!-- OUTLINED ABOUT SECTION -->
+  <section class="summary">
     <h3>Here’s a bit about me</h3>
 
     <ul class="highlights">
-      <li>🛠 5+ years supporting SaaS products and high-touch clients in production environments</li>
-      <li>🤖 Building AI-assisted support tools using intent-based design and structured prompts</li>
-      <li>📝 Designing documentation that reduces repeat issues and improves self-service</li>
-      <li>🔍 Strong focus on troubleshooting, workflows, and system-level thinking</li>
+      <li>🛠 Lead complex technical investigations and own high priority escalations end to end in high impact environments</li>
+      <li>🤖 Apply AI assisted tools and contextual workflows to improve accuracy, consistency, and decision making at scale</li>
+      <li>📝 Design and maintain documentation and workflows that support customer and internal self service</li>
+      <li>🔍 Proactively identify systemic issues through pattern analysis and root cause investigation, driving long term improvements across support operations</li>
     </ul>
   </section>
 
   <section class="links">
-    <h2>Find Me Online</h2>
+    <h2>You Can Find Me Online</h2>
     <p>
-      <a href="https://github.com/TechTinker-1" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/TechTinker-1" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
     </p>
   </section>
 
   <footer>
     © 2025 Madiha Khan · MadihaInTech.me
   </footer>
-
-  <script>
-    // Subtle outline + fade-in on scroll (IntersectionObserver)
-    (function () {
-      const el = document.querySelector(".reveal");
-      if (!el) return;
-
-      // If browser doesn't support IntersectionObserver, just show it.
-      if (!("IntersectionObserver" in window)) {
-        el.classList.add("in-view");
-        return;
-      }
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("in-view");
-              observer.unobserve(entry.target); // animate once
-            }
-          });
-        },
-        { threshold: 0.2 }
-      );
-
-      observer.observe(el);
-    })();
-  </script>
 
 </body>
 </html>

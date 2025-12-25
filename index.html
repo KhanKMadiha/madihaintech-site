@@ -9,11 +9,11 @@
     :root {
       --bg: #fffafb;
       --pink-main: #fbe4ec;
-      --pink-accent: #f6c1d1;
+      --pink-accent: #fff0f6;
       --pink-strong: #e96a9a;
       --card: #fff0f6;
       --text-dark: #2b2b2b;
-      --muted-dark: rgba(43, 43, 43, 0.75);
+      --muted-dark: rgba(43, 43, 43, 0.7);
     }
 
     * {
@@ -31,10 +31,10 @@
 
     /* ---------- FULL-WIDTH HERO ---------- */
     .hero {
-      min-height: 80vh;
-      display: grid;
-      place-items: center;
-      padding: 4rem 1rem 3rem;
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      padding: 5.5rem 1.5rem 3.5rem;
       background: linear-gradient(
         135deg,
         var(--pink-main),
@@ -43,45 +43,60 @@
     }
 
     .hero-inner {
-      max-width: 920px;
+      max-width: 980px;
+      margin: 0 auto;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    /* ---------- TOP CONTENT ---------- */
+    .hero-content {
+      max-width: 980px;
     }
 
     h1 {
-      margin: 0 0 0.75rem;
-      font-size: clamp(2.3rem, 4vw, 3.2rem);
-      line-height: 1.1;
+      margin: 0 0 1.1rem;
+      font-size: clamp(2.8rem, 5vw, 3.8rem);
+      line-height: 1.08;
       letter-spacing: -0.02em;
     }
 
     .intro-line {
       display: block;
-      margin-top: 0.65rem;
-      font-size: 1.15rem;
+      margin-top: 1rem;
+      font-size: 1.45rem;
       font-weight: 500;
       color: var(--muted-dark);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     .hero-highlight {
-      margin: 1.25rem auto 0;
-      max-width: 780px;
-      font-size: 1.05rem;
-      line-height: 1.7;
+      margin: 2rem auto 0;
+      max-width: 820px;
+      font-size: 1.2rem;
+      line-height: 1.75;
     }
 
-    /* ---------- ULTRA-MINIMAL LINK-STYLE CTAs ---------- */
+    /* ---------- CTA AREA (PUSHED DOWN) ---------- */
+    .cta-wrapper {
+      margin-top: auto;              /* ⬅ pushes CTAs toward bottom */
+      padding-top: 4rem;             /* breathing room from text */
+    }
+
     .cta-row {
       display: flex;
-      gap: 1.75rem;
+      gap: 3.5rem;                   /* ⬅ bigger gap between buttons */
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 1.75rem;
     }
 
+    /* ---------- ULTRA-MINIMAL LINK-STYLE BUTTONS ---------- */
     .btn {
       padding: 0;
       font-weight: 600;
+      font-size: 1.1rem;
       text-decoration: none;
       background: transparent;
       border: none;
@@ -94,17 +109,17 @@
       content: "";
       position: absolute;
       left: 0;
-      bottom: -3px;
+      bottom: -5px;
       width: 100%;
-      height: 1px;
+      height: 1.5px;
       background-color: currentColor;
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.18s ease;
+      transition: transform 0.2s ease;
     }
 
     .btn:hover {
-      opacity: 0.75;
+      opacity: 0.7;
     }
 
     .btn:hover::after {
@@ -115,50 +130,51 @@
       font-weight: 700;
     }
 
-    /* ---------- SUMMARY SECTION ---------- */
+    /* ---------- SUMMARY ---------- */
     .summary {
-      padding: 3rem 1rem 2.75rem;
-      background-color: var(--bg);
+      padding: 4rem 1.5rem 3.5rem;
     }
 
     .summary h3 {
-      margin: 0.5rem 0 1.4rem;
-      font-size: 1.25rem;
+      margin: 0 0 1.75rem;
+      font-size: 1.6rem;
       font-weight: 700;
     }
 
     .highlights {
       list-style: none;
       padding: 0;
-      max-width: 820px;
+      max-width: 880px;
       margin: 0 auto;
       display: grid;
-      gap: 0.9rem;
+      gap: 1.1rem;
     }
 
     .highlights li {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 1rem 1.15rem;
-      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1.25rem 1.4rem;
+      border-radius: 16px;
       text-align: left;
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 1.05rem;
     }
 
     /* ---------- LINKS ---------- */
     .links {
-      padding: 0 1rem 1.5rem;
+      padding: 0 1.5rem 2rem;
     }
 
     .links h2 {
-      font-size: 1.4rem;
-      margin: 1.5rem 0 0.5rem;
+      font-size: 1.6rem;
+      margin: 2rem 0 0.75rem;
     }
 
     .links a {
-      margin: 0 1rem;
+      margin: 0 1.25rem;
       color: var(--pink-strong);
       font-weight: 700;
       text-decoration: none;
+      font-size: 1.05rem;
     }
 
     .links a:hover {
@@ -166,9 +182,9 @@
     }
 
     footer {
-      margin-top: 2rem;
-      padding: 1.5rem 1rem;
-      font-size: 0.9rem;
+      margin-top: 2.5rem;
+      padding: 2rem 1.5rem;
+      font-size: 0.95rem;
       color: rgba(43, 43, 43, 0.7);
       background: linear-gradient(135deg, #ffffff, var(--pink-main));
     }
@@ -187,9 +203,13 @@
       --df-messenger-send-icon: var(--pink-strong);
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .cta-row {
-        gap: 1.1rem;
+        gap: 1.75rem;
+      }
+
+      .cta-wrapper {
+        padding-top: 3rem;
       }
     }
   </style>
@@ -200,24 +220,31 @@
   <!-- FULL-WIDTH HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <h1>
-        Hi, I’m Madiha 👋🏼
-        <span class="intro-line">
-          A Support Engineer who loves empowering others to utilise products to their full capacity.
-        </span>
-      </h1>
 
-      <p class="hero-highlight">
-        💡 Passionate about documentation, AI-assisted support workflows,
-        and turning complex problems into scalable solutions.
-      </p>
+      <div class="hero-content">
+        <h1>
+          Hi, I’m Madiha 👋🏼
+          <span class="intro-line">
+            A Support Engineer who loves empowering others to utilise products to their full capacity.
+          </span>
+        </h1>
 
-      <div class="cta-row">
-        <a class="btn" href="./about.html">About Me</a>
-        <a class="btn primary" href="./skills.html">Skills</a>
-        <a class="btn" href="./chatbot.html">Chatbot Project</a>
-        <a class="btn" href="./contact.html">Contact</a>
+        <p class="hero-highlight">
+          💡 Passionate about documentation, AI-assisted support workflows,
+          and turning complex problems into scalable solutions.
+        </p>
       </div>
+
+      <!-- CTAs pushed toward bottom -->
+      <div class="cta-wrapper">
+        <div class="cta-row">
+          <a class="btn" href="./about.html">About</a>
+          <a class="btn primary" href="./skills.html">Skills</a>
+          <a class="btn" href="./chatbot.html">Chatbot Project</a>
+          <a class="btn" href="./contact.html">Contact</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -260,4 +287,3 @@
 
 </body>
 </html>
-

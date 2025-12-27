@@ -257,16 +257,31 @@
   </footer>
 
 <!-- CHATBOT (Dialogflow CX Messenger - current embed) -->
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
 <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-
 <df-messenger
+  location="europe-west2"
   project-id="madiha-portfolio-rh9d"
   agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
-  location="europe-west2"
   language-code="en"
-  intent="WELCOME">
-  <df-messenger-chat-bubble chat-title="Ask Madiha"></df-messenger-chat-bubble>
+  max-query-length="-1">
+  <df-messenger-chat-bubble
+    chat-title="Madiha&#x27;s Portfolio Bot">
+  </df-messenger-chat-bubble>
 </df-messenger>
+<style>
+  df-messenger {
+    z-index: 999;
+    position: fixed;
+    --df-messenger-font-color: #000;
+    --df-messenger-font-family: Google Sans;
+    --df-messenger-chat-background: #f3f6fc;
+    --df-messenger-message-user-background: #d3e3fd;
+    --df-messenger-message-bot-background: #fff;
+    bottom: 16px;
+    right: 16px;
+  }
+</style>
 
 </body>
 </html>

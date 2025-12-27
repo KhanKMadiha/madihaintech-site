@@ -96,11 +96,7 @@
       border-color: var(--border-strong);
     }
 
-    .nav-btn.primary {
-      font-weight: 800;
-    }
-
-    /* ---------- CONTENT WRAP ---------- */
+    /* ---------- CONTENT ---------- */
     .content {
       max-width: 980px;
       margin: 0 auto 3.5rem;
@@ -111,7 +107,7 @@
     /* ---------- CARDS ---------- */
     .card {
       margin: 0 auto 1.5rem;
-      padding: 2.25rem 2.25rem;
+      padding: 2.25rem;
       border: 1.5px solid var(--border-soft);
       border-radius: 26px;
       background-color: rgba(255, 255, 255, 0.45);
@@ -119,22 +115,16 @@
     }
 
     .card h2 {
-      margin: 0 0 1.25rem;
+      margin: 0 0 1rem;
       font-size: 1.5rem;
       font-weight: 800;
       text-align: center;
-    }
-
-    .card p {
-      margin: 0 0 1rem;
-      font-size: 1.05rem;
     }
 
     .grid {
       display: grid;
       gap: 1.15rem;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      margin-top: 1.25rem;
     }
 
     .pill {
@@ -146,264 +136,167 @@
       line-height: 1.55;
     }
 
-    ul {
-      margin: 0.25rem 0 0;
-      padding-left: 1.15rem;
+    /* ---------- TOOLS GRID ---------- */
+    .tools-sub {
+      text-align: center;
+      color: var(--muted-dark);
+      margin-bottom: 1.5rem;
     }
 
-    li { margin-bottom: 0.55rem; }
-
-    .timeline {
+    .tools-grid {
       display: grid;
       gap: 1rem;
-      margin-top: 1.25rem;
+      grid-template-columns: repeat(12, 1fr);
     }
 
-    .role {
-      padding: 1.35rem 1.25rem;
-      border-radius: 18px;
+    .tool-tile {
+      grid-column: span 12;
+      padding: 1.15rem;
+      border-radius: 20px;
       border: 1.5px solid var(--border-soft);
       background: rgba(255, 255, 255, 0.55);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
 
-    .role h3 {
-      margin: 0 0 0.35rem;
-      font-size: 1.15rem;
-      font-weight: 800;
+    .tool-tile:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.08);
     }
 
-    .meta {
-      margin: 0 0 0.85rem;
-      color: var(--muted-dark);
-      font-size: 0.98rem;
-      line-height: 1.45;
-    }
-
-    /* ---------- LINKS ---------- */
-    .links {
-      padding-bottom: 2.5rem;
-      text-align: center;
-    }
-
-    .links h2 {
-      font-size: 1.6rem;
-      margin: 2rem 0 0.75rem;
-    }
-
-    .links p {
+    .tool-top {
       display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      margin-top: 1.25rem;
-      flex-wrap: wrap;
-    }
-
-    .social-link {
-      display: inline-flex;
       align-items: center;
-      gap: 0.65rem;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--pink-strong);
-      text-decoration: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      gap: 0.75rem;
     }
 
-    .social-link:hover {
-      opacity: 0.75;
-      transform: translateY(-1px);
+    .tool-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--pink-soft);
+      border: 1px solid var(--border-soft);
+      font-size: 1.25rem;
     }
 
-    footer {
-      padding: 2rem 1.5rem;
-      font-size: 0.95rem;
-      color: rgba(43, 43, 43, 0.7);
-      text-align: center;
+    .tool-desc {
+      color: var(--muted-dark);
+      margin: 0.5rem 0 0.85rem;
+    }
+
+    .tool-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tag {
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(233, 106, 154, 0.10);
+      border: 1px solid rgba(233, 106, 154, 0.18);
+      font-size: 0.9rem;
+    }
+
+    @media (min-width: 720px) {
+      .tool-tile { grid-column: span 6; }
+    }
+
+    @media (min-width: 1024px) {
+      .tool-tile { grid-column: span 4; }
     }
 
     @media (max-width: 800px) {
       .grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 600px) {
-      .card { padding: 2rem 1.35rem; }
-      .nav-btn { flex: 1 1 100%; max-width: none; }
-      .links p { gap: 1.75rem; }
-    }
-
-    /* ---------- DIALOGFLOW CHATBOT THEME ---------- */
-    df-messenger {
-      --df-messenger-bot-message: #ffffff;
-      --df-messenger-user-message: #fbe4ec;
-
-      --df-messenger-button-titlebar-color: #fbe4ec;
-      --df-messenger-button-titlebar-font-color: #2b2b2b;
-
-      --df-messenger-chat-background-color: #fff0f6;
-
-      --df-messenger-send-icon: #e96a9a;
-      --df-messenger-font-color: #2b2b2b;
-
-      --df-messenger-button-background-color: #fbe4ec;
-      --df-messenger-button-text-color: #2b2b2b;
-
-      --df-messenger-focus-color: #e96a9a;
-    }
-
-    df-messenger::part(chat-button) {
-      box-shadow: 0 10px 25px rgba(233, 106, 154, 0.25);
-      border-radius: 18px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Skills & Experience</h1>
-      <p class="hero-highlight">
-        A snapshot of the work I do most often, the tools I use, and the impact areas I focus on in support engineering.
-      </p>
-    </div>
-  </section>
-
-  <!-- NAV BUTTONS -->
-  <section class="nav-cta">
-    <div class="nav-cta-inner">
-      <a class="nav-btn" href="./index.html">Homepage</a>
-      <a class="nav-btn" href="./about.html">About Me</a>
-      <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
-      <a class="nav-btn" href="./contact.html">Get in Touch</a>
-    </div>
-  </section>
-
-  <main class="content">
-
-    <section class="card">
-      <h2>Core strengths</h2>
-      <div class="grid">
-        <div class="pill">🛠 Complex troubleshooting and end-to-end case ownership in production environments</div>
-        <div class="pill">🔍 Root cause thinking, pattern spotting, and escalation leadership for high-impact issues</div>
-        <div class="pill">🤝 Clear communication with enterprise clients and cross-functional partners</div>
-        <div class="pill">📈 Process-minded support that improves reliability, clarity, and outcomes over time</div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Technical skills</h2>
-      <div class="grid">
-        <div class="pill">
-          APIs and debugging
-          <ul>
-            <li>Reproduction, edge case isolation, and log-based investigation</li>
-            <li>Clear escalation context for engineering teams</li>
-          </ul>
-        </div>
-        <div class="pill">
-          Identity and access
-          <ul>
-            <li>SSO troubleshooting and authentication flows</li>
-            <li>Access and provisioning issues in enterprise environments</li>
-          </ul>
-        </div>
-        <div class="pill">
-          Incident response
-          <ul>
-            <li>Rootly coordination, Slack comms, and follow-ups</li>
-            <li>Jira incident summaries and action items</li>
-          </ul>
-        </div>
-        <div class="pill">
-          Support operations
-          <ul>
-            <li>Documentation and workflows that enable self-service</li>
-            <li>Reducing repeat issues through system-level improvements</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Tools I use</h2>
-      <div class="grid">
-        <div class="pill">🎫 Freshdesk for support case management and customer communication</div>
-        <div class="pill">🚨 Rootly for incident coordination and escalation workflow</div>
-        <div class="pill">💬 Slack for incident communication and cross-team collaboration</div>
-        <div class="pill">📌 Jira for incident summaries, tracking, and follow-up work</div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>Experience highlights</h2>
-      <div class="timeline">
-        <div class="role">
-          <h3>Senior Product Support Specialist</h3>
-          <p class="meta">Stack Overflow · High-touch enterprise support · Production environments</p>
-          <ul>
-            <li>Lead complex investigations and own escalations end to end for high-impact customer issues</li>
-            <li>Coordinate P1 and P2 incidents using Rootly and Slack, with post-incident tracking in Jira</li>
-            <li>Drive clarity through documentation and workflows that reduce repeat issues over time</li>
-          </ul>
-        </div>
-
-        <div class="role">
-          <h3>Support Engineer</h3>
-          <p class="meta">Previous role · Enterprise clients · High volume case ownership</p>
-          <ul>
-            <li>Managed a high daily case load while maintaining quality and customer trust</li>
-            <li>Troubleshot complex SaaS issues and escalations in time-sensitive situations</li>
-            <li>Partnered cross-functionally to restore service quickly and reliably</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-    <p>💬 You can chat with my AI assistant in the bottom right corner to learn more about my work and projects.</p>
-  </section>
-       
-  </main>
-
-  <section class="links">
-    <h2>Let’s connect! 👩🏻‍💻</h2>
-    <p>
-      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Skills & Experience</h1>
+    <p class="hero-highlight">
+      A snapshot of how I investigate issues, run incidents, and support complex systems in production.
     </p>
+  </div>
+</section>
+
+<section class="nav-cta">
+  <div class="nav-cta-inner">
+    <a class="nav-btn" href="./index.html">Homepage</a>
+    <a class="nav-btn" href="./about.html">About Me</a>
+    <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
+    <a class="nav-btn" href="./contact.html">Get in Touch</a>
+  </div>
+</section>
+
+<main class="content">
+
+  <section class="card">
+    <h2>Core strengths</h2>
+    <div class="grid">
+      <div class="pill">🛠 End-to-end ownership of complex production issues</div>
+      <div class="pill">🔍 Root cause thinking & escalation leadership</div>
+      <div class="pill">🤝 Clear enterprise & cross-functional communication</div>
+      <div class="pill">📈 Process-driven support improvements</div>
+    </div>
   </section>
 
-  <footer>
-    © 2025 Madiha Khan · MadihaInTech.me
-  </footer>
+  <section class="card">
+    <h2>Tools by impact area</h2>
+    <p class="tools-sub">
+      Tools change — systems thinking, ownership, and communication don’t.
+    </p>
 
-<!-- CHATBOT (Dialogflow CX Messenger - current embed) -->
-  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-<df-messenger
-  location="europe-west2"
-  project-id="madiha-portfolio-rh9d"
-  agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
-  language-code="en"
-  max-query-length="-1">
-  <df-messenger-chat-bubble
-    chat-title="Madiha&#x27;s Portfolio Bot">
-  </df-messenger-chat-bubble>
-</df-messenger>
-<style>
-  df-messenger {
-    z-index: 999;
-    position: fixed;
-    --df-messenger-font-color: #000;
-    --df-messenger-font-family: Google Sans;
-    --df-messenger-chat-background: #f3f6fc;
-    --df-messenger-message-user-background: #d3e3fd;
-    --df-messenger-message-bot-background: #fff;
-    bottom: 16px;
-    right: 16px;
-  }
-</style>
+    <div class="tools-grid">
+      <div class="tool-tile">
+        <div class="tool-top"><span class="tool-icon">🎫</span><strong>Support platforms</strong></div>
+        <p class="tool-desc">Freshdesk, Salesforce, Intercom, Zendesk</p>
+        <div class="tool-tags"><span class="tag">Case ownership</span><span class="tag">SLAs</span></div>
+      </div>
+
+      <div class="tool-tile">
+        <div class="tool-top"><span class="tool-icon">🚨</span><strong>Incident response</strong></div>
+        <p class="tool-desc">Rootly, Slack, Jira, Confluence</p>
+        <div class="tool-tags"><span class="tag">P1/P2</span><span class="tag">Escalations</span></div>
+      </div>
+
+      <div class="tool-tile">
+        <div class="tool-top"><span class="tool-icon">🔍</span><strong>Observability</strong></div>
+        <p class="tool-desc">Datadog, Kibana, DevTools</p>
+        <div class="tool-tags"><span class="tag">Dashboards</span><span class="tag">Logs</span></div>
+      </div>
+
+      <div class="tool-tile">
+        <div class="tool-top"><span class="tool-icon">🔌</span><strong>APIs & SSO</strong></div>
+        <p class="tool-desc">REST APIs, Postman, SSO (SAML), DNS</p>
+        <div class="tool-tags"><span class="tag">Integrations</span></div>
+      </div>
+
+      <div class="tool-tile">
+        <div class="tool-top"><span class="tool-icon">🧑‍💻</span><strong>Technical foundations</strong></div>
+        <p class="tool-desc">JavaScript, SQL, Bash, Docker, HTML/CSS</p>
+        <div class="tool-tags"><span class="tag">Reproduction</span></div>
+      </div>
+
+      <div class="tool-tile">
+        <div class="tool-top"><span class="tool-icon">📚</span><strong>Documentation</strong></div>
+        <p class="tool-desc">Playbooks, KBs, API docs</p>
+        <div class="tool-tags"><span class="tag">Enablement</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2025 Madiha Khan · MadihaInTech.me
+</footer>
 
 </body>
 </html>
+

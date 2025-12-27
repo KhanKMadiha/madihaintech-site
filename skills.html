@@ -278,7 +278,7 @@
       </div>
 
       <div class="tool-tile">
-        <div class="tool-top"><span class="tool-icon">🧑‍💻</span><strong>Technical foundations</strong></div>
+        <div class="tool-top"><span class="tool-icon">👩🏻‍💻</span><strong>Technical foundations</strong></div>
         <p class="tool-desc">JavaScript, SQL, Bash, Docker, HTML/CSS</p>
         <div class="tool-tags"><span class="tag">Reproduction</span></div>
       </div>
@@ -293,9 +293,48 @@
 
 </main>
 
-<footer>
-  © 2025 Madiha Khan · MadihaInTech.me
-</footer>
+   <section>
+    <p>💬 You can chat with my AI assistant in the bottom right corner to learn more about my work and projects.</p>
+  </section>
+  
+  <section class="links">
+    <h2>Let’s connect! 👩🏻‍💻</h2>
+    <p>
+      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank">GitHub</a>
+      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
+    </p>
+  </section>
+
+  <footer>
+    © 2025 Madiha Khan · MadihaInTech.me
+  </footer>
+
+<!-- CHATBOT (Dialogflow CX Messenger - current embed) -->
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+<df-messenger
+  location="europe-west2"
+  project-id="madiha-portfolio-rh9d"
+  agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
+  language-code="en"
+  max-query-length="-1">
+  <df-messenger-chat-bubble
+    chat-title="Madiha&#x27;s Portfolio Bot">
+  </df-messenger-chat-bubble>
+</df-messenger>
+<style>
+  df-messenger {
+    z-index: 999;
+    position: fixed;
+    --df-messenger-font-color: #000;
+    --df-messenger-font-family: Google Sans;
+    --df-messenger-chat-background: #f3f6fc;
+    --df-messenger-message-user-background: #d3e3fd;
+    --df-messenger-message-bot-background: #fff;
+    bottom: 16px;
+    right: 16px;
+  }
+</style>
 
 </body>
 </html>

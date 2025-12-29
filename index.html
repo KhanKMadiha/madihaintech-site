@@ -109,10 +109,10 @@
       font-weight: 800;
     }
 
-    /* ---------- OUTLINED ABOUT CARD ---------- */
+    /* ---------- OUTLINED CARD (REUSABLE) ---------- */
     .summary {
       max-width: 980px;
-      margin: 0 auto 4rem;
+      margin: 0 auto 2.25rem;
       padding: 2.75rem 2.5rem;
       border: 1.5px solid var(--border-soft);
       border-radius: 26px;
@@ -127,9 +127,30 @@
     }
 
     .summary h3 {
-      margin: 0 0 2rem;
+      margin: 0 0 1.5rem;
       font-size: 1.6rem;
       font-weight: 700;
+      text-align: center;
+    }
+
+    /* Text-heavy version of the summary card */
+    .summary.text-block {
+      text-align: left;
+    }
+
+    .summary.text-block h3 {
+      text-align: center;
+    }
+
+    .summary.text-block p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin: 0 0 1.4rem;
+      color: var(--text-dark);
+    }
+
+    .summary.text-block p:last-child {
+      margin-bottom: 0;
     }
 
     .highlights {
@@ -186,7 +207,7 @@
       color: rgba(43, 43, 43, 0.7);
     }
 
-    /* ---------- CHATBOT THEME ---------- */
+    /* ---------- CHATBOT THEME (Dialogflow Messenger) ---------- */
     df-messenger {
       --df-messenger-button-background-color: #fbe4ec;
       --df-messenger-button-text-color: #2b2b2b;
@@ -210,13 +231,13 @@
       <h1>
         Hi, I’m Madiha 👋🏼
         <span class="intro-line">
-          A Support Engineer helping teams and customers use complex systems reliably 
+          A Support Engineer helping teams and customers use complex systems reliably
           through investigation, documentation, and continuous improvement.
         </span>
       </h1>
 
       <p class="hero-highlight">
-        💡 5+ years supporting complex SaaS systems through issue reproduction, 
+        💡 5+ years supporting complex SaaS systems through issue reproduction,
         escalation ownership, and documentation-driven system improvements.
       </p>
     </div>
@@ -232,26 +253,33 @@
     </div>
   </section>
 
-  <!-- OUTLINED ABOUT SECTION -->
- 
-  <p>
-  I’m a Support Engineer with over five years of experience supporting SaaS products and high-touch enterprise clients.
-  I’m self-taught, systems-minded, and drawn to complex problems where clarity, ownership, and sound decision-making matter.
-</p>
+  <!-- ABOUT ME (NOW IN A MATCHING BOX/CARD) -->
+  <section class="summary text-block">
+    <h3>About Me</h3>
 
-<p>
-  Over time, my focus has shifted from simply resolving issues to understanding why they happen, how they escalate,
-  and how support systems can be improved so the same problems do not repeat.
-</p>
+    <p>
+      I’m a Support Engineer with over five years of experience supporting SaaS products and high-touch enterprise clients.
+      I’m self-taught, systems-minded, and drawn to complex problems where clarity, ownership, and sound decision-making matter.
+    </p>
 
-<p>
-  More recently, I completed the IBM AI Foundations learning path on Coursera and began applying those concepts in practice.
-  I built an initial chatbot using IBM Watson and have since used those learnings to design and iterate on a chatbot using
-  Dialogflow, which you can explore directly on this site. 
-  <br> </br> If you would like to learn more about how the chatbot works,the design decisions behind it, or the problems it is intended to solve, you can navigate to the AI Chatbot Project
-  section using the button above.
-</p>
-  
+    <p>
+      Over time, my focus has shifted from resolving individual issues to understanding why they happen, how they escalate,
+      and how support systems can be improved so the same problems don’t repeat.
+    </p>
+
+    <p>
+      Recently, I completed the IBM AI Foundations learning path and began applying those concepts in practice.
+      I built an initial chatbot using IBM Watson and later designed and iterated on a production-style chatbot using Dialogflow,
+      which you can explore directly on this site.
+    </p>
+
+    <p>
+      The project focuses on intent design, edge-case handling, and translating real support workflows into conversational systems —
+      bridging traditional support engineering with applied AI.
+    </p>
+  </section>
+
+  <!-- OUTLINED HIGHLIGHTS SECTION -->
   <section class="summary">
     <h3>Here’s a bit about me</h3>
 
@@ -260,18 +288,19 @@
       <li>🤖 Integrated AI-assisted insights to improve response accuracy and workflow consistency at scale</li>
       <li>📝 Created self-service enablement documentation and tooling that elevate internal and customer efficiency</li>
       <li>🔍 Proactively identify systemic issues through pattern analysis and root cause investigation, driving long-term improvements across support operations</li>
+      <li>💬 Explore my work interactively by chatting with my AI assistant in the bottom-right corner</li>
     </ul>
   </section>
 
-   <section>
-    <p>💬 You can chat with my AI assistant in the bottom right corner to learn more about my work and projects.</p>
+  <section>
+    <p>💬 If you’re interested in support engineering, applied AI, or systems-driven problem solving, I’d love to connect.</p>
   </section>
-  
+
   <section class="links">
     <h2>Let’s connect! 👩🏻‍💻</h2>
     <p>
-      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank">GitHub</a>
-      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
+      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </p>
   </section>
 
@@ -279,32 +308,32 @@
     © 2025 Madiha Khan · MadihaInTech.me
   </footer>
 
-<!-- CHATBOT (Dialogflow CX Messenger - current embed) -->
+  <!-- CHATBOT (Dialogflow CX Messenger - current embed) -->
   <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-<df-messenger
-  location="europe-west2"
-  project-id="madiha-portfolio-rh9d"
-  agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
-  language-code="en"
-  max-query-length="-1">
-  <df-messenger-chat-bubble
-    chat-title="Madiha&#x27;s Portfolio Bot">
-  </df-messenger-chat-bubble>
-</df-messenger>
-<style>
-  df-messenger {
-    z-index: 999;
-    position: fixed;
-    --df-messenger-font-color: #000;
-    --df-messenger-font-family: Google Sans;
-    --df-messenger-chat-background: #f3f6fc;
-    --df-messenger-message-user-background: #d3e3fd;
-    --df-messenger-message-bot-background: #fff;
-    bottom: 16px;
-    right: 16px;
-  }
-</style>
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+
+  <df-messenger
+    location="europe-west2"
+    project-id="madiha-portfolio-rh9d"
+    agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
+    language-code="en"
+    max-query-length="-1">
+    <df-messenger-chat-bubble chat-title="Madiha&#x27;s Portfolio Bot"></df-messenger-chat-bubble>
+  </df-messenger>
+
+  <style>
+    df-messenger {
+      z-index: 999;
+      position: fixed;
+      --df-messenger-font-color: #000;
+      --df-messenger-font-family: Google Sans;
+      --df-messenger-chat-background: #f3f6fc;
+      --df-messenger-message-user-background: #d3e3fd;
+      --df-messenger-message-bot-background: #fff;
+      bottom: 16px;
+      right: 16px;
+    }
+  </style>
 
 </body>
 </html>

@@ -1,12 +1,13 @@
-<!-- =========================
-     skills.html
-     ========================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Skills & Experience | Madiha Khan</title>
+
+  <!-- Dialogflow Messenger assets (MUST be in head) -->
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
 
   <style>
     :root {
@@ -211,131 +212,174 @@
     @media (max-width: 800px) {
       .grid { grid-template-columns: 1fr; }
     }
+
+    /* ---------- LINKS ---------- */
+    .links {
+      padding-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .links h2 {
+      font-size: 1.6rem;
+      margin: 2rem 0 0.75rem;
+    }
+
+    .links p {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--pink-strong);
+      text-decoration: none;
+    }
+
+    /* ---------- FOOTER (MATCHES ALL PAGES) ---------- */
+    footer {
+      margin: 26px 0 34px;
+      padding: 0 1.5rem;
+      font-size: 0.95rem;
+      color: rgba(43, 43, 43, 0.7);
+      text-align: center;
+    }
+
+    /* ---------- CHATBOT ---------- */
+    df-messenger {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 9999;
+
+      --df-messenger-button-background-color: #fbe4ec;
+      --df-messenger-button-text-color: #2b2b2b;
+      --df-messenger-chat-background-color: #fff0f6;
+      --df-messenger-send-icon: #e96a9a;
+      --df-messenger-focus-color: #e96a9a;
+    }
+
+    df-messenger::part(chat-button) {
+      box-shadow: 0 10px 25px rgba(233, 106, 154, 0.25);
+      border-radius: 18px;
+    }
   </style>
 </head>
 
 <body>
 
-<section class="hero">
-  <div class="hero-inner">
-    <h1>Skills & Experience</h1>
-    <p class="hero-highlight">
-      A snapshot of how I investigate issues, run incidents, and support complex systems in production.
-    </p>
-  </div>
-</section>
-
-<section class="nav-cta">
-  <div class="nav-cta-inner">
-    <a class="nav-btn" href="./index.html">Homepage</a>
-    <a class="nav-btn" href="./about.html">About Me</a>
-    <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
-    <a class="nav-btn" href="./contact.html">Get in Touch</a>
-  </div>
-</section>
-
-<main class="content">
-
-  <section class="card">
-    <h2>Core strengths</h2>
-    <div class="grid">
-      <div class="pill">🛠 End-to-end ownership of complex production issues</div>
-      <div class="pill">🔍 Root cause thinking & escalation leadership</div>
-      <div class="pill">🤝 Clear enterprise & cross-functional communication</div>
-      <div class="pill">📈 Process-driven support improvements</div>
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Skills & Experience</h1>
+      <p class="hero-highlight">
+        A snapshot of how I investigate issues, run incidents, and support complex systems in production.
+      </p>
     </div>
   </section>
 
-  <section class="card">
-    <h2>Tools by impact area</h2>
-    <p class="tools-sub">
-      Tools change — systems thinking, ownership, and communication don’t.
-    </p>
-
-    <div class="tools-grid">
-      <div class="tool-tile">
-        <div class="tool-top"><span class="tool-icon">🎫</span><strong>Support platforms</strong></div>
-        <p class="tool-desc">Freshdesk, Salesforce, Intercom, Zendesk</p>
-        <div class="tool-tags"><span class="tag">Case ownership</span><span class="tag">SLAs</span></div>
-      </div>
-
-      <div class="tool-tile">
-        <div class="tool-top"><span class="tool-icon">🚨</span><strong>Incident response</strong></div>
-        <p class="tool-desc">Rootly, Slack, Jira, Confluence</p>
-        <div class="tool-tags"><span class="tag">P1/P2</span><span class="tag">Escalations</span></div>
-      </div>
-
-      <div class="tool-tile">
-        <div class="tool-top"><span class="tool-icon">🔍</span><strong>Observability</strong></div>
-        <p class="tool-desc">Datadog, Kibana, DevTools</p>
-        <div class="tool-tags"><span class="tag">Dashboards</span><span class="tag">Logs</span></div>
-      </div>
-
-      <div class="tool-tile">
-        <div class="tool-top"><span class="tool-icon">🔌</span><strong>APIs & SSO</strong></div>
-        <p class="tool-desc">REST APIs, Postman, SSO (SAML), DNS</p>
-        <div class="tool-tags"><span class="tag">Integrations</span></div>
-      </div>
-
-      <div class="tool-tile">
-        <div class="tool-top"><span class="tool-icon">👩🏻‍💻</span><strong>Technical foundations</strong></div>
-        <p class="tool-desc">JavaScript, SQL, Bash, Docker, HTML/CSS</p>
-        <div class="tool-tags"><span class="tag">Reproduction</span></div>
-      </div>
-
-      <div class="tool-tile">
-        <div class="tool-top"><span class="tool-icon">📚</span><strong>Documentation</strong></div>
-        <p class="tool-desc">Playbooks, KBs, API docs</p>
-        <div class="tool-tags"><span class="tag">Enablement</span></div>
-      </div>
+  <section class="nav-cta">
+    <div class="nav-cta-inner">
+      <a class="nav-btn" href="./index.html">Homepage</a>
+      <a class="nav-btn" href="./about.html">About Me</a>
+      <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
+      <a class="nav-btn" href="./contact.html">Get in Touch</a>
     </div>
   </section>
 
-</main>
+  <main class="content">
 
-   <section>
+    <section class="card">
+      <h2>Core strengths</h2>
+      <div class="grid">
+        <div class="pill">🛠 End-to-end ownership of complex production issues</div>
+        <div class="pill">🔍 Root cause thinking & escalation leadership</div>
+        <div class="pill">🤝 Clear enterprise & cross-functional communication</div>
+        <div class="pill">📈 Process-driven support improvements</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Tools by impact area</h2>
+      <p class="tools-sub">
+        Tools change — systems thinking, ownership, and communication don’t.
+      </p>
+
+      <div class="tools-grid">
+        <div class="tool-tile">
+          <div class="tool-top"><span class="tool-icon">🎫</span><strong>Support platforms</strong></div>
+          <p class="tool-desc">Freshdesk, Salesforce, Intercom, Zendesk</p>
+          <div class="tool-tags"><span class="tag">Case ownership</span><span class="tag">SLAs</span></div>
+        </div>
+
+        <div class="tool-tile">
+          <div class="tool-top"><span class="tool-icon">🚨</span><strong>Incident response</strong></div>
+          <p class="tool-desc">Rootly, Slack, Jira, Confluence</p>
+          <div class="tool-tags"><span class="tag">P1/P2</span><span class="tag">Escalations</span></div>
+        </div>
+
+        <div class="tool-tile">
+          <div class="tool-top"><span class="tool-icon">🔍</span><strong>Observability</strong></div>
+          <p class="tool-desc">Datadog, Kibana, DevTools</p>
+          <div class="tool-tags"><span class="tag">Dashboards</span><span class="tag">Logs</span></div>
+        </div>
+
+        <div class="tool-tile">
+          <div class="tool-top"><span class="tool-icon">🔌</span><strong>APIs & SSO</strong></div>
+          <p class="tool-desc">REST APIs, Postman, SSO (SAML), DNS</p>
+          <div class="tool-tags"><span class="tag">Integrations</span></div>
+        </div>
+
+        <div class="tool-tile">
+          <div class="tool-top"><span class="tool-icon">👩🏻‍💻</span><strong>Technical foundations</strong></div>
+          <p class="tool-desc">JavaScript, SQL, Bash, Docker, HTML/CSS</p>
+          <div class="tool-tags"><span class="tag">Reproduction</span></div>
+        </div>
+
+        <div class="tool-tile">
+          <div class="tool-top"><span class="tool-icon">📚</span><strong>Documentation</strong></div>
+          <p class="tool-desc">Playbooks, KBs, API docs</p>
+          <div class="tool-tags"><span class="tag">Enablement</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <section>
     <p>💬 You can chat with my AI assistant in the bottom right corner to learn more about my work and projects.</p>
   </section>
-  
+
   <section class="links">
     <h2>Let’s connect! 👩🏻‍💻</h2>
     <p>
-      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank">GitHub</a>
-      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
+      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </p>
   </section>
 
-    <footer>
-      © <span id="year"></span> Madiha Khan · Built with care 🌸
-    </footer>
+  <footer>
+    © <span id="year"></span> Madiha Khan · Built with care 🌸
+  </footer>
 
-<!-- CHATBOT (Dialogflow CX Messenger - current embed) -->
-  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-<df-messenger
-  location="europe-west2"
-  project-id="madiha-portfolio-rh9d"
-  agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
-  language-code="en"
-  max-query-length="-1">
-  <df-messenger-chat-bubble
-    chat-title="Madiha&#x27;s Portfolio Bot">
-  </df-messenger-chat-bubble>
-</df-messenger>
-<style>
-  df-messenger {
-    z-index: 999;
-    position: fixed;
-    --df-messenger-font-color: #000;
-    --df-messenger-font-family: Google Sans;
-    --df-messenger-chat-background: #f3f6fc;
-    --df-messenger-message-user-background: #d3e3fd;
-    --df-messenger-message-bot-background: #fff;
-    bottom: 16px;
-    right: 16px;
-  }
-</style>
+  <!-- CHATBOT -->
+  <df-messenger
+    location="europe-west2"
+    project-id="madiha-portfolio-rh9d"
+    agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
+    language-code="en"
+    max-query-length="-1">
+    <df-messenger-chat-bubble chat-title="Madiha’s Portfolio Bot"></df-messenger-chat-bubble>
+  </df-messenger>
+
+  <!-- YEAR SCRIPT -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
+
 

@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Madiha in Tech</title>
+  <title>About Me | Madiha Khan</title>
+
+  <!-- Dialogflow Messenger assets (MUST be in head) -->
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
 
   <style>
     :root {
@@ -144,34 +148,16 @@
     }
 
     .social-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.65rem;
       font-size: 1.05rem;
       font-weight: 700;
       color: var(--pink-strong);
       text-decoration: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    .social-link svg {
-      width: 22px;
-      height: 22px;
-      fill: currentColor;
-      transition: transform 0.22s ease;
-    }
-
-    .social-link:hover {
-      opacity: 0.75;
-      transform: translateY(-1px);
-    }
-
-    .social-link:hover svg {
-      transform: translateY(-2px) scale(1.08);
-    }
-
+    /* ---------- FOOTER (MATCHES CONTACT + INDEX) ---------- */
     footer {
-      padding: 2rem 1.5rem;
+      margin: 26px 0 34px;
+      padding: 0 1.5rem;
       font-size: 0.95rem;
       color: rgba(43, 43, 43, 0.7);
     }
@@ -192,22 +178,17 @@
       }
     }
 
-    /* ---------- DIALOGFLOW CHATBOT THEME ---------- */
+    /* ---------- CHATBOT ---------- */
     df-messenger {
-      --df-messenger-bot-message: #ffffff;
-      --df-messenger-user-message: #fbe4ec;
-
-      --df-messenger-button-titlebar-color: #fbe4ec;
-      --df-messenger-button-titlebar-font-color: #2b2b2b;
-
-      --df-messenger-chat-background-color: #fff0f6;
-
-      --df-messenger-send-icon: #e96a9a;
-      --df-messenger-font-color: #2b2b2b;
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 9999;
 
       --df-messenger-button-background-color: #fbe4ec;
       --df-messenger-button-text-color: #2b2b2b;
-
+      --df-messenger-chat-background-color: #fff0f6;
+      --df-messenger-send-icon: #e96a9a;
       --df-messenger-focus-color: #e96a9a;
     }
 
@@ -225,12 +206,12 @@
     <div class="hero-inner">
       <h1>About Me</h1>
       <p class="hero-highlight">
-        A little more context on how I work, what I enjoy solving, and where I am working on.
+        A little more context on how I work, what I enjoy solving, and what I’m currently exploring.
       </p>
     </div>
   </section>
 
-  <!-- NAV BUTTONS -->
+  <!-- NAV -->
   <section class="nav-cta">
     <div class="nav-cta-inner">
       <a class="nav-btn" href="./index.html">Homepage</a>
@@ -240,76 +221,65 @@
     </div>
   </section>
 
-  <!-- ABOUT SECTION -->
+  <!-- ABOUT -->
   <section class="summary">
     <h3>My Focus</h3>
 
     <p>
-  I’m a Support Engineer with over five years of experience supporting SaaS products and high-touch enterprise clients.
-  I’m self-taught, systems-minded, and drawn to complex problems where clarity, ownership, and sound decision-making matter.
-</p>
+      I’m a Support Engineer with over five years of experience supporting SaaS products and
+      high-touch enterprise clients. I’m self-taught, systems-minded, and drawn to complex problems
+      where clarity, ownership, and sound decision-making matter.
+    </p>
 
-<p>
-  Over time, my focus has shifted from simply resolving issues to understanding why they happen, how they escalate,
-  and how support systems can be improved to prevent the same issues from occuring.
-</p>
-
-<p>
-  More recently, I completed the IBM AI Foundations learning path on Coursera and began applying those concepts in practice.
-  I built an initial chatbot using IBM Watson and have since used those learnings to design and iterate on a chatbot using
-  Dialogflow, which you can explore directly on this site. 
-</p>
-    
-<p>  
-  If you would like to learn more about how the chatbot works,
-  the design decisions behind it, or the problems it is intended to solve, you can navigate to the AI Chatbot Project
-  section using the button above.
-</p>
-
-  </section>
-
-  <section>
-    <p>💬 You can chat with my AI assistant in the bottom right corner to learn more about my work and projects.</p>
-  </section>
-
-  <section class="links">
-    <h2>Let’s connect! 👩🏻‍💻</h2>
     <p>
-      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      Over time, my focus has shifted from simply resolving issues to understanding why they happen,
+      how they escalate, and how support systems can be improved to prevent recurrence.
+    </p>
+
+    <p>
+      I completed the IBM AI Foundations learning path and began applying those concepts in practice.
+      I built an initial chatbot using IBM Watson and later designed and iterated on a chatbot using
+      Dialogflow, which you can explore directly on this site.
+    </p>
+
+    <p>
+      If you’d like to learn more about how the chatbot works, the design decisions behind it, or
+      the problems it’s intended to solve, you can visit the AI Chatbot Project page above.
     </p>
   </section>
 
-    <footer>
-      © <span id="year"></span> Madiha Khan · Built with care 🌸
-    </footer>
+  <section>
+    <p>💬 You can chat with my AI assistant in the bottom right corner to learn more about my work.</p>
+  </section>
 
-<!-- CHATBOT (Dialogflow CX Messenger - current embed) -->
-  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-<df-messenger
-  location="europe-west2"
-  project-id="madiha-portfolio-rh9d"
-  agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
-  language-code="en"
-  max-query-length="-1">
-  <df-messenger-chat-bubble
-    chat-title="Madiha&#x27;s Portfolio Bot">
-  </df-messenger-chat-bubble>
-</df-messenger>
-<style>
-  df-messenger {
-    z-index: 999;
-    position: fixed;
-    --df-messenger-font-color: #000;
-    --df-messenger-font-family: Google Sans;
-    --df-messenger-chat-background: #f3f6fc;
-    --df-messenger-message-user-background: #d3e3fd;
-    --df-messenger-message-bot-background: #fff;
-    bottom: 16px;
-    right: 16px;
-  }
-</style>
+  <!-- LINKS -->
+  <section class="links">
+    <h2>Let’s connect 👩🏻‍💻</h2>
+    <p>
+      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank">GitHub</a>
+      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © <span id="year"></span> Madiha Khan · Built with care 🌸
+  </footer>
+
+  <!-- CHATBOT -->
+  <df-messenger
+    location="europe-west2"
+    project-id="madiha-portfolio-rh9d"
+    agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
+    language-code="en">
+    <df-messenger-chat-bubble chat-title="Madiha’s Portfolio Bot"></df-messenger-chat-bubble>
+  </df-messenger>
+
+  <!-- YEAR SCRIPT -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
+

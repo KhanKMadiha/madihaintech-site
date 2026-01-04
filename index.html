@@ -189,8 +189,10 @@
       text-decoration: none;
     }
 
+    /* ---------- FOOTER (MATCHES CONTACT PAGE) ---------- */
     footer {
-      padding: 2rem 1.5rem;
+      margin: 26px 0 34px;
+      padding: 0 1.5rem;
       font-size: 0.95rem;
       color: rgba(43, 43, 43, 0.7);
     }
@@ -284,9 +286,10 @@
     </p>
   </section>
 
-    <footer>
-      © <span id="year"></span> Madiha Khan · Built with care 🌸
-    </footer>
+  <!-- FOOTER -->
+  <footer>
+    © <span id="year"></span> Madiha Khan · Built with care 🌸
+  </footer>
 
   <!-- CHATBOT -->
   <df-messenger
@@ -297,5 +300,11 @@
     <df-messenger-chat-bubble chat-title="Madiha’s Portfolio Bot"></df-messenger-chat-bubble>
   </df-messenger>
 
+  <!-- YEAR SCRIPT -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
 </body>
 </html>
+

@@ -1,12 +1,13 @@
-<!-- =========================
-     chatbot.html
-     ========================= -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Chatbot Project | Madiha Khan</title>
+
+  <!-- Dialogflow Messenger assets (MUST be in head) -->
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
 
   <style>
     :root {
@@ -215,8 +216,10 @@
       transform: translateY(-1px);
     }
 
+    /* ---------- FOOTER (MATCHES CONTACT + INDEX + ABOUT) ---------- */
     footer {
-      padding: 2rem 1.5rem;
+      margin: 26px 0 34px;
+      padding: 0 1.5rem;
       font-size: 0.95rem;
       color: rgba(43, 43, 43, 0.7);
       text-align: center;
@@ -228,22 +231,17 @@
       .links p { gap: 1.75rem; }
     }
 
-    /* ---------- DIALOGFLOW CHATBOT THEME ---------- */
+    /* ---------- CHATBOT ---------- */
     df-messenger {
-      --df-messenger-bot-message: #ffffff;
-      --df-messenger-user-message: #fbe4ec;
-
-      --df-messenger-button-titlebar-color: #fbe4ec;
-      --df-messenger-button-titlebar-font-color: #2b2b2b;
-
-      --df-messenger-chat-background-color: #fff0f6;
-
-      --df-messenger-send-icon: #e96a9a;
-      --df-messenger-font-color: #2b2b2b;
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 9999;
 
       --df-messenger-button-background-color: #fbe4ec;
       --df-messenger-button-text-color: #2b2b2b;
-
+      --df-messenger-chat-background-color: #fff0f6;
+      --df-messenger-send-icon: #e96a9a;
       --df-messenger-focus-color: #e96a9a;
     }
 
@@ -338,10 +336,10 @@
       </div>
     </section>
 
-         <section>
-    <p>💬 You can chat with my AI assistant in the bottom right corner to learn more about my work and projects.</p>
-  </section>
-       
+    <section>
+      <p>💬 You can chat with my AI assistant in the bottom right corner to learn more about my work and projects.</p>
+    </section>
+
   </main>
 
   <section class="links">
@@ -352,36 +350,26 @@
     </p>
   </section>
 
-    <footer>
-      © <span id="year"></span> Madiha Khan · Built with care 🌸
-    </footer>
+  <!-- FOOTER -->
+  <footer>
+    © <span id="year"></span> Madiha Khan · Built with care 🌸
+  </footer>
 
-     <!-- CHATBOT (Dialogflow CX Messenger - current embed) -->
-  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-<df-messenger
-  location="europe-west2"
-  project-id="madiha-portfolio-rh9d"
-  agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
-  language-code="en"
-  max-query-length="-1">
-  <df-messenger-chat-bubble
-    chat-title="Madiha&#x27;s Portfolio Bot">
-  </df-messenger-chat-bubble>
-</df-messenger>
-<style>
-  df-messenger {
-    z-index: 999;
-    position: fixed;
-    --df-messenger-font-color: #000;
-    --df-messenger-font-family: Google Sans;
-    --df-messenger-chat-background: #f3f6fc;
-    --df-messenger-message-user-background: #d3e3fd;
-    --df-messenger-message-bot-background: #fff;
-    bottom: 16px;
-    right: 16px;
-  }
-</style>
+  <!-- CHATBOT -->
+  <df-messenger
+    location="europe-west2"
+    project-id="madiha-portfolio-rh9d"
+    agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
+    language-code="en"
+    max-query-length="-1">
+    <df-messenger-chat-bubble chat-title="Madiha’s Portfolio Bot"></df-messenger-chat-bubble>
+  </df-messenger>
+
+  <!-- YEAR SCRIPT -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
+

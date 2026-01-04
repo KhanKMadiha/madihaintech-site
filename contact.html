@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get in Touch | Madiha Khan</title>
+
+  <!-- Chatbot theme -->
+  <link
+    rel="stylesheet"
+    href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css"
+  />
+
+  <style>
+    :root {
+      --pink-base: #fff0f6;
+      --pink-soft: #fbe4ec;
+      --pink-strong: #e96a9a;
+      --text-dark: #2b2b2b;
+      --muted-dark: rgba(43, 43, 43, 0.7);
+      --border-soft: rgba(233, 106, 154, 0.25);
+      --border-strong: rgba(233, 106, 154, 0.45);
+      --card: rgba(255, 255, 255, 0.75);
+      --shadow: 0 10px 25px rgba(0,0,0,0.06);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--pink-base);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    /* Navigation */
+    .nav {
+      max-width: 1100px;
+      margin: 28px auto 10px;
+      padding: 0 18px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      border: 1px solid var(--border-strong);
+      background: rgba(255, 255, 255, 0.55);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .nav a.active {
+      background: var(--pink-soft);
+      border-color: var(--pink-strong);
+    }
+
+    /* Layout */
+    .container {
+      max-width: 980px;
+      margin: 18px auto 50px;
+      padding: 0 18px;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 30px 22px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+    }
+
+    .sub {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted-dark);
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 22px;
+      text-align: left;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .hint {
+      color: var(--muted-dark);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    /* Form */
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.85);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .row { grid-template-columns: 1fr; }
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      font-size: 1rem;
+      background: var(--pink-strong);
+      color: white;
+      cursor: pointer;
+      width: fit-content;
+    }
+
+    /* Contact links */
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255,255,255,0.65);
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .pill span {
+      font-size: 0.95rem;
+      color: var(--muted-dark);
+      font-weight: 600;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(233, 106, 154, 0.10);
+      border: 1px dashed var(--border-strong);
+      color: var(--muted-dark);
+      line-height: 1.55;
+    }
+
+    footer {
+      margin: 26px 0 34px;
+      color: var(--muted-dark);
+      font-size: 0.95rem;
+    }
+
+    /* Chatbot positioning */
+    df-messenger {
+      z-index: 999;
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      --df-messenger-font-color: #000;
+      --df-messenger-font-family: Google Sans;
+      --df-messenger-chat-background: #f3f6fc;
+      --df-messenger-message-user-background: #d3e3fd;
+      --df-messenger-message-bot-background: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skills.html">Skills & Experience</a>
+    <a href="chatbot.html">AI Chatbot Project</a>
+    <a class="active" href="contact.html">Get in Touch</a>
+  </div>
+
+  <div class="container">
+
+    <section class="hero">
+      <h1>Get in Touch</h1>
+      <p class="sub">
+        Interested in Support Engineering, AI-powered support workflows,
+        documentation, or a role opportunity? I’d love to hear from you.
+      </p>
+    </section>
+
+    <div class="grid">
+
+      <!-- Contact Form -->
+      <section class="card">
+        <h2>Send a message</h2>
+        <p class="hint">
+          Use this form for role opportunities, collaborations, or general questions.
+        </p>
+
+        <form>
+          <div class="row">
+            <div>
+              <label>Name</label>
+              <input type="text" placeholder="Your name" required />
+            </div>
+            <div>
+              <label>Email</label>
+              <input type="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          <div>
+            <label>Message</label>
+            <textarea placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <button class="btn" type="submit">Send message</button>
+        </form>
+      </section>
+
+      <!-- Quick Contact -->
+      <aside class="card">
+        <h2>Prefer email or LinkedIn?</h2>
+        <p class="hint">
+          You can also reach out directly using the options below.
+        </p>
+
+        <div class="contact-list">
+
+          <!-- EMAIL ME (NO EMAIL VISIBLE) -->
+          <a
+            class="pill"
+            href="mailto:your.email@example.com?subject=Website%20Contact%20—%20Madiha%20in%20Tech"
+          >
+            Email me <span>Opens your email app</span>
+          </a>
+
+          <a
+            class="pill"
+            href="https://www.linkedin.com/in/YOUR-LINKEDIN/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn <span>Connect & message</span>
+          </a>
+
+        </div>
+
+        <div class="note">
+          <strong>Currently interested in:</strong><br />
+          Senior Support Engineering roles, AI platforms,
+          complex troubleshooting, and documentation-led impact.
+        </div>
+      </aside>
+
+    </div>
+
+    <footer>
+      © <span id="year"></span> Madiha Khan · Built with care 🌸
+    </footer>
+
+  </div>
+
+  <!-- CHATBOT (Dialogflow CX Messenger - current embed) -->
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+
+  <df-messenger
+    location="europe-west2"
+    project-id="madiha-portfolio-rh9d"
+    agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
+    language-code="en"
+    max-query-length="-1">
+    <df-messenger-chat-bubble chat-title="Madiha&#x27;s Portfolio Bot">
+    </df-messenger-chat-bubble>
+  </df-messenger>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

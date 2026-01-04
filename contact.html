@@ -64,7 +64,7 @@
 
     /* Layout */
     .container {
-      max-width: 980px;
+      max-width: 820px;
       margin: 18px auto 50px;
       padding: 0 18px;
     }
@@ -74,117 +74,58 @@
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow);
       border-radius: var(--radius);
-      padding: 30px 22px;
+      padding: 34px 24px;
     }
 
     h1 {
-      margin: 0 0 10px;
+      margin: 0 0 12px;
       font-size: 2rem;
     }
 
     .sub {
-      max-width: 720px;
+      max-width: 680px;
       margin: 0 auto;
       color: var(--muted-dark);
       line-height: 1.6;
+      font-size: 1.05rem;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 18px;
-      margin-top: 18px;
-    }
-
-    @media (max-width: 860px) {
-      .grid { grid-template-columns: 1fr; }
-    }
-
-    .card {
+    .contact-card {
+      margin-top: 22px;
       background: rgba(255, 255, 255, 0.7);
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow);
       border-radius: var(--radius);
-      padding: 22px;
-      text-align: left;
+      padding: 26px;
     }
 
-    .card h2 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
+    .contact-card h2 {
+      margin-top: 0;
+      font-size: 1.3rem;
     }
 
-    .hint {
-      color: var(--muted-dark);
-      line-height: 1.55;
-      margin-bottom: 16px;
-    }
-
-    /* Form */
-    form {
-      display: grid;
-      gap: 12px;
-    }
-
-    label {
-      font-weight: 700;
-      font-size: 0.92rem;
-    }
-
-    input, textarea {
-      width: 100%;
-      border: 1px solid var(--border-strong);
-      border-radius: 12px;
-      padding: 12px;
-      font-size: 1rem;
-      background: rgba(255,255,255,0.85);
-    }
-
-    textarea {
-      min-height: 140px;
-      resize: vertical;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    @media (max-width: 640px) {
-      .row { grid-template-columns: 1fr; }
-    }
-
-    .btn {
-      border: none;
-      border-radius: 999px;
-      padding: 12px 18px;
-      font-weight: 800;
-      font-size: 1rem;
-      background: var(--pink-strong);
-      color: white;
-      cursor: pointer;
-      width: fit-content;
-    }
-
-    /* Contact links */
     .contact-list {
       display: grid;
-      gap: 12px;
-      margin-top: 14px;
+      gap: 14px;
+      margin-top: 18px;
     }
 
     .pill {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px;
-      border-radius: 14px;
+      padding: 16px;
+      border-radius: 16px;
       border: 1px solid var(--border-soft);
       background: rgba(255,255,255,0.65);
       text-decoration: none;
       color: var(--text-dark);
       font-weight: 700;
+      transition: transform 0.12s ease;
+    }
+
+    .pill:hover {
+      transform: translateY(-1px);
     }
 
     .pill span {
@@ -194,13 +135,14 @@
     }
 
     .note {
-      margin-top: 14px;
-      padding: 14px;
+      margin-top: 18px;
+      padding: 16px;
       border-radius: 14px;
       background: rgba(233, 106, 154, 0.10);
       border: 1px dashed var(--border-strong);
       color: var(--muted-dark);
       line-height: 1.55;
+      font-size: 0.98rem;
     }
 
     footer {
@@ -237,80 +179,47 @@
 
   <div class="container">
 
+    <!-- Header -->
     <section class="hero">
       <h1>Get in Touch</h1>
       <p class="sub">
-        Interested in Support Engineering, AI-powered support workflows,
-        documentation, or a role opportunity? I’d love to hear from you.
+        If you’d like to connect about Support Engineering roles, AI-driven support,
+        documentation, or collaborations, the best way to reach me is via email or LinkedIn.
       </p>
     </section>
 
-    <div class="grid">
+    <!-- Contact Options -->
+    <section class="contact-card">
+      <h2>Reach out directly</h2>
 
-      <!-- Contact Form -->
-      <section class="card">
-        <h2>Send a message</h2>
-        <p class="hint">
-          Use this form for role opportunities, collaborations, or general questions.
-        </p>
+      <div class="contact-list">
 
-        <form>
-          <div class="row">
-            <div>
-              <label>Name</label>
-              <input type="text" placeholder="Your name" required />
-            </div>
-            <div>
-              <label>Email</label>
-              <input type="email" placeholder="you@example.com" required />
-            </div>
-          </div>
+        <!-- EMAIL (NO EMAIL SHOWN) -->
+        <a
+          class="pill"
+          href="mailto:madiha.k.tech@gmail.com?subject=Website%20Contact%20—%20Madiha%20in%20Tech"
+        >
+          Email me <span>Opens your email app</span>
+        </a>
 
-          <div>
-            <label>Message</label>
-            <textarea placeholder="Write your message here..." required></textarea>
-          </div>
+        <!-- LINKEDIN -->
+        <a
+          class="pill"
+          href="https://www.linkedin.com/in/madihakhan-"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn <span>Connect & message</span>
+        </a>
 
-          <button class="btn" type="submit">Send message</button>
-        </form>
-      </section>
+      </div>
 
-      <!-- Quick Contact -->
-      <aside class="card">
-        <h2>Prefer email or LinkedIn?</h2>
-        <p class="hint">
-          You can also reach out directly using the options below.
-        </p>
-
-        <div class="contact-list">
-
-          <!-- EMAIL ME (NO EMAIL VISIBLE) -->
-          <a
-            class="pill"
-            href="mailto:your.email@example.com?subject=Website%20Contact%20—%20Madiha%20in%20Tech"
-          >
-            Email me <span>Opens your email app</span>
-          </a>
-
-          <a
-            class="pill"
-            href="https://www.linkedin.com/in/madihakhan-/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn <span>Connect & message</span>
-          </a>
-
-        </div>
-
-        <div class="note">
-          <strong>Currently interested in:</strong><br />
-          Senior Support Engineering roles, AI platforms,
-          complex troubleshooting, and documentation-led impact.
-        </div>
-      </aside>
-
-    </div>
+      <div class="note">
+        <strong>Currently interested in:</strong><br />
+        Senior Support Engineering roles, AI platforms,
+        complex troubleshooting, and documentation-led impact.
+      </div>
+    </section>
 
     <footer>
       © <span id="year"></span> Madiha Khan · Built with care 🌸
@@ -318,7 +227,7 @@
 
   </div>
 
-  <!-- CHATBOT (Dialogflow CX Messenger - current embed) -->
+  <!-- CHATBOT (Dialogflow CX Messenger) -->
   <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
 
   <df-messenger
@@ -337,3 +246,4 @@
 
 </body>
 </html>
+

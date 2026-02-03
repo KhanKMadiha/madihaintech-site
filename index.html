@@ -351,13 +351,35 @@
   </footer>
 
 <!-- CHATBOT -->
+<!-- CHATBOT -->
 <df-messenger
   location="europe-west2"
   project-id="madiha-portfolio-rh9d"
   agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
   language-code="en"
+  chat-title="Madiha's Portfolio Bot">
   <df-messenger-chat-bubble chat-title="Madiha's Portfolio Bot"></df-messenger-chat-bubble>
 </df-messenger>
+
+<script>
+  window.addEventListener('load', function() {
+    const dfMessenger = document.querySelector('df-messenger');
+    
+    if (dfMessenger) {
+      dfMessenger.addEventListener('df-messenger-loaded', function() {
+        // Automatically send "hi" when chat opens to trigger welcome intent
+        dfMessenger.addEventListener('df-chat-open-changed', function(event) {
+          if (event.detail.isOpen) {
+            // Small delay to ensure chat is fully ready
+            setTimeout(function() {
+              dfMessenger.sendQuery('hi');
+            }, 300);
+          }
+        }, { once: true }); // Only trigger once
+      });
+    }
+  });
+</script>
 
   <!-- YEAR SCRIPT -->
   <script>

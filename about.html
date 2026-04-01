@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Me | Madiha Khan</title>
+  <title>Madiha Khan | Senior Product Support Specialist</title>
 
   <style>
     :root {
@@ -33,10 +33,8 @@
     /* ---------- FLOATING BACKGROUND SHAPES ---------- */
     .bg-shapes {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
       z-index: 0;
       overflow: hidden;
@@ -49,12 +47,12 @@
       animation: float linear infinite;
     }
 
-    .shape:nth-child(1) { width: 300px; height: 300px; top: 5%; left: -8%; animation-duration: 18s; animation-delay: 0s; }
+    .shape:nth-child(1) { width: 320px; height: 320px; top: 5%; left: -8%; animation-duration: 18s; animation-delay: 0s; }
     .shape:nth-child(2) { width: 180px; height: 180px; top: 20%; right: -5%; animation-duration: 22s; animation-delay: -4s; }
-    .shape:nth-child(3) { width: 240px; height: 240px; top: 50%; left: 60%; animation-duration: 26s; animation-delay: -8s; }
+    .shape:nth-child(3) { width: 250px; height: 250px; top: 50%; left: 60%; animation-duration: 26s; animation-delay: -8s; }
     .shape:nth-child(4) { width: 120px; height: 120px; top: 70%; left: 10%; animation-duration: 20s; animation-delay: -12s; }
     .shape:nth-child(5) { width: 200px; height: 200px; top: 85%; right: 15%; animation-duration: 24s; animation-delay: -6s; }
-    .shape:nth-child(6) { width: 80px; height: 80px; top: 35%; left: 45%; animation-duration: 16s; animation-delay: -10s; }
+    .shape:nth-child(6) { width: 90px; height: 90px; top: 38%; left: 44%; animation-duration: 16s; animation-delay: -10s; }
 
     @keyframes float {
       0%   { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.6; }
@@ -63,20 +61,20 @@
       100% { transform: translateY(0px) rotate(180deg) scale(1); opacity: 0.6; }
     }
 
-    /* ---------- ALL CONTENT ABOVE SHAPES ---------- */
+    /* ---------- Z-INDEX STACK ---------- */
     .hero, .nav-cta, .page, .links, footer { position: relative; z-index: 1; }
 
     /* ---------- HERO ---------- */
     .hero {
-      min-height: 50vh;
+      min-height: 88vh;
       display: flex;
       align-items: center;
-      padding: 5.5rem 1.5rem 3.5rem;
+      padding: 5.5rem 1.5rem 3rem;
       background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
     }
 
     .hero-inner {
-      max-width: 980px;
+      max-width: 820px;
       margin: 0 auto;
       width: 100%;
       display: flex;
@@ -85,20 +83,63 @@
     }
 
     h1 {
-      margin: 0 0 1rem;
-      font-size: clamp(2.8rem, 5vw, 3.8rem);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      animation: fadeUp 0.7s ease both;
+      margin: 0 0 1.25rem;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      animation: fadeUp 0.6s ease 0.1s both;
     }
 
     .hero-sub {
-      max-width: 640px;
-      font-size: 1.2rem;
-      line-height: 1.7;
+      max-width: 680px;
+      font-size: 1.18rem;
+      line-height: 1.75;
       color: var(--muted-dark);
-      margin: 0;
-      animation: fadeUp 0.7s ease 0.15s both;
+      margin: 0 0 2.25rem;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+
+    .btn-primary {
+      padding: 1.05rem 1.25rem;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(233, 106, 154, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(233, 106, 154, 0.45);
+    }
+
+    .btn-secondary {
+      padding: 1.05rem 1.25rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.65);
+      color: var(--text-dark);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1.5px solid var(--border-soft);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      border-color: var(--border-strong);
     }
 
     @keyframes fadeUp {
@@ -109,9 +150,8 @@
     /* ---------- NAV CTA ---------- */
     .nav-cta {
       max-width: 980px;
-      margin: -2.25rem auto 2.5rem;
+      margin: 0 auto 2.5rem;
       padding: 0 1.5rem;
-      animation: fadeUp 0.7s ease 0.25s both;
     }
 
     .nav-cta-inner {
@@ -122,11 +162,11 @@
     }
 
     .nav-btn {
-      flex: 1 1 220px;
-      max-width: 320px;
-      padding: 1.05rem 1.25rem;
+      flex: 1 1 200px;
+      max-width: 280px;
+      padding: 1rem 1.25rem;
       border-radius: 14px;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       text-decoration: none;
       color: var(--text-dark);
@@ -140,8 +180,6 @@
       box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
       border-color: var(--border-strong);
     }
-
-    .nav-btn.primary { font-weight: 800; }
 
     /* ---------- PAGE WRAPPER ---------- */
     .page {
@@ -162,10 +200,21 @@
       transform: translateY(0);
     }
 
+    /* ---------- SECTION LABEL ---------- */
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pink-strong);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
     /* ---------- STAT STRIP ---------- */
     .stat-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 1rem;
       margin-bottom: 2rem;
     }
@@ -194,35 +243,21 @@
     }
 
     .stat-label {
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: var(--muted-dark);
       line-height: 1.4;
     }
 
-    /* ---------- QUOTE ---------- */
-    .quote-block {
-      padding: 1.75rem 2rem;
-      border-radius: 22px;
-      background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
-      border: 1.5px solid var(--border-strong);
-      margin-bottom: 2rem;
-      font-size: 1.15rem;
-      font-weight: 600;
-      line-height: 1.65;
-      color: var(--text-dark);
-      font-style: italic;
-    }
-
-    /* ---------- TWO-COL PANELS ---------- */
-    .two-col {
+    /* ---------- THREE-COL CARDS ---------- */
+    .three-col {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       margin-bottom: 2rem;
     }
 
-    .panel {
-      padding: 2rem 1.75rem;
+    .card {
+      padding: 1.75rem 1.5rem;
       border-radius: 22px;
       border: 1.5px solid var(--border-soft);
       background: rgba(255, 255, 255, 0.55);
@@ -231,34 +266,34 @@
       transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .panel:hover {
-      transform: translateY(-2px);
+    .card:hover {
+      transform: translateY(-3px);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
       border-color: var(--border-strong);
     }
 
-    .panel-icon {
-      font-size: 2rem;
+    .card-icon {
+      font-size: 1.8rem;
       margin-bottom: 0.75rem;
       display: block;
     }
 
-    .panel h2 {
-      font-size: 1.15rem;
+    .card h3 {
+      font-size: 1.05rem;
       font-weight: 800;
-      margin: 0 0 0.6rem;
+      margin: 0 0 0.5rem;
     }
 
-    .panel p {
-      font-size: 0.98rem;
-      line-height: 1.7;
+    .card p {
+      font-size: 0.93rem;
+      line-height: 1.65;
       color: var(--muted-dark);
       margin: 0;
     }
 
-    /* ---------- WIDE PANEL ---------- */
-    .wide-panel {
-      padding: 2rem 1.75rem;
+    /* ---------- WIDE FEATURE CARD ---------- */
+    .feature-card {
+      padding: 2.25rem 2.25rem;
       border-radius: 22px;
       border: 1.5px solid var(--border-soft);
       background: rgba(255, 255, 255, 0.55);
@@ -268,13 +303,13 @@
       transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .wide-panel:hover {
+    .feature-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.07);
       border-color: var(--border-strong);
     }
 
-    .wide-panel-inner {
+    .feature-card-inner {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -282,21 +317,50 @@
       text-align: center;
     }
 
-    .wide-panel-icon { font-size: 3rem; flex-shrink: 0; }
+    .feature-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
 
-    .wide-panel-text h2 {
+    .feature-text h3 {
       font-size: 1.2rem;
       font-weight: 800;
-      margin: 0 0 0.5rem;
+      margin: 0 0 0.6rem;
       text-align: center;
     }
 
-    .wide-panel-text p {
+    .feature-text p {
       font-size: 0.98rem;
       line-height: 1.7;
       color: var(--muted-dark);
-      margin: 0;
+      margin: 0 0 1rem;
       text-align: center;
+    }
+
+    .feature-link {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--pink-strong);
+      text-decoration: none;
+    }
+
+    /* ---------- TAG ROW ---------- */
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .tag {
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.55);
+      font-size: 0.9rem;
+      color: var(--text-dark);
     }
 
     /* ---------- LINKS ---------- */
@@ -330,28 +394,28 @@
       color: rgba(43, 43, 43, 0.7);
     }
 
-    @media (max-width: 640px) {
-      .two-col { grid-template-columns: 1fr; }
+    @media (max-width: 760px) {
+      .three-col { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .three-col { grid-template-columns: 1fr; }
+      .feature-card-inner { flex-direction: column; gap: 1rem; }
     }
 
     /* ---------- CHATBOT ---------- */
     #chat-toggle {
       position: fixed;
-      bottom: 22px;
-      right: 22px;
-      width: 58px;
-      height: 58px;
+      bottom: 22px; right: 22px;
+      width: 58px; height: 58px;
       border-radius: 18px;
       background: var(--pink-soft);
       border: 1.5px solid var(--border-strong);
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       box-shadow: 0 8px 24px rgba(233, 106, 154, 0.28);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      z-index: 9999;
-      font-size: 24px;
+      z-index: 9999; font-size: 24px;
     }
 
     #chat-toggle:hover {
@@ -361,45 +425,35 @@
 
     #chat-window {
       position: fixed;
-      bottom: 92px;
-      right: 22px;
-      width: 360px;
-      max-height: 530px;
+      bottom: 92px; right: 22px;
+      width: 360px; max-height: 530px;
       background: var(--white-glass);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1.5px solid var(--border-soft);
       border-radius: 24px;
       box-shadow: 0 20px 50px rgba(233, 106, 154, 0.15), 0 4px 16px rgba(0, 0, 0, 0.06);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      z-index: 9998;
+      display: flex; flex-direction: column;
+      overflow: hidden; z-index: 9998;
       transform: scale(0.92) translateY(14px);
-      opacity: 0;
-      pointer-events: none;
+      opacity: 0; pointer-events: none;
       transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease;
     }
 
     #chat-window.open {
       transform: scale(1) translateY(0);
-      opacity: 1;
-      pointer-events: all;
+      opacity: 1; pointer-events: all;
     }
 
     .chat-header {
       background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
       border-bottom: 1px solid var(--border-soft);
       padding: 15px 16px;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      flex-shrink: 0;
+      display: flex; align-items: center; gap: 11px; flex-shrink: 0;
     }
 
     .chat-avatar {
-      width: 38px; height: 38px;
-      border-radius: 12px;
+      width: 38px; height: 38px; border-radius: 12px;
       background: linear-gradient(135deg, var(--pink-strong), #f0a0c0);
       display: flex; align-items: center; justify-content: center;
       font-size: 18px; flex-shrink: 0;
@@ -448,10 +502,7 @@
       border-radius: 16px; border-bottom-left-radius: 5px;
       align-self: flex-start; width: fit-content; animation: msgIn 0.2s ease;
     }
-    .typing-indicator span {
-      width: 6px; height: 6px; background: var(--pink-strong);
-      border-radius: 50%; animation: bounce 1.2s infinite;
-    }
+    .typing-indicator span { width: 6px; height: 6px; background: var(--pink-strong); border-radius: 50%; animation: bounce 1.2s infinite; }
     .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
     .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes bounce {
@@ -496,7 +547,7 @@
 
 <body>
 
-  <!-- FLOATING BACKGROUND SHAPES -->
+  <!-- FLOATING SHAPES -->
   <div class="bg-shapes">
     <div class="shape"></div>
     <div class="shape"></div>
@@ -509,81 +560,110 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <h1>About Me 👋🏼</h1>
-      <p class="hero-sub">Senior Product Support Specialist. Self-taught. Systems-minded. Based in London.</p>
-    </div>
-  </section>
-
-  <!-- NAV -->
-  <section class="nav-cta">
-    <div class="nav-cta-inner">
-      <a class="nav-btn" href="./index.html">Homepage</a>
-      <a class="nav-btn primary" href="./skills.html">Skills &amp; Experience</a>
-      <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
-      <a class="nav-btn" href="./contact.html">Get in Touch</a>
+      <h1>Hi, I'm Madiha 👋🏼</h1>
+      <p class="hero-sub">
+        From everyday tickets to P1/P2 incident ownership, I support enterprise platforms at depth, debugging APIs, authentication systems, and building the infrastructure that stops issues recurring.
+      </p>
+      <div class="hero-cta-row">
+        <a class="btn-primary" href="./about.html">About Me</a>
+        <a class="btn-secondary" href="./skills.html">Skills &amp; Experience</a>
+        <a class="btn-secondary" href="./projects.html">AI Chatbot Project</a>
+        <a class="btn-secondary" href="./contact.html">Get in Touch</a>
+      </div>
     </div>
   </section>
 
   <div class="page">
 
-    <!-- WIDE PANEL -->
-    <div class="wide-panel reveal">
-      <div class="wide-panel-inner">
-        <div class="wide-panel-icon">🌍</div>
-        <div class="wide-panel-text">
-          <h2>Currently at Stack Overflow</h2>
-          <p>Senior Product Support Specialist and sole EMEA support engineer, owning every high-severity incident across the region for 100+ enterprise accounts. Every one of these improvements started with me noticing something that could be better and deciding to fix it. I spotted the gaps, built the solutions, and documented them so they scaled beyond me.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- STAT STRIP -->
+    <!-- STATS -->
+    <p class="section-label reveal">Impact by the numbers</p>
     <div class="stat-strip reveal">
       <div class="stat-card">
         <div class="stat-number" data-target="98" data-suffix="%">0%</div>
         <div class="stat-label">CSAT across 100+ enterprise accounts</div>
       </div>
       <div class="stat-card">
+        <div class="stat-number" data-target="5" data-suffix="+ yrs">0 yrs</div>
+        <div class="stat-label">Years in customer-facing and technical SaaS support</div>
+      </div>
+      <div class="stat-card">
         <div class="stat-number" data-target="25" data-suffix="%">0%</div>
         <div class="stat-label">Faster P1/P2 resolution via Datadog dashboards</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" data-target="20" data-suffix="%">0%</div>
-        <div class="stat-label">Fewer repeat tickets through knowledge base</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" data-target="30" data-suffix="%">0%</div>
-        <div class="stat-label">Faster onboarding via Jira workflows</div>
+        <div class="stat-number" data-target="100" data-suffix="+">0</div>
+        <div class="stat-label">Enterprise accounts managed across EMEA</div>
       </div>
     </div>
 
-    <!-- QUOTE -->
-    <div class="quote-block reveal">
-      "Every system I have built started the same way. Noticing something that could be better, and caring enough to do something about it."
+    <!-- WHAT I BRING -->
+    <p class="section-label reveal">What I bring</p>
+    <div class="three-col">
+      <div class="card reveal">
+        <span class="card-icon">🔍</span>
+        <h3>Deep investigation</h3>
+        <p>I trace issues to their root cause using Datadog, Elasticsearch, Postman, and browser DevTools. Engineering gets reproduction steps, not just tickets.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🏗</span>
+        <h3>Systems that scale</h3>
+        <p>I build the dashboards, playbooks, and knowledge bases that prevent issues recurring. None of these were asked of me. I spotted the gaps and built the solutions.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🚨</span>
+        <h3>Calm under pressure</h3>
+        <p>Sole EMEA owner of P1/P2 on-call incidents across 100+ enterprise accounts. I make informed decisions quickly in high-severity, never-before-seen situations.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🔌</span>
+        <h3>Technical depth</h3>
+        <p>Daily work with REST APIs, SSO, SAML, OAuth, and authentication systems. I debug at the API level, not just the surface.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🤖</span>
+        <h3>AI curiosity</h3>
+        <p>Building toward AI-powered support infrastructure. Shipped a Claude-powered portfolio chatbot secured via Cloudflare Workers. Daily Claude user.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🌍</span>
+        <h3>EMEA coverage</h3>
+        <p>Fluent in English, Urdu, and Hindi. Comfortable owning enterprise relationships across regions and navigating complex cross-functional escalations.</p>
+      </div>
     </div>
 
-    <!-- TWO-COL PANELS -->
-    <div class="two-col">
-      <div class="panel reveal">
-        <span class="panel-icon">💻</span>
-        <h2>How I got here</h2>
-        <p>Curiosity about technology led me to teach myself to code during the pandemic. That opened the door into tech support, and I have not stopped learning since.</p>
+    <!-- FEATURED PROJECT -->
+    <p class="section-label reveal">Featured project</p>
+    <div class="feature-card reveal">
+      <div class="feature-card-inner">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-text">
+          <h3>Claude-Powered Portfolio Assistant</h3>
+          <p>Built a production AI chatbot from scratch. Started with Dialogflow CX, hit real permission and security issues, switched to the Anthropic API, and secured the key using a Cloudflare Worker proxy. The chatbot on this page is the live result. Ask it anything about my work.</p>
+          <a class="feature-link" href="./projects.html">Read the full story →</a>
+        </div>
       </div>
-      <div class="panel reveal">
-        <span class="panel-icon">🔍</span>
-        <h2>How I think</h2>
-        <p>When something breaks, I go back to the documentation, isolate the variable, test incrementally, and trace it to the root cause. That is just how I approach problems.</p>
-      </div>
-      <div class="panel reveal">
-        <span class="panel-icon">🏗</span>
-        <h2>What I build</h2>
-        <p>Observability dashboards. Knowledge bases. Escalation playbooks. Systems that prevent issues recurring, not just fix them once.</p>
-      </div>
-      <div class="panel reveal">
-        <span class="panel-icon">🤖</span>
-        <h2>Where I am headed</h2>
-        <p>AI-powered support infrastructure at developer-first companies. The kind of place where support excellence shapes the product.</p>
-      </div>
+    </div>
+
+    <!-- TOOLBOX -->
+    <p class="section-label reveal">Toolbox</p>
+    <div class="tag-row reveal">
+      <span class="tag">REST APIs</span>
+      <span class="tag">SSO and SAML</span>
+      <span class="tag">Datadog</span>
+      <span class="tag">Elasticsearch</span>
+      <span class="tag">PagerDuty</span>
+      <span class="tag">Jira</span>
+      <span class="tag">Postman</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">SQL</span>
+      <span class="tag">Bash</span>
+      <span class="tag">Docker</span>
+      <span class="tag">Git and GitHub</span>
+      <span class="tag">Zendesk</span>
+      <span class="tag">Salesforce</span>
+      <span class="tag">Cloudflare Workers</span>
+      <span class="tag">Prompt engineering</span>
+      <span class="tag">Python (learning)</span>
     </div>
 
   </div>
@@ -631,9 +711,8 @@
 
     // ── SCROLL REVEAL ──────────────────────────────────────────
     const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Stagger delay for siblings in the same grid
           const siblings = entry.target.parentElement.querySelectorAll('.reveal');
           let delay = 0;
           siblings.forEach((el, idx) => { if (el === entry.target) delay = idx * 80; });
@@ -641,7 +720,7 @@
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
@@ -653,13 +732,9 @@
       const step = 16;
       const increment = target / (duration / step);
       let current = 0;
-
       const timer = setInterval(() => {
         current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
+        if (current >= target) { current = target; clearInterval(timer); }
         el.textContent = Math.floor(current) + suffix;
       }, step);
     }
@@ -678,10 +753,10 @@
     // ── CHATBOT ────────────────────────────────────────────────
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
 
-    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
+    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Product Support Specialist based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
 
 ABOUT MADIHA:
-Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she is the sole EMEA escalation engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
+Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she is the sole EMEA support engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
 
 PERSONAL:
 Outside of work, Madiha leads a fundraising project every Ramadan that has raised over £25,000 and distributed 2,000 food bags to families in Pakistan. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
@@ -721,7 +796,7 @@ TONE GUIDELINES:
 - If asked something you do not know, say you are not sure but invite them to reach out to Madiha directly via the Contact page at madihaintech.me/contact.html, or on LinkedIn at linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
 
-    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Product Support Specialist specialising in developer platforms, enterprise support, and AI-powered support operations, currently the sole EMEA support engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
+    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Product Support Specialist with 5+ years in enterprise SaaS support, currently the sole EMEA support engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
 
     const conversationHistory = [];
     let chatOpen = false;

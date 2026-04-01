@@ -5,19 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Me | Madiha Khan</title>
 
-  <!-- Dialogflow Messenger assets (MUST be in head) -->
-  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-
   <style>
     :root {
       --pink-base: #fff0f6;
       --pink-soft: #fbe4ec;
       --pink-strong: #e96a9a;
+      --pink-light: #fdd5e8;
       --text-dark: #2b2b2b;
       --muted-dark: rgba(43, 43, 43, 0.7);
       --border-soft: rgba(233, 106, 154, 0.25);
       --border-strong: rgba(233, 106, 154, 0.45);
+      --white-glass: rgba(255, 255, 255, 0.75);
     }
 
     * { box-sizing: border-box; }
@@ -31,17 +29,12 @@
       text-align: center;
     }
 
-    /* ---------- HERO ---------- */
     .hero {
       min-height: 50vh;
       display: flex;
       align-items: center;
       padding: 5.5rem 1.5rem 3.5rem;
-      background: linear-gradient(
-        180deg,
-        var(--pink-soft) 0%,
-        var(--pink-base) 100%
-      );
+      background: linear-gradient(180deg, var(--pink-soft) 0%, var(--pink-base) 100%);
     }
 
     .hero-inner {
@@ -67,7 +60,6 @@
       color: var(--muted-dark);
     }
 
-    /* ---------- NAV CTA ---------- */
     .nav-cta {
       max-width: 980px;
       margin: -2.25rem auto 1.75rem;
@@ -101,38 +93,97 @@
       border-color: var(--border-strong);
     }
 
-    .nav-btn.primary {
-      font-weight: 800;
-    }
+    .nav-btn.primary { font-weight: 800; }
 
-    /* ---------- ABOUT CARD ---------- */
-    .summary {
+    .card {
       max-width: 980px;
-      margin: 0 auto 3.5rem;
-      padding: 2.75rem;
+      margin: 0 auto 2rem;
+      padding: 2.75rem 2.75rem;
       border: 1.5px solid var(--border-soft);
       border-radius: 26px;
       background-color: rgba(255, 255, 255, 0.45);
       text-align: left;
       line-height: 1.75;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
     }
 
-    .summary h3 {
+    .card:hover {
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .card h2 {
       text-align: center;
-      margin: 0 0 2rem;
+      margin: 0 0 1.75rem;
       font-size: 1.6rem;
       font-weight: 700;
     }
 
-    .summary p {
+    .card p {
       margin-bottom: 1.35rem;
       font-size: 1.05rem;
     }
 
-    /* ---------- LINKS ---------- */
-    .links {
-      padding-bottom: 2.5rem;
+    .card p:last-child { margin-bottom: 0; }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
     }
+
+    .stat {
+      padding: 1.25rem 1rem;
+      border-radius: 18px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.55);
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--pink-strong);
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      color: var(--muted-dark);
+      margin-top: 0.35rem;
+      line-height: 1.4;
+    }
+
+    .callout {
+      margin: 1.25rem 0 0;
+      padding: 1rem 1.25rem;
+      border-radius: 14px;
+      background: rgba(233, 106, 154, 0.07);
+      border-left: 3px solid var(--pink-strong);
+      font-size: 1.02rem;
+      color: var(--text-dark);
+      line-height: 1.65;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+    }
+
+    .tag {
+      padding: 0.55rem 0.75rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.55);
+      font-size: 0.95rem;
+      color: var(--text-dark);
+    }
+
+    .links { padding-bottom: 2.5rem; }
 
     .links h2 {
       font-size: 1.6rem;
@@ -154,7 +205,6 @@
       text-decoration: none;
     }
 
-    /* ---------- FOOTER (MATCHES CONTACT + INDEX) ---------- */
     footer {
       margin: 26px 0 34px;
       padding: 0 1.5rem;
@@ -163,121 +213,540 @@
     }
 
     @media (max-width: 600px) {
-      .summary {
-        margin: 0 1rem 3rem;
-        padding: 2.25rem 1.5rem;
-      }
-
-      .nav-btn {
-        flex: 1 1 100%;
-        max-width: none;
-      }
-
-      .links p {
-        gap: 1.75rem;
-      }
+      .card { margin: 0 1rem 2rem; padding: 2.25rem 1.5rem; }
+      .nav-btn { flex: 1 1 100%; max-width: none; }
+      .links p { gap: 1.75rem; }
     }
 
-    /* ---------- CHATBOT ---------- */
-    df-messenger {
+    #chat-toggle {
       position: fixed;
-      bottom: 16px;
-      right: 16px;
+      bottom: 22px;
+      right: 22px;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: var(--pink-soft);
+      border: 1.5px solid var(--border-strong);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(233, 106, 154, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       z-index: 9999;
-
-      --df-messenger-button-background-color: #fbe4ec;
-      --df-messenger-button-text-color: #2b2b2b;
-      --df-messenger-chat-background-color: #fff0f6;
-      --df-messenger-send-icon: #e96a9a;
-      --df-messenger-focus-color: #e96a9a;
+      font-size: 24px;
     }
 
-    df-messenger::part(chat-button) {
-      box-shadow: 0 10px 25px rgba(233, 106, 154, 0.25);
-      border-radius: 18px;
+    #chat-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(233, 106, 154, 0.4);
+    }
+
+    #chat-window {
+      position: fixed;
+      bottom: 92px;
+      right: 22px;
+      width: 360px;
+      max-height: 530px;
+      background: var(--white-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(233, 106, 154, 0.15), 0 4px 16px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9998;
+      transform: scale(0.92) translateY(14px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease;
+    }
+
+    #chat-window.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 15px 16px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+    }
+
+    .chat-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--pink-strong), #f0a0c0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .chat-header-info h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.2;
+    }
+
+    .chat-header-info p {
+      font-size: 0.73rem;
+      color: var(--muted-dark);
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .online-dot {
+      width: 7px;
+      height: 7px;
+      background: #4caf82;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .chat-close {
+      margin-left: auto;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted-dark);
+      font-size: 17px;
+      line-height: 1;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    .chat-close:hover { background: rgba(233, 106, 154, 0.12); }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      scroll-behavior: smooth;
+    }
+
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 4px; }
+
+    .msg {
+      max-width: 84%;
+      padding: 10px 13px;
+      border-radius: 16px;
+      font-size: 0.875rem;
+      line-height: 1.58;
+      animation: msgIn 0.22s ease;
+    }
+
+    @keyframes msgIn {
+      from { opacity: 0; transform: translateY(7px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .msg.bot {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border-soft);
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
+      color: var(--text-dark);
+    }
+
+    .msg.user {
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      color: #fff;
+      border-bottom-right-radius: 5px;
+      align-self: flex-end;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 11px 14px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
+      width: fit-content;
+      animation: msgIn 0.2s ease;
+    }
+
+    .typing-indicator span {
+      width: 6px;
+      height: 6px;
+      background: var(--pink-strong);
+      border-radius: 50%;
+      animation: bounce 1.2s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+      30% { transform: translateY(-5px); opacity: 1; }
+    }
+
+    .chat-input-area {
+      padding: 11px 13px;
+      border-top: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.6);
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .chat-input-area textarea {
+      flex: 1;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 9px 11px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text-dark);
+      background: rgba(255, 255, 255, 0.88);
+      resize: none;
+      outline: none;
+      max-height: 100px;
+      line-height: 1.45;
+      transition: border-color 0.2s;
+    }
+
+    .chat-input-area textarea:focus { border-color: var(--pink-strong); }
+    .chat-input-area textarea::placeholder { color: rgba(43, 43, 43, 0.4); }
+
+    .send-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s;
+      box-shadow: 0 4px 12px rgba(233, 106, 154, 0.32);
+    }
+
+    .send-btn:hover { transform: scale(1.07); box-shadow: 0 6px 16px rgba(233, 106, 154, 0.42); }
+    .send-btn:active { transform: scale(0.95); }
+    .send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .send-btn svg { width: 15px; height: 15px; fill: white; }
+
+    @media (max-width: 420px) {
+      #chat-window { width: calc(100vw - 28px); right: 14px; bottom: 84px; }
+      #chat-toggle { right: 14px; bottom: 14px; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <h1>About Me</h1>
+      <h1>About Me 👋🏼</h1>
       <p class="hero-highlight">
-        A little more context on how I work, what I enjoy solving, and what I’m currently exploring.
+        I have always been fascinated by technology and driven by a genuine desire to help people. Those two things have shaped everything I have done professionally.
       </p>
     </div>
   </section>
 
-  <!-- NAV -->
   <section class="nav-cta">
     <div class="nav-cta-inner">
       <a class="nav-btn" href="./index.html">Homepage</a>
-      <a class="nav-btn primary" href="./skills.html">Skills & Experience</a>
+      <a class="nav-btn primary" href="./skills.html">Skills &amp; Experience</a>
       <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
       <a class="nav-btn" href="./contact.html">Get in Touch</a>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="summary">
-    <h3>My Focus</h3>
-
+  <section class="card">
+    <h2>How it started</h2>
     <p>
-      I’m a Support Engineer with over five years of experience supporting SaaS products and
-      high-touch enterprise clients. I’m self-taught, systems-minded, and drawn to complex problems
-      where clarity, ownership, and sound decision-making matter.
+      I have always had a fascination with technology and a curiosity to understand how things work. As a child, I spent countless hours exploring new software and diving into the intricacies of Microsoft Excel. Over time, that curiosity evolved into a genuine passion for both technology and problem-solving.
     </p>
-
     <p>
-      Over time, my focus has shifted from simply resolving issues to understanding why they happen,
-      how they escalate, and how support systems can be improved to prevent recurrence.
+      I started teaching myself to code during the pandemic, which opened the door into tech support. That self-directed learning never stopped. I have always believed that the best way to grow is to stay curious, build things, and take on problems that stretch you.
     </p>
-
     <p>
-      I completed the IBM AI Foundations learning path and began applying those concepts in practice.
-      I built an initial chatbot using IBM Watson and later designed and iterated on a chatbot using
-      Dialogflow, which you can explore directly on this site.
-    </p>
-
-    <p>
-      If you’d like to learn more about how the chatbot works, the design decisions behind it, or
-      the problems it’s intended to solve, you can visit the AI Chatbot Project page above.
+      Outside of work, I lead a fundraising project every Ramadan that has raised over £25,000 and distributed 2,000 food bags to families in Pakistan. That same motivation, genuinely wanting to make things better for people, is what I bring into every customer interaction.
     </p>
   </section>
 
-  <section>
-    <p>💬 You can chat with my AI assistant in the bottom right corner to learn more about my work.</p>
+  <section class="card">
+    <h2>What I do now</h2>
+    <p>
+      I have spent the last five years building real depth in enterprise SaaS support. At Stack Overflow I am the sole EMEA technical support engineer, owning every high severity incident across the region for 100 plus enterprise accounts and maintaining 98% CSAT throughout.
+    </p>
+    <p>
+      What sets me apart is that I do not just resolve individual issues. I build the systems that prevent them recurring. None of the things below were asked of me. I spotted the gaps and built the solutions.
+    </p>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-number">98%</div>
+        <div class="stat-label">CSAT across 100+ enterprise accounts</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">25%</div>
+        <div class="stat-label">Faster P1/P2 resolution via Datadog dashboards</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">20%</div>
+        <div class="stat-label">Reduction in repeat tickets through knowledge base</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">30%</div>
+        <div class="stat-label">Faster onboarding via Jira workflows and playbooks</div>
+      </div>
+    </div>
   </section>
 
-  <!-- LINKS -->
+  <section class="card">
+    <h2>How I think about problems</h2>
+    <p>
+      On the technical side I work with REST APIs, JavaScript, SSO and authentication systems daily. When something goes wrong, my instinct is to go back to the documentation, isolate the variable, test incrementally, and trace it back to the root cause. That is just how I approach problems.
+    </p>
+    <p>
+      I am currently deepening my Python knowledge through self-directed study, continuing the same pattern I started during the pandemic. I taught myself to code back then and I have not stopped since.
+    </p>
+    <div class="callout">
+      I do not wait to be handed a process. I look for the gap, build the solution, and document it so it scales beyond me.
+    </div>
+    <div class="tag-row">
+      <span class="tag">REST APIs</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">SSO and SAML</span>
+      <span class="tag">Datadog</span>
+      <span class="tag">Root cause analysis</span>
+      <span class="tag">Python (learning)</span>
+      <span class="tag">Prompt engineering</span>
+      <span class="tag">Cloudflare Workers</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>What I am building toward</h2>
+    <p>
+      I am especially interested in support models where AI enhances human expertise, using structured workflows, better context capture, and automation to reduce friction while keeping a high-touch path for complex cases.
+    </p>
+    <p>
+      I am drawn to companies building critical internet infrastructure and developer platforms where support excellence directly impacts millions of end users and the developers building on top of those platforms. The kind of place where what you do in support actually shapes the product.
+    </p>
+    <p>
+      The AI chatbot on this site is a live example of that thinking in action. It started as a Dialogflow experiment, ran into real production issues, and evolved into a Claude-powered assistant secured behind a Cloudflare Worker proxy. Every step of that journey taught me something I could not have learned from a tutorial.
+    </p>
+  </section>
+
   <section class="links">
-    <h2>Let’s connect 👩🏻‍💻</h2>
+    <h2>Let's connect 👩🏻‍💻</h2>
     <p>
-      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank">GitHub</a>
+      <a class="social-link" href="https://github.com/KhanKMadiha" target="_blank">GitHub</a>
       <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
     </p>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     © <span id="year"></span> Madiha Khan · Built with care 🌸
   </footer>
 
-  <!-- CHATBOT -->
-  <df-messenger
-    location="europe-west2"
-    project-id="madiha-portfolio-rh9d"
-    agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
-    language-code="en">
-    <df-messenger-chat-bubble chat-title="Madiha’s Portfolio Bot"></df-messenger-chat-bubble>
-  </df-messenger>
+  <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">🌸</button>
 
-  <!-- YEAR SCRIPT -->
+  <div id="chat-window">
+    <div class="chat-header">
+      <div class="chat-avatar">🌸</div>
+      <div class="chat-header-info">
+        <h4>Madiha's Portfolio Assistant</h4>
+        <p><span class="online-dot"></span>Ask me anything</p>
+      </div>
+      <button class="chat-close" onclick="toggleChat()" aria-label="Close chat">✕</button>
+    </div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input-area">
+      <textarea
+        id="chat-input"
+        placeholder="Ask about my experience, skills..."
+        rows="1"
+        onkeydown="handleKey(event)"
+        oninput="autoResize(this)"
+      ></textarea>
+      <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
+
+    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
+
+ABOUT MADIHA:
+Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she is the sole EMEA escalation engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
+
+PERSONAL:
+Outside of work, Madiha leads a fundraising project every Ramadan that has raised over £25,000 and distributed 2,000 food bags to families in Pakistan. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
+
+KEY ACHIEVEMENTS:
+- 98% CSAT across 100+ enterprise accounts
+- Sole EMEA owner of P1/P2 on-call incidents
+- Built Datadog dashboards cutting P1/P2 resolution time by 25%
+- Authored 50+ knowledge base articles reducing repeat tickets by 20%
+- Reduced new hire ramp-up time by 30% through Jira workflows and playbooks
+- 95% issue reproduction rate, reducing engineering investigation time by 30%
+- Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
+- None of these were asked of her. She spotted the gaps and built the solutions.
+
+TECHNICAL SKILLS:
+REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, Jira, Zendesk, Salesforce, Freshdesk, Google Dialogflow, Python (learning)
+
+AI AND PROJECTS:
+Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Started with Dialogflow CX and IBM Watson before switching to the Anthropic API. Secured the API key using a Cloudflare Worker proxy. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). Daily Claude user.
+
+LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
+
+EDUCATION: A Levels in Maths, Accounting, and Health and Social Care
+
+CONTACT AND LINKS:
+Portfolio: madihaintech.me
+GitHub: github.com/KhanKMadiha
+LinkedIn: linkedin.com/in/madihakhan-
+Email: madiha00@hotmail.co.uk
+
+TARGET ROLES: AI Support Engineer, Senior Support Engineer, Support Operations Specialist, Product Support Specialist (Technical), ideally at companies like Anthropic, OpenAI, Cloudflare, Stack Overflow, or similar developer platform and infrastructure companies.
+
+TONE GUIDELINES:
+- Be warm, friendly, and approachable but also professional
+- Keep responses concise, 2 to 4 sentences unless the visitor asks for more detail
+- Speak about Madiha in the third person: say "Madiha has..." or "She specialises in..." rather than "I"
+- If asked something you do not know, say you are not sure but invite them to reach out to Madiha directly via the Contact page at madihaintech.me/contact.html, or on LinkedIn at linkedin.com/in/madihakhan-
+- Never invent or assume information not listed above`;
+
+    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional specialising in developer platforms, enterprise escalations, and AI-powered support operations, currently the sole EMEA escalation engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
+
+    const conversationHistory = [];
+    let chatOpen = false;
+    let isLoading = false;
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (!chatOpen) toggleChat();
+      }, 2000);
+    });
+
+    function toggleChat() {
+      chatOpen = !chatOpen;
+      const win = document.getElementById('chat-window');
+      win.classList.toggle('open', chatOpen);
+      if (chatOpen && conversationHistory.length === 0) {
+        appendMessage('bot', WELCOME_MESSAGE);
+      }
+      if (chatOpen) {
+        setTimeout(() => document.getElementById('chat-input').focus(), 300);
+      }
+    }
+
+    function appendMessage(role, text) {
+      const container = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = `msg ${role}`;
+      text.split('\n').forEach((line, i, arr) => {
+        div.appendChild(document.createTextNode(line));
+        if (i < arr.length - 1) div.appendChild(document.createElement('br'));
+      });
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function showTyping() {
+      const container = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'typing-indicator';
+      div.id = 'typing-indicator';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function removeTyping() {
+      const el = document.getElementById('typing-indicator');
+      if (el) el.remove();
+    }
+
+    async function sendMessage() {
+      if (isLoading) return;
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      appendMessage('user', text);
+      conversationHistory.push({ role: 'user', content: text });
+      input.value = '';
+      input.style.height = 'auto';
+      setLoading(true);
+      showTyping();
+      try {
+        const response = await fetch(PROXY_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            system: SYSTEM_PROMPT,
+            messages: conversationHistory
+          })
+        });
+        const data = await response.json();
+        const reply = data?.content?.[0]?.text || "I'm sorry, I wasn't able to get a response just now. Please try again in a moment!";
+        removeTyping();
+        appendMessage('bot', reply);
+        conversationHistory.push({ role: 'assistant', content: reply });
+      } catch (err) {
+        removeTyping();
+        appendMessage('bot', "Something went wrong. Please try again shortly!");
+        console.error('Chatbot error:', err);
+      }
+      setLoading(false);
+    }
+
+    function setLoading(state) {
+      isLoading = state;
+      document.getElementById('send-btn').disabled = state;
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    }
+
+    function autoResize(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+    }
   </script>
 
 </body>

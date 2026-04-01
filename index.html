@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Madiha in Tech</title>
+  <title>Madiha Khan | Senior Product Support Specialist</title>
 
   <style>
     :root {
@@ -27,50 +27,130 @@
       margin: 0;
       padding: 0;
       text-align: center;
+      overflow-x: hidden;
     }
 
+    /* ---------- FLOATING BACKGROUND SHAPES ---------- */
+    .bg-shapes {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(233, 106, 154, 0.07);
+      animation: float linear infinite;
+    }
+
+    .shape:nth-child(1) { width: 320px; height: 320px; top: 5%; left: -8%; animation-duration: 18s; animation-delay: 0s; }
+    .shape:nth-child(2) { width: 180px; height: 180px; top: 20%; right: -5%; animation-duration: 22s; animation-delay: -4s; }
+    .shape:nth-child(3) { width: 250px; height: 250px; top: 50%; left: 60%; animation-duration: 26s; animation-delay: -8s; }
+    .shape:nth-child(4) { width: 120px; height: 120px; top: 70%; left: 10%; animation-duration: 20s; animation-delay: -12s; }
+    .shape:nth-child(5) { width: 200px; height: 200px; top: 85%; right: 15%; animation-duration: 24s; animation-delay: -6s; }
+    .shape:nth-child(6) { width: 90px; height: 90px; top: 38%; left: 44%; animation-duration: 16s; animation-delay: -10s; }
+
+    @keyframes float {
+      0%   { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.6; }
+      33%  { transform: translateY(-30px) rotate(60deg) scale(1.05); opacity: 0.9; }
+      66%  { transform: translateY(15px) rotate(120deg) scale(0.97); opacity: 0.7; }
+      100% { transform: translateY(0px) rotate(180deg) scale(1); opacity: 0.6; }
+    }
+
+    /* ---------- Z-INDEX STACK ---------- */
+    .hero, .nav-cta, .page, .links, footer { position: relative; z-index: 1; }
+
+    /* ---------- HERO ---------- */
     .hero {
-      min-height: 82vh;
+      min-height: 88vh;
       display: flex;
       align-items: center;
-      padding: 5.5rem 1.5rem 2rem;
-      background: linear-gradient(180deg, var(--pink-soft) 0%, var(--pink-base) 100%);
+      padding: 5.5rem 1.5rem 3rem;
+      background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
     }
 
     .hero-inner {
-      max-width: 980px;
+      max-width: 820px;
       margin: 0 auto;
       width: 100%;
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
     h1 {
-      margin: 0 0 1.1rem;
-      font-size: clamp(2.8rem, 5vw, 3.8rem);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
+      margin: 0 0 1.25rem;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      animation: fadeUp 0.6s ease 0.1s both;
     }
 
-    .intro-line {
-      display: block;
-      margin-top: 1rem;
-      font-size: 1.45rem;
-      font-weight: 500;
-      color: var(--muted-dark);
-      line-height: 1.6;
-    }
-
-    .hero-highlight {
-      margin: 0.75rem auto 0;
-      max-width: 820px;
-      font-size: 1.2rem;
+    .hero-sub {
+      max-width: 680px;
+      font-size: 1.18rem;
       line-height: 1.75;
+      color: var(--muted-dark);
+      margin: 0 0 2.25rem;
+      animation: fadeUp 0.6s ease 0.2s both;
     }
 
+    .hero-cta-row {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+
+    .btn-primary {
+      padding: 0.9rem 1.75rem;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(233, 106, 154, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(233, 106, 154, 0.45);
+    }
+
+    .btn-secondary {
+      padding: 0.9rem 1.75rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.65);
+      color: var(--text-dark);
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1.5px solid var(--border-soft);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      border-color: var(--border-strong);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- NAV CTA ---------- */
     .nav-cta {
       max-width: 980px;
-      margin: -1.25rem auto 2.5rem;
+      margin: 0 auto 2.5rem;
       padding: 0 1.5rem;
     }
 
@@ -82,11 +162,11 @@
     }
 
     .nav-btn {
-      flex: 1 1 220px;
-      max-width: 320px;
-      padding: 1.05rem 1.25rem;
+      flex: 1 1 200px;
+      max-width: 280px;
+      padding: 1rem 1.25rem;
       border-radius: 14px;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       text-decoration: none;
       color: var(--text-dark);
@@ -101,52 +181,189 @@
       border-color: var(--border-strong);
     }
 
-    .nav-btn.primary { font-weight: 800; }
-
-    .summary {
+    /* ---------- PAGE WRAPPER ---------- */
+    .page {
       max-width: 980px;
-      margin: 0 auto 2.25rem;
-      padding: 2.75rem 2.5rem;
-      border: 1.5px solid var(--border-soft);
-      border-radius: 26px;
-      background-color: rgba(255, 255, 255, 0.45);
-      transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      margin: 0 auto 3.5rem;
+      padding: 0 1.5rem;
     }
 
-    .summary:hover {
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
-      border-color: var(--border-strong);
-      transform: translateY(-2px);
+    /* ---------- SCROLL ANIMATION ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
 
-    .summary h3 {
-      margin: 0 0 1.5rem;
-      font-size: 1.6rem;
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- SECTION LABEL ---------- */
+    .section-label {
+      font-size: 0.8rem;
       font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pink-strong);
+      margin-bottom: 1rem;
+      text-align: center;
     }
 
-    .summary.text-block { text-align: left; }
-    .summary.text-block h3 { text-align: center; }
-    .summary.text-block p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin: 0 0 1.4rem;
-    }
-
-    .highlights {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    /* ---------- STAT STRIP ---------- */
+    .stat-strip {
       display: grid;
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      padding: 1.75rem 1rem;
+      border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(8px);
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(233, 106, 154, 0.14);
+      border-color: var(--border-strong);
+    }
+
+    .stat-number {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--pink-strong);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.86rem;
+      color: var(--muted-dark);
+      line-height: 1.4;
+    }
+
+    /* ---------- THREE-COL CARDS ---------- */
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      padding: 1.75rem 1.5rem;
+      border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(8px);
       text-align: left;
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .highlights li {
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+      border-color: var(--border-strong);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .card h3 {
       font-size: 1.05rem;
-      line-height: 1.7;
+      font-weight: 800;
+      margin: 0 0 0.5rem;
     }
 
+    .card p {
+      font-size: 0.93rem;
+      line-height: 1.65;
+      color: var(--muted-dark);
+      margin: 0;
+    }
+
+    /* ---------- WIDE FEATURE CARD ---------- */
+    .feature-card {
+      padding: 2.25rem 2.25rem;
+      border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(8px);
+      text-align: left;
+      margin-bottom: 2rem;
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.07);
+      border-color: var(--border-strong);
+    }
+
+    .feature-card-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+
+    .feature-text h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin: 0 0 0.6rem;
+      text-align: center;
+    }
+
+    .feature-text p {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: var(--muted-dark);
+      margin: 0 0 1rem;
+      text-align: center;
+    }
+
+    .feature-link {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--pink-strong);
+      text-decoration: none;
+    }
+
+    /* ---------- TAG ROW ---------- */
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .tag {
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.55);
+      font-size: 0.9rem;
+      color: var(--text-dark);
+    }
+
+    /* ---------- LINKS ---------- */
     .links { padding-bottom: 2.5rem; }
 
     .links h2 {
@@ -169,6 +386,7 @@
       text-decoration: none;
     }
 
+    /* ---------- FOOTER ---------- */
     footer {
       margin: 26px 0 34px;
       padding: 0 1.5rem;
@@ -176,23 +394,28 @@
       color: rgba(43, 43, 43, 0.7);
     }
 
+    @media (max-width: 760px) {
+      .three-col { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .three-col { grid-template-columns: 1fr; }
+      .feature-card-inner { flex-direction: column; gap: 1rem; }
+    }
+
+    /* ---------- CHATBOT ---------- */
     #chat-toggle {
       position: fixed;
-      bottom: 22px;
-      right: 22px;
-      width: 58px;
-      height: 58px;
+      bottom: 22px; right: 22px;
+      width: 58px; height: 58px;
       border-radius: 18px;
       background: var(--pink-soft);
       border: 1.5px solid var(--border-strong);
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       box-shadow: 0 8px 24px rgba(233, 106, 154, 0.28);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      z-index: 9999;
-      font-size: 24px;
+      z-index: 9999; font-size: 24px;
     }
 
     #chat-toggle:hover {
@@ -202,211 +425,115 @@
 
     #chat-window {
       position: fixed;
-      bottom: 92px;
-      right: 22px;
-      width: 360px;
-      max-height: 530px;
+      bottom: 92px; right: 22px;
+      width: 360px; max-height: 530px;
       background: var(--white-glass);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1.5px solid var(--border-soft);
       border-radius: 24px;
       box-shadow: 0 20px 50px rgba(233, 106, 154, 0.15), 0 4px 16px rgba(0, 0, 0, 0.06);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      z-index: 9998;
+      display: flex; flex-direction: column;
+      overflow: hidden; z-index: 9998;
       transform: scale(0.92) translateY(14px);
-      opacity: 0;
-      pointer-events: none;
+      opacity: 0; pointer-events: none;
       transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease;
     }
 
     #chat-window.open {
       transform: scale(1) translateY(0);
-      opacity: 1;
-      pointer-events: all;
+      opacity: 1; pointer-events: all;
     }
 
     .chat-header {
       background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
       border-bottom: 1px solid var(--border-soft);
       padding: 15px 16px;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      flex-shrink: 0;
+      display: flex; align-items: center; gap: 11px; flex-shrink: 0;
     }
 
     .chat-avatar {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
+      width: 38px; height: 38px; border-radius: 12px;
       background: linear-gradient(135deg, var(--pink-strong), #f0a0c0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
     }
 
-    .chat-header-info h4 {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      line-height: 1.2;
-    }
+    .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
+    .chat-header-info p { font-size: 0.73rem; color: var(--muted-dark); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
 
-    .chat-header-info p {
-      font-size: 0.73rem;
-      color: var(--muted-dark);
-      margin-top: 2px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .online-dot {
-      width: 7px;
-      height: 7px;
-      background: #4caf82;
-      border-radius: 50%;
-      display: inline-block;
-      flex-shrink: 0;
-    }
+    .online-dot { width: 7px; height: 7px; background: #4caf82; border-radius: 50%; display: inline-block; flex-shrink: 0; }
 
     .chat-close {
-      margin-left: auto;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--muted-dark);
-      font-size: 17px;
-      line-height: 1;
-      padding: 4px;
-      border-radius: 6px;
-      transition: background 0.15s;
+      margin-left: auto; background: none; border: none; cursor: pointer;
+      color: var(--muted-dark); font-size: 17px; line-height: 1; padding: 4px;
+      border-radius: 6px; transition: background 0.15s;
     }
-
     .chat-close:hover { background: rgba(233, 106, 154, 0.12); }
 
     .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 14px 14px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      scroll-behavior: smooth;
+      flex: 1; overflow-y: auto; padding: 14px 14px 10px;
+      display: flex; flex-direction: column; gap: 9px; scroll-behavior: smooth;
     }
-
     .chat-messages::-webkit-scrollbar { width: 4px; }
     .chat-messages::-webkit-scrollbar-track { background: transparent; }
     .chat-messages::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 4px; }
 
     .msg {
-      max-width: 84%;
-      padding: 10px 13px;
-      border-radius: 16px;
-      font-size: 0.875rem;
-      line-height: 1.58;
-      animation: msgIn 0.22s ease;
+      max-width: 84%; padding: 10px 13px; border-radius: 16px;
+      font-size: 0.875rem; line-height: 1.58; animation: msgIn 0.22s ease;
     }
-
     @keyframes msgIn {
       from { opacity: 0; transform: translateY(7px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
     .msg.bot {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid var(--border-soft);
-      border-bottom-left-radius: 5px;
-      align-self: flex-start;
-      color: var(--text-dark);
+      background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft);
+      border-bottom-left-radius: 5px; align-self: flex-start; color: var(--text-dark);
     }
-
     .msg.user {
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
-      color: #fff;
-      border-bottom-right-radius: 5px;
-      align-self: flex-end;
+      color: #fff; border-bottom-right-radius: 5px; align-self: flex-end;
     }
 
     .typing-indicator {
-      display: flex;
-      gap: 4px;
-      padding: 11px 14px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid var(--border-soft);
-      border-radius: 16px;
-      border-bottom-left-radius: 5px;
-      align-self: flex-start;
-      width: fit-content;
-      animation: msgIn 0.2s ease;
+      display: flex; gap: 4px; padding: 11px 14px;
+      background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft);
+      border-radius: 16px; border-bottom-left-radius: 5px;
+      align-self: flex-start; width: fit-content; animation: msgIn 0.2s ease;
     }
-
-    .typing-indicator span {
-      width: 6px;
-      height: 6px;
-      background: var(--pink-strong);
-      border-radius: 50%;
-      animation: bounce 1.2s infinite;
-    }
-
+    .typing-indicator span { width: 6px; height: 6px; background: var(--pink-strong); border-radius: 50%; animation: bounce 1.2s infinite; }
     .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
     .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-
     @keyframes bounce {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+      0%,60%,100% { transform: translateY(0); opacity: 0.6; }
       30% { transform: translateY(-5px); opacity: 1; }
     }
 
     .chat-input-area {
-      padding: 11px 13px;
-      border-top: 1px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.6);
-      display: flex;
-      gap: 8px;
-      align-items: flex-end;
-      flex-shrink: 0;
+      padding: 11px 13px; border-top: 1px solid var(--border-soft);
+      background: rgba(255,255,255,0.6); display: flex; gap: 8px;
+      align-items: flex-end; flex-shrink: 0;
     }
-
     .chat-input-area textarea {
-      flex: 1;
-      border: 1.5px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 9px 11px;
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 0.875rem;
-      color: var(--text-dark);
-      background: rgba(255, 255, 255, 0.88);
-      resize: none;
-      outline: none;
-      max-height: 100px;
-      line-height: 1.45;
+      flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px;
+      padding: 9px 11px; font-family: 'Segoe UI', sans-serif; font-size: 0.875rem;
+      color: var(--text-dark); background: rgba(255,255,255,0.88);
+      resize: none; outline: none; max-height: 100px; line-height: 1.45;
       transition: border-color 0.2s;
     }
-
     .chat-input-area textarea:focus { border-color: var(--pink-strong); }
-    .chat-input-area textarea::placeholder { color: rgba(43, 43, 43, 0.4); }
+    .chat-input-area textarea::placeholder { color: rgba(43,43,43,0.4); }
 
     .send-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 11px;
+      width: 36px; height: 36px; border-radius: 11px;
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      border: none; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
       transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s;
-      box-shadow: 0 4px 12px rgba(233, 106, 154, 0.32);
+      box-shadow: 0 4px 12px rgba(233,106,154,0.32);
     }
-
-    .send-btn:hover { transform: scale(1.07); box-shadow: 0 6px 16px rgba(233, 106, 154, 0.42); }
+    .send-btn:hover { transform: scale(1.07); box-shadow: 0 6px 16px rgba(233,106,154,0.42); }
     .send-btn:active { transform: scale(0.95); }
     .send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     .send-btn svg { width: 15px; height: 15px; fill: white; }
@@ -420,110 +547,129 @@
 
 <body>
 
+  <!-- FLOATING SHAPES -->
+  <div class="bg-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <h1>
-        Hi, I'm Madiha 👋🏼
-        <span class="intro-line">
-          Senior Support Professional · AI Support · Support Operations (Enterprise) · Developer Platforms
-        </span>
-      </h1>
-      <p class="hero-highlight">
-        I help teams run reliable, developer-facing platforms by owning high-severity investigations,
-        designing scalable triage + escalation workflows, and translating support insights into documentation and automation.
+      <h1>Hi, I'm Madiha 👋🏼</h1>
+      <p class="hero-sub">
+        From everyday tickets to P1/P2 incident ownership, I support enterprise platforms at depth, debugging APIs, authentication systems, and building the infrastructure that stops issues recurring.
       </p>
+      <div class="hero-cta-row">
+        <a class="btn-primary" href="./about.html">About Me</a>
+        <a class="btn-secondary" href="./skills.html">Skills &amp; Experience</a>
+        <a class="btn-secondary" href="./projects.html">AI Chatbot Project</a>
+        <a class="btn-secondary" href="./contact.html">Get in Touch</a>
+      </div>
     </div>
   </section>
 
-  <section class="nav-cta">
-    <div class="nav-cta-inner">
-      <a class="nav-btn primary" href="./about.html">About Me</a>
-      <a class="nav-btn" href="./skills.html">Skills & Experience</a>
-      <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
-      <a class="nav-btn" href="./contact.html">Get in Touch</a>
+  <div class="page">
+
+    <!-- STATS -->
+    <p class="section-label reveal">Impact by the numbers</p>
+    <div class="stat-strip reveal">
+      <div class="stat-card">
+        <div class="stat-number" data-target="98" data-suffix="%">0%</div>
+        <div class="stat-label">CSAT across 100+ enterprise accounts</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-target="5" data-suffix="+ yrs">0 yrs</div>
+        <div class="stat-label">Years in customer-facing and technical SaaS support</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-target="25" data-suffix="%">0%</div>
+        <div class="stat-label">Faster P1/P2 resolution via Datadog dashboards</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-target="100" data-suffix="+">0</div>
+        <div class="stat-label">Enterprise accounts managed across EMEA</div>
+      </div>
     </div>
-  </section>
 
-  <section class="summary text-block">
-    <h3>About Me</h3>
-    <p>
-      I'm a senior support professional with 5+ years of experience supporting complex SaaS products and high-touch
-      enterprise customers. I'm systems-minded, calm in ambiguity, and drawn to the "hard" problems: the ones that
-      need careful investigation, crisp communication, and strong cross-functional execution.
-    </p>
-    <p>
-      My focus is building support that scales: structured triage, clear escalation paths, operational signals
-      (patterns + trends), and documentation that turns one-off fixes into repeatable solutions.
-    </p>
-  </section>
+    <!-- WHAT I BRING -->
+    <p class="section-label reveal">What I bring</p>
+    <div class="three-col">
+      <div class="card reveal">
+        <span class="card-icon">🔍</span>
+        <h3>Deep investigation</h3>
+        <p>I trace issues to their root cause using Datadog, Elasticsearch, Postman, and browser DevTools. Engineering gets reproduction steps, not just tickets.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🏗</span>
+        <h3>Systems that scale</h3>
+        <p>I build the dashboards, playbooks, and knowledge bases that prevent issues recurring. None of these were asked of me. I spotted the gaps and built the solutions.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🚨</span>
+        <h3>Calm under pressure</h3>
+        <p>Sole EMEA owner of P1/P2 on-call incidents across 100+ enterprise accounts. I make informed decisions quickly in high-severity, never-before-seen situations.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🔌</span>
+        <h3>Technical depth</h3>
+        <p>Daily work with REST APIs, SSO, SAML, OAuth, and authentication systems. I debug at the API level, not just the surface.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🤖</span>
+        <h3>AI curiosity</h3>
+        <p>Building toward AI-powered support infrastructure. Shipped a Claude-powered portfolio chatbot secured via Cloudflare Workers. Daily Claude user.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🌍</span>
+        <h3>EMEA coverage</h3>
+        <p>Fluent in English, Urdu, and Hindi. Comfortable owning enterprise relationships across regions and navigating complex cross-functional escalations.</p>
+      </div>
+    </div>
 
-  <section class="summary">
-    <h3>What I Do</h3>
-    <ul class="highlights">
-      <li>🧠 Own complex investigations across APIs, authentication/SSO, integrations, and distributed platform behaviour</li>
-      <li>🚨 Lead escalations end-to-end and partner with Engineering/Product to drive root cause and durable fixes</li>
-      <li>🧩 Design scalable support operations: triage logic, escalation rules, and workflows that reduce repeat issues</li>
-      <li>🌐 Support developer-facing products at scale with deep focus on API reliability and integration patterns</li>
-      <li>📊 Use support signals (resolution patterns, escalations, feedback) to identify automation + process improvements</li>
-      <li>📝 Build documentation and enablement that improves self-serve outcomes and closes knowledge gaps</li>
-      <li>💬 Chat with my portfolio assistant using the button below ↘</li>
-    </ul>
-  </section>
+    <!-- FEATURED PROJECT -->
+    <p class="section-label reveal">Featured project</p>
+    <div class="feature-card reveal">
+      <div class="feature-card-inner">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-text">
+          <h3>Claude-Powered Portfolio Assistant</h3>
+          <p>Built a production AI chatbot from scratch. Started with Dialogflow CX, hit real permission and security issues, switched to the Anthropic API, and secured the key using a Cloudflare Worker proxy. The chatbot on this page is the live result. Ask it anything about my work.</p>
+          <a class="feature-link" href="./projects.html">Read the full story →</a>
+        </div>
+      </div>
+    </div>
 
-  <section class="summary">
-    <h3>Impact & Results</h3>
-    <ul class="highlights">
-      <li><strong>98% CSAT</strong> while owning high-severity enterprise issues and complex investigations</li>
-      <li><strong>25–30% faster resolution</strong> during priority incidents through structured triage and pre-engineering investigation</li>
-      <li><strong>Repeat-issue reduction</strong> by documenting edge cases and refining workflows and escalation paths</li>
-      <li><strong>Cross-functional execution</strong> to convert support learnings into product and reliability improvements</li>
-    </ul>
-  </section>
+    <!-- TOOLBOX -->
+    <p class="section-label reveal">Toolbox</p>
+    <div class="tag-row reveal">
+      <span class="tag">REST APIs</span>
+      <span class="tag">SSO and SAML</span>
+      <span class="tag">Datadog</span>
+      <span class="tag">Elasticsearch</span>
+      <span class="tag">PagerDuty</span>
+      <span class="tag">Jira</span>
+      <span class="tag">Postman</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">SQL</span>
+      <span class="tag">Bash</span>
+      <span class="tag">Docker</span>
+      <span class="tag">Git and GitHub</span>
+      <span class="tag">Zendesk</span>
+      <span class="tag">Salesforce</span>
+      <span class="tag">Cloudflare Workers</span>
+      <span class="tag">Prompt engineering</span>
+      <span class="tag">Python (learning)</span>
+    </div>
 
-  <section class="summary text-block">
-    <h3>AI-Native Support (What I'm Building Toward)</h3>
-    <p>
-      I'm especially interested in support models where AI enhances human expertise by using structured workflows,
-      better context capture, and automation to reduce friction while keeping a high-touch path for complex cases.
-    </p>
-    <p>
-      I've been experimenting with conversational AI patterns via my Claude-powered portfolio assistant (the chatbot below),
-      applying support engineering principles: intent handling, contextual responses, and graceful fallback logic.
-    </p>
-    <p>
-      I'm drawn to companies building critical internet infrastructure and developer platforms where support excellence
-      directly impacts millions of end users and the developers building on top of these platforms.
-    </p>
-  </section>
+  </div>
 
-  <section class="summary text-block">
-    <h3>Featured Project: AI Portfolio Assistant</h3>
-    <p><strong>Problem</strong><br>
-      How can I demonstrate conversational AI design while making it easy for recruiters to explore my background interactively?
-    </p>
-    <p><strong>Approach</strong><br>
-      Built a Claude-powered chatbot grounded in my skills, experience, and career focus. It answers questions about my technical expertise, projects, and what I'm looking for by applying support engineering principles like clear intent handling, contextual responses, and graceful fallback logic.
-    </p>
-    <p><strong>Outcome</strong><br>
-      Created an interactive way for visitors to learn about my experience while demonstrating how I approach conversational AI design: structured context, empathetic responses, and documentation-led answers.
-    </p>
-    <p style="text-align:center; margin-top: 1.25rem;">
-      <a class="social-link" href="./projects.html">View the project →</a>
-    </p>
-  </section>
-
-  <section class="summary">
-    <h3>Toolbox</h3>
-    <ul class="highlights">
-      <li>APIs · SSO (SAML) · identity &amp; authentication · integrations · distributed systems</li>
-      <li>P1/P2 incident ownership · escalation workflows · root cause analysis · platform reliability</li>
-      <li>Documentation systems · investigation playbooks · enablement · developer tools</li>
-      <li>AI-assisted support workflows · conversational support patterns</li>
-      <li><a class="social-link" href="./skills.html">See full Skills &amp; Experience →</a></li>
-    </ul>
-  </section>
-
-  <section class="links">
+  <!-- LINKS -->
+  <section class="links reveal">
     <h2>Let's connect 👩🏻‍💻</h2>
     <p>
       <a class="social-link" href="https://github.com/KhanKMadiha" target="_blank">GitHub</a>
@@ -531,10 +677,12 @@
     </p>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     © <span id="year"></span> Madiha Khan · Built with care 🌸
   </footer>
 
+  <!-- CHATBOT -->
   <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">🌸</button>
 
   <div id="chat-window">
@@ -548,13 +696,8 @@
     </div>
     <div class="chat-messages" id="chat-messages"></div>
     <div class="chat-input-area">
-      <textarea
-        id="chat-input"
-        placeholder="Ask about my experience, skills..."
-        rows="1"
-        onkeydown="handleKey(event)"
-        oninput="autoResize(this)"
-      ></textarea>
+      <textarea id="chat-input" placeholder="Ask about my experience, skills..." rows="1"
+        onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
       <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
@@ -566,12 +709,57 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // ── SCROLL REVEAL ──────────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+          let delay = 0;
+          siblings.forEach((el, idx) => { if (el === entry.target) delay = idx * 80; });
+          setTimeout(() => entry.target.classList.add('visible'), delay);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── COUNTING STATS ─────────────────────────────────────────
+    function animateCount(el) {
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1400;
+      const step = 16;
+      const increment = target / (duration / step);
+      let current = 0;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = Math.floor(current) + suffix;
+      }, step);
+    }
+
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-target]').forEach(animateCount);
+          statObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.stat-strip').forEach(el => statObserver.observe(el));
+
+    // ── CHATBOT ────────────────────────────────────────────────
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
 
-    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
+    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Product Support Specialist based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
 
 ABOUT MADIHA:
-Madiha has 5+ years in customer-facing roles, including over 2 years in technical SaaS and developer platform support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she is the sole EMEA escalation engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
+Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she is the sole EMEA support engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
+
+PERSONAL:
+Outside of work, Madiha leads a fundraising project every Ramadan that has raised over £25,000 and distributed 2,000 food bags to families in Pakistan. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
 
 KEY ACHIEVEMENTS:
 - 98% CSAT across 100+ enterprise accounts
@@ -581,19 +769,23 @@ KEY ACHIEVEMENTS:
 - Reduced new hire ramp-up time by 30% through Jira workflows and playbooks
 - 95% issue reproduction rate, reducing engineering investigation time by 30%
 - Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
+- None of these were asked of her. She spotted the gaps and built the solutions.
 
 TECHNICAL SKILLS:
-REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, Jira, Zendesk, Salesforce, Freshdesk, Google Dialogflow
+REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Google Dialogflow, Python (learning)
 
 AI AND PROJECTS:
-Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). Daily Claude user.
+Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Started with Dialogflow CX and IBM Watson before switching to the Anthropic API. Secured the API key using a Cloudflare Worker proxy. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). Daily Claude user.
 
 LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
+
+EDUCATION: A Levels in Maths, Accounting, and Health and Social Care
 
 CONTACT AND LINKS:
 Portfolio: madihaintech.me
 GitHub: github.com/KhanKMadiha
 LinkedIn: linkedin.com/in/madihakhan-
+Contact page: madihaintech.me/contact.html
 
 TARGET ROLES: AI Support Engineer, Senior Support Engineer, Support Operations Specialist, Product Support Specialist (Technical), ideally at companies like Anthropic, OpenAI, Cloudflare, Stack Overflow, or similar developer platform and infrastructure companies.
 
@@ -604,28 +796,21 @@ TONE GUIDELINES:
 - If asked something you do not know, say you are not sure but invite them to reach out to Madiha directly via the Contact page at madihaintech.me/contact.html, or on LinkedIn at linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
 
-    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional specialising in developer platforms, enterprise escalations, and AI-powered support operations, currently the sole EMEA escalation engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
+    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Product Support Specialist with 5+ years in enterprise SaaS support, currently the sole EMEA support engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
 
     const conversationHistory = [];
     let chatOpen = false;
     let isLoading = false;
 
     window.addEventListener('load', () => {
-      setTimeout(() => {
-        if (!chatOpen) toggleChat();
-      }, 2000);
+      setTimeout(() => { if (!chatOpen) toggleChat(); }, 2000);
     });
 
     function toggleChat() {
       chatOpen = !chatOpen;
-      const win = document.getElementById('chat-window');
-      win.classList.toggle('open', chatOpen);
-      if (chatOpen && conversationHistory.length === 0) {
-        appendMessage('bot', WELCOME_MESSAGE);
-      }
-      if (chatOpen) {
-        setTimeout(() => document.getElementById('chat-input').focus(), 300);
-      }
+      document.getElementById('chat-window').classList.toggle('open', chatOpen);
+      if (chatOpen && conversationHistory.length === 0) appendMessage('bot', WELCOME_MESSAGE);
+      if (chatOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
     }
 
     function appendMessage(role, text) {
@@ -696,10 +881,7 @@ TONE GUIDELINES:
     }
 
     function handleKey(e) {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
-      }
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
     }
 
     function autoResize(el) {

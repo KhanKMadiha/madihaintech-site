@@ -27,7 +27,44 @@
       margin: 0;
       padding: 0;
       text-align: center;
+      overflow-x: hidden;
     }
+
+    /* ---------- FLOATING BACKGROUND SHAPES ---------- */
+    .bg-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(233, 106, 154, 0.07);
+      animation: float linear infinite;
+    }
+
+    .shape:nth-child(1) { width: 300px; height: 300px; top: 5%; left: -8%; animation-duration: 18s; animation-delay: 0s; }
+    .shape:nth-child(2) { width: 180px; height: 180px; top: 20%; right: -5%; animation-duration: 22s; animation-delay: -4s; }
+    .shape:nth-child(3) { width: 240px; height: 240px; top: 50%; left: 60%; animation-duration: 26s; animation-delay: -8s; }
+    .shape:nth-child(4) { width: 120px; height: 120px; top: 70%; left: 10%; animation-duration: 20s; animation-delay: -12s; }
+    .shape:nth-child(5) { width: 200px; height: 200px; top: 85%; right: 15%; animation-duration: 24s; animation-delay: -6s; }
+    .shape:nth-child(6) { width: 80px; height: 80px; top: 35%; left: 45%; animation-duration: 16s; animation-delay: -10s; }
+
+    @keyframes float {
+      0%   { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.6; }
+      33%  { transform: translateY(-30px) rotate(60deg) scale(1.05); opacity: 0.9; }
+      66%  { transform: translateY(15px) rotate(120deg) scale(0.97); opacity: 0.7; }
+      100% { transform: translateY(0px) rotate(180deg) scale(1); opacity: 0.6; }
+    }
+
+    /* ---------- ALL CONTENT ABOVE SHAPES ---------- */
+    .hero, .nav-cta, .page, .links, footer { position: relative; z-index: 1; }
 
     /* ---------- HERO ---------- */
     .hero {
@@ -35,7 +72,7 @@
       display: flex;
       align-items: center;
       padding: 5.5rem 1.5rem 3.5rem;
-      background: linear-gradient(180deg, var(--pink-soft) 0%, var(--pink-base) 100%);
+      background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
     }
 
     .hero-inner {
@@ -52,6 +89,7 @@
       font-size: clamp(2.8rem, 5vw, 3.8rem);
       line-height: 1.08;
       letter-spacing: -0.02em;
+      animation: fadeUp 0.7s ease both;
     }
 
     .hero-sub {
@@ -60,6 +98,12 @@
       line-height: 1.7;
       color: var(--muted-dark);
       margin: 0;
+      animation: fadeUp 0.7s ease 0.15s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ---------- NAV CTA ---------- */
@@ -67,6 +111,7 @@
       max-width: 980px;
       margin: -2.25rem auto 2.5rem;
       padding: 0 1.5rem;
+      animation: fadeUp 0.7s ease 0.25s both;
     }
 
     .nav-cta-inner {
@@ -105,6 +150,18 @@
       padding: 0 1.5rem;
     }
 
+    /* ---------- SCROLL ANIMATION ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ---------- STAT STRIP ---------- */
     .stat-strip {
       display: grid;
@@ -117,13 +174,14 @@
       padding: 1.75rem 1rem;
       border-radius: 22px;
       border: 1.5px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.55);
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(8px);
       transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
 
     .stat-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(233, 106, 154, 0.12);
+      box-shadow: 0 12px 28px rgba(233, 106, 154, 0.14);
       border-color: var(--border-strong);
     }
 
@@ -141,7 +199,21 @@
       line-height: 1.4;
     }
 
-    /* ---------- TWO-COL SECTION ---------- */
+    /* ---------- QUOTE ---------- */
+    .quote-block {
+      padding: 1.75rem 2rem;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
+      border: 1.5px solid var(--border-strong);
+      margin-bottom: 2rem;
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.65;
+      color: var(--text-dark);
+      font-style: italic;
+    }
+
+    /* ---------- TWO-COL PANELS ---------- */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -153,7 +225,8 @@
       padding: 2rem 1.75rem;
       border-radius: 22px;
       border: 1.5px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(8px);
       text-align: left;
       transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
@@ -188,7 +261,8 @@
       padding: 2rem 1.75rem;
       border-radius: 22px;
       border: 1.5px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(8px);
       text-align: left;
       margin-bottom: 2rem;
       transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
@@ -202,20 +276,19 @@
 
     .wide-panel-inner {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 2rem;
-      flex-wrap: wrap;
+      gap: 1rem;
+      text-align: center;
     }
 
-    .wide-panel-icon {
-      font-size: 3rem;
-      flex-shrink: 0;
-    }
+    .wide-panel-icon { font-size: 3rem; flex-shrink: 0; }
 
     .wide-panel-text h2 {
       font-size: 1.2rem;
       font-weight: 800;
       margin: 0 0 0.5rem;
+      text-align: center;
     }
 
     .wide-panel-text p {
@@ -223,20 +296,7 @@
       line-height: 1.7;
       color: var(--muted-dark);
       margin: 0;
-    }
-
-    /* ---------- CALLOUT QUOTE ---------- */
-    .quote-block {
-      padding: 1.75rem 2rem;
-      border-radius: 22px;
-      background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
-      border: 1.5px solid var(--border-strong);
-      margin-bottom: 2rem;
-      font-size: 1.15rem;
-      font-weight: 600;
-      line-height: 1.65;
-      color: var(--text-dark);
-      font-style: italic;
+      text-align: center;
     }
 
     /* ---------- LINKS ---------- */
@@ -272,10 +332,9 @@
 
     @media (max-width: 640px) {
       .two-col { grid-template-columns: 1fr; }
-      .wide-panel-inner { flex-direction: column; gap: 1rem; }
     }
 
-    /* ---------- CHATBOT TOGGLE BUTTON ---------- */
+    /* ---------- CHATBOT ---------- */
     #chat-toggle {
       position: fixed;
       bottom: 22px;
@@ -300,7 +359,6 @@
       box-shadow: 0 12px 30px rgba(233, 106, 154, 0.4);
     }
 
-    /* ---------- CHAT WINDOW ---------- */
     #chat-window {
       position: fixed;
       bottom: 92px;
@@ -340,174 +398,91 @@
     }
 
     .chat-avatar {
-      width: 38px;
-      height: 38px;
+      width: 38px; height: 38px;
       border-radius: 12px;
       background: linear-gradient(135deg, var(--pink-strong), #f0a0c0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
     }
 
-    .chat-header-info h4 {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      line-height: 1.2;
-    }
+    .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
+    .chat-header-info p { font-size: 0.73rem; color: var(--muted-dark); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
 
-    .chat-header-info p {
-      font-size: 0.73rem;
-      color: var(--muted-dark);
-      margin-top: 2px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .online-dot {
-      width: 7px;
-      height: 7px;
-      background: #4caf82;
-      border-radius: 50%;
-      display: inline-block;
-      flex-shrink: 0;
-    }
+    .online-dot { width: 7px; height: 7px; background: #4caf82; border-radius: 50%; display: inline-block; flex-shrink: 0; }
 
     .chat-close {
-      margin-left: auto;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--muted-dark);
-      font-size: 17px;
-      line-height: 1;
-      padding: 4px;
-      border-radius: 6px;
-      transition: background 0.15s;
+      margin-left: auto; background: none; border: none; cursor: pointer;
+      color: var(--muted-dark); font-size: 17px; line-height: 1; padding: 4px;
+      border-radius: 6px; transition: background 0.15s;
     }
-
     .chat-close:hover { background: rgba(233, 106, 154, 0.12); }
 
     .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 14px 14px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      scroll-behavior: smooth;
+      flex: 1; overflow-y: auto; padding: 14px 14px 10px;
+      display: flex; flex-direction: column; gap: 9px; scroll-behavior: smooth;
     }
-
     .chat-messages::-webkit-scrollbar { width: 4px; }
     .chat-messages::-webkit-scrollbar-track { background: transparent; }
     .chat-messages::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 4px; }
 
     .msg {
-      max-width: 84%;
-      padding: 10px 13px;
-      border-radius: 16px;
-      font-size: 0.875rem;
-      line-height: 1.58;
-      animation: msgIn 0.22s ease;
+      max-width: 84%; padding: 10px 13px; border-radius: 16px;
+      font-size: 0.875rem; line-height: 1.58; animation: msgIn 0.22s ease;
     }
-
     @keyframes msgIn {
       from { opacity: 0; transform: translateY(7px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
     .msg.bot {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid var(--border-soft);
-      border-bottom-left-radius: 5px;
-      align-self: flex-start;
-      color: var(--text-dark);
+      background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft);
+      border-bottom-left-radius: 5px; align-self: flex-start; color: var(--text-dark);
     }
-
     .msg.user {
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
-      color: #fff;
-      border-bottom-right-radius: 5px;
-      align-self: flex-end;
+      color: #fff; border-bottom-right-radius: 5px; align-self: flex-end;
     }
 
     .typing-indicator {
-      display: flex;
-      gap: 4px;
-      padding: 11px 14px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid var(--border-soft);
-      border-radius: 16px;
-      border-bottom-left-radius: 5px;
-      align-self: flex-start;
-      width: fit-content;
-      animation: msgIn 0.2s ease;
+      display: flex; gap: 4px; padding: 11px 14px;
+      background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft);
+      border-radius: 16px; border-bottom-left-radius: 5px;
+      align-self: flex-start; width: fit-content; animation: msgIn 0.2s ease;
     }
-
     .typing-indicator span {
-      width: 6px;
-      height: 6px;
-      background: var(--pink-strong);
-      border-radius: 50%;
-      animation: bounce 1.2s infinite;
+      width: 6px; height: 6px; background: var(--pink-strong);
+      border-radius: 50%; animation: bounce 1.2s infinite;
     }
-
     .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
     .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-
     @keyframes bounce {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+      0%,60%,100% { transform: translateY(0); opacity: 0.6; }
       30% { transform: translateY(-5px); opacity: 1; }
     }
 
     .chat-input-area {
-      padding: 11px 13px;
-      border-top: 1px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.6);
-      display: flex;
-      gap: 8px;
-      align-items: flex-end;
-      flex-shrink: 0;
+      padding: 11px 13px; border-top: 1px solid var(--border-soft);
+      background: rgba(255,255,255,0.6); display: flex; gap: 8px;
+      align-items: flex-end; flex-shrink: 0;
     }
-
     .chat-input-area textarea {
-      flex: 1;
-      border: 1.5px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 9px 11px;
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 0.875rem;
-      color: var(--text-dark);
-      background: rgba(255, 255, 255, 0.88);
-      resize: none;
-      outline: none;
-      max-height: 100px;
-      line-height: 1.45;
+      flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px;
+      padding: 9px 11px; font-family: 'Segoe UI', sans-serif; font-size: 0.875rem;
+      color: var(--text-dark); background: rgba(255,255,255,0.88);
+      resize: none; outline: none; max-height: 100px; line-height: 1.45;
       transition: border-color 0.2s;
     }
-
     .chat-input-area textarea:focus { border-color: var(--pink-strong); }
-    .chat-input-area textarea::placeholder { color: rgba(43, 43, 43, 0.4); }
+    .chat-input-area textarea::placeholder { color: rgba(43,43,43,0.4); }
 
     .send-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 11px;
+      width: 36px; height: 36px; border-radius: 11px;
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      border: none; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
       transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s;
-      box-shadow: 0 4px 12px rgba(233, 106, 154, 0.32);
+      box-shadow: 0 4px 12px rgba(233,106,154,0.32);
     }
-
-    .send-btn:hover { transform: scale(1.07); box-shadow: 0 6px 16px rgba(233, 106, 154, 0.42); }
+    .send-btn:hover { transform: scale(1.07); box-shadow: 0 6px 16px rgba(233,106,154,0.42); }
     .send-btn:active { transform: scale(0.95); }
     .send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     .send-btn svg { width: 15px; height: 15px; fill: white; }
@@ -521,13 +496,21 @@
 
 <body>
 
+  <!-- FLOATING BACKGROUND SHAPES -->
+  <div class="bg-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
       <h1>About Me 👋🏼</h1>
-      <p class="hero-sub">
-        Senior Support Professional. Self-taught. Systems-minded. Based in London.
-      </p>
+      <p class="hero-sub">Senior Product Support Specialist. Self-taught. Systems-minded. Based in London.</p>
     </div>
   </section>
 
@@ -543,70 +526,70 @@
 
   <div class="page">
 
-    <!-- STATS -->
-    <div class="stat-strip">
+    <!-- WIDE PANEL -->
+    <div class="wide-panel reveal">
+      <div class="wide-panel-inner">
+        <div class="wide-panel-icon">🌍</div>
+        <div class="wide-panel-text">
+          <h2>Currently at Stack Overflow</h2>
+          <p>Senior Product Support Specialist and sole EMEA support engineer, owning every high-severity incident across the region for 100+ enterprise accounts. Every one of these improvements started with me noticing something that could be better and deciding to fix it. I spotted the gaps, built the solutions, and documented them so they scaled beyond me.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAT STRIP -->
+    <div class="stat-strip reveal">
       <div class="stat-card">
-        <div class="stat-number">98%</div>
+        <div class="stat-number" data-target="98" data-suffix="%">0%</div>
         <div class="stat-label">CSAT across 100+ enterprise accounts</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">25%</div>
+        <div class="stat-number" data-target="25" data-suffix="%">0%</div>
         <div class="stat-label">Faster P1/P2 resolution via Datadog dashboards</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">20%</div>
+        <div class="stat-number" data-target="20" data-suffix="%">0%</div>
         <div class="stat-label">Fewer repeat tickets through knowledge base</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">30%</div>
+        <div class="stat-number" data-target="30" data-suffix="%">0%</div>
         <div class="stat-label">Faster onboarding via Jira workflows</div>
       </div>
     </div>
 
     <!-- QUOTE -->
-    <div class="quote-block">
-      "I do not wait to be handed a process. I look for the gap, build the solution, and document it so it scales beyond me."
+    <div class="quote-block reveal">
+      "Every system I have built started the same way. Noticing something that could be better, and caring enough to do something about it."
     </div>
 
     <!-- TWO-COL PANELS -->
     <div class="two-col">
-      <div class="panel">
+      <div class="panel reveal">
         <span class="panel-icon">💻</span>
         <h2>How I got here</h2>
         <p>Curiosity about technology led me to teach myself to code during the pandemic. That opened the door into tech support, and I have not stopped learning since.</p>
       </div>
-      <div class="panel">
+      <div class="panel reveal">
         <span class="panel-icon">🔍</span>
         <h2>How I think</h2>
         <p>When something breaks, I go back to the documentation, isolate the variable, test incrementally, and trace it to the root cause. That is just how I approach problems.</p>
       </div>
-      <div class="panel">
+      <div class="panel reveal">
         <span class="panel-icon">🏗</span>
         <h2>What I build</h2>
         <p>Observability dashboards. Knowledge bases. Escalation playbooks. Systems that prevent issues recurring, not just fix them once.</p>
       </div>
-      <div class="panel">
+      <div class="panel reveal">
         <span class="panel-icon">🤖</span>
         <h2>Where I am headed</h2>
         <p>AI-powered support infrastructure at developer-first companies. The kind of place where support excellence shapes the product.</p>
       </div>
     </div>
 
-    <!-- WIDE PANEL -->
-    <div class="wide-panel">
-      <div class="wide-panel-inner">
-        <div class="wide-panel-icon">🌍</div>
-        <div class="wide-panel-text">
-        <h2>Currently at Stack Overflow</h2>
-          <p>Sole EMEA support engineer, owning every high-severity incident across the region for 100+ enterprise accounts. Every one of these improvements started with me noticing something that could be better and deciding to fix it. I spotted the gaps, built the solutions, and documented them so they scaled beyond me.</p>
-        </div>
-      </div>
-    </div>
-
   </div>
 
   <!-- LINKS -->
-  <section class="links">
+  <section class="links reveal">
     <h2>Let's connect 👩🏻‍💻</h2>
     <p>
       <a class="social-link" href="https://github.com/KhanKMadiha" target="_blank">GitHub</a>
@@ -619,8 +602,7 @@
     © <span id="year"></span> Madiha Khan · Built with care 🌸
   </footer>
 
-  <!-- CLAUDE-POWERED CHATBOT -->
-
+  <!-- CHATBOT -->
   <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">🌸</button>
 
   <div id="chat-window">
@@ -634,13 +616,8 @@
     </div>
     <div class="chat-messages" id="chat-messages"></div>
     <div class="chat-input-area">
-      <textarea
-        id="chat-input"
-        placeholder="Ask about my experience, skills..."
-        rows="1"
-        onkeydown="handleKey(event)"
-        oninput="autoResize(this)"
-      ></textarea>
+      <textarea id="chat-input" placeholder="Ask about my experience, skills..." rows="1"
+        onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
       <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
@@ -652,6 +629,53 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // ── SCROLL REVEAL ──────────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger delay for siblings in the same grid
+          const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+          let delay = 0;
+          siblings.forEach((el, idx) => { if (el === entry.target) delay = idx * 80; });
+          setTimeout(() => entry.target.classList.add('visible'), delay);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── COUNTING STATS ─────────────────────────────────────────
+    function animateCount(el) {
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1400;
+      const step = 16;
+      const increment = target / (duration / step);
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(timer);
+        }
+        el.textContent = Math.floor(current) + suffix;
+      }, step);
+    }
+
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('[data-target]').forEach(animateCount);
+          statObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.stat-strip').forEach(el => statObserver.observe(el));
+
+    // ── CHATBOT ────────────────────────────────────────────────
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
 
     const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
@@ -686,7 +710,6 @@ CONTACT AND LINKS:
 Portfolio: madihaintech.me
 GitHub: github.com/KhanKMadiha
 LinkedIn: linkedin.com/in/madihakhan-
-Email: madiha00@hotmail.co.uk
 
 TARGET ROLES: AI Support Engineer, Senior Support Engineer, Support Operations Specialist, Product Support Specialist (Technical), ideally at companies like Anthropic, OpenAI, Cloudflare, Stack Overflow, or similar developer platform and infrastructure companies.
 
@@ -697,28 +720,21 @@ TONE GUIDELINES:
 - If asked something you do not know, say you are not sure but invite them to reach out to Madiha directly via the Contact page at madihaintech.me/contact.html, or on LinkedIn at linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
 
-    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional specialising in developer platforms, enterprise escalations, and AI-powered support operations, currently the sole EMEA escalation engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
+    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Product Support Specialist specialising in developer platforms, enterprise support, and AI-powered support operations, currently the sole EMEA support engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
 
     const conversationHistory = [];
     let chatOpen = false;
     let isLoading = false;
 
     window.addEventListener('load', () => {
-      setTimeout(() => {
-        if (!chatOpen) toggleChat();
-      }, 2000);
+      setTimeout(() => { if (!chatOpen) toggleChat(); }, 2000);
     });
 
     function toggleChat() {
       chatOpen = !chatOpen;
-      const win = document.getElementById('chat-window');
-      win.classList.toggle('open', chatOpen);
-      if (chatOpen && conversationHistory.length === 0) {
-        appendMessage('bot', WELCOME_MESSAGE);
-      }
-      if (chatOpen) {
-        setTimeout(() => document.getElementById('chat-input').focus(), 300);
-      }
+      document.getElementById('chat-window').classList.toggle('open', chatOpen);
+      if (chatOpen && conversationHistory.length === 0) appendMessage('bot', WELCOME_MESSAGE);
+      if (chatOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
     }
 
     function appendMessage(role, text) {
@@ -789,10 +805,7 @@ TONE GUIDELINES:
     }
 
     function handleKey(e) {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
-      }
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
     }
 
     function autoResize(el) {

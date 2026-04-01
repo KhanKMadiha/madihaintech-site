@@ -5,19 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Chatbot Project | Madiha Khan</title>
 
-  <!-- Dialogflow Messenger assets (MUST be in head) -->
-  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-
   <style>
     :root {
       --pink-base: #fff0f6;
       --pink-soft: #fbe4ec;
       --pink-strong: #e96a9a;
+      --pink-light: #fdd5e8;
       --text-dark: #2b2b2b;
       --muted-dark: rgba(43, 43, 43, 0.7);
       --border-soft: rgba(233, 106, 154, 0.25);
       --border-strong: rgba(233, 106, 154, 0.45);
+      --white-glass: rgba(255, 255, 255, 0.75);
     }
 
     * { box-sizing: border-box; }
@@ -31,7 +29,6 @@
       text-align: center;
     }
 
-    /* ---------- HERO ---------- */
     .hero {
       min-height: 55vh;
       display: flex;
@@ -63,7 +60,6 @@
       color: var(--muted-dark);
     }
 
-    /* ---------- NAV CTA ---------- */
     .nav-cta {
       max-width: 980px;
       margin: -1.25rem auto 2.25rem;
@@ -97,11 +93,6 @@
       border-color: var(--border-strong);
     }
 
-    .nav-btn.primary {
-      font-weight: 800;
-    }
-
-    /* ---------- CONTENT WRAP ---------- */
     .content {
       max-width: 980px;
       margin: 0 auto 3.5rem;
@@ -109,7 +100,6 @@
       text-align: left;
     }
 
-    /* ---------- CARDS ---------- */
     .card {
       margin: 0 auto 1.5rem;
       padding: 2.25rem 2.25rem;
@@ -117,6 +107,13 @@
       border-radius: 26px;
       background-color: rgba(255, 255, 255, 0.45);
       line-height: 1.75;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
     }
 
     .card h2 {
@@ -131,6 +128,8 @@
       font-size: 1.05rem;
     }
 
+    .card p:last-child { margin-bottom: 0; }
+
     .steps {
       list-style: none;
       padding: 0;
@@ -144,7 +143,24 @@
       border-radius: 18px;
       border: 1.5px solid var(--border-soft);
       background: rgba(255, 255, 255, 0.55);
+      position: relative;
     }
+
+    .step-label {
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .step-label.phase-1 { background: #fbe4ec; color: #c0476e; border: 1px solid rgba(233,106,154,0.3); }
+    .step-label.phase-2 { background: #fde8d8; color: #c05a2a; border: 1px solid rgba(233,140,106,0.3); }
+    .step-label.phase-3 { background: #e8f4fd; color: #2a6fc0; border: 1px solid rgba(106,163,233,0.3); }
+    .step-label.phase-4 { background: #e8fdf0; color: #2ac06a; border: 1px solid rgba(106,233,163,0.3); }
 
     .step h3 {
       margin: 0 0 0.35rem;
@@ -158,6 +174,19 @@
       font-size: 0.98rem;
       line-height: 1.45;
     }
+
+    .struggle {
+      margin-top: 0.85rem;
+      padding: 0.9rem 1.1rem;
+      border-radius: 12px;
+      background: rgba(233, 106, 154, 0.07);
+      border-left: 3px solid var(--pink-strong);
+      font-size: 0.98rem;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    .struggle strong { color: var(--pink-strong); }
 
     .tag-row {
       display: flex;
@@ -175,13 +204,6 @@
       color: var(--text-dark);
     }
 
-    .note {
-      margin-top: 1rem;
-      font-size: 1.02rem;
-      color: var(--muted-dark);
-    }
-
-    /* ---------- LINKS ---------- */
     .links {
       padding-bottom: 2.5rem;
       text-align: center;
@@ -201,9 +223,6 @@
     }
 
     .social-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.65rem;
       font-size: 1.05rem;
       font-weight: 700;
       color: var(--pink-strong);
@@ -211,12 +230,8 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    .social-link:hover {
-      opacity: 0.75;
-      transform: translateY(-1px);
-    }
+    .social-link:hover { opacity: 0.75; transform: translateY(-1px); }
 
-    /* ---------- FOOTER (MATCHES CONTACT + INDEX + ABOUT) ---------- */
     footer {
       margin: 26px 0 34px;
       padding: 0 1.5rem;
@@ -231,45 +246,264 @@
       .links p { gap: 1.75rem; }
     }
 
-    /* ---------- CHATBOT ---------- */
-    df-messenger {
+    #chat-toggle {
       position: fixed;
-      bottom: 16px;
-      right: 16px;
+      bottom: 22px;
+      right: 22px;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: var(--pink-soft);
+      border: 1.5px solid var(--border-strong);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(233, 106, 154, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       z-index: 9999;
-
-      --df-messenger-button-background-color: #fbe4ec;
-      --df-messenger-button-text-color: #2b2b2b;
-      --df-messenger-chat-background-color: #fff0f6;
-      --df-messenger-send-icon: #e96a9a;
-      --df-messenger-focus-color: #e96a9a;
+      font-size: 24px;
     }
 
-    df-messenger::part(chat-button) {
-      box-shadow: 0 10px 25px rgba(233, 106, 154, 0.25);
-      border-radius: 18px;
+    #chat-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(233, 106, 154, 0.4);
+    }
+
+    #chat-window {
+      position: fixed;
+      bottom: 92px;
+      right: 22px;
+      width: 360px;
+      max-height: 530px;
+      background: var(--white-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(233, 106, 154, 0.15), 0 4px 16px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9998;
+      transform: scale(0.92) translateY(14px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease;
+    }
+
+    #chat-window.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 15px 16px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+    }
+
+    .chat-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--pink-strong), #f0a0c0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .chat-header-info h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.2;
+    }
+
+    .chat-header-info p {
+      font-size: 0.73rem;
+      color: var(--muted-dark);
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .online-dot {
+      width: 7px;
+      height: 7px;
+      background: #4caf82;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .chat-close {
+      margin-left: auto;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted-dark);
+      font-size: 17px;
+      line-height: 1;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    .chat-close:hover { background: rgba(233, 106, 154, 0.12); }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      scroll-behavior: smooth;
+    }
+
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 4px; }
+
+    .msg {
+      max-width: 84%;
+      padding: 10px 13px;
+      border-radius: 16px;
+      font-size: 0.875rem;
+      line-height: 1.58;
+      animation: msgIn 0.22s ease;
+    }
+
+    @keyframes msgIn {
+      from { opacity: 0; transform: translateY(7px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .msg.bot {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border-soft);
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
+      color: var(--text-dark);
+    }
+
+    .msg.user {
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      color: #fff;
+      border-bottom-right-radius: 5px;
+      align-self: flex-end;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 11px 14px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
+      width: fit-content;
+      animation: msgIn 0.2s ease;
+    }
+
+    .typing-indicator span {
+      width: 6px;
+      height: 6px;
+      background: var(--pink-strong);
+      border-radius: 50%;
+      animation: bounce 1.2s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+      30% { transform: translateY(-5px); opacity: 1; }
+    }
+
+    .chat-input-area {
+      padding: 11px 13px;
+      border-top: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.6);
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .chat-input-area textarea {
+      flex: 1;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 9px 11px;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text-dark);
+      background: rgba(255, 255, 255, 0.88);
+      resize: none;
+      outline: none;
+      max-height: 100px;
+      line-height: 1.45;
+      transition: border-color 0.2s;
+    }
+
+    .chat-input-area textarea:focus { border-color: var(--pink-strong); }
+    .chat-input-area textarea::placeholder { color: rgba(43, 43, 43, 0.4); }
+
+    .send-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s;
+      box-shadow: 0 4px 12px rgba(233, 106, 154, 0.32);
+    }
+
+    .send-btn:hover { transform: scale(1.07); box-shadow: 0 6px 16px rgba(233, 106, 154, 0.42); }
+    .send-btn:active { transform: scale(0.95); }
+    .send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .send-btn svg { width: 15px; height: 15px; fill: white; }
+
+    @media (max-width: 420px) {
+      #chat-window { width: calc(100vw - 28px); right: 14px; bottom: 84px; }
+      #chat-toggle { right: 14px; bottom: 14px; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <h1>AI Chatbot Project</h1>
+      <h1>AI Chatbot Project 🤖</h1>
       <p class="hero-highlight">
-        A practical chatbot project inspired by support workflows. Built to answer questions about my work and guide visitors across my portfolio.
+        From Dialogflow CX to Claude and Cloudflare: a real account of building, breaking, and iterating on a production AI assistant for this portfolio.
       </p>
     </div>
   </section>
 
-  <!-- NAV BUTTONS -->
   <section class="nav-cta">
     <div class="nav-cta-inner">
       <a class="nav-btn" href="./index.html">Homepage</a>
       <a class="nav-btn" href="./about.html">About Me</a>
-      <a class="nav-btn" href="./skills.html">Skills & Experience</a>
+      <a class="nav-btn" href="./skills.html">Skills &amp; Experience</a>
       <a class="nav-btn" href="./contact.html">Get in Touch</a>
     </div>
   </section>
@@ -277,97 +511,300 @@
   <main class="content">
 
     <section class="card">
-      <h2>What this chatbot does</h2>
+      <h2>What this project is</h2>
       <p>
-        This chatbot is designed as a lightweight portfolio assistant. It can answer common questions about my background,
-        highlight the areas I work in most often, and point visitors to relevant sections across my site.
+        This is a live, production AI chatbot embedded across my portfolio site. It answers questions about my experience, skills, and career goals on behalf of me, helping recruiters explore my background interactively rather than just reading static text.
       </p>
-      <p class="note">
-        You can try it any time using the chat bubble in the bottom right corner.
+      <p>
+        What started as a simple Dialogflow CX experiment became a full journey through API integration, security challenges, and infrastructure decisions. The chatbot you see in the bottom right corner today is the result of that entire process.
       </p>
       <div class="tag-row">
-        <span class="tag">Support workflows</span>
-        <span class="tag">Conversation design</span>
-        <span class="tag">Intent routing</span>
-        <span class="tag">Portfolio assistant</span>
+        <span class="tag">Conversational AI</span>
+        <span class="tag">API integration</span>
+        <span class="tag">Prompt engineering</span>
+        <span class="tag">Cloudflare Workers</span>
+        <span class="tag">Security</span>
+        <span class="tag">Iterative development</span>
       </div>
     </section>
 
     <section class="card">
-      <h2>How I built it</h2>
+      <h2>The full journey</h2>
       <ul class="steps">
+
         <li class="step">
-          <h3>1. Learning foundation</h3>
-          <p class="meta">IBM AI Foundations learning path on Coursera</p>
+          <span class="step-label phase-1">Phase 1</span>
+          <h3>Starting with IBM Watson and Dialogflow CX</h3>
+          <p class="meta">Learning the fundamentals of conversational AI</p>
           <p>
-            I completed the IBM AI Foundations learning path and used it to ground my understanding of core AI concepts and practical use cases.
+            I started by completing the IBM AI Fundamentals certification and building a prototype using IBM Watson to understand intents, entities, and dialogue flows. I then moved to Google Dialogflow CX, which gave me more control over multi-turn conversations and intent routing.
           </p>
+          <p>
+            I embedded the Dialogflow bot into this portfolio and it worked, until it didn't. Testing it regularly, I kept hitting a <strong>Permission Denied</strong> error that I couldn't resolve. The root cause came down to domain allowlisting and integration settings inside the Dialogflow console, but after spending time investigating it, I made the decision to move on rather than continue troubleshooting a tool that wasn't serving me well.
+          </p>
+          <div class="struggle">
+            <strong>Struggle:</strong> The Dialogflow CX embed required the Messenger integration to be explicitly enabled and domains allowlisted inside the Google Cloud console. Without this, every request returned a permission denied error regardless of the code being correct. Debugging this across Google Cloud IAM, Dialogflow settings, and the front-end embed was time consuming and not well documented.
+          </div>
         </li>
 
         <li class="step">
-          <h3>2. First build</h3>
-          <p class="meta">IBM Watson chatbot prototype</p>
+          <span class="step-label phase-2">Phase 2</span>
+          <h3>Switching to the Anthropic API</h3>
+          <p class="meta">Replacing intent-based flows with a language model</p>
           <p>
-            I built an initial chatbot using IBM Watson to explore dialogue structure, intents, and confidence-based responses.
+            Rather than continuing to map every possible question to a predefined intent, I switched to using Claude via the Anthropic API directly. This meant writing a detailed system prompt describing my background, experience, and tone, and letting the model handle any question a recruiter might ask naturally.
           </p>
+          <p>
+            The difference was immediate. No more intent mapping, no training data, no permission configuration. I built a custom chat widget in HTML and JavaScript that matched my existing pink theme, with a proactive welcome message that opens automatically two seconds after the page loads.
+          </p>
+          <div class="struggle">
+            <strong>Struggle:</strong> The first version had the Anthropic API key hardcoded directly in the front-end JavaScript. GitHub's secret scanning flagged it immediately on push and blocked the commit, a valuable lesson in API key security and the importance of never committing secrets to a public repository.
+          </div>
         </li>
 
         <li class="step">
-          <h3>3. Iteration and deployment</h3>
-          <p class="meta">Dialogflow assistant integrated into my site</p>
+          <span class="step-label phase-3">Phase 3</span>
+          <h3>Securing the API key with Cloudflare Workers</h3>
+          <p class="meta">Building a proxy to keep secrets off the front end</p>
           <p>
-            I then applied what I learned to implement a Dialogflow chatbot and embedded it directly into this portfolio so visitors can explore it in context.
+            To fix the security issue properly, I set up a Cloudflare Worker as a proxy. The Worker sits between my portfolio site and the Anthropic API. My front end sends requests to the Worker, the Worker adds the API key server-side, and forwards the request to Anthropic. The key never appears in my code or in the browser.
+          </p>
+          <p>
+            I configured the Worker to only accept requests from <code>madihaintech.me</code> using CORS headers, stored the API key as an encrypted environment secret in Cloudflare, and deployed it on the free tier with no credit card required.
+          </p>
+          <div class="struggle">
+            <strong>Struggle:</strong> Setting up the Cloudflare Worker involved navigating an unfamiliar console, figuring out how to add encrypted secrets, and understanding CORS preflight requests. The Cloudflare editor also did not support pasting on the initial deploy screen, which required deploying a Hello World worker first and then replacing the code afterwards in the full editor.
+          </div>
+        </li>
+
+        <li class="step">
+          <span class="step-label phase-4">Phase 4</span>
+          <h3>Live and iterating</h3>
+          <p class="meta">Production deployment across the full portfolio</p>
+          <p>
+            The chatbot is now live across all pages of this portfolio, powered by Claude, secured via Cloudflare, and deployed through GitHub Pages. It opens automatically after two seconds, delivers a structured welcome message, and handles follow-up questions with full conversation history maintained client-side for the session.
+          </p>
+          <p>
+            The system prompt is carefully designed to keep responses warm, professional, and grounded only in accurate information about my background, with a fallback to direct visitors to my contact page or LinkedIn if something falls outside what the assistant knows.
           </p>
         </li>
+
       </ul>
     </section>
 
     <section class="card">
-      <h2>What I am improving next</h2>
+      <h2>What I learned</h2>
       <p>
-        I am iterating on response quality, navigation accuracy, and helpfulness. The goal is to make it feel like a real support assistant,
-        not a gimmick, and to keep refining how it guides users to the right information.
+        This project taught me more than any tutorial could. I learned that real AI integration involves infrastructure decisions, not just model prompts. Where your API key lives, how requests are routed, and how you handle errors all matter as much as what the AI says.
+      </p>
+      <p>
+        I also learned that iteration beats perfection. The Dialogflow version was imperfect but it shipped. The permission error pushed me toward a better solution. The exposed API key forced me to understand proxies and secrets management. Every struggle led somewhere useful.
       </p>
       <div class="tag-row">
-        <span class="tag">Better fallback handling</span>
-        <span class="tag">More guided navigation</span>
-        <span class="tag">Higher quality responses</span>
-        <span class="tag">Project documentation</span>
+        <span class="tag">API security</span>
+        <span class="tag">Proxy architecture</span>
+        <span class="tag">CORS handling</span>
+        <span class="tag">Prompt design</span>
+        <span class="tag">Iterative problem solving</span>
+        <span class="tag">Cloudflare Workers</span>
       </div>
     </section>
 
-    <section>
-      <p>💬 You can chat with my AI assistant in the bottom right corner to learn more about my work and projects.</p>
+    <section class="card" style="text-align: center;">
+      <h2>Try it yourself</h2>
+      <p>
+        The chatbot in the bottom right corner is the live version described above. Ask it anything about my experience, what I am looking for, or how I built this. It knows the full story.
+      </p>
+      <p style="margin-top: 0.5rem; color: var(--muted-dark); font-size: 0.98rem;">
+        💬 Powered by Claude | Secured by Cloudflare | Built by Madiha
+      </p>
     </section>
 
   </main>
 
   <section class="links">
-    <h2>Let’s connect! 👩🏻‍💻</h2>
+    <h2>Let's connect 👩🏻‍💻</h2>
     <p>
-      <a class="social-link" href="https://github.com/TechTinker-1" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="social-link" href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </p>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     © <span id="year"></span> Madiha Khan · Built with care 🌸
   </footer>
 
-  <!-- CHATBOT -->
-  <df-messenger
-    location="europe-west2"
-    project-id="madiha-portfolio-rh9d"
-    agent-id="6a84617a-dcd7-458e-91d3-1937ccd3fdac"
-    language-code="en"
-    max-query-length="-1">
-    <df-messenger-chat-bubble chat-title="Madiha’s Portfolio Bot"></df-messenger-chat-bubble>
-  </df-messenger>
+  <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">🌸</button>
 
-  <!-- YEAR SCRIPT -->
+  <div id="chat-window">
+    <div class="chat-header">
+      <div class="chat-avatar">🌸</div>
+      <div class="chat-header-info">
+        <h4>Madiha's Portfolio Assistant</h4>
+        <p><span class="online-dot"></span>Ask me anything</p>
+      </div>
+      <button class="chat-close" onclick="toggleChat()" aria-label="Close chat">✕</button>
+    </div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input-area">
+      <textarea
+        id="chat-input"
+        placeholder="Ask about my experience, skills..."
+        rows="1"
+        onkeydown="handleKey(event)"
+        oninput="autoResize(this)"
+      ></textarea>
+      <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
+
+    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
+
+ABOUT MADIHA:
+Madiha has 5+ years in customer-facing roles, including over 2 years in technical SaaS and developer platform support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she is the sole EMEA escalation engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
+
+KEY ACHIEVEMENTS:
+- 98% CSAT across 100+ enterprise accounts
+- Sole EMEA owner of P1/P2 on-call incidents
+- Built Datadog dashboards cutting P1/P2 resolution time by 25%
+- Authored 50+ knowledge base articles reducing repeat tickets by 20%
+- Reduced new hire ramp-up time by 30% through Jira workflows and playbooks
+- 95% issue reproduction rate, reducing engineering investigation time by 30%
+- Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
+
+TECHNICAL SKILLS:
+REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, Jira, Zendesk, Salesforce, Freshdesk, Google Dialogflow
+
+AI AND PROJECTS:
+Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Started with Dialogflow CX and IBM Watson before switching to the Anthropic API. Secured the API key using a Cloudflare Worker proxy. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). Daily Claude user.
+
+LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
+
+CONTACT AND LINKS:
+Portfolio: madihaintech.me
+GitHub: github.com/KhanKMadiha
+LinkedIn: linkedin.com/in/madihakhan-
+
+TARGET ROLES: AI Support Engineer, Senior Support Engineer, Support Operations Specialist, Product Support Specialist (Technical), ideally at companies like Anthropic, OpenAI, Cloudflare, Stack Overflow, or similar developer platform and infrastructure companies.
+
+TONE GUIDELINES:
+- Be warm, friendly, and approachable but also professional
+- Keep responses concise, 2 to 4 sentences unless the visitor asks for more detail
+- Speak about Madiha in the third person: say "Madiha has..." or "She specialises in..." rather than "I"
+- If asked something you do not know, say you are not sure but invite them to reach out to Madiha directly via the Contact page at madihaintech.me/contact.html, or on LinkedIn at linkedin.com/in/madihakhan-
+- Never invent or assume information not listed above`;
+
+    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional specialising in developer platforms, enterprise escalations, and AI-powered support operations, currently the sole EMEA escalation engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
+
+    const conversationHistory = [];
+    let chatOpen = false;
+    let isLoading = false;
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (!chatOpen) toggleChat();
+      }, 2000);
+    });
+
+    function toggleChat() {
+      chatOpen = !chatOpen;
+      const win = document.getElementById('chat-window');
+      win.classList.toggle('open', chatOpen);
+      if (chatOpen && conversationHistory.length === 0) {
+        appendMessage('bot', WELCOME_MESSAGE);
+      }
+      if (chatOpen) {
+        setTimeout(() => document.getElementById('chat-input').focus(), 300);
+      }
+    }
+
+    function appendMessage(role, text) {
+      const container = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = `msg ${role}`;
+      text.split('\n').forEach((line, i, arr) => {
+        div.appendChild(document.createTextNode(line));
+        if (i < arr.length - 1) div.appendChild(document.createElement('br'));
+      });
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function showTyping() {
+      const container = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'typing-indicator';
+      div.id = 'typing-indicator';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function removeTyping() {
+      const el = document.getElementById('typing-indicator');
+      if (el) el.remove();
+    }
+
+    async function sendMessage() {
+      if (isLoading) return;
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      appendMessage('user', text);
+      conversationHistory.push({ role: 'user', content: text });
+      input.value = '';
+      input.style.height = 'auto';
+      setLoading(true);
+      showTyping();
+      try {
+        const response = await fetch(PROXY_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            system: SYSTEM_PROMPT,
+            messages: conversationHistory
+          })
+        });
+        const data = await response.json();
+        const reply = data?.content?.[0]?.text || "I'm sorry, I wasn't able to get a response just now. Please try again in a moment!";
+        removeTyping();
+        appendMessage('bot', reply);
+        conversationHistory.push({ role: 'assistant', content: reply });
+      } catch (err) {
+        removeTyping();
+        appendMessage('bot', "Something went wrong. Please try again shortly!");
+        console.error('Chatbot error:', err);
+      }
+      setLoading(false);
+    }
+
+    function setLoading(state) {
+      isLoading = state;
+      document.getElementById('send-btn').disabled = state;
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    }
+
+    function autoResize(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+    }
   </script>
 
 </body>

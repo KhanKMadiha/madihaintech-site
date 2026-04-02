@@ -106,51 +106,44 @@
       font-size: 1.15rem;
       line-height: 1.8;
       color: var(--muted-dark);
-      margin: 0 0 2.25rem;
+      margin: 0;
       animation: fadeUp 0.6s ease 0.2s both;
     }
 
     .hero-cta-row {
       display: flex;
-      gap: 0.9rem;
+      gap: 1rem;
       flex-wrap: wrap;
       justify-content: center;
+      margin-top: 2.25rem;
       animation: fadeUp 0.6s ease 0.3s both;
     }
 
-    .btn-primary {
+    .nav-btn {
+      flex: 1 1 220px;
+      max-width: 320px;
       padding: 1.05rem 1.25rem;
       border-radius: 14px;
-      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
-      color: #fff;
       font-size: 1.05rem;
       font-weight: 700;
       text-decoration: none;
-      box-shadow: 0 6px 18px rgba(233, 106, 154, 0.35);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(233, 106, 154, 0.45);
-    }
-
-    .btn-secondary {
-      padding: 1.05rem 1.25rem;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.65);
       color: var(--text-dark);
-      font-size: 1.05rem;
-      font-weight: 700;
-      text-decoration: none;
       border: 1.5px solid var(--border-soft);
+      background-color: rgba(255, 255, 255, 0.6);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
-    .btn-secondary:hover {
+    .nav-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
       border-color: var(--border-strong);
+    }
+
+    .nav-btn.active {
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 6px 18px rgba(233, 106, 154, 0.35);
     }
 
     @keyframes fadeUp {
@@ -604,11 +597,11 @@
         I'm a support engineer who investigates deeply, builds systems that last, and genuinely cares about the people on the other end of every ticket.
       </p>
       <div class="hero-cta-row">
-        <a class="btn-primary" href="./index.html">Homepage</a>
-        <a class="btn-secondary" href="./about.html">About Me</a>
-        <a class="btn-secondary" href="./skills.html">Skills &amp; Experience</a>
-        <a class="btn-secondary" href="./projects.html">AI Chatbot Project</a>
-        <a class="btn-secondary" href="./contact.html">Get in Touch</a>
+        <a class="nav-btn active" href="./index.html">Homepage</a>
+        <a class="nav-btn" href="./about.html">About Me</a>
+        <a class="nav-btn" href="./skills.html">Skills &amp; Experience</a>
+        <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
+        <a class="nav-btn" href="./contact.html">Get in Touch</a>
       </div>
     </div>
   </section>
@@ -711,9 +704,9 @@
       <h3>Want to know more? 👩🏻‍💻</h3>
       <p>My chatbot can answer questions about my experience and skills right now. Or explore the rest of the site to see my full background, the story behind the AI project, or get in touch directly.</p>
       <div class="closing-btns">
-        <a class="btn-primary" href="./about.html">Read my story</a>
-        <a class="btn-secondary" href="./contact.html">Get in touch</a>
-        <a class="btn-secondary" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
+        <a class="nav-btn active" href="./about.html">Read my story</a>
+        <a class="nav-btn" href="./contact.html">Get in touch</a>
+        <a class="nav-btn" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
       </div>
     </div>
 

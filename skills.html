@@ -103,9 +103,9 @@
     @media(max-width:420px){#chat-window{width:calc(100vw - 28px);right:14px;bottom:84px;}#chat-toggle{right:14px;bottom:14px;}}
 
     /* ---------- CAREER CAROUSEL ---------- */
-    .career-carousel-wrap { margin-bottom:1.5rem; }
-    .career-track { display:flex; gap:1rem; transition:transform 0.35s ease; overflow:hidden; }
-    .flip-card { flex:0 0 260px; height:195px; perspective:1000px; cursor:pointer; }
+    .career-carousel-wrap { margin-bottom:1.5rem; overflow:hidden; }
+    .career-track { display:flex; gap:1rem; transition:transform 0.35s ease; }
+    .flip-card { flex:0 0 calc(33.333% - 0.75rem); min-width:220px; max-width:280px; height:195px; perspective:1000px; cursor:pointer; }
     .flip-inner { position:relative; width:100%; height:100%; transition:transform 0.5s ease; transform-style:preserve-3d; }
     .flip-card.flipped .flip-inner { transform:rotateY(180deg); }
     .flip-front,.flip-back { position:absolute; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; border:1.5px solid var(--border-soft); padding:1.25rem; box-sizing:border-box; background:rgba(255,255,255,0.75); backdrop-filter:blur(8px); }
@@ -512,18 +512,45 @@ TONE GUIDELINES:
     // CAREER CAROUSEL
     let careerPos = 0;
     const careerTotal = 6;
-    const careerCardWidth = 272;
     const careerDotsEl = document.getElementById('careerDots');
-    for (let i = 0; i < careerTotal; i++) {
-      const d = document.createElement('div');
-      d.className = 'career-dot' + (i === 0 ? ' active' : '');
-      careerDotsEl.appendChild(d);
+
+    function getVisibleCards() {
+      const wrap = document.querySelector('.career-carousel-wrap');
+      const card = document.querySelector('.flip-card');
+      if (!wrap || !card) return 1;
+      return Math.floor(wrap.offsetWidth / (card.offsetWidth + 16));
+    }
+    function getCareerCardWidth() {
+      const card = document.querySelector('.flip-card');
+      const gap = 16;
+      return card ? card.offsetWidth + gap : 288;
+    }
+    function buildDots() {
+      careerDotsEl.innerHTML = '';
+      for (let i = 0; i < 4; i++) {
+        const d = document.createElement('div');
+        d.className = 'career-dot' + (i === 0 ? ' active' : '');
+        careerDotsEl.appendChild(d);
+      }
+    }
+    function updateCareerButtons() {
+      const maxPos = careerTotal - getVisibleCards();
+      const btns = document.querySelectorAll('.career-btn');
+      btns[0].disabled = careerPos === 0;
+      btns[1].disabled = careerPos >= maxPos;
+      btns[0].style.opacity = careerPos === 0 ? '0.3' : '1';
+      btns[1].style.opacity = careerPos >= maxPos ? '0.3' : '1';
     }
     function careerSlide(dir) {
-      careerPos = Math.max(0, Math.min(careerPos + dir, careerTotal - 1));
-      document.getElementById('careerTrack').style.transform = 'translateX(-' + (careerPos * careerCardWidth) + 'px)';
-      document.querySelectorAll('.career-dot').forEach((d, i) => d.classList.toggle('active', i === careerPos));
+      const maxPos = careerTotal - getVisibleCards();
+      careerPos = Math.max(0, Math.min(careerPos + dir, maxPos));
+      document.getElementById('careerTrack').style.transform = 'translateX(-' + (careerPos * getCareerCardWidth()) + 'px)';
+      const dotIndex = Math.round((careerPos / maxPos) * 3);
+      document.querySelectorAll('.career-dot').forEach((d, i) => d.classList.toggle('active', i === dotIndex));
+      updateCareerButtons();
     }
+    window.addEventListener('load', () => { buildDots(); updateCareerButtons(); });
+    window.addEventListener('resize', () => { buildDots(); updateCareerButtons(); });
 
     // SKILLS TIMELINE REVEAL
     const skillsTimelineObserver = new IntersectionObserver((entries) => {

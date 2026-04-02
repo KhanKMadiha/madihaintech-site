@@ -1,49 +1,44 @@
 # Madiha in Tech — Portfolio Site
 
-Professional portfolio for Madiha Khan, Senior Product Support Specialist at Stack Overflow. Built to give recruiters and hiring managers a clear picture of her technical depth, career journey, and approach to support engineering.
+My personal portfolio site, built and maintained entirely by me. No templates, no page builders — just HTML, CSS, and JavaScript.
 
 **Live site:** [madihaintech.me](https://madihaintech.me)
 
 ---
 
-## About This Portfolio
+## About This Site
 
-This site reflects 5+ years of enterprise SaaS support experience, with a focus on technical depth, system building, and genuine curiosity about AI. It is built and maintained entirely by Madiha — no templates, no page builders.
+I built this portfolio to give a honest picture of how I work, what I've built, and what I care about. It covers my career journey from customer service roles through to my current position as the sole EMEA support engineer at Stack Overflow, where I own every ticket and every P1/P2 incident across 100+ enterprise accounts.
 
-**What it covers:**
-
-- Career journey from customer service to sole EMEA support engineer at Stack Overflow
-- Technical skills across APIs, authentication systems, observability, and incident response
-- Key achievements including 98% CSAT, 25% faster P1/P2 resolution, and 20% reduction in repeat tickets
-- A featured AI project documenting the full process of building a production chatbot from scratch
-- A Claude-powered portfolio assistant that answers recruiter questions in real time
+It also documents something I'm genuinely proud of — building a production AI chatbot from scratch, hitting real problems along the way, and solving them properly.
 
 ---
 
 ## Pages
 
-| Page | Purpose |
+| Page | What's on it |
 |---|---|
-| `index.html` | Homepage — intro, stats, what I bring, featured project, toolbox |
-| `about.html` | Personal story, career timeline, Ramadan fundraising |
-| `skills.html` | Core strengths, career history carousel, tools by impact area, certifications |
-| `projects.html` | Full four-phase journey of building the AI chatbot |
-| `contact.html` | LinkedIn and GitHub links |
+| `index.html` | Homepage — who I am, impact stats, what I bring, featured project, toolbox |
+| `about.html` | My story, career timeline, and a bit about who I am outside of work |
+| `skills.html` | Core strengths, career history, tools by impact area, certifications |
+| `projects.html` | The full four-phase story of building the AI chatbot |
+| `contact.html` | How to reach me |
 
 ---
 
 ## Featured Project: Claude-Powered Portfolio Assistant
 
-The chatbot embedded across this site is a live production AI assistant built from scratch.
+The chatbot in the bottom right corner of every page is a live production AI assistant I built from scratch. Here's what actually happened:
 
-**The journey:**
+1. **Started with IBM Watson and Google Dialogflow CX** — completed IBM AI Fundamentals certification, built a working prototype, then hit persistent Permission Denied errors caused by domain allowlisting and Messenger integration settings inside the Google Cloud console. Spent time debugging across IAM, Dialogflow settings, and the front-end embed before deciding to move on.
 
-1. Started with IBM Watson and Google Dialogflow CX — hit persistent permission errors and domain allowlisting issues across Google Cloud IAM
-2. Switched to the Anthropic API (Claude) — immediate improvement, no intent mapping, no training data required
-3. Exposed the API key in front-end JavaScript — caught by GitHub secret scanning on push
-4. Built a Cloudflare Worker proxy to keep the key server-side — configured CORS to only accept requests from `madihaintech.me`, stored the key as an encrypted secret
+2. **Switched to the Anthropic API** — replaced intent mapping with a language model and a detailed system prompt. No training data, no permission configuration. Built a custom chat widget in HTML and JavaScript to match the site's design.
 
-The chatbot now runs live across all pages, opens automatically after two seconds, maintains session conversation history, and is grounded in a detailed system prompt about Madiha's background.
+3. **Exposed the API key in front-end JavaScript** — GitHub's secret scanning caught it immediately on push. Valuable lesson learned.
+
+4. **Built a Cloudflare Worker proxy** — the Worker sits between the site and the Anthropic API, adds the key server-side, and only accepts requests from `madihaintech.me` via CORS. The key is stored as an encrypted secret in Cloudflare and never appears in the code or browser.
+
+The chatbot now runs live across all pages, opens automatically after two seconds, and maintains full session conversation history.
 
 **Full write-up:** [madihaintech.me/projects.html](https://madihaintech.me/projects.html)
 
@@ -52,20 +47,10 @@ The chatbot now runs live across all pages, opens automatically after two second
 ## Technical Stack
 
 - **Frontend:** HTML5, CSS3, vanilla JavaScript
-- **AI:** Claude (Anthropic API) via `claude-sonnet-4-20250514`
+- **AI:** Claude via the Anthropic API (`claude-sonnet-4-20250514`)
 - **Security:** Cloudflare Workers proxy with encrypted secrets and CORS origin restriction
 - **Hosting:** GitHub Pages
 - **Version control:** Git and GitHub
-
----
-
-## Target Roles
-
-This portfolio is built for technical support and AI support roles at developer platform and infrastructure companies.
-
-**Roles:** AI Support Engineer, Senior Technical Support Engineer, Support Operations Specialist, Product Support Specialist (Technical)
-
-**Companies:** Anthropic, Cloudflare, and similar developer-focused organisations
 
 ---
 
@@ -73,9 +58,8 @@ This portfolio is built for technical support and AI support roles at developer 
 
 - **LinkedIn:** [linkedin.com/in/madihakhan-](https://www.linkedin.com/in/madihakhan-)
 - **Portfolio:** [madihaintech.me](https://madihaintech.me)
-- **GitHub:** [github.com/KhanKMadiha](https://github.com/KhanKMadiha)
 
 ---
 
-*Built with care by Madiha Khan 🌸*
+*Built with care 🌸*
 

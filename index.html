@@ -66,10 +66,10 @@
 
     /* ---------- HERO ---------- */
     .hero {
-      min-height: 88vh;
+      min-height: 55vh;
       display: flex;
       align-items: center;
-      padding: 5.5rem 1.5rem 3rem;
+      padding: 5.25rem 1.5rem 2rem;
       background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
     }
 
@@ -115,7 +115,7 @@
       gap: 1rem;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 2.25rem;
+      margin-top: 0.9rem;
       animation: fadeUp 0.6s ease 0.3s both;
     }
 
@@ -151,11 +151,28 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* ---------- NAV CTA ---------- */
+    .nav-cta {
+      max-width: 980px;
+      margin: -1.25rem auto 2.25rem;
+      padding: 0 1.5rem;
+      animation: fadeUp 0.6s ease 0.25s both;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-cta-inner {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     /* ---------- PAGE WRAPPER ---------- */
     .page {
       max-width: 980px;
       margin: 0 auto 3.5rem;
-      padding: 0 1.5rem;
+      padding: 3rem 1.5rem;
     }
 
     /* ---------- SCROLL ANIMATION ---------- */
@@ -596,13 +613,17 @@
       <p class="hero-sub">
         I'm a support engineer who investigates deeply, builds systems that last, and genuinely cares about the people on the other end of every ticket.
       </p>
-      <div class="hero-cta-row">
-        <a class="nav-btn active" href="./index.html">Homepage</a>
-        <a class="nav-btn" href="./about.html">About Me</a>
-        <a class="nav-btn" href="./skills.html">Skills &amp; Experience</a>
-        <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
-        <a class="nav-btn" href="./contact.html">Get in Touch</a>
-      </div>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <section class="nav-cta">
+    <div class="nav-cta-inner">
+      <a class="nav-btn active" href="./index.html">Homepage</a>
+      <a class="nav-btn" href="./about.html">About Me</a>
+      <a class="nav-btn" href="./skills.html">Skills &amp; Experience</a>
+      <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
+      <a class="nav-btn" href="./contact.html">Get in Touch</a>
     </div>
   </section>
 

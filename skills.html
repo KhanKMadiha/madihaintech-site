@@ -101,6 +101,30 @@
     .send-btn:active{transform:scale(0.95);}.send-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
     .send-btn svg{width:15px;height:15px;fill:white;}
     @media(max-width:420px){#chat-window{width:calc(100vw - 28px);right:14px;bottom:84px;}#chat-toggle{right:14px;bottom:14px;}}
+
+    /* ---------- CAREER CAROUSEL ---------- */
+    .career-carousel-wrap { margin-bottom:1.5rem; }
+    .career-track { display:flex; gap:1rem; transition:transform 0.35s ease; overflow:hidden; }
+    .flip-card { flex:0 0 260px; height:195px; perspective:1000px; cursor:pointer; }
+    .flip-inner { position:relative; width:100%; height:100%; transition:transform 0.5s ease; transform-style:preserve-3d; }
+    .flip-card.flipped .flip-inner { transform:rotateY(180deg); }
+    .flip-front,.flip-back { position:absolute; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; border:1.5px solid var(--border-soft); padding:1.25rem; box-sizing:border-box; background:rgba(255,255,255,0.75); backdrop-filter:blur(8px); }
+    .flip-back { transform:rotateY(180deg); background:linear-gradient(135deg,rgba(253,213,232,0.55),rgba(251,228,236,0.45)); }
+    .logo-wrap { width:40px; height:40px; border-radius:11px; border:1.5px solid var(--border-soft); background:#fff; display:flex; align-items:center; justify-content:center; margin-bottom:0.6rem; overflow:hidden; }
+    .logo-wrap img { width:28px; height:28px; object-fit:contain; }
+    .flip-role { font-size:0.95rem; font-weight:800; color:var(--text-dark); margin:0 0 0.25rem; }
+    .flip-company { font-size:0.85rem; color:var(--muted-dark); margin:0 0 0.5rem; }
+    .flip-dates { font-size:0.75rem; font-weight:700; color:var(--pink-strong); text-transform:uppercase; letter-spacing:0.06em; margin:0; }
+    .flip-hint { font-size:0.72rem; color:rgba(233,106,154,0.55); margin:0.5rem 0 0; }
+    .back-role { font-size:0.88rem; font-weight:800; color:#c0476e; margin:0 0 0.5rem; }
+    .back-detail { font-size:0.82rem; color:var(--muted-dark); line-height:1.65; margin:0; }
+    .career-nav { display:flex; gap:0.5rem; margin-top:0.75rem; justify-content:center; align-items:center; }
+    .career-btn { width:32px; height:32px; border-radius:8px; border:1.5px solid var(--border-strong); background:rgba(255,255,255,0.7); cursor:pointer; font-size:14px; color:var(--pink-strong); display:flex; align-items:center; justify-content:center; transition:background 0.2s; }
+    .career-btn:hover { background:rgba(233,106,154,0.1); }
+    .career-dots { display:flex; gap:6px; }
+    .career-dot { width:6px; height:6px; border-radius:50%; background:rgba(233,106,154,0.25); transition:background 0.2s; }
+    .career-dot.active { background:var(--pink-strong); }
+
   </style>
 </head>
 
@@ -144,6 +168,115 @@
       </div>
     </section>
 
+    <p class="section-label reveal">Career history</p>
+    <div class="career-carousel-wrap reveal">
+      <div class="career-track" id="careerTrack">
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="logo-wrap"><img src="https://www.google.com/s2/favicons?domain=stackoverflow.com&sz=64" alt="Stack Overflow"></div>
+              <p class="flip-role">Senior Product Support Specialist</p>
+              <p class="flip-company">Stack Overflow</p>
+              <p class="flip-dates">Jan 2025 to Present</p>
+              <p class="flip-hint">Tap to learn more</p>
+            </div>
+            <div class="flip-back">
+              <p class="back-role">Stack Overflow</p>
+              <p class="back-detail">Sole EMEA support engineer. P1/P2 on-call ownership across 100+ enterprise accounts. Built Datadog dashboards, knowledge base infrastructure, and escalation playbooks from scratch.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="logo-wrap"><img src="https://www.google.com/s2/favicons?domain=alida.com&sz=64" alt="Alida"></div>
+              <p class="flip-role">Technical Support Analyst</p>
+              <p class="flip-company">Alida</p>
+              <p class="flip-dates">Feb 2023 to Nov 2024</p>
+              <p class="flip-hint">Tap to learn more</p>
+            </div>
+            <div class="flip-back">
+              <p class="back-role">Alida</p>
+              <p class="back-detail">Managed all EMEA enterprise escalations. 95% resolution rate. Reduced engineering investigation time by 20% through systematic issue reproduction.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="logo-wrap"><img src="https://www.google.com/s2/favicons?domain=monicavinader.com&sz=64" alt="Monica Vinader"></div>
+              <p class="flip-role">Customer Care Associate</p>
+              <p class="flip-company">Monica Vinader</p>
+              <p class="flip-dates">Nov 2021 to Feb 2023</p>
+              <p class="flip-hint">Tap to learn more</p>
+            </div>
+            <div class="flip-back">
+              <p class="back-role">Monica Vinader</p>
+              <p class="back-detail">98% CSAT managing 50+ daily interactions. Resolved 300+ escalated tickets in a single week. Improved first contact resolution by 25%.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="logo-wrap"><img src="https://www.google.com/s2/favicons?domain=nhs.uk&sz=64" alt="119 Helpline"></div>
+              <p class="flip-role">Call Agent</p>
+              <p class="flip-company">119 COVID Helpline</p>
+              <p class="flip-dates">Sep 2021 to Nov 2021</p>
+              <p class="flip-hint">Tap to learn more</p>
+            </div>
+            <div class="flip-back">
+              <p class="back-role">119 COVID Helpline</p>
+              <p class="back-detail">50+ inbound calls daily during peak pandemic operations. First-call resolution with empathy in a high-pressure, high-stakes environment.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="logo-wrap"><img src="https://www.google.com/s2/favicons?domain=sainsburys.co.uk&sz=64" alt="Sainsburys"></div>
+              <p class="flip-role">Sales Assistant</p>
+              <p class="flip-company">Sainsbury's</p>
+              <p class="flip-dates">Dec 2019 to Jun 2020</p>
+              <p class="flip-hint">Tap to learn more</p>
+            </div>
+            <div class="flip-back">
+              <p class="back-role">Sainsbury's</p>
+              <p class="back-detail">Generated £2k+ weekly upsales. Expert product recommendations to 150+ customers daily. High volume customer-facing environment.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="logo-wrap"><img src="https://www.google.com/s2/favicons?domain=marksandspencer.com&sz=64" alt="M&S"></div>
+              <p class="flip-role">Customer Service Advisor</p>
+              <p class="flip-company">Marks &amp; Spencer</p>
+              <p class="flip-dates">Sep 2017 to Feb 2019</p>
+              <p class="flip-hint">Tap to learn more</p>
+            </div>
+            <div class="flip-back">
+              <p class="back-role">Marks &amp; Spencer</p>
+              <p class="back-detail">Employee of the Month for 8 consecutive months. High-volume complaint handling with a calm, positive approach and strong resolution rate.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="career-nav">
+        <button class="career-btn" onclick="careerSlide(-1)">&#8592;</button>
+        <div class="career-dots" id="careerDots"></div>
+        <button class="career-btn" onclick="careerSlide(1)">&#8594;</button>
+      </div>
+    </div>
+
     <p class="section-label reveal">Tools by impact area</p>
     <section class="card reveal">
       <p class="tools-sub">Tools change. Systems thinking, ownership, and communication do not.</p>
@@ -157,7 +290,7 @@
 
         <div class="tool-tile reveal">
           <div class="tool-top"><span class="tool-icon">🚨</span><strong>Incident response</strong></div>
-          <p class="tool-desc">PagerDuty, Jira, Slack, Confluence</p>
+          <p class="tool-desc">PagerDuty, Rootly, Jira, Slack, Confluence</p>
           <div class="tool-tags"><span class="tag">P1/P2 on-call</span><span class="tag">Escalations</span><span class="tag">Post-mortems</span></div>
         </div>
 
@@ -201,7 +334,7 @@
     </section>
 
     <p class="section-label reveal">Certifications</p>
-    <section class="card reveal">
+    <section class="card reveal" style="text-align:center;">
       <p>AI and technical certifications:</p>
       <div class="cert-row">
         <span class="cert-tag">IBM AI Fundamentals with Capstone Project</span>
@@ -373,6 +506,35 @@ TONE GUIDELINES:
       }
       setLoading(false);
     }
+
+
+
+    // CAREER CAROUSEL
+    let careerPos = 0;
+    const careerTotal = 6;
+    const careerCardWidth = 272;
+    const careerDotsEl = document.getElementById('careerDots');
+    for (let i = 0; i < careerTotal; i++) {
+      const d = document.createElement('div');
+      d.className = 'career-dot' + (i === 0 ? ' active' : '');
+      careerDotsEl.appendChild(d);
+    }
+    function careerSlide(dir) {
+      careerPos = Math.max(0, Math.min(careerPos + dir, careerTotal - 1));
+      document.getElementById('careerTrack').style.transform = 'translateX(-' + (careerPos * careerCardWidth) + 'px)';
+      document.querySelectorAll('.career-dot').forEach((d, i) => d.classList.toggle('active', i === careerPos));
+    }
+
+    // SKILLS TIMELINE REVEAL
+    const skillsTimelineObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 120);
+          skillsTimelineObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.skills-timeline-item').forEach(el => skillsTimelineObserver.observe(el));
 
     function setLoading(state) { isLoading = state; document.getElementById('send-btn').disabled = state; }
     function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }

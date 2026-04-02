@@ -62,17 +62,24 @@
     }
 
     /* ---------- Z-INDEX ---------- */
-    .hero, .page, .links, footer { position: relative; z-index: 1; }
+    .hero, .nav-cta, .page, .links, footer { position: relative; z-index: 1; }
 
     /* ---------- HERO ---------- */
     .hero {
-      padding: 6rem 1.5rem 3rem;
+      min-height: 55vh;
+      display: flex;
+      align-items: center;
+      padding: 5.25rem 1.5rem 2rem;
       background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
     }
 
     .hero-inner {
       max-width: 980px;
       margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h1 {
@@ -89,39 +96,49 @@
       line-height: 1.75;
       color: var(--muted-dark);
       max-width: 860px;
-      margin: 0 auto 2.5rem;
+      margin: 0 auto;
       opacity: 0;
       animation: fadeUp 0.6s ease 0.25s both;
     }
 
-    .nav-pills {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      opacity: 0;
+    /* ---------- NAV CTA ---------- */
+    .nav-cta {
+      max-width: 980px;
+      margin: -1.25rem auto 2.25rem;
+      padding: 0 1.5rem;
       animation: fadeUp 0.6s ease 0.35s both;
+      position: relative;
+      z-index: 1;
     }
 
-    .pill {
-      padding: 0.65rem 1.1rem;
-      border-radius: 999px;
-      font-size: 0.92rem;
+    .nav-cta-inner {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-btn {
+      flex: 1 1 220px;
+      max-width: 320px;
+      padding: 1.05rem 1.25rem;
+      border-radius: 14px;
+      font-size: 1.05rem;
       font-weight: 700;
       text-decoration: none;
       color: var(--text-dark);
       border: 1.5px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.6);
+      background-color: rgba(255, 255, 255, 0.6);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
-    .pill:hover {
+    .nav-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
       border-color: var(--border-strong);
     }
 
-    .pill.active {
+    .nav-btn.active {
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
       color: #fff;
       border-color: transparent;
@@ -586,13 +603,17 @@
       <p class="hero-sub">
         Self-taught. Systems-minded. Genuinely curious about what breaks, why it breaks, and how to make sure it never breaks the same way twice.
       </p>
-      <nav class="nav-pills">
-        <a class="pill" href="./index.html">Homepage</a>
-        <span class="pill active">About Me</span>
-        <a class="pill" href="./skills.html">Skills &amp; Experience</a>
-        <a class="pill" href="./projects.html">AI Chatbot Project</a>
-        <a class="pill" href="./contact.html">Get in Touch</a>
-      </nav>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <section class="nav-cta">
+    <div class="nav-cta-inner">
+      <a class="nav-btn" href="./index.html">Homepage</a>
+      <a class="nav-btn active" href="./about.html">About Me</a>
+      <a class="nav-btn" href="./skills.html">Skills &amp; Experience</a>
+      <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
+      <a class="nav-btn" href="./contact.html">Get in Touch</a>
     </div>
   </section>
 

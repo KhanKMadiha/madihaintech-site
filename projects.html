@@ -83,6 +83,7 @@
       font-size: clamp(2.6rem, 5vw, 3.6rem);
       line-height: 1.08;
       letter-spacing: -0.02em;
+      animation: fadeUp 0.6s ease both;
     }
 
     .hero-highlight {
@@ -91,6 +92,12 @@
       font-size: 1.15rem;
       line-height: 1.7;
       color: var(--muted-dark);
+      animation: fadeUp 0.6s ease 0.15s both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .nav-cta {
@@ -99,6 +106,7 @@
       padding: 0 1.5rem;
       position: relative;
       z-index: 1;
+      animation: fadeUp 0.6s ease 0.25s both;
     }
 
     .nav-cta-inner {
@@ -245,6 +253,14 @@
       font-size: 0.95rem;
       color: var(--text-dark);
     }
+
+
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.55s ease,transform 0.55s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.55s ease,transform 0.55s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
 
     .links {
       padding-bottom: 2.5rem;
@@ -460,7 +476,7 @@
 
   <main class="content">
 
-    <section class="card">
+    <section class="card reveal">
       <h2>What this project is</h2>
       <p>
         This is a live, production AI chatbot embedded across my portfolio site. It answers questions about my experience, skills, and career goals on behalf of me, helping recruiters explore my background interactively rather than just reading static text.
@@ -478,11 +494,11 @@
       </div>
     </section>
 
-    <section class="card">
+    <section class="card reveal">
       <h2>The full journey</h2>
       <ul class="steps">
 
-        <li class="step">
+        <li class="step reveal">
           <span class="step-label phase-1">Phase 1</span>
           <h3>Starting with IBM Watson and Dialogflow CX</h3>
           <p class="meta">Learning the fundamentals of conversational AI</p>
@@ -497,7 +513,7 @@
           </div>
         </li>
 
-        <li class="step">
+        <li class="step reveal">
           <span class="step-label phase-2">Phase 2</span>
           <h3>Switching to the Anthropic API</h3>
           <p class="meta">Replacing intent-based flows with a language model</p>
@@ -512,7 +528,7 @@
           </div>
         </li>
 
-        <li class="step">
+        <li class="step reveal">
           <span class="step-label phase-3">Phase 3</span>
           <h3>Securing the API key with Cloudflare Workers</h3>
           <p class="meta">Building a proxy to keep secrets off the front end</p>
@@ -527,7 +543,7 @@
           </div>
         </li>
 
-        <li class="step">
+        <li class="step reveal">
           <span class="step-label phase-4">Phase 4</span>
           <h3>Live and iterating</h3>
           <p class="meta">Production deployment across the full portfolio</p>
@@ -542,7 +558,7 @@
       </ul>
     </section>
 
-    <section class="card">
+    <section class="card reveal">
       <h2>What I learned</h2>
       <p>
         This project taught me more than any tutorial could. I learned that real AI integration involves infrastructure decisions, not just model prompts. Where your API key lives, how requests are routed, and how you handle errors all matter as much as what the AI says.
@@ -560,7 +576,7 @@
       </div>
     </section>
 
-    <section class="card" style="text-align: center;">
+    <section class="card reveal" style="text-align: center;">
       <h2>Try it yourself</h2>
       <p>
         The chatbot in the bottom right corner is the live version described above. Ask it anything about my experience, what I am looking for, or how I built this. It knows the full story.
@@ -572,7 +588,7 @@
 
   </main>
 
-  <section class="links">
+  <section class="links reveal">
     <h2>Let's connect 👩🏻‍💻</h2>
     <p>
       <a class="social-link" href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -609,6 +625,36 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+
+    // SCROLL REVEAL
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+          let delay = 0;
+          siblings.forEach((el, idx) => { if (el === entry.target) delay = idx * 80; });
+          setTimeout(() => entry.target.classList.add('visible'), delay);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+
+    // SCROLL REVEAL
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+          let delay = 0;
+          siblings.forEach((el, idx) => { if (el === entry.target) delay = idx * 120; });
+          setTimeout(() => entry.target.classList.add('visible'), delay);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
 

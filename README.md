@@ -10,7 +10,7 @@ My personal portfolio site, built and maintained entirely by me. No templates, n
 
 I built this portfolio to give a honest picture of how I work, what I've built, and what I care about. It covers my career journey from customer service roles through to my current position as the sole EMEA support engineer at Stack Overflow, where I own every ticket and every P1/P2 incident across 100+ enterprise accounts.
 
-It also documents something I'm genuinely proud of — building a production AI chatbot from scratch, hitting real problems along the way, and solving them properly.
+It also documents something I'm genuinely proud of which is building a production AI chatbot from scratch, hitting real problems along the way, and solving them properly.
 
 ---
 

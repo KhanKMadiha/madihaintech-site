@@ -63,10 +63,10 @@
     .hero, .nav-cta, .page, footer { position: relative; z-index: 1; }
 
     .hero {
-      min-height: 50vh;
+      min-height: 55vh;
       display: flex;
       align-items: center;
-      padding: 5.5rem 1.5rem 3rem;
+      padding: 5.25rem 1.5rem 2rem;
       background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
     }
 
@@ -88,7 +88,7 @@
     }
 
     .hero-sub {
-      max-width: 640px;
+      max-width: 860px;
       font-size: 1.18rem;
       line-height: 1.7;
       color: var(--muted-dark);
@@ -103,9 +103,11 @@
 
     .nav-cta {
       max-width: 980px;
-      margin: -2rem auto 2.5rem;
+      margin: -1.25rem auto 2.25rem;
       padding: 0 1.5rem;
       animation: fadeUp 0.6s ease 0.25s both;
+      position: relative;
+      z-index: 1;
     }
 
     .nav-cta-inner {
@@ -133,6 +135,13 @@
       transform: translateY(-2px);
       box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
       border-color: var(--border-strong);
+    }
+
+    .nav-btn.active {
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 6px 18px rgba(233, 106, 154, 0.35);
     }
 
     .page {
@@ -181,28 +190,6 @@
       margin: 0;
     }
 
-    .interest-badge {
-      display: inline-flex;
-      gap: 0.6rem;
-      align-items: flex-start;
-      margin-top: 1.25rem;
-      padding: 0.9rem 1.1rem;
-      border-radius: 14px;
-      background: rgba(233, 106, 154, 0.08);
-      border: 1.5px solid var(--border-strong);
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: var(--text-dark);
-      text-align: left;
-      max-width: 100%;
-    }
-
-    .interest-badge strong {
-      color: var(--pink-strong);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
     .contact-list {
       display: grid;
       gap: 0.9rem;
@@ -247,7 +234,9 @@
     }
 
     .helper {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-soft);
       font-size: 0.93rem;
       color: var(--muted-dark);
       line-height: 1.6;
@@ -428,6 +417,7 @@
       <a class="nav-btn" href="./about.html">About Me</a>
       <a class="nav-btn" href="./skills.html">Skills &amp; Experience</a>
       <a class="nav-btn" href="./projects.html">AI Chatbot Project</a>
+      <a class="nav-btn active" href="./contact.html">Get in Touch</a>
     </div>
   </section>
 
@@ -436,7 +426,7 @@
     <div class="card reveal">
       <h2>Let's connect</h2>
       <p>
-        I am open to conversations about support engineering roles, developer platforms, AI-powered support workflows, and anything in between. If something on this site resonated with you, I would love to hear from you.
+        If something here caught your eye, or you just want to say hello, I'm always happy to chat. Drop me a message and I'll get back to you.
       </p>
     </div>
 

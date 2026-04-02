@@ -71,7 +71,7 @@
     }
 
     .hero-inner {
-      max-width: 720px;
+      max-width: 980px;
       margin: 0 auto;
     }
 
@@ -88,7 +88,7 @@
       font-size: 1.15rem;
       line-height: 1.75;
       color: var(--muted-dark);
-      max-width: 620px;
+      max-width: 860px;
       margin: 0 auto 2.5rem;
       opacity: 0;
       animation: fadeUp 0.6s ease 0.25s both;
@@ -135,7 +135,7 @@
 
     /* ---------- PAGE ---------- */
     .page {
-      max-width: 820px;
+      max-width: 980px;
       margin: 0 auto 4rem;
       padding: 0 1.5rem;
     }
@@ -220,6 +220,13 @@
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
       margin-bottom: 1.5rem;
+    }
+
+    .two-col .panel:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: 50%;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .panel {
@@ -591,60 +598,26 @@
 
   <div class="page">
 
-    <!-- ORIGIN STORY -->
     <!-- QUOTE -->
     <div class="quote-block reveal">
       <p>"Every system I have built started the same way. Noticing something that could be better, and caring enough to do something about it."</p>
     </div>
 
+    <!-- HOW I GOT HERE -->
     <p class="section-label reveal">How I got here</p>
     <div class="prose-card reveal">
       <p>
-        I'm the sole EMEA support engineer at Stack Overflow, owning every P1/P2 incident across 100+ enterprise accounts. <strong>None of the systems I built to do that job were asked of me. I spotted the gaps, built the solutions, and documented them so they scaled beyond me.</strong>
+        I'm the sole EMEA support engineer at Stack Overflow, owning every ticket and every P1/P2 incident across 100+ enterprise accounts.
       </p>
       <p>
-        That instinct didn't come from a traditional route into tech. During the pandemic I started teaching myself to code out of pure curiosity. That curiosity led me into customer-facing roles, then into product support, and eventually into the kind of work I do now: debugging APIs, reproducing issues in internal environments, and making sure engineering gets evidence, not just reports.
+        <strong>None of the systems I built to do that job were asked of me. I spotted the gaps, built the solutions, and documented them so they scaled beyond me.</strong>
       </p>
-    </div>
-
-    <!-- WHAT DRIVES ME -->
-    <p class="section-label reveal">What drives me</p>
-    <div class="two-col reveal">
-      <div class="panel">
-        <span class="panel-icon">🤝</span>
-        <h3>I genuinely enjoy helping people</h3>
-        <p>It's the reason I got into support in the first place and the reason I'm still here. There's something genuinely satisfying about turning a frustrated customer into a confident one, and I never get tired of it.</p>
-      </div>
-      <div class="panel">
-        <span class="panel-icon">🔎</span>
-        <h3>I investigate, not escalate</h3>
-        <p>My 95% issue reproduction rate did not happen by accident. I use Datadog, Elasticsearch, Postman, and browser DevTools to trace problems to their root before engineering ever gets involved. They get answers, not questions.</p>
-      </div>
-      <div class="panel">
-        <span class="panel-icon">🏗</span>
-        <h3>I build infrastructure, not just fixes</h3>
-        <p>I authored 50+ knowledge base articles that reduced repeat tickets by 20%. I built Datadog dashboards that cut P1/P2 resolution time by 25%. I designed onboarding workflows that reduced ramp-up time by 30%. All of this was self-initiated.</p>
-      </div>
-      <div class="panel">
-        <span class="panel-icon">🤖</span>
-        <h3>I am genuinely interested in AI</h3>
-        <p>Not as a buzzword on a CV. I completed IBM AI Fundamentals, hold certifications in prompt engineering, and built and deployed a real Claude-powered chatbot on this site, secured via a Cloudflare Worker proxy. I use Claude as a daily work tool.</p>
-      </div>
-      <div class="panel">
-        <span class="panel-icon">🌍</span>
-        <h3>I communicate across complexity</h3>
-        <p>Fluent in English, Urdu, and Hindi, with intermediate Punjabi. I have owned enterprise relationships across EMEA, de-escalated P1 incidents on live calls, and translated technical root cause into language that works for every room.</p>
-      </div>
-    </div>
-
-    <!-- BEYOND WORK -->
-    <p class="section-label reveal">Beyond work</p>
-    <div class="highlight-card reveal">
-      <div class="highlight-icon">🌙</div>
-      <div class="highlight-text">
-        <h3>Ramadan fundraising: £25,000 raised, 2,000 families reached</h3>
-        <p>Every year during Ramadan, I lead a fundraising project that has raised over £25,000 and distributed 2,000 food bags to families in Pakistan. It started small and grew because I kept improving it: better outreach, better logistics, better follow-through. The same instinct that makes me build better support systems is what makes this work. <strong>I genuinely want to make things better for people.</strong> That is not a professional trait. It is just who I am.</p>
-      </div>
+      <p>
+        That instinct didn't come from a traditional route. I started teaching myself to code during the pandemic out of pure curiosity, moved through customer-facing roles, and found my way into product support. Outside of work, I lead a Ramadan fundraising project that has raised over £25,000 and reached 2,000 families in Pakistan.
+      </p>
+      <p>
+        That same drive runs through everything I do. I genuinely want to make things better for people, and I always have.
+      </p>
     </div>
 
     <!-- CAREER TIMELINE -->
@@ -687,6 +660,16 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- BEYOND WORK -->
+    <p class="section-label reveal">Beyond work</p>
+    <div class="highlight-card reveal">
+      <div class="highlight-icon">🌙</div>
+      <div class="highlight-text">
+        <h3>Ramadan fundraising: £25,000 raised, 2,000 families reached</h3>
+        <p>Every year during Ramadan, I lead a fundraising project that has raised over £25,000 and distributed 2,000 food bags to families in Pakistan. It started small and grew because I kept improving it: better outreach, better logistics, better follow-through. The same instinct that makes me build better support systems is what makes this work. <strong>I genuinely want to make things better for people.</strong> That is not a professional trait. It is just who I am.</p>
+      </div>
     </div>
 
   </div>

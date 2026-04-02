@@ -62,7 +62,7 @@
     }
 
     /* ---------- Z-INDEX STACK ---------- */
-    .hero, .nav-cta, .page, .links, footer { position: relative; z-index: 1; }
+    .hero, .page, .links, footer { position: relative; z-index: 1; }
 
     /* ---------- HERO ---------- */
     .hero {
@@ -82,6 +82,17 @@
       align-items: center;
     }
 
+    .hero-role {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pink-strong);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.05s both;
+    }
+
     h1 {
       margin: 0 0 1.25rem;
       font-size: clamp(2.8rem, 6vw, 4.2rem);
@@ -91,9 +102,9 @@
     }
 
     .hero-sub {
-      max-width: 680px;
-      font-size: 1.18rem;
-      line-height: 1.75;
+      max-width: 640px;
+      font-size: 1.15rem;
+      line-height: 1.8;
       color: var(--muted-dark);
       margin: 0 0 2.25rem;
       animation: fadeUp 0.6s ease 0.2s both;
@@ -147,40 +158,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---------- NAV CTA ---------- */
-    .nav-cta {
-      max-width: 980px;
-      margin: 0 auto 2.5rem;
-      padding: 0 1.5rem;
-    }
-
-    .nav-cta-inner {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .nav-btn {
-      flex: 1 1 200px;
-      max-width: 280px;
-      padding: 1rem 1.25rem;
-      border-radius: 14px;
-      font-size: 1rem;
-      font-weight: 700;
-      text-decoration: none;
-      color: var(--text-dark);
-      border: 1.5px solid var(--border-soft);
-      background-color: rgba(255, 255, 255, 0.6);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .nav-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
-      border-color: var(--border-strong);
-    }
-
     /* ---------- PAGE WRAPPER ---------- */
     .page {
       max-width: 980px;
@@ -209,6 +186,38 @@
       color: var(--pink-strong);
       margin-bottom: 1rem;
       text-align: center;
+    }
+
+    /* ---------- INTRO CARD ---------- */
+    .intro-card {
+      padding: 2.25rem 2.5rem;
+      border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(8px);
+      margin-bottom: 2rem;
+      text-align: center;
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .intro-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.06);
+      border-color: var(--border-strong);
+    }
+
+    .intro-card p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted-dark);
+      margin: 0;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .intro-card strong {
+      color: var(--text-dark);
+      font-weight: 700;
     }
 
     /* ---------- STAT STRIP ---------- */
@@ -262,7 +271,7 @@
       border: 1.5px solid var(--border-soft);
       background: rgba(255, 255, 255, 0.55);
       backdrop-filter: blur(8px);
-      text-align: left;
+      text-align: center;
       transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
 
@@ -298,7 +307,6 @@
       border: 1.5px solid var(--border-soft);
       background: rgba(255, 255, 255, 0.55);
       backdrop-filter: blur(8px);
-      text-align: left;
       margin-bottom: 2rem;
       transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
@@ -327,7 +335,6 @@
       font-size: 1.2rem;
       font-weight: 800;
       margin: 0 0 0.6rem;
-      text-align: center;
     }
 
     .feature-text p {
@@ -335,7 +342,6 @@
       line-height: 1.7;
       color: var(--muted-dark);
       margin: 0 0 1rem;
-      text-align: center;
     }
 
     .feature-link {
@@ -361,6 +367,40 @@
       background: rgba(255, 255, 255, 0.55);
       font-size: 0.9rem;
       color: var(--text-dark);
+    }
+
+    /* ---------- CLOSING CARD ---------- */
+    .closing-card {
+      padding: 2.5rem 2.5rem;
+      border-radius: 22px;
+      border: 1.5px solid var(--border-strong);
+      background: linear-gradient(135deg, rgba(253, 213, 232, 0.5), rgba(251, 228, 236, 0.4));
+      backdrop-filter: blur(8px);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .closing-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 0 0 0.75rem;
+    }
+
+    .closing-card p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--muted-dark);
+      margin: 0 0 1.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .closing-btns {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     /* ---------- LINKS ---------- */
@@ -400,7 +440,6 @@
 
     @media (max-width: 480px) {
       .three-col { grid-template-columns: 1fr; }
-      .feature-card-inner { flex-direction: column; gap: 1rem; }
     }
 
     /* ---------- CHATBOT ---------- */
@@ -562,10 +601,11 @@
     <div class="hero-inner">
       <h1>Hi, I'm Madiha 👋🏼</h1>
       <p class="hero-sub">
-        From everyday tickets to P1/P2 incident ownership, I support enterprise platforms at depth, debugging APIs, authentication systems, and building the infrastructure that stops issues recurring.
+        I'm a support engineer who investigates deeply, builds systems that last, and genuinely cares about the people on the other end of every ticket.
       </p>
       <div class="hero-cta-row">
-        <a class="btn-primary" href="./about.html">About Me</a>
+        <a class="btn-primary" href="./index.html">Homepage</a>
+        <a class="btn-secondary" href="./about.html">About Me</a>
         <a class="btn-secondary" href="./skills.html">Skills &amp; Experience</a>
         <a class="btn-secondary" href="./projects.html">AI Chatbot Project</a>
         <a class="btn-secondary" href="./contact.html">Get in Touch</a>
@@ -584,7 +624,7 @@
       </div>
       <div class="stat-card">
         <div class="stat-number" data-target="5" data-suffix="+ yrs">0 yrs</div>
-        <div class="stat-label">Years in customer-facing and technical SaaS support</div>
+        <div class="stat-label">Years in customer-facing and technical support</div>
       </div>
       <div class="stat-card">
         <div class="stat-number" data-target="25" data-suffix="%">0%</div>
@@ -600,9 +640,14 @@
     <p class="section-label reveal">What I bring</p>
     <div class="three-col">
       <div class="card reveal">
+        <span class="card-icon">🤝</span>
+        <h3>I genuinely enjoy helping people</h3>
+        <p>It's the reason I got into support in the first place and the reason I'm still here. There's something genuinely satisfying about turning a frustrated customer into a confident one.</p>
+      </div>
+      <div class="card reveal">
         <span class="card-icon">🔍</span>
         <h3>Deep investigation</h3>
-        <p>I trace issues to their root cause using Datadog, Elasticsearch, Postman, and browser DevTools. Engineering gets reproduction steps, not just tickets.</p>
+        <p>I trace issues to their root cause using Datadog, Elasticsearch, Postman, and browser DevTools. Engineering gets reproduction steps and log evidence, not just tickets.</p>
       </div>
       <div class="card reveal">
         <span class="card-icon">🏗</span>
@@ -615,19 +660,14 @@
         <p>Sole EMEA owner of P1/P2 on-call incidents across 100+ enterprise accounts. I make informed decisions quickly in high-severity, never-before-seen situations.</p>
       </div>
       <div class="card reveal">
+        <span class="card-icon">🤖</span>
+        <h3>Genuine AI curiosity</h3>
+        <p>Building toward AI-powered support infrastructure. Shipped a Claude-powered portfolio chatbot secured via Cloudflare Workers. IBM AI certified. Daily Claude user.</p>
+      </div>
+      <div class="card reveal">
         <span class="card-icon">🔌</span>
         <h3>Technical depth</h3>
         <p>Daily work with REST APIs, SSO, SAML, OAuth, and authentication systems. I debug at the API level, not just the surface.</p>
-      </div>
-      <div class="card reveal">
-        <span class="card-icon">🤖</span>
-        <h3>AI curiosity</h3>
-        <p>Building toward AI-powered support infrastructure. Shipped a Claude-powered portfolio chatbot secured via Cloudflare Workers. Daily Claude user.</p>
-      </div>
-      <div class="card reveal">
-        <span class="card-icon">🌍</span>
-        <h3>EMEA coverage</h3>
-        <p>Fluent in English, Urdu, and Hindi. Comfortable owning enterprise relationships across regions and navigating complex cross-functional escalations.</p>
       </div>
     </div>
 
@@ -666,16 +706,18 @@
       <span class="tag">Python (learning)</span>
     </div>
 
-  </div>
+    <!-- CLOSING -->
+    <div class="closing-card reveal">
+      <h3>Want to know more? 👩🏻‍💻</h3>
+      <p>My chatbot can answer questions about my experience and skills right now. Or explore the rest of the site to see my full background, the story behind the AI project, or get in touch directly.</p>
+      <div class="closing-btns">
+        <a class="btn-primary" href="./about.html">Read my story</a>
+        <a class="btn-secondary" href="./contact.html">Get in touch</a>
+        <a class="btn-secondary" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
+      </div>
+    </div>
 
-  <!-- LINKS -->
-  <section class="links reveal">
-    <h2>Let's connect 👩🏻‍💻</h2>
-    <p>
-      <a class="social-link" href="https://github.com/KhanKMadiha" target="_blank">GitHub</a>
-      <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
-    </p>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -709,7 +751,7 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ── SCROLL REVEAL ──────────────────────────────────────────
+    // SCROLL REVEAL
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -724,7 +766,7 @@
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ── COUNTING STATS ─────────────────────────────────────────
+    // COUNTING STATS
     function animateCount(el) {
       const target = parseInt(el.dataset.target);
       const suffix = el.dataset.suffix || '';
@@ -750,7 +792,7 @@
 
     document.querySelectorAll('.stat-strip').forEach(el => statObserver.observe(el));
 
-    // ── CHATBOT ────────────────────────────────────────────────
+    // CHATBOT
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
 
     const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Product Support Specialist based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.

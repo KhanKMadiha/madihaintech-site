@@ -31,435 +31,398 @@
     }
 
     .bg-shapes {
-      position: fixed;
-      top: 0; left: 0;
+      position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+      pointer-events: none; z-index: 0; overflow: hidden;
     }
 
     .shape {
-      position: absolute;
-      border-radius: 50%;
+      position: absolute; border-radius: 50%;
       background: rgba(233, 106, 154, 0.07);
       animation: float linear infinite;
     }
 
-    .shape:nth-child(1) { width: 300px; height: 300px; top: 5%; left: -8%; animation-duration: 18s; animation-delay: 0s; }
-    .shape:nth-child(2) { width: 180px; height: 180px; top: 20%; right: -5%; animation-duration: 22s; animation-delay: -4s; }
-    .shape:nth-child(3) { width: 240px; height: 240px; top: 50%; left: 60%; animation-duration: 26s; animation-delay: -8s; }
-    .shape:nth-child(4) { width: 120px; height: 120px; top: 70%; left: 10%; animation-duration: 20s; animation-delay: -12s; }
-    .shape:nth-child(5) { width: 200px; height: 200px; top: 85%; right: 15%; animation-duration: 24s; animation-delay: -6s; }
-    .shape:nth-child(6) { width: 80px; height: 80px; top: 35%; left: 45%; animation-duration: 16s; animation-delay: -10s; }
+    .shape:nth-child(1){width:300px;height:300px;top:5%;left:-8%;animation-duration:18s;}
+    .shape:nth-child(2){width:180px;height:180px;top:20%;right:-5%;animation-duration:22s;animation-delay:-4s;}
+    .shape:nth-child(3){width:240px;height:240px;top:50%;left:60%;animation-duration:26s;animation-delay:-8s;}
+    .shape:nth-child(4){width:120px;height:120px;top:70%;left:10%;animation-duration:20s;animation-delay:-12s;}
+    .shape:nth-child(5){width:200px;height:200px;top:85%;right:15%;animation-duration:24s;animation-delay:-6s;}
+    .shape:nth-child(6){width:80px;height:80px;top:35%;left:45%;animation-duration:16s;animation-delay:-10s;}
 
     @keyframes float {
-      0%   { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.6; }
-      33%  { transform: translateY(-30px) rotate(60deg) scale(1.05); opacity: 0.9; }
-      66%  { transform: translateY(15px) rotate(120deg) scale(0.97); opacity: 0.7; }
-      100% { transform: translateY(0px) rotate(180deg) scale(1); opacity: 0.6; }
+      0%{transform:translateY(0px) rotate(0deg) scale(1);opacity:0.6;}
+      33%{transform:translateY(-30px) rotate(60deg) scale(1.05);opacity:0.9;}
+      66%{transform:translateY(15px) rotate(120deg) scale(0.97);opacity:0.7;}
+      100%{transform:translateY(0px) rotate(180deg) scale(1);opacity:0.6;}
     }
 
     .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
 
     .hero {
       min-height: 55vh;
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center;
       padding: 5.25rem 1.5rem 2rem;
       background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
     }
 
     .hero-inner {
-      max-width: 980px;
-      margin: 0 auto;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
+      max-width: 980px; margin: 0 auto;
+      width: 100%; display: flex; flex-direction: column; align-items: center;
     }
 
     h1 {
       margin: 0 0 1rem;
       font-size: clamp(2.6rem, 5vw, 3.6rem);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
+      line-height: 1.08; letter-spacing: -0.02em;
       animation: fadeUp 0.6s ease both;
     }
 
     .hero-highlight {
-      margin: 0.9rem auto 0;
-      max-width: 860px;
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: var(--muted-dark);
+      margin: 0.9rem auto 0; max-width: 860px;
+      font-size: 1.15rem; line-height: 1.7; color: var(--muted-dark);
       animation: fadeUp 0.6s ease 0.15s both;
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from{opacity:0;transform:translateY(20px);}
+      to{opacity:1;transform:translateY(0);}
     }
 
     .nav-cta {
-      max-width: 980px;
-      margin: -1.25rem auto 2.25rem;
-      padding: 0 1.5rem;
-      position: relative;
-      z-index: 1;
+      max-width: 980px; margin: -1.25rem auto 2.25rem;
+      padding: 0 1.5rem; position: relative; z-index: 1;
       animation: fadeUp 0.6s ease 0.25s both;
     }
 
-    .nav-cta-inner {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+    .nav-cta-inner { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
     .nav-btn {
-      flex: 1 1 220px;
-      max-width: 320px;
-      padding: 1.05rem 1.25rem;
-      border-radius: 14px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      text-decoration: none;
-      color: var(--text-dark);
-      border: 1.5px solid var(--border-soft);
-      background-color: rgba(255, 255, 255, 0.6);
+      flex: 1 1 220px; max-width: 320px;
+      padding: 1.05rem 1.25rem; border-radius: 14px;
+      font-size: 1.05rem; font-weight: 700; text-decoration: none;
+      color: var(--text-dark); border: 1.5px solid var(--border-soft);
+      background-color: rgba(255,255,255,0.6);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
-    .nav-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
-      border-color: var(--border-strong);
-    }
+    .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); border-color: var(--border-strong); }
 
     .nav-btn.active {
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 6px 18px rgba(233, 106, 154, 0.35);
+      color: #fff; border-color: transparent;
+      box-shadow: 0 6px 18px rgba(233,106,154,0.35);
     }
 
     .content {
-      max-width: 980px;
-      margin: 0 auto 3.5rem;
-      padding: 0 1.5rem;
-      text-align: left;
+      max-width: 980px; margin: 0 auto 3.5rem;
+      padding: 0 1.5rem; text-align: left;
     }
 
-    .card {
-      margin: 0 auto 1.5rem;
-      padding: 2.25rem 2.25rem;
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .section-label {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--pink-strong);
+      margin: 0 0 1rem; text-align: center;
+    }
+
+    /* ---------- INTRO CARD ---------- */
+    .intro-card {
+      padding: 2.25rem 2.5rem; border-radius: 22px;
       border: 1.5px solid var(--border-soft);
-      border-radius: 26px;
-      background-color: rgba(255, 255, 255, 0.45);
-      line-height: 1.75;
-      transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
+      margin-bottom: 2rem; text-align: left;
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .card:hover {
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
-      border-color: var(--border-strong);
-      transform: translateY(-2px);
-    }
+    .intro-card:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(0,0,0,0.06); border-color: var(--border-strong); }
 
-    .card h2 {
-      margin: 0 0 1.25rem;
-      font-size: 1.5rem;
-      font-weight: 800;
-      text-align: center;
-    }
+    .intro-card p { font-size: 1.05rem; line-height: 1.8; color: var(--muted-dark); margin: 0 0 1rem; }
+    .intro-card p:last-child { margin-bottom: 0; }
+    .intro-card strong { color: var(--text-dark); font-weight: 700; }
 
-    .card p {
-      margin: 0 0 1rem;
-      font-size: 1.05rem;
-    }
-
-    .card p:last-child { margin-bottom: 0; }
-
-    .steps {
-      list-style: none;
-      padding: 0;
-      margin: 1.15rem 0 0;
-      display: grid;
-      gap: 1rem;
-    }
-
-    .step {
-      padding: 1.35rem 1.25rem;
-      border-radius: 18px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.55);
-      position: relative;
-    }
-
-    .step-label {
-      display: inline-block;
-      margin-bottom: 0.5rem;
-      padding: 0.3rem 0.75rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .step-label.phase-1 { background: #fbe4ec; color: #c0476e; border: 1px solid rgba(233,106,154,0.3); }
-    .step-label.phase-2 { background: #fde8d8; color: #c05a2a; border: 1px solid rgba(233,140,106,0.3); }
-    .step-label.phase-3 { background: #e8f4fd; color: #2a6fc0; border: 1px solid rgba(106,163,233,0.3); }
-    .step-label.phase-4 { background: #e8fdf0; color: #2ac06a; border: 1px solid rgba(106,233,163,0.3); }
-
-    .step h3 {
-      margin: 0 0 0.35rem;
-      font-size: 1.15rem;
-      font-weight: 800;
-    }
-
-    .meta {
-      margin: 0 0 0.85rem;
-      color: var(--muted-dark);
-      font-size: 0.98rem;
-      line-height: 1.45;
-    }
-
-    .struggle {
-      margin-top: 0.85rem;
-      padding: 0.9rem 1.1rem;
-      border-radius: 12px;
-      background: rgba(233, 106, 154, 0.07);
-      border-left: 3px solid var(--pink-strong);
-      font-size: 0.98rem;
-      color: var(--text-dark);
-      line-height: 1.6;
-    }
-
-    .struggle strong { color: var(--pink-strong); }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      margin-top: 1rem;
-    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.25rem; }
 
     .tag {
-      padding: 0.55rem 0.75rem;
-      border-radius: 999px;
+      padding: 0.45rem 0.85rem; border-radius: 999px;
       border: 1.5px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.55);
-      font-size: 0.95rem;
-      color: var(--text-dark);
+      background: rgba(255,255,255,0.65); font-size: 0.9rem; color: var(--text-dark);
     }
 
-
-    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.55s ease,transform 0.55s ease; }
-    .reveal.visible { opacity:1; transform:translateY(0); }
-
-
-    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.55s ease,transform 0.55s ease; }
-    .reveal.visible { opacity:1; transform:translateY(0); }
-
-    .links {
-      padding-bottom: 2.5rem;
-      text-align: center;
+    /* ---------- PHASE STEPPER ---------- */
+    .stepper-nav {
+      display: flex; gap: 0.5rem; justify-content: center;
+      margin-bottom: 1.5rem; flex-wrap: wrap;
     }
 
-    .links h2 {
-      font-size: 1.6rem;
-      margin: 2rem 0 0.75rem;
+    .phase-btn {
+      padding: 0.6rem 1.2rem; border-radius: 999px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 700;
+      color: var(--muted-dark); cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .links p {
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
+    .phase-btn:hover { border-color: var(--border-strong); color: var(--text-dark); }
+
+    .phase-btn.active {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      color: #fff; box-shadow: 0 4px 14px rgba(233,106,154,0.35);
+    }
+
+    .phase-content {
+      display: none;
+      padding: 2rem 2.25rem; border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
+      margin-bottom: 1.5rem; text-align: left;
+      animation: phaseIn 0.35s ease both;
+    }
+
+    .phase-content.active { display: block; }
+
+    @keyframes phaseIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .phase-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
+
+    .phase-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.85rem; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; flex-shrink: 0;
+    }
+
+    .badge-1 { background: #fbe4ec; color: #c0476e; border: 1px solid rgba(233,106,154,0.3); }
+    .badge-2 { background: #fde8d8; color: #c05a2a; border: 1px solid rgba(233,140,106,0.3); }
+    .badge-3 { background: #e8f4fd; color: #2a6fc0; border: 1px solid rgba(106,163,233,0.3); }
+    .badge-4 { background: #e8fdf0; color: #2ac06a; border: 1px solid rgba(106,233,163,0.3); }
+
+    .phase-title-wrap h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.2rem; }
+    .phase-title-wrap p { font-size: 0.92rem; color: var(--muted-dark); margin: 0; }
+
+    .phase-body p { font-size: 1rem; line-height: 1.8; color: var(--muted-dark); margin: 0 0 1rem; }
+    .phase-body p:last-child { margin-bottom: 0; }
+    .phase-body strong { color: var(--text-dark); }
+    .phase-body code {
+      background: rgba(233,106,154,0.1); border: 1px solid rgba(233,106,154,0.2);
+      padding: 0.15rem 0.45rem; border-radius: 6px; font-size: 0.9rem; font-family: monospace;
+    }
+
+    /* ---------- STRUGGLE TOGGLE ---------- */
+    .struggle-toggle {
       margin-top: 1.25rem;
-      flex-wrap: wrap;
+      border-radius: 14px;
+      border: 1.5px solid var(--border-soft);
+      overflow: hidden;
     }
 
-    .social-link {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--pink-strong);
-      text-decoration: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+    .struggle-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 1.1rem; cursor: pointer;
+      background: rgba(233,106,154,0.06);
+      transition: background 0.2s;
     }
 
-    .social-link:hover { opacity: 0.75; transform: translateY(-1px); }
+    .struggle-header:hover { background: rgba(233,106,154,0.1); }
 
-    footer {
-      margin: 26px 0 34px;
-      padding: 0 1.5rem;
-      font-size: 0.95rem;
-      color: rgba(43, 43, 43, 0.7);
+    .struggle-header-left { display: flex; align-items: center; gap: 0.6rem; }
+    .struggle-icon { font-size: 1rem; }
+    .struggle-label { font-size: 0.88rem; font-weight: 700; color: var(--pink-strong); }
+    .struggle-chevron { font-size: 0.75rem; color: var(--pink-strong); transition: transform 0.25s; }
+
+    .struggle-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+      padding: 0 1.1rem;
+      border-top: 1px solid transparent;
+    }
+
+    .struggle-body.open {
+      max-height: 300px;
+      padding: 1rem 1.1rem;
+      border-top-color: var(--border-soft);
+    }
+
+    .struggle-body p { font-size: 0.93rem; line-height: 1.7; color: var(--muted-dark); margin: 0; }
+
+    /* ---------- PHASE NAV BUTTONS ---------- */
+    .phase-nav { display: flex; justify-content: space-between; margin-top: 1.25rem; gap: 1rem; }
+
+    .phase-nav-btn {
+      padding: 0.7rem 1.25rem; border-radius: 12px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 700;
+      color: var(--text-dark); cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .phase-nav-btn:hover { border-color: var(--border-strong); box-shadow: 0 6px 16px rgba(0,0,0,0.07); }
+    .phase-nav-btn.primary {
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      color: #fff; border-color: transparent;
+      box-shadow: 0 4px 14px rgba(233,106,154,0.35);
+    }
+    .phase-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* ---------- TOOLS SECTION ---------- */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem; margin-bottom: 2rem;
+    }
+
+    .tool-card {
+      padding: 1.5rem 1rem; border-radius: 18px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
       text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
+
+    .tool-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(233,106,154,0.12); border-color: var(--border-strong); }
+
+    .tool-logo {
+      width: 48px; height: 48px; border-radius: 14px;
+      border: 1.5px solid var(--border-soft); background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 0.75rem; overflow: hidden;
+    }
+
+    .tool-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .tool-logo .tool-emoji { font-size: 1.5rem; }
+
+    .tool-name { font-size: 0.88rem; font-weight: 800; margin: 0 0 0.2rem; }
+    .tool-desc { font-size: 0.78rem; color: var(--muted-dark); margin: 0; line-height: 1.4; }
+
+    /* ---------- LEARNINGS SECTION ---------- */
+    .learnings-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-bottom: 2rem;
+    }
+
+    .learning-card {
+      padding: 1.75rem 1.5rem; border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
+      text-align: left;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .learning-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.07); border-color: var(--border-strong); }
+
+    .learning-icon { font-size: 1.6rem; margin-bottom: 0.6rem; display: block; }
+    .learning-card h3 { font-size: 0.98rem; font-weight: 800; margin: 0 0 0.4rem; }
+    .learning-card p { font-size: 0.88rem; line-height: 1.65; color: var(--muted-dark); margin: 0; }
+
+    /* ---------- TRY IT CARD ---------- */
+    .try-card {
+      padding: 2.25rem 2.5rem; border-radius: 22px;
+      border: 1.5px solid var(--border-strong);
+      background: linear-gradient(135deg, rgba(253,213,232,0.5), rgba(251,228,236,0.4));
+      backdrop-filter: blur(8px);
+      text-align: center; margin-bottom: 2rem;
+    }
+
+    .try-card h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.6rem; }
+    .try-card p { font-size: 1rem; line-height: 1.75; color: var(--muted-dark); margin: 0 0 0.5rem; }
+    .try-card .powered { font-size: 0.88rem; color: var(--muted-dark); }
+
+    /* ---------- LINKS ---------- */
+    .links { padding-bottom: 2.5rem; text-align: center; }
+    .links h2 { font-size: 1.6rem; margin: 2rem 0 0.75rem; }
+    .links p { display: flex; justify-content: center; gap: 2.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
+    .social-link { font-size: 1.05rem; font-weight: 700; color: var(--pink-strong); text-decoration: none; }
+
+    footer { margin: 26px 0 34px; padding: 0 1.5rem; font-size: 0.95rem; color: rgba(43,43,43,0.7); text-align: center; }
 
     @media (max-width: 600px) {
-      .card { padding: 2rem 1.35rem; }
-      .nav-btn { flex: 1 1 100%; max-width: none; }
-      .links p { gap: 1.75rem; }
+      .learnings-grid { grid-template-columns: 1fr; }
+      .intro-card, .phase-content { padding: 1.75rem 1.5rem; }
     }
 
+    /* ---------- CHATBOT ---------- */
     #chat-toggle {
-      position: fixed;
-      bottom: 22px; right: 22px;
-      width: 58px; height: 58px;
-      border-radius: 18px;
-      background: var(--pink-soft);
-      border: 1.5px solid var(--border-strong);
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 24px rgba(233, 106, 154, 0.28);
+      position: fixed; bottom: 22px; right: 22px;
+      width: 58px; height: 58px; border-radius: 18px;
+      background: var(--pink-soft); border: 1.5px solid var(--border-strong);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(233,106,154,0.28);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       z-index: 9999; font-size: 24px;
     }
-
-    #chat-toggle:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(233, 106, 154, 0.4);
-    }
+    #chat-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(233,106,154,0.4); }
 
     #chat-window {
-      position: fixed;
-      bottom: 92px; right: 22px;
+      position: fixed; bottom: 92px; right: 22px;
       width: 360px; max-height: 530px;
-      background: var(--white-glass);
-      backdrop-filter: blur(14px);
+      background: var(--white-glass); backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1.5px solid var(--border-soft);
-      border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(233, 106, 154, 0.15), 0 4px 16px rgba(0, 0, 0, 0.06);
-      display: flex; flex-direction: column;
-      overflow: hidden; z-index: 9998;
-      transform: scale(0.92) translateY(14px);
-      opacity: 0; pointer-events: none;
-      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease;
+      border: 1.5px solid var(--border-soft); border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(233,106,154,0.15), 0 4px 16px rgba(0,0,0,0.06);
+      display: flex; flex-direction: column; overflow: hidden; z-index: 9998;
+      transform: scale(0.92) translateY(14px); opacity: 0; pointer-events: none;
+      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.22s ease;
     }
-
-    #chat-window.open {
-      transform: scale(1) translateY(0);
-      opacity: 1; pointer-events: all;
-    }
+    #chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
 
     .chat-header {
       background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
-      border-bottom: 1px solid var(--border-soft);
-      padding: 15px 16px;
+      border-bottom: 1px solid var(--border-soft); padding: 15px 16px;
       display: flex; align-items: center; gap: 11px; flex-shrink: 0;
     }
-
     .chat-avatar {
       width: 38px; height: 38px; border-radius: 12px;
       background: linear-gradient(135deg, var(--pink-strong), #f0a0c0);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
     }
-
     .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
     .chat-header-info p { font-size: 0.73rem; color: var(--muted-dark); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
     .online-dot { width: 7px; height: 7px; background: #4caf82; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-
-    .chat-close {
-      margin-left: auto; background: none; border: none; cursor: pointer;
-      color: var(--muted-dark); font-size: 17px; line-height: 1; padding: 4px;
-      border-radius: 6px; transition: background 0.15s;
-    }
-    .chat-close:hover { background: rgba(233, 106, 154, 0.12); }
-
-    .chat-messages {
-      flex: 1; overflow-y: auto; padding: 14px 14px 10px;
-      display: flex; flex-direction: column; gap: 9px; scroll-behavior: smooth;
-    }
+    .chat-close { margin-left: auto; background: none; border: none; cursor: pointer; color: var(--muted-dark); font-size: 17px; line-height: 1; padding: 4px; border-radius: 6px; transition: background 0.15s; }
+    .chat-close:hover { background: rgba(233,106,154,0.12); }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 14px 14px 10px; display: flex; flex-direction: column; gap: 9px; scroll-behavior: smooth; }
     .chat-messages::-webkit-scrollbar { width: 4px; }
     .chat-messages::-webkit-scrollbar-track { background: transparent; }
     .chat-messages::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 4px; }
-
-    .msg {
-      max-width: 84%; padding: 10px 13px; border-radius: 16px;
-      font-size: 0.875rem; line-height: 1.58; animation: msgIn 0.22s ease;
-    }
-    @keyframes msgIn {
-      from { opacity: 0; transform: translateY(7px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .msg.bot {
-      background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft);
-      border-bottom-left-radius: 5px; align-self: flex-start; color: var(--text-dark);
-    }
-    .msg.user {
-      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
-      color: #fff; border-bottom-right-radius: 5px; align-self: flex-end;
-    }
-
-    .typing-indicator {
-      display: flex; gap: 4px; padding: 11px 14px;
-      background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft);
-      border-radius: 16px; border-bottom-left-radius: 5px;
-      align-self: flex-start; width: fit-content; animation: msgIn 0.2s ease;
-    }
+    .msg { max-width: 84%; padding: 10px 13px; border-radius: 16px; font-size: 0.875rem; line-height: 1.58; animation: msgIn 0.22s ease; }
+    @keyframes msgIn { from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:translateY(0);} }
+    .msg.bot { background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft); border-bottom-left-radius: 5px; align-self: flex-start; color: var(--text-dark); }
+    .msg.user { background: linear-gradient(135deg,var(--pink-strong),#f07eb0); color: #fff; border-bottom-right-radius: 5px; align-self: flex-end; }
+    .typing-indicator { display: flex; gap: 4px; padding: 11px 14px; background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft); border-radius: 16px; border-bottom-left-radius: 5px; align-self: flex-start; width: fit-content; animation: msgIn 0.2s ease; }
     .typing-indicator span { width: 6px; height: 6px; background: var(--pink-strong); border-radius: 50%; animation: bounce 1.2s infinite; }
-    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes bounce {
-      0%,60%,100% { transform: translateY(0); opacity: 0.6; }
-      30% { transform: translateY(-5px); opacity: 1; }
-    }
-
-    .chat-input-area {
-      padding: 11px 13px; border-top: 1px solid var(--border-soft);
-      background: rgba(255,255,255,0.6); display: flex; gap: 8px;
-      align-items: flex-end; flex-shrink: 0;
-    }
-    .chat-input-area textarea {
-      flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px;
-      padding: 9px 11px; font-family: 'Segoe UI', sans-serif; font-size: 0.875rem;
-      color: var(--text-dark); background: rgba(255,255,255,0.88);
-      resize: none; outline: none; max-height: 100px; line-height: 1.45;
-      transition: border-color 0.2s;
-    }
+    .typing-indicator span:nth-child(2){animation-delay:0.2s;}
+    .typing-indicator span:nth-child(3){animation-delay:0.4s;}
+    @keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:0.6;}30%{transform:translateY(-5px);opacity:1;} }
+    .chat-input-area { padding: 11px 13px; border-top: 1px solid var(--border-soft); background: rgba(255,255,255,0.6); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; }
+    .chat-input-area textarea { flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px; padding: 9px 11px; font-family: 'Segoe UI',sans-serif; font-size: 0.875rem; color: var(--text-dark); background: rgba(255,255,255,0.88); resize: none; outline: none; max-height: 100px; line-height: 1.45; transition: border-color 0.2s; }
     .chat-input-area textarea:focus { border-color: var(--pink-strong); }
     .chat-input-area textarea::placeholder { color: rgba(43,43,43,0.4); }
-
-    .send-btn {
-      width: 36px; height: 36px; border-radius: 11px;
-      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
-      border: none; cursor: pointer; display: flex; align-items: center;
-      justify-content: center; flex-shrink: 0;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s;
-      box-shadow: 0 4px 12px rgba(233,106,154,0.32);
-    }
-    .send-btn:hover { transform: scale(1.07); box-shadow: 0 6px 16px rgba(233,106,154,0.42); }
-    .send-btn:active { transform: scale(0.95); }
-    .send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-    .send-btn svg { width: 15px; height: 15px; fill: white; }
-
-    @media (max-width: 420px) {
-      #chat-window { width: calc(100vw - 28px); right: 14px; bottom: 84px; }
-      #chat-toggle { right: 14px; bottom: 14px; }
-    }
+    .send-btn { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg,var(--pink-strong),#f07eb0); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.15s ease,box-shadow 0.15s ease,opacity 0.15s; box-shadow: 0 4px 12px rgba(233,106,154,0.32); }
+    .send-btn:hover{transform:scale(1.07);box-shadow:0 6px 16px rgba(233,106,154,0.42);}
+    .send-btn:active{transform:scale(0.95);}
+    .send-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+    .send-btn svg{width:15px;height:15px;fill:white;}
+    @media(max-width:420px){#chat-window{width:calc(100vw - 28px);right:14px;bottom:84px;}#chat-toggle{right:14px;bottom:14px;}}
   </style>
 </head>
 
 <body>
 
   <div class="bg-shapes">
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
+    <div class="shape"></div><div class="shape"></div><div class="shape"></div>
+    <div class="shape"></div><div class="shape"></div><div class="shape"></div>
   </div>
 
   <section class="hero">
     <div class="hero-inner">
       <h1>AI Chatbot Project 🤖</h1>
       <p class="hero-highlight">
-        From Dialogflow CX to Claude and Cloudflare: a real account of building, breaking, and iterating on a production AI assistant for this portfolio.
+        How I went from a Permission Denied error in Dialogflow to a live Claude-powered assistant secured with Cloudflare Workers. The full story, including every struggle.
       </p>
     </div>
   </section>
@@ -476,115 +439,241 @@
 
   <main class="content">
 
-    <section class="card reveal">
-      <h2>What this project is</h2>
+    <!-- INTRO -->
+    <p class="section-label reveal">What this project is</p>
+    <div class="intro-card reveal">
       <p>
-        This is a live, production AI chatbot embedded across my portfolio site. It answers questions about my experience, skills, and career goals on behalf of me, helping recruiters explore my background interactively rather than just reading static text.
+        The chatbot in the bottom right corner of every page on this site is something I built completely from scratch.
       </p>
       <p>
-        What started as a simple Dialogflow CX experiment became a full journey through API integration, security challenges, and infrastructure decisions. The chatbot you see in the bottom right corner today is the result of that entire process.
+        It's a live, production AI assistant that answers questions about my experience, skills, and career, so anyone visiting the site can explore my background interactively rather than just reading static text.
+      </p>
+      <p>
+        What started as a simple experiment became a full journey through conversational AI design, API integration, security incidents, and infrastructure decisions.
+      </p>
+      <p>
+        <strong>Every mistake led somewhere useful.</strong>
       </p>
       <div class="tag-row">
         <span class="tag">Conversational AI</span>
-        <span class="tag">API integration</span>
+        <span class="tag">Anthropic API</span>
         <span class="tag">Prompt engineering</span>
         <span class="tag">Cloudflare Workers</span>
-        <span class="tag">Security</span>
+        <span class="tag">API security</span>
         <span class="tag">Iterative development</span>
       </div>
-    </section>
+    </div>
 
-    <section class="card reveal">
-      <h2>The full journey</h2>
-      <ul class="steps">
-
-        <li class="step reveal">
-          <span class="step-label phase-1">Phase 1</span>
-          <h3>Starting with IBM Watson and Dialogflow CX</h3>
-          <p class="meta">Learning the fundamentals of conversational AI</p>
-          <p>
-            I started by completing the IBM AI Fundamentals certification and building a prototype using IBM Watson to understand intents, entities, and dialogue flows. I then moved to Google Dialogflow CX, which gave me more control over multi-turn conversations and intent routing.
-          </p>
-          <p>
-            I embedded the Dialogflow bot into this portfolio and it worked, until it didn't. Testing it regularly, I kept hitting a <strong>Permission Denied</strong> error that I couldn't resolve. The root cause came down to domain allowlisting and integration settings inside the Dialogflow console, but after spending time investigating it, I made the decision to move on rather than continue troubleshooting a tool that wasn't serving me well.
-          </p>
-          <div class="struggle">
-            <strong>Struggle:</strong> The Dialogflow CX embed required the Messenger integration to be explicitly enabled and domains allowlisted inside the Google Cloud console. Without this, every request returned a permission denied error regardless of the code being correct. Debugging this across Google Cloud IAM, Dialogflow settings, and the front-end embed was time consuming and not well documented.
-          </div>
-        </li>
-
-        <li class="step reveal">
-          <span class="step-label phase-2">Phase 2</span>
-          <h3>Switching to the Anthropic API</h3>
-          <p class="meta">Replacing intent-based flows with a language model</p>
-          <p>
-            Rather than continuing to map every possible question to a predefined intent, I switched to using Claude via the Anthropic API directly. This meant writing a detailed system prompt describing my background, experience, and tone, and letting the model handle any question a recruiter might ask naturally.
-          </p>
-          <p>
-            The difference was immediate. No more intent mapping, no training data, no permission configuration. I built a custom chat widget in HTML and JavaScript that matched my existing pink theme, with a proactive welcome message that opens automatically two seconds after the page loads.
-          </p>
-          <div class="struggle">
-            <strong>Struggle:</strong> The first version had the Anthropic API key hardcoded directly in the front-end JavaScript. GitHub's secret scanning flagged it immediately on push and blocked the commit, a valuable lesson in API key security and the importance of never committing secrets to a public repository.
-          </div>
-        </li>
-
-        <li class="step reveal">
-          <span class="step-label phase-3">Phase 3</span>
-          <h3>Securing the API key with Cloudflare Workers</h3>
-          <p class="meta">Building a proxy to keep secrets off the front end</p>
-          <p>
-            To fix the security issue properly, I set up a Cloudflare Worker as a proxy. The Worker sits between my portfolio site and the Anthropic API. My front end sends requests to the Worker, the Worker adds the API key server-side, and forwards the request to Anthropic. The key never appears in my code or in the browser.
-          </p>
-          <p>
-            I configured the Worker to only accept requests from <code>madihaintech.me</code> using CORS headers, stored the API key as an encrypted environment secret in Cloudflare, and deployed it on the free tier with no credit card required.
-          </p>
-          <div class="struggle">
-            <strong>Struggle:</strong> Setting up the Cloudflare Worker involved navigating an unfamiliar console, figuring out how to add encrypted secrets, and understanding CORS preflight requests. The Cloudflare editor also did not support pasting on the initial deploy screen, which required deploying a Hello World worker first and then replacing the code afterwards in the full editor.
-          </div>
-        </li>
-
-        <li class="step reveal">
-          <span class="step-label phase-4">Phase 4</span>
-          <h3>Live and iterating</h3>
-          <p class="meta">Production deployment across the full portfolio</p>
-          <p>
-            The chatbot is now live across all pages of this portfolio, powered by Claude, secured via Cloudflare, and deployed through GitHub Pages. It opens automatically after two seconds, delivers a structured welcome message, and handles follow-up questions with full conversation history maintained client-side for the session.
-          </p>
-          <p>
-            The system prompt is carefully designed to keep responses warm, professional, and grounded only in accurate information about my background, with a fallback to direct visitors to my contact page or LinkedIn if something falls outside what the assistant knows.
-          </p>
-        </li>
-
-      </ul>
-    </section>
-
-    <section class="card reveal">
-      <h2>What I learned</h2>
-      <p>
-        This project taught me more than any tutorial could. I learned that real AI integration involves infrastructure decisions, not just model prompts. Where your API key lives, how requests are routed, and how you handle errors all matter as much as what the AI says.
-      </p>
-      <p>
-        I also learned that iteration beats perfection. The Dialogflow version was imperfect but it shipped. The permission error pushed me toward a better solution. The exposed API key forced me to understand proxies and secrets management. Every struggle led somewhere useful.
-      </p>
-      <div class="tag-row">
-        <span class="tag">API security</span>
-        <span class="tag">Proxy architecture</span>
-        <span class="tag">CORS handling</span>
-        <span class="tag">Prompt design</span>
-        <span class="tag">Iterative problem solving</span>
-        <span class="tag">Cloudflare Workers</span>
+    <!-- PHASE STEPPER -->
+    <p class="section-label reveal">The full journey</p>
+    <div class="reveal">
+      <div class="stepper-nav">
+        <button class="phase-btn active" onclick="showPhase(1)">Phase 1</button>
+        <button class="phase-btn" onclick="showPhase(2)">Phase 2</button>
+        <button class="phase-btn" onclick="showPhase(3)">Phase 3</button>
+        <button class="phase-btn" onclick="showPhase(4)">Phase 4</button>
       </div>
-    </section>
 
-    <section class="card reveal" style="text-align: center;">
-      <h2>Try it yourself</h2>
-      <p>
-        The chatbot in the bottom right corner is the live version described above. Ask it anything about my experience, what I am looking for, or how I built this. It knows the full story.
-      </p>
-      <p style="margin-top: 0.5rem; color: var(--muted-dark); font-size: 0.98rem;">
-        💬 Powered by Claude | Secured by Cloudflare | Built by Madiha
-      </p>
-    </section>
+      <!-- PHASE 1 -->
+      <div class="phase-content active" id="phase-1">
+        <div class="phase-header">
+          <div>
+            <span class="phase-badge badge-1">Phase 1</span>
+          </div>
+          <div class="phase-title-wrap">
+            <h3>IBM Watson and Dialogflow CX</h3>
+            <p>Learning the fundamentals of conversational AI</p>
+          </div>
+        </div>
+        <div class="phase-body">
+          <p>I started by completing the IBM AI Fundamentals certification to build a proper foundation before writing a single line of code. That led me to IBM Watson, where I got hands-on with intents, entities, and dialogue flows for the first time.</p>
+          <p>From there I moved to Google Dialogflow CX, which gave me more control over multi-turn conversations and intent routing. I embedded the bot into this portfolio and it worked, until it didn't.</p>
+          <p>I kept hitting a <strong>Permission Denied</strong> error, the bot wasn't speaking on page load, and several other issues kept cropping up. I tried implementing a fix multiple times but couldn't get it working, so I made the call to move on and explore other options.</p>
+        </div>
+        <div class="struggle-toggle">
+          <div class="struggle-header" onclick="toggleStruggle(this)">
+            <div class="struggle-header-left">
+              <span class="struggle-icon">⚡</span>
+              <span class="struggle-label">The struggle</span>
+            </div>
+            <span class="struggle-chevron">▼</span>
+          </div>
+          <div class="struggle-body">
+            <p>The Dialogflow CX embed required the Messenger integration to be explicitly enabled and domains allowlisted inside the Google Cloud console. Without this, every request returned a permission denied error regardless of whether the code was correct. Debugging across Google Cloud IAM, Dialogflow settings, and the front-end embed was time-consuming and poorly documented.</p>
+          </div>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-nav-btn" disabled>Previous</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Switching to Claude →</button>
+        </div>
+      </div>
+
+      <!-- PHASE 2 -->
+      <div class="phase-content" id="phase-2">
+        <div class="phase-header">
+          <div>
+            <span class="phase-badge badge-2">Phase 2</span>
+          </div>
+          <div class="phase-title-wrap">
+            <h3>Switching to the Anthropic API</h3>
+            <p>Replacing intent-based flows with a language model</p>
+          </div>
+        </div>
+        <div class="phase-body">
+          <p>Rather than mapping every possible question to a predefined intent, I switched to using Claude via the Anthropic API directly. I wrote a detailed system prompt describing my background, experience, and tone, and let the model handle any question naturally.</p>
+          <p>The difference was immediate. No intent mapping, no training data, no permission configuration. I built a custom chat widget in HTML and JavaScript to match the existing pink theme, with a welcome message that opens automatically two seconds after the page loads.</p>
+        </div>
+        <div class="struggle-toggle">
+          <div class="struggle-header" onclick="toggleStruggle(this)">
+            <div class="struggle-header-left">
+              <span class="struggle-icon">⚡</span>
+              <span class="struggle-label">The struggle</span>
+            </div>
+            <span class="struggle-chevron">▼</span>
+          </div>
+          <div class="struggle-body">
+            <p>The first version had the Anthropic API key hardcoded directly in the front-end JavaScript. GitHub's secret scanning flagged it immediately on push and blocked the commit. Valuable lesson: secrets never belong in client-side code, regardless of how quickly you plan to fix it.</p>
+          </div>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-nav-btn" onclick="showPhase(1)">← Previous</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Securing the key →</button>
+        </div>
+      </div>
+
+      <!-- PHASE 3 -->
+      <div class="phase-content" id="phase-3">
+        <div class="phase-header">
+          <div>
+            <span class="phase-badge badge-3">Phase 3</span>
+          </div>
+          <div class="phase-title-wrap">
+            <h3>Cloudflare Workers proxy</h3>
+            <p>Keeping secrets off the front end properly</p>
+          </div>
+        </div>
+        <div class="phase-body">
+          <p>To fix the security issue properly, I set up a Cloudflare Worker as a proxy. The Worker sits between this site and the Anthropic API. My front end sends requests to the Worker, the Worker adds the API key server-side, and forwards the request to Anthropic. The key never appears in the code or the browser.</p>
+          <p>I configured the Worker to only accept requests from <code>madihaintech.me</code> using CORS headers, stored the API key as an encrypted environment secret in Cloudflare, and deployed it on the free tier with no credit card required.</p>
+        </div>
+        <div class="struggle-toggle">
+          <div class="struggle-header" onclick="toggleStruggle(this)">
+            <div class="struggle-header-left">
+              <span class="struggle-icon">⚡</span>
+              <span class="struggle-label">The struggle</span>
+            </div>
+            <span class="struggle-chevron">▼</span>
+          </div>
+          <div class="struggle-body">
+            <p>Setting up the Cloudflare Worker involved navigating an unfamiliar console, figuring out how to add encrypted secrets, and understanding CORS preflight requests. The editor also did not support pasting on the initial deploy screen, which meant deploying a Hello World worker first and then replacing the code in the full editor afterwards.</p>
+          </div>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-nav-btn" onclick="showPhase(2)">← Previous</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(4)">Next: Live and iterating →</button>
+        </div>
+      </div>
+
+      <!-- PHASE 4 -->
+      <div class="phase-content" id="phase-4">
+        <div class="phase-header">
+          <div>
+            <span class="phase-badge badge-4">Phase 4</span>
+          </div>
+          <div class="phase-title-wrap">
+            <h3>Live and iterating</h3>
+            <p>Production deployment across the full portfolio</p>
+          </div>
+        </div>
+        <div class="phase-body">
+          <p>The chatbot is now live across all pages, powered by Claude, secured via Cloudflare, and deployed through GitHub Pages. It opens automatically after two seconds, delivers a structured welcome message, and handles follow-up questions with full conversation history maintained client-side for the session.</p>
+          <p>The system prompt is carefully designed to keep responses warm and professional, grounded only in accurate information about my background, with a fallback directing visitors to my contact page or LinkedIn if something falls outside what the assistant knows.</p>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-nav-btn" onclick="showPhase(3)">← Previous</button>
+          <button class="phase-nav-btn primary" onclick="document.getElementById('tools-section').scrollIntoView({behavior:'smooth'})">See tools used ↓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOLS USED -->
+    <p class="section-label reveal" id="tools-section">Tools used</p>
+    <div class="tools-grid reveal">
+
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"></div>
+        <p class="tool-name">Claude</p>
+        <p class="tool-desc">Anthropic API, the AI powering the chatbot</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=64" alt="Cloudflare"></div>
+        <p class="tool-name">Cloudflare Workers</p>
+        <p class="tool-desc">Serverless proxy keeping the API key secure</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" alt="GitHub"></div>
+        <p class="tool-name">GitHub Pages</p>
+        <p class="tool-desc">Hosting and version control</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><span class="tool-emoji">🌐</span></div>
+        <p class="tool-name">HTML, CSS and JS</p>
+        <p class="tool-desc">Everything built from scratch, no frameworks</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=dialogflow.cloud.google.com&sz=64" alt="Dialogflow"></div>
+        <p class="tool-name">Dialogflow CX</p>
+        <p class="tool-desc">Phase 1 prototype before switching to Claude</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=ibm.com&sz=64" alt="IBM"></div>
+        <p class="tool-name">IBM Watson</p>
+        <p class="tool-desc">Where the conversational AI journey started</p>
+      </div>
+
+    </div>
+
+    <!-- WHAT I LEARNED -->
+    <p class="section-label reveal">What I learned</p>
+    <div class="learnings-grid reveal">
+
+      <div class="learning-card">
+        <span class="learning-icon">🔐</span>
+        <h3>Secrets never belong in client-side code</h3>
+        <p>Not even temporarily. GitHub secret scanning will find it before you do. The right solution is a server-side proxy from the start.</p>
+      </div>
+
+      <div class="learning-card">
+        <span class="learning-icon">🏗</span>
+        <h3>AI integration is an infrastructure problem</h3>
+        <p>Where the key lives, how requests are routed, how errors are handled: these decisions matter as much as what the model says.</p>
+      </div>
+
+      <div class="learning-card">
+        <span class="learning-icon">🔁</span>
+        <h3>Iteration beats perfection</h3>
+        <p>The Dialogflow version was imperfect but it shipped. Every error pushed me toward a better solution. Nothing was wasted.</p>
+      </div>
+
+      <div class="learning-card">
+        <span class="learning-icon">✍🏼</span>
+        <h3>The system prompt is the product</h3>
+        <p>Getting the chatbot to respond warmly, accurately, and within the right boundaries required more thought than the code itself.</p>
+      </div>
+
+    </div>
+
+    <!-- TRY IT -->
+    <div class="try-card reveal">
+      <h3>Try it yourself 💬</h3>
+      <p>The chatbot in the bottom right corner is the live version described above. Ask it anything about my experience, what I'm working on, or how I built it.</p>
+      <p class="powered">Powered by Claude · Secured by Cloudflare · Built by Madiha</p>
+    </div>
 
   </main>
 
@@ -596,9 +685,7 @@
     </p>
   </section>
 
-  <footer>
-    © <span id="year"></span> Madiha Khan · Built with care 🌸
-  </footer>
+  <footer>© <span id="year"></span> Madiha Khan · Built with care 🌸</footer>
 
   <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">🌸</button>
 
@@ -613,12 +700,9 @@
     </div>
     <div class="chat-messages" id="chat-messages"></div>
     <div class="chat-input-area">
-      <textarea id="chat-input" placeholder="Ask about my experience, skills..." rows="1"
-        onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+      <textarea id="chat-input" placeholder="Ask about my experience, skills..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
       <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
-        </svg>
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
       </button>
     </div>
   </div>
@@ -626,14 +710,13 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-
     // SCROLL REVEAL
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const siblings = entry.target.parentElement.querySelectorAll('.reveal');
           let delay = 0;
-          siblings.forEach((el, idx) => { if (el === entry.target) delay = idx * 80; });
+          siblings.forEach((el, idx) => { if (el === entry.target) delay = idx * 100; });
           setTimeout(() => entry.target.classList.add('visible'), delay);
           revealObserver.unobserve(entry.target);
         }
@@ -641,21 +724,26 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+    // PHASE STEPPER
+    let currentPhase = 1;
+    function showPhase(n) {
+      document.querySelectorAll('.phase-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.phase-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('phase-' + n).classList.add('active');
+      document.querySelectorAll('.phase-btn')[n - 1].classList.add('active');
+      currentPhase = n;
+    }
 
-    // SCROLL REVEAL
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const siblings = entry.target.parentElement.querySelectorAll('.reveal');
-          let delay = 0;
-          siblings.forEach((el, idx) => { if (el === entry.target) delay = idx * 120; });
-          setTimeout(() => entry.target.classList.add('visible'), delay);
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    // STRUGGLE TOGGLE
+    function toggleStruggle(header) {
+      const body = header.nextElementSibling;
+      const chevron = header.querySelector('.struggle-chevron');
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
 
+    // CHATBOT
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
 
     const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Product Support Specialist based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
@@ -683,7 +771,6 @@ AI AND PROJECTS:
 Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Started with Dialogflow CX and IBM Watson before switching to the Anthropic API. Secured the API key using a Cloudflare Worker proxy. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). Daily Claude user.
 
 LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
-
 EDUCATION: A Levels in Maths, Accounting, and Health and Social Care
 
 CONTACT AND LINKS:
@@ -692,13 +779,11 @@ GitHub: github.com/KhanKMadiha
 LinkedIn: linkedin.com/in/madihakhan-
 Contact page: madihaintech.me/contact.html
 
-TARGET ROLES: AI Support Engineer, Senior Support Engineer, Support Operations Specialist, Product Support Specialist (Technical), ideally at companies like Anthropic, OpenAI, Cloudflare, Stack Overflow, or similar developer platform and infrastructure companies.
-
 TONE GUIDELINES:
 - Be warm, friendly, and approachable but also professional
 - Keep responses concise, 2 to 4 sentences unless the visitor asks for more detail
-- Speak about Madiha in the third person: say "Madiha has..." or "She specialises in..." rather than "I"
-- If asked something you do not know, say you are not sure but invite them to reach out to Madiha directly via the Contact page at madihaintech.me/contact.html, or on LinkedIn at linkedin.com/in/madihakhan-
+- Speak about Madiha in the third person
+- If asked something you do not know, invite them to reach out via madihaintech.me/contact.html or linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
 
     const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Product Support Specialist with 5+ years in enterprise SaaS support, currently the sole EMEA support engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
@@ -707,9 +792,7 @@ TONE GUIDELINES:
     let chatOpen = false;
     let isLoading = false;
 
-    window.addEventListener('load', () => {
-      setTimeout(() => { if (!chatOpen) toggleChat(); }, 2000);
-    });
+    window.addEventListener('load', () => { setTimeout(() => { if (!chatOpen) toggleChat(); }, 2000); });
 
     function toggleChat() {
       chatOpen = !chatOpen;
@@ -733,17 +816,12 @@ TONE GUIDELINES:
     function showTyping() {
       const container = document.getElementById('chat-messages');
       const div = document.createElement('div');
-      div.className = 'typing-indicator';
-      div.id = 'typing-indicator';
+      div.className = 'typing-indicator'; div.id = 'typing-indicator';
       div.innerHTML = '<span></span><span></span><span></span>';
-      container.appendChild(div);
-      container.scrollTop = container.scrollHeight;
+      container.appendChild(div); container.scrollTop = container.scrollHeight;
     }
 
-    function removeTyping() {
-      const el = document.getElementById('typing-indicator');
-      if (el) el.remove();
-    }
+    function removeTyping() { const el = document.getElementById('typing-indicator'); if (el) el.remove(); }
 
     async function sendMessage() {
       if (isLoading) return;
@@ -752,47 +830,26 @@ TONE GUIDELINES:
       if (!text) return;
       appendMessage('user', text);
       conversationHistory.push({ role: 'user', content: text });
-      input.value = '';
-      input.style.height = 'auto';
-      setLoading(true);
-      showTyping();
+      input.value = ''; input.style.height = 'auto';
+      setLoading(true); showTyping();
       try {
         const response = await fetch(PROXY_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            model: 'claude-sonnet-4-20250514',
-            max_tokens: 1000,
-            system: SYSTEM_PROMPT,
-            messages: conversationHistory
-          })
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: SYSTEM_PROMPT, messages: conversationHistory })
         });
         const data = await response.json();
         const reply = data?.content?.[0]?.text || "I'm sorry, I wasn't able to get a response just now. Please try again in a moment!";
-        removeTyping();
-        appendMessage('bot', reply);
+        removeTyping(); appendMessage('bot', reply);
         conversationHistory.push({ role: 'assistant', content: reply });
       } catch (err) {
-        removeTyping();
-        appendMessage('bot', "Something went wrong. Please try again shortly!");
-        console.error('Chatbot error:', err);
+        removeTyping(); appendMessage('bot', "Something went wrong. Please try again shortly!");
       }
       setLoading(false);
     }
 
-    function setLoading(state) {
-      isLoading = state;
-      document.getElementById('send-btn').disabled = state;
-    }
-
-    function handleKey(e) {
-      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-    }
-
-    function autoResize(el) {
-      el.style.height = 'auto';
-      el.style.height = Math.min(el.scrollHeight, 100) + 'px';
-    }
+    function setLoading(state) { isLoading = state; document.getElementById('send-btn').disabled = state; }
+    function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
+    function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 100) + 'px'; }
   </script>
 
 </body>

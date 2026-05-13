@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply bg-paper text-ink font-sans antialiased min-h-screen;
+}
+
+::selection {
+  @apply bg-accentSoft text-ink;
+}
+
+@layer components {
+  .input {
+    @apply w-full rounded-lg border border-border bg-white/60 px-3 py-2.5 font-sans text-ink placeholder:text-stone-400 shadow-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 transition;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-accent px-4 py-3 font-sans text-sm font-semibold text-white shadow-soft hover:bg-[#92400E] active:scale-[0.99] transition disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-border bg-white/70 px-4 py-3 font-sans text-sm font-medium text-ink hover:border-ink/20 transition disabled:opacity-50;
+  }
+  .chip {
+    @apply rounded-full border border-border px-3 py-1.5 text-sm font-medium text-inkMuted data-[active=true]:border-accent data-[active=true]:bg-accentSoft data-[active=true]:text-ink transition;
+  }
+  .onboarding-label {
+    @apply block font-sans text-xs font-medium uppercase tracking-[0.12em] text-inkMuted mb-2;
+  }
+  .onboarding-input {
+    @apply w-full rounded-2xl border border-stone-200/90 bg-white/80 px-5 py-4 font-sans text-lg text-ink placeholder:text-stone-400 shadow-[0_1px_2px_rgba(28,25,23,0.04)] focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15 transition;
+  }
+  .onboarding-cta {
+    @apply w-full rounded-2xl bg-accent py-4 px-6 font-sans text-base font-semibold text-white shadow-soft hover:bg-[#92400E] active:scale-[0.99] transition;
+  }
+  .onboarding-chip {
+    @apply rounded-full border border-stone-200/90 bg-white/70 px-4 py-3 text-left text-sm font-medium text-ink leading-snug data-[active=true]:border-accent data-[active=true]:bg-accentSoft data-[active=true]:text-ink shadow-sm transition disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .onboarding-card {
+    @apply w-full text-left rounded-2xl border border-stone-200/90 bg-white/70 p-6 shadow-sm transition hover:border-stone-300;
+  }
+  .onboarding-card--on {
+    @apply border-accent bg-accentSoft/50 ring-2 ring-accent/20;
+  }
+}

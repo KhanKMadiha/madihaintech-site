@@ -1,8 +1,41 @@
 import { useState } from "react";
 import { FOCUS_AREA_OPTIONS } from "../lib/constants.js";
 import { saveProfile } from "../lib/storage.js";
+import { requestAndSubscribe } from "../lib/notifications.js";
 
-const TOTAL = 4;
+const TOTAL = 6;
+
+// Speakers mapped to each focus area — shown contextually on step 4
+const SPEAKERS_BY_FOCUS = {
+  "Executive communication":       ["Satya Nadella", "Sheryl Sandberg", "Indra Nooyi", "Oprah Winfrey", "Barack Obama", "Tim Cook", "Mary Barra"],
+  "AI & tech fluency":             ["Sam Altman", "Jensen Huang", "Sundar Pichai", "Lex Fridman", "Mustafa Suleyman", "Demis Hassabis", "Andrew Ng"],
+  "Confidence & presence":         ["Codie Sanchez", "Bahja Abdi", "Brené Brown", "Tony Robbins", "Michelle Obama", "Trevor Noah", "Amy Cuddy"],
+  "Managing upwards":              ["Sheryl Sandberg", "Adam Grant", "Simon Sinek", "Patty McCord", "Kim Scott", "Anne Morriss", "Liz Wiseman"],
+  "Storytelling with data":        ["Malcolm Gladwell", "Hans Rosling", "Brené Brown", "Scott Galloway", "Nneka Ogwumike", "Steven Levitt", "Dan Roam"],
+  "Technical leadership":          ["Jensen Huang", "Satya Nadella", "Sam Altman", "Anjali Sud", "Kelsey Hightower", "Will Larson", "Charity Majors"],
+  "Strategic thinking":            ["Barack Obama", "Reed Hastings", "Jamie Dimon", "Oprah Winfrey", "Ray Dalio", "Roger Martin", "A.G. Lafley"],
+  "Influencing without authority": ["Simon Sinek", "Adam Grant", "Gary Vaynerchuk", "Michelle Obama", "Codie Sanchez", "Robert Cialdini", "Jonah Berger"],
+};
+
+const FALLBACK_SPEAKERS = [
+  "Codie Sanchez", "Bahja Abdi", "Simon Sinek", "Brené Brown",
+  "Barack Obama", "Malcolm Gladwell", "Oprah Winfrey", "Michelle Obama", "Trevor Noah",
+];
+
+function getSuggestedSpeakers(focusAreas) {
+  const seen = new Set();
+  const result = [];
+  for (const area of focusAreas) {
+    for (const speaker of SPEAKERS_BY_FOCUS[area] || []) {
+      if (!seen.has(speaker)) { seen.add(speaker); result.push(speaker); }
+    }
+  }
+  for (const s of FALLBACK_SPEAKERS) {
+    if (result.length >= 9) break;
+    if (!seen.has(s)) { seen.add(s); result.push(s); }
+  }
+  return result.slice(0, 9);
+}
 
 export default function Onboarding({ onComplete }) {
   const [step, setStep] = useState(1);
@@ -11,8 +44,13 @@ export default function Onboarding({ onComplete }) {
   const [industry, setIndustry] = useState("");
   const [careerGoal, setCareerGoal] = useState("");
   const [focusAreas, setFocusAreas] = useState([]);
+  const [speakingInspirations, setSpeakingInspirations] = useState([]);
+  const [customSpeaker, setCustomSpeaker] = useState("");
   const [readingStyle, setReadingStyle] = useState(null);
   const [passageLength, setPassageLength] = useState("medium");
+  const [reminderTime, setReminderTime] = useState("08:00");
+  const [reminderStatus, setReminderStatus] = useState("idle"); // idle | loading | on | skipped
+  const [reminderError, setReminderError] = useState("");
   const [error, setError] = useState("");
 
   const goBack = () => {
@@ -55,18 +93,54 @@ export default function Onboarding({ onComplete }) {
     setStep(4);
   };
 
-  const finish = () => {
+  const toggleSpeaker = (name) => {
+    setSpeakingInspirations((prev) =>
+      prev.includes(name) ? prev.filter((s) => s !== name) : prev.length < 3 ? [...prev, name] : prev
+    );
+  };
+
+  const addCustomSpeaker = () => {
+    const val = customSpeaker.trim();
+    if (!val || speakingInspirations.includes(val) || speakingInspirations.length >= 3) return;
+    setSpeakingInspirations((prev) => [...prev, val]);
+    setCustomSpeaker("");
+  };
+
+  const advanceFrom4 = () => {
+    // inspirations are optional — skip is fine
+    setError("");
+    setStep(5);
+  };
+
+  const advanceFrom5 = () => {
     if (!readingStyle) {
       setError("Pick how you’d like to start each day.");
       return;
     }
     setError("");
+    setStep(6);
+  };
+
+  const handleSetReminder = async () => {
+    setReminderStatus("loading");
+    setReminderError("");
+    try {
+      await requestAndSubscribe(reminderTime);
+      setReminderStatus("on");
+    } catch (e) {
+      setReminderError(e.message);
+      setReminderStatus("idle");
+    }
+  };
+
+  const finish = () => {
     saveProfile({
       name: name.trim(),
       jobTitle: jobTitle.trim(),
       industry: industry.trim(),
       careerGoal: careerGoal.trim(),
       focusAreas: focusAreas.slice(0, 3),
+      speakingInspirations,
       readingStyle,
       passageLength,
     });
@@ -221,6 +295,65 @@ export default function Onboarding({ onComplete }) {
 
         {step === 4 && (
           <section className="flex-1 flex flex-col">
+            <h1 className="font-serif text-[2rem] sm:text-4xl text-ink leading-[1.15] mb-3">
+              Who do you want to sound like?
+            </h1>
+            <p className="font-sans text-inkMuted text-base leading-relaxed mb-2">
+              Based on your goals, here are some voices worth channelling. Pick up to 3 — we'll write your passages in their spirit.
+            </p>
+            <p className="font-sans text-xs text-inkFaint mb-8">Optional — tap Skip if you're not sure yet.</p>
+
+            <div className="flex flex-wrap gap-2.5 mb-6 flex-1 content-start">
+              {getSuggestedSpeakers(focusAreas).map((speaker) => {
+                const active = speakingInspirations.includes(speaker);
+                const disabled = !active && speakingInspirations.length >= 3;
+                return (
+                  <button
+                    key={speaker}
+                    type="button"
+                    disabled={disabled}
+                    data-active={active}
+                    onClick={() => toggleSpeaker(speaker)}
+                    className="onboarding-chip"
+                  >
+                    {speaker}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="flex gap-2 mb-2">
+              <input
+                className="onboarding-input flex-1 py-3 text-base"
+                placeholder="Add someone else…"
+                value={customSpeaker}
+                onChange={(e) => setCustomSpeaker(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addCustomSpeaker()}
+                disabled={speakingInspirations.length >= 3}
+              />
+              <button
+                type="button"
+                onClick={addCustomSpeaker}
+                disabled={!customSpeaker.trim() || speakingInspirations.length >= 3}
+                className="btn-secondary shrink-0"
+              >
+                Add
+              </button>
+            </div>
+            {speakingInspirations.length > 0 && (
+              <p className="font-sans text-sm text-inkMuted mb-2">
+                Selected: {speakingInspirations.join(", ")}
+              </p>
+            )}
+
+            <button type="button" className="onboarding-cta mt-6" onClick={advanceFrom4}>
+              {speakingInspirations.length > 0 ? "Next →" : "Skip →"}
+            </button>
+          </section>
+        )}
+
+        {step === 5 && (
+          <section className="flex-1 flex flex-col">
             <h1 className="font-serif text-[2rem] sm:text-4xl text-ink leading-[1.15] mb-8">How do you like to read?</h1>
 
             <div className="space-y-4 mb-10">
@@ -288,8 +421,64 @@ export default function Onboarding({ onComplete }) {
                 {error}
               </p>
             ) : null}
+            <button type="button" className="onboarding-cta mt-8" onClick={advanceFrom5}>
+              Next →
+            </button>
+          </section>
+        )}
+
+        {step === 6 && (
+          <section className="flex-1 flex flex-col">
+            <h1 className="font-serif text-[2rem] sm:text-4xl text-ink leading-[1.15] mb-3">
+              Set a daily reminder?
+            </h1>
+            <p className="font-sans text-inkMuted text-base leading-relaxed mb-10">
+              Get a push notification at the same time every day so the habit sticks. You can always change this in Settings.
+            </p>
+
+            <div className="flex-1 space-y-6">
+              {reminderStatus !== "on" ? (
+                <>
+                  <div className="rounded-2xl border border-border bg-white/70 px-5 py-4 shadow-sm">
+                    <p className="onboarding-label mb-3">What time works for you?</p>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="time"
+                        className="input text-base py-3 px-4 w-36 shrink-0"
+                        value={reminderTime}
+                        onChange={(e) => setReminderTime(e.target.value)}
+                      />
+                      <p className="font-sans text-sm text-inkMuted leading-relaxed">
+                        We'll send a nudge at this time every day.
+                      </p>
+                    </div>
+                  </div>
+                  {reminderError && (
+                    <p className="font-sans text-sm text-accent">{reminderError}</p>
+                  )}
+                  <button
+                    type="button"
+                    className="onboarding-cta w-full"
+                    disabled={reminderStatus === "loading"}
+                    onClick={handleSetReminder}
+                  >
+                    {reminderStatus === "loading" ? "Setting up…" : "Set reminder"}
+                  </button>
+                </>
+              ) : (
+                <div className="rounded-2xl border border-accent/30 bg-accentSoft/40 px-5 py-4">
+                  <p className="font-sans text-sm font-semibold text-ink">
+                    Reminder set for {reminderTime} every day ✓
+                  </p>
+                </div>
+              )}
+              <p className="font-sans text-xs text-inkFaint">
+                Requires the app to be added to your home screen. iOS 16.4+ only.
+              </p>
+            </div>
+
             <button type="button" className="onboarding-cta mt-8" onClick={finish}>
-              Start reading →
+              {reminderStatus === "on" ? "Start reading →" : "Skip for now →"}
             </button>
           </section>
         )}

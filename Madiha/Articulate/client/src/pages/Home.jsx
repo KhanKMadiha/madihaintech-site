@@ -1,298 +1,293 @@
-import { useCallback, useMemo, useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { MOODS, THEMES, PASSAGE_LENGTH_MINUTES } from "../lib/constants.js";
 import { generatePassage } from "../lib/api.js";
-import {
-  addReadDate,
-  clearSession,
-  loadSession,
-  loadFavourites,
-  saveFavourites,
-  saveSession,
-} from "../lib/storage.js";
+import { clearSession, loadSession, saveSession } from "../lib/storage.js";
 import { todayKey } from "../lib/dates.js";
+import { requestAndSubscribe } from "../lib/notifications.js";
 
 function readInitialFromSession() {
   const s = loadSession();
   const dk = todayKey();
   if (s?.dateKey !== dk || !s?.passage) {
-    return {
-      passage: null,
-      completedToday: false,
-      mood: "focused",
-      themeMode: "surprise",
-      themePick: THEMES[0],
-    };
+    return { mood: "focused", themeMode: "surprise", themePick: THEMES[0] };
   }
   return {
-    passage: s.passage,
-    completedToday: !!s.completedToday,
     mood: s.mood || "focused",
     themeMode: s.themeMode || "surprise",
     themePick: s.themePick && THEMES.includes(s.themePick) ? s.themePick : THEMES[0],
+    hasPassage: true,
   };
 }
 
+function LoadingScreen() {
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-paper gap-8 px-8">
+      <div className="text-center space-y-2">
+        <p className="font-serif text-2xl text-ink">Writing your passage…</p>
+        <p className="font-sans text-sm text-inkMuted">Tailored to your voice and goals</p>
+      </div>
+      <div className="w-64 h-1 bg-border rounded-full overflow-hidden">
+        <div
+          className="h-full bg-accent rounded-full"
+          style={{ animation: "loading-bar 2.8s ease-in-out infinite" }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
-  const { profile, refreshReads } = useOutletContext();
+  const { profile } = useOutletContext();
+  const navigate = useNavigate();
   const init = useMemo(() => readInitialFromSession(), []);
+
   const [mood, setMood] = useState(init.mood);
   const [themeMode, setThemeMode] = useState(init.themeMode);
   const [themePick, setThemePick] = useState(init.themePick);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [passage, setPassage] = useState(init.passage);
-  const [completedToday, setCompletedToday] = useState(init.completedToday);
-  const [savedToast, setSavedToast] = useState(false);
+
+  // Today's inspiration pick — defaults to all saved inspirations selected
+  const allInspirations = profile.speakingInspirations || [];
+  const [selectedInspirations, setSelectedInspirations] = useState(allInspirations);
+  const toggleInspiration = (name) =>
+    setSelectedInspirations((prev) =>
+      prev.includes(name) ? prev.filter((x) => x !== name) : [...prev, name]
+    );
+
+  // Reminder state
+  const [reminderTime, setReminderTime] = useState("08:00");
+  const [reminderStatus, setReminderStatus] = useState("idle"); // idle | loading | on | error
+  const [reminderError, setReminderError] = useState("");
+  const notificationsSupported = "Notification" in window && "serviceWorker" in navigator;
+  const reminderAlreadyGranted = notificationsSupported && Notification.permission === "granted";
 
   const dateKey = todayKey();
   const checkinFirst = profile.readingStyle === "checkin";
   const targetReadMinutes = PASSAGE_LENGTH_MINUTES[profile.passageLength] ?? 4;
-
   const moodLabel = useMemo(() => MOODS.find((m) => m.id === mood)?.label || mood, [mood]);
-
-  const persistSession = useCallback(
-    (next) => {
-      saveSession({
-        dateKey,
-        mood,
-        themeMode,
-        themePick,
-        ...next,
-      });
-    },
-    [dateKey, mood, themeMode, themePick]
-  );
+  const today = new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" });
 
   const handleGenerate = async () => {
     setError("");
     setLoading(true);
-    setCompletedToday(false);
     try {
       const surprise = checkinFirst ? themeMode === "surprise" : true;
-      const body = {
+      const data = await generatePassage({
         name: profile.name,
         role: profile.jobTitle,
         industry: profile.industry,
         goals: profile.careerGoal,
         topics: profile.focusAreas,
+        inspirations: selectedInspirations.length > 0 ? selectedInspirations : profile.speakingInspirations,
         mood: checkinFirst ? moodLabel : "Ready to read — straight to the passage",
         theme: surprise ? undefined : themePick,
         surprise,
         targetReadMinutes,
-      };
-      const data = await generatePassage(body);
-      setPassage(data);
-      persistSession({ passage: data, completedToday: false });
+      });
+      saveSession({ dateKey, mood, themeMode, themePick, passage: data, completedToday: false });
+      navigate("/read");
     } catch (e) {
       setError(e.message || "Something went wrong.");
-    } finally {
       setLoading(false);
     }
   };
 
-  const handleMarkRead = () => {
-    addReadDate(dateKey);
-    refreshReads();
-    setCompletedToday(true);
-    persistSession({ passage, completedToday: true });
+  const handleSetReminder = async () => {
+    setReminderStatus("loading");
+    setReminderError("");
+    try {
+      await requestAndSubscribe(reminderTime);
+      setReminderStatus("on");
+    } catch (e) {
+      setReminderError(e.message);
+      setReminderStatus("error");
+    }
   };
 
-  const handleSaveFavourite = () => {
-    if (!passage) return;
-    const list = loadFavourites();
-    const id = crypto.randomUUID();
-    saveFavourites([
-      {
-        id,
-        title: passage.title,
-        sourceLabel: passage.sourceLabel,
-        passageText: passage.passageText,
-        focusTip: passage.focusTip,
-        readTimeMinutes: passage.readTimeMinutes,
-        theme: passage.theme,
-        savedAt: new Date().toISOString(),
-      },
-      ...list,
-    ]);
-    setSavedToast(true);
-    window.setTimeout(() => setSavedToast(false), 2200);
-  };
-
-  const handleNewPassage = () => {
-    setPassage(null);
-    setCompletedToday(false);
-    setError("");
-    setMood("focused");
-    setThemeMode("surprise");
-    setThemePick(THEMES[0]);
-    clearSession();
-  };
+  if (loading) return <LoadingScreen />;
 
   const firstName = profile.name.split(" ")[0];
 
   return (
-    <div className="space-y-10">
-      <section className="space-y-2">
-        <p className="font-sans text-xs uppercase tracking-[0.2em] text-inkMuted">Today</p>
-        <h1 className="font-serif text-3xl text-ink leading-tight">Hello, {firstName}</h1>
-        <p className="font-sans text-inkMuted leading-relaxed">
-          {checkinFirst
-            ? "Check in, then open a passage written for your voice — and read it like you mean it."
-            : "When you’re ready, we’ll open something tailored to you — no detours, just the page."}
-        </p>
-      </section>
+    <div className="flex-1 flex flex-col animate-fade-up">
+      <div className="flex-1 flex flex-col surface p-6 sm:p-8 gap-6">
 
-      {!passage ? (
-        <section className="rounded-2xl border border-border bg-white/50 p-6 shadow-soft space-y-8">
+        {/* Greeting */}
+        <div className="space-y-0.5">
+          <p className="font-sans text-xs uppercase tracking-[0.2em] text-inkFaint">{today}</p>
+          <h1 className="font-serif text-3xl text-ink leading-tight">Hello, {firstName}</h1>
+          <p className="font-sans text-sm text-inkMuted leading-relaxed pt-0.5">
+            {checkinFirst
+              ? "A quick check-in, then today's passage."
+              : `Ready when you are — ~${targetReadMinutes} min passage, tailored to you.`}
+          </p>
+          {allInspirations.length > 0 && (
+            <div className="pt-2 space-y-1.5">
+              <p className="font-sans text-xs text-inkFaint">Channel today:</p>
+              <div className="flex flex-wrap gap-2">
+                {allInspirations.map((name) => (
+                  <button
+                    key={name}
+                    type="button"
+                    data-active={selectedInspirations.includes(name)}
+                    className="chip text-xs py-1 px-3"
+                    onClick={() => toggleInspiration(name)}
+                  >
+                    {name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="h-px bg-border" />
+
+        {/* Form area */}
+        <div className="flex-1 flex flex-col gap-5">
           {checkinFirst ? (
             <>
-              <div>
-                <h2 className="font-sans text-sm font-semibold text-ink mb-3">How&apos;s your energy?</h2>
-                <div className="flex flex-wrap gap-2">
+              {/* Mood */}
+              <div className="space-y-3">
+                <p className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-inkMuted">
+                  How's your energy?
+                </p>
+                <div className="flex rounded-xl border border-border bg-white/50 p-1 gap-1 overflow-x-auto">
                   {MOODS.map((m) => (
                     <button
                       key={m.id}
                       type="button"
-                      data-active={mood === m.id}
-                      className="chip"
                       onClick={() => setMood(m.id)}
+                      className={`flex-1 min-w-0 rounded-lg py-2 px-2 text-center transition font-sans text-sm whitespace-nowrap ${
+                        mood === m.id
+                          ? "bg-white text-ink shadow-sm font-semibold"
+                          : "text-inkMuted hover:text-ink"
+                      }`}
                     >
                       {m.label}
                     </button>
                   ))}
                 </div>
-                <p className="mt-2 text-sm text-inkMuted">{MOODS.find((x) => x.id === mood)?.hint}</p>
+                {MOODS.find((x) => x.id === mood)?.hint && (
+                  <p className="text-xs text-inkFaint">{MOODS.find((x) => x.id === mood).hint}</p>
+                )}
               </div>
 
-              <div>
-                <h2 className="font-sans text-sm font-semibold text-ink mb-3">Theme</h2>
-                <div className="flex flex-wrap gap-2 mb-4">
+              {/* Theme */}
+              <div className="space-y-3">
+                <p className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-inkMuted">
+                  Theme
+                </p>
+                <div className="flex rounded-xl border border-border bg-white/50 p-1 gap-1">
                   <button
                     type="button"
-                    data-active={themeMode === "surprise"}
-                    className="chip"
                     onClick={() => setThemeMode("surprise")}
+                    className={`flex-1 rounded-lg py-2 px-3 text-center transition font-sans text-sm ${
+                      themeMode === "surprise"
+                        ? "bg-white text-ink shadow-sm font-semibold"
+                        : "text-inkMuted hover:text-ink"
+                    }`}
                   >
                     Surprise me
                   </button>
                   <button
                     type="button"
-                    data-active={themeMode === "pick"}
-                    className="chip"
                     onClick={() => setThemeMode("pick")}
+                    className={`flex-1 rounded-lg py-2 px-3 text-center transition font-sans text-sm ${
+                      themeMode === "pick"
+                        ? "bg-white text-ink shadow-sm font-semibold"
+                        : "text-inkMuted hover:text-ink"
+                    }`}
                   >
                     Pick a theme
                   </button>
                 </div>
-                {themeMode === "pick" ? (
-                  <label className="block">
-                    <span className="sr-only">Theme</span>
-                    <select
-                      className="input"
-                      value={themePick}
-                      onChange={(e) => setThemePick(e.target.value)}
-                    >
-                      {THEMES.map((t) => (
-                        <option key={t} value={t}>
-                          {t}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                ) : null}
+                {themeMode === "pick" && (
+                  <select
+                    className="input text-sm"
+                    value={themePick}
+                    onChange={(e) => setThemePick(e.target.value)}
+                  >
+                    {THEMES.map((t) => <option key={t} value={t}>{t}</option>)}
+                  </select>
+                )}
               </div>
             </>
           ) : (
-            <p className="font-serif text-lg text-ink leading-relaxed">
-              Your passage is tuned for{" "}
-              <span className="text-accent font-medium">~{targetReadMinutes} minutes</span> at the microphone — same
-              profile you set up, no extra steps.
-            </p>
+            <div className="flex-1" />
           )}
+        </div>
 
-          {error ? (
-            <p className="text-sm text-accent" role="alert">
-              {error}
-            </p>
-          ) : null}
+        {/* Reminder prompt — shown if notifications not yet set up */}
+        {notificationsSupported && !reminderAlreadyGranted && reminderStatus !== "on" && (
+          <div className="rounded-2xl border border-border bg-white/50 px-4 py-3 space-y-3">
+            <div className="flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <p className="font-sans text-sm font-semibold text-ink">Daily reminder</p>
+                <p className="font-sans text-xs text-inkMuted">Get a nudge at the same time every day.</p>
+              </div>
+              <input
+                type="time"
+                className="input text-sm w-28 shrink-0 py-2"
+                value={reminderTime}
+                onChange={(e) => setReminderTime(e.target.value)}
+              />
+            </div>
+            {reminderError && <p className="font-sans text-xs text-accent">{reminderError}</p>}
+            <button
+              type="button"
+              onClick={handleSetReminder}
+              disabled={reminderStatus === "loading"}
+              className="btn-secondary w-full py-2.5 text-sm"
+            >
+              {reminderStatus === "loading" ? "Setting up…" : "Set reminder"}
+            </button>
+          </div>
+        )}
 
-          <button type="button" className="btn-primary w-full" onClick={handleGenerate} disabled={loading}>
-            {loading
-              ? "Drafting your passage…"
-              : checkinFirst
-                ? "Generate today’s passage"
-                : "Bring today’s passage"}
+        {reminderStatus === "on" && (
+          <p className="font-sans text-xs text-inkMuted text-center">
+            Reminder set for {reminderTime} every day ✓
+          </p>
+        )}
+
+        {/* Error */}
+        {error && <p className="text-sm text-accent" role="alert">{error}</p>}
+
+        {/* CTA */}
+        <div className="space-y-3 pt-2">
+          <button type="button" className="btn-primary w-full py-4 text-base" onClick={handleGenerate}>
+            {checkinFirst ? "Generate today's passage" : "Open today's passage"}
           </button>
-        </section>
-      ) : (
-        <PassageView
-          passage={passage}
-          completedToday={completedToday}
-          onMarkRead={handleMarkRead}
-          onSave={handleSaveFavourite}
-          onNew={handleNewPassage}
-          savedToast={savedToast}
-          newPassageLabel={checkinFirst ? "New check-in & passage" : "New passage"}
-        />
-      )}
+
+          {init.hasPassage && (
+            <div className="flex items-center justify-between px-1">
+              <button
+                type="button"
+                onClick={() => navigate("/read")}
+                className="font-sans text-sm text-inkMuted hover:text-accent transition-colors"
+              >
+                Continue today's passage →
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  clearSession();
+                  setMood("focused");
+                  setThemeMode("surprise");
+                  setThemePick(THEMES[0]);
+                  setError("");
+                }}
+                className="font-sans text-sm text-inkFaint hover:text-inkMuted transition-colors"
+              >
+                Start fresh
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
-  );
-}
-
-function PassageView({ passage, completedToday, onMarkRead, onSave, onNew, savedToast, newPassageLabel }) {
-  const paragraphs = passage.passageText.split(/\n\n+/).filter(Boolean);
-
-  return (
-    <article className="space-y-8">
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div className="space-y-1 min-w-0">
-          <p className="font-sans text-xs uppercase tracking-[0.2em] text-accent">{passage.theme}</p>
-          <h2 className="font-serif text-2xl sm:text-3xl text-ink leading-snug">{passage.title}</h2>
-          <p className="font-sans text-sm text-inkMuted">{passage.sourceLabel}</p>
-        </div>
-        <p className="shrink-0 rounded-full border border-border bg-white/70 px-3 py-1 font-sans text-xs text-inkMuted">
-          ~{passage.readTimeMinutes} min read-aloud
-        </p>
-      </div>
-
-      <div className="rounded-2xl border border-border bg-white/60 p-6 sm:p-8 shadow-soft">
-        <div className="font-serif text-lg sm:text-[1.125rem] leading-[1.75] text-ink space-y-5">
-          {paragraphs.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
-      </div>
-
-      <aside className="rounded-xl border-l-4 border-accent bg-accentSoft/50 px-4 py-3">
-        <p className="font-sans text-xs font-semibold uppercase tracking-wider text-accent mb-1">Today’s focus</p>
-        <p className="font-serif text-base text-ink leading-relaxed">{passage.focusTip}</p>
-      </aside>
-
-      <div className="flex flex-col sm:flex-row gap-3">
-        <button
-          type="button"
-          className="btn-primary flex-1"
-          onClick={onMarkRead}
-          disabled={completedToday}
-        >
-          {completedToday ? "Logged for today" : "Mark as read"}
-        </button>
-        <button type="button" className="btn-secondary flex-1" onClick={onSave}>
-          Save to favourites
-        </button>
-      </div>
-
-      <div className="flex items-center justify-between gap-4 pt-2">
-        <button
-          type="button"
-          onClick={onNew}
-          className="font-sans text-sm text-inkMuted hover:text-accent underline-offset-4 hover:underline"
-        >
-          {newPassageLabel}
-        </button>
-        {savedToast ? <span className="text-sm text-inkMuted">Saved to Library.</span> : <span />}
-      </div>
-    </article>
   );
 }

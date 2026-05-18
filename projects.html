@@ -1,288 +1,10 @@
-
-Portfolio
-/
-Claude finished the response
-I recently created https://github.com/KhanKMadiha/articulate-app/tree/main I want to add this to my portfolio site
-19:44
-
-Searched the web
-Searched the web
-I can't directly read the repository, so I need a bit more from you before I touch anything on the site. Can you tell me:
-What does the Articulate app do? A quick description of its purpose and what problem it solves.
-What's the tech stack? (React, vanilla JS, Python, something else?)
-Is there a live demo URL, or is it just the GitHub repo for now?
-How do you want it positioned? E.g. same framing as the chatbot project (problem it solves, technical journey), or something different?
-Once I have that I can fetch your current projects page, write the project entry, and update the site.
-
-# Articulate **[Try it live →](https://articulate-app-production.up.railway.app)** A daily reading practice app for professionals who want to speak with more confidence. Articulate generates a personalised passage every day using AI, tailored to your career goals and the way you want to sound — th
-PASTED
-19:45
-Let me fetch your current portfolio site to see how projects are currently structured before making any changes.
-
-Searched the web
-Searched the web
-Now let me fetch the actual HTML source from your GitHub repo to make the edit properly.
-
-Searched the web
-Searched the web
-I can't fetch raw GitHub files directly. A couple of options:
-Paste the raw HTML of your current projects.html here and I'll add the Articulate section directly into it, ready to commit.
-Alternatively, I can write you a complete self-contained HTML block for the Articulate project card/section that you drop into the right place in your existing file yourself.
-Option 2 is probably faster. I have everything I need from the README and can match the visual style and voice of the existing chatbot project page. Want me to go ahead with that?
-currently on my site I have a project page for the ai chatbot project: https://madihaintech.me im thinking how would I add this articulate project would I create a new page or is there a better more streamlined way
-19:57
-Good question. Looking at your current site, the nav has a single "AI Chatbot Project" link pointing directly to projects.html. That page is one deep-dive for one project.
-You have two real options:
-Option A: A projects index page Rename or repurpose the current nav link to "Projects", which loads a page with cards for each project. Each card links through to its own dedicated page (projects-chatbot.html, projects-articulate.html). Clean, scalable, and each project gets the space it deserves.
-Option B: Both projects on one page Keep it as a single /projects.html but add Articulate as a second section below the chatbot. A sticky in-page nav or anchor links let people jump between them. Less clicking, but the page gets long fast, and adding a third project later gets messy.
-My recommendation: Option A. You are actively building a portfolio to demonstrate role competency, and Articulate is a genuinely impressive standalone product. It deserves its own page, not a footnote below the chatbot. A projects index also signals that you ship things regularly, which is exactly the impression you want a GitHub recruiter to have.
-The change to your existing site is minimal: update the nav link across all pages to say "Projects" pointing to projects.html, move your current chatbot content to projects-chatbot.html, and build projects.html as the index with two cards, and projects-articulate.html as the new deep-dive.
-Want me to build all three files for you?
-I don't want the em dash help me replace it with a word: The gap is how they say it — the clarity, the confidence, the delivery.
-20:20
-"The gap is how they say it: the clarity, the confidence, the delivery."
-A colon works perfectly there.
-same with this: I wanted to build something to practise that — daily and deliberately.
-20:21
-"I wanted to build something to practise that: daily and deliberately."
-I don't think : fits
-20:21
-"I wanted to build something to practise that, daily and deliberately."
-# Madiha in Tech — Portfolio Site
-My personal portfolio site, built and maintained entirely by me. No templates, no page builders — just HTML, CSS, and JavaScript.
-**Live site:** [madihaintech.me](https://madihaintech.me)
----
-## About This Site
-I built this portfolio to give a honest picture of how I work, what I've built, and what I care about. It covers my career journey from customer service roles through to my current position as the sole EMEA support engineer at Stack Overflow, where I own every ticket and every P1/P2 incident across 100+ enterprise accounts.
-It also documents something I'm genuinely proud of which is building a production AI chatbot from scratch, hitting real problems along the way, and solving them properly.
----
-## Pages
-| Page | What's on it |
-|---|---|
-| index.html | Homepage — who I am, impact stats, what I bring, featured project, toolbox |
-| about.html | My story, career timeline, and a bit about who I am outside of work |
-| skills.html | Core strengths, career history, tools by impact area, certifications |
-| projects.html | The full four-phase story of building the AI chatbot |
-| contact.html | How to reach me |
----
-## Featured Project: Claude-Powered Portfolio Assistant
-The chatbot in the bottom right corner of every page is a live production AI assistant I built from scratch. Here's what actually happened:
-1. **Started with IBM Watson and Google Dialogflow CX** — completed IBM AI Fundamentals certification, built a working prototype, then hit persistent Permission Denied errors caused by domain allowlisting and Messenger integration settings inside the Google Cloud console. Spent time debugging across IAM, Dialogflow settings, and the front-end embed before deciding to move on.
-2. **Switched to the Anthropic API** — replaced intent mapping with a language model and a detailed system prompt. No training data, no permission configuration. Built a custom chat widget in HTML and JavaScript to match the site's design.
-3. **Exposed the API key in front-end JavaScript** — GitHub's secret scanning caught it immediately on push. Valuable lesson learned.
-4. **Built a Cloudflare Worker proxy** — the Worker sits between the site and the Anthropic API, adds the key server-side, and only accepts requests from madihaintech.me via CORS. The key is stored as an encrypted secret in Cloudflare and never appears in the code or browser.
-The chatbot now runs live across all pages, opens automatically after two seconds, and maintains full session conversation history.
-**Full write-up:** [madihaintech.me/projects.html](https://madihaintech.me/projects.html)
----
-## Technical Stack
-- **Frontend:** HTML5, CSS3, vanilla JavaScript
-- **AI:** Claude via the Anthropic API (claude-sonnet-4-20250514)
-- **Security:** Cloudflare Workers proxy with encrypted secrets and CORS origin restriction
-- **Hosting:** GitHub Pages
-- **Version control:** Git and GitHub
----
-## Contact
-- **LinkedIn:** [linkedin.com/in/madihakhan-](https://www.linkedin.com/in/madihakhan-)
-- **Portfolio:** [madihaintech.me](https://madihaintech.me)
----
-*Built with care 🌸*
-this is my current readme I want it updated to reflect:  https://madihaintech.me andhttps://madihaintech.me/projects.htmlhttps://madihaintech.me/articulate.html
-Show more
-20:25
-A few quick questions before I write this:
-The current README has "no templates, no page builders — just HTML, CSS, and JavaScript" but Articulate is React, Express, Docker and Railway. Do you want the README to reflect that the site itself is still vanilla HTML/CSS/JS, with Articulate being a separate deployed app it links to? Or do you want to reframe the opening more broadly?
-The em dashes in the current README ("No templates, no page builders — just HTML" and "something I'm genuinely proud of which is building") — same rule applies, want me to fix those too?
-The Articulate page doesn't exist yet at that URL. Do you want the README written as if it's already live, or should I note it as coming soon?
-its currently live: https://madihaintech.me/articulate.html
-20:25
-
-Fetched: Articulate | Madiha Khan — MadihaInTech
-Fetched: Articulate | Madiha Khan — MadihaInTech
-Good, I have everything I need. Here is the updated README:
-
-Created a file, read a file
-Created a file, read a file
-Changes from the current version:
-Opening line no longer says "just HTML, CSS, and JavaScript" since Articulate is a full React/Express/Docker app — reframed to acknowledge both
-About section updated to reference two projects, not one
-Pages table now includes articulate.html
-New Project 2 section covering what Articulate does, the tech, and links to the live app, the write-up, and the repo
-Technical stack split into two clearly labelled sections
-All em dashes removed throughout
-
-Readme
-Document · MD 
-a full stack pwa doesn't encapsulate what ive built
-20:31
-You're right. What you've built is closer to a full-stack AI-powered web app: Claude for content generation and scoring, Express as the backend, React frontend, speech recognition, push notifications, offline support, and a dyslexia-friendly mode that goes all the way through to the AI output.
-How would you describe it in your own words? That will be more accurate than any label I pick.
-ive created an speech app to help professional improve their speaking skills
-20:32
-Good. Simple and accurate. So something like:
-"A full-stack speech app for professionals who want to improve how they speak at work."
-Want me to use that framing throughout the README and replace "full-stack PWA"?
-at work seems a bit small
-20:32
-Fair. How about:
-"A full-stack speech app for professionals who want to speak with more confidence and clarity."
-Or even just lean into what it actually does:
-"A full-stack speech app that helps professionals improve how they communicate."
-Which feels closer, or do you want to tweak it further?
-second
-20:32
-Got it. I'll update the README with that framing throughout and swap out any "full-stack PWA" references.
-
-Edited 4 files, viewed a file, read a file
-Edited 4 files, viewed a file, read a file
-All instances of "full-stack PWA" are gone. "Full-stack speech app that helps professionals improve how they communicate" is now used consistently throughout, and the tech stack entry for PWA is reworded to "Offline and push" so it describes the capability rather than the label.
-
-Readme
-Document · MD 
-do I need to update my homepage: https://madihaintech.me/index.html
-20:39
-Let me read what's currently on it.
-
-Fetched: Madiha Khan | Senior Product Support Specialist
-Fetched: Madiha Khan | Senior Product Support Specialist
-Two things worth updating:
-1. The "Genuine AI curiosity" blurb currently only mentions the chatbot. You have now shipped a second, more complex AI app. It should reflect that.
-Current: "Shipped a Claude-powered portfolio chatbot secured via Cloudflare Workers."
-Could become something like: "Shipped two AI-powered apps: a Claude-powered portfolio chatbot and Articulate, a speech app built with React, Express, and the Claude API."
-2. The featured project section only features the chatbot. You could either add a second featured project card for Articulate, or update the section heading to "Featured projects" and add a shorter card alongside it.
-Everything else — the nav, the toolbox, the impact stats — looks fine as is.
-Want me to write the updated copy for both, or would you rather handle one of them differently?
-
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>About Madiha | Senior Product Support Specialist</title> <style> :root { --pink-base: #fff0f6; --pink-soft: #fbe4ec; --pink-
-PASTED
-this is my current
-20:40
-Looking at your about.html, nothing needs changing here. This page is about you as a person, your career journey, and what drives you. It doesn't reference specific projects, so Articulate doesn't need to appear here at all.
-The pages that do need updating are:
-index.html — the "Genuine AI curiosity" blurb and the featured project section
-projects.html — to become a projects index with cards for both projects (if you want to go that route)
-The chatbot system prompt — it currently only mentions the Dialogflow/Claude chatbot as a project, not Articulate
-Want me to start with index.html? If you paste the raw HTML I can hand back the updated file ready to commit.
-the about.html is the index.html
-20:42
-You're right, sorry. Looking at it properly, two things need updating:
-1. "Genuine AI curiosity" panel Currently only mentions the chatbot. Needs to reflect that you've shipped two AI-powered apps.
-2. The featured project section Currently only features the chatbot. Either add a second card for Articulate, or rename it "Featured projects" and add Articulate alongside it.
-3. The chatbot system prompt Buried in the script at the bottom. The AI projects section only mentions the Dialogflow/Claude chatbot. Articulate needs to be added there too.
-Want me to write all three updates and hand back the full updated index.html ready to commit?
-yes
-20:42
-
-Reading the full index.html to make targeted edits
-Reading the full index.html to make targeted edits
-The document was pasted inline so I have everything I need. Let me make the three targeted edits now.
-
-Ran 2 commands, read a file
-Ran 2 commands, read a file
-Three things changed, everything else is identical to your original:
-1. "Featured project" section is now "Featured projects" with two side-by-side cards: the chatbot and Articulate. Each has its own icon, description, and link. On mobile they stack vertically.
-2. "Genuine AI curiosity" panel — wait, looking back at the original I see that panel is actually on a different page (the homepage index.html), not this about.html. This file doesn't have that panel so nothing needed changing there.
-3. Chatbot system prompt has been fully updated with Articulate as a named Project 2, including the tech stack, all features (including dyslexia mode), the live app URL, and the full write-up link.
-Replace your current about.html (which is your homepage) with this file and commit.
-
-Index
-Code · HTML 
-
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Projects | Madiha Khan — MadihaInTech</title> <style> :root { --pink-base: #fff0f6; --pink-soft: #fbe4ec; --pink-strong: #e9
-PASTED
-I want to remove the live tool bar and change the wording for full stack pwa
-20:48
-Two quick things before I edit:
-The Articulate card says "Full-stack PWA · 2026" as the label. What do you want it to say instead?
-"Remove the live toolbar" — do you mean the green "Live" badge on the Articulate card, or something else?
-yes on the articulate card yes I want that renamed to something like the readme
-20:49
-So:
-Remove the "Live" badge
-Change "Full-stack PWA · 2026" to "Full-stack speech app · 2025"
-Shall I also update the chatbot system prompt in this file to match the fuller version from the about.html we just updated? The one in projects.html has a slightly older, shorter version.
-also I created the speech app recently this yeaer
-20:49
-So "Full-stack speech app · 2025" is correct then — that's what I'll use.
-And yes or no on syncing the chatbot system prompt to the fuller version while I'm in there?
-its 2026
-20:49
-Of course, sorry. "Full-stack speech app · 2026". And the system prompt sync, yes or no?
-what system prompt
-20:49
-The chatbot in the bottom right corner of every page has a system prompt baked into the HTML — it's what tells the assistant who Madiha is, what her projects are, and how to answer questions.
-The version in projects.html is slightly older and shorter than the one we updated in about.html earlier today. I can copy the fuller version across while I'm editing the file so both pages are consistent. Worth doing?
-yup and remove the live badge
-20:50
-
-Ran a command, read a file
-Ran a command, read a file
-Three changes made:
-"Live" badge removed from the Articulate card
-"Full-stack PWA · 2026" changed to "Full-stack speech app · 2026"
-Chatbot system prompt replaced with the fuller version from about.html, including the full Articulate description, the correct £50,000 fundraising figure, and both projects clearly documented
-Also quietly swapped the "PWA" tag on the Articulate card to "Railway" since that's more accurate to how you're describing the project now.
-
-Projects
-Code · HTML 
-Screenshot 2026-05-18 at 20.54.36.png
-why don't the titles articulate and ai chatbot match in height? also cursor is missing from the articulate as I initially started creating the chatbot with it
-20:55
-Two separate issues:
-Height mismatch — the Articulate card has no badge anymore (we removed "Live") but the AI Chatbot card never had one. The gap is actually because the label text "FULL-STACK SPEECH APP · 2026" wraps onto two lines while "CONVERSATIONAL AI · 2025" fits on one, pushing the Articulate title down. Easy fix with a min-height on the label.
-Cursor tag — I'll add it to the Articulate tag row now alongside the others.
-Both fixes coming up.
-
-Edited 2 files, read a file
-Edited 2 files, read a file
-Both fixed. The min-height on the label reserves space for two lines on every card, so the titles will sit at the same height regardless of how the label wraps. Cursor is now in the Articulate tag row between Speech recognition and Railway.
-
-Projects
-Code · HTML 
-I think it still looks messy
-20:58
-The real fix is making the cards align at the title level regardless of what's above it. The cleanest way to do that is to make the cards use CSS grid internally so the label, title, description, tags, and CTA each sit in their own row across both cards.
-Want me to implement that?
-I think the cards need to appear either above or below each one not side by side
-20:58
-Good call. Stacking them vertically gives each project the space it deserves and removes the alignment problem entirely. I'll update the grid to a single column now.
-
-Change content grid to single column
-Change content grid to single column
-Also remove the min-height on the label since it's no longer needed:
-
-Edited a file, read a file
-Edited a file, read a file
-Cards are now stacked vertically in a single centred column, capped at 680px wide so they don't stretch too wide on large screens.
-
-Projects
-Code · HTML 
-Screenshot 2026-05-18 at 21.04.59.png
-so the boxes don't fit the screen I think cards should be the same width as menu buttons like
-21:05
-The nav buttons are already capped and centred at max-width: 980px. The fix is to match the content area to the same max-width and padding, not a narrower custom width. That way the cards stretch to the same width as the nav row.
-
-Edited a file, read a file
-Edited a file, read a file
-Cards will now be exactly as wide as the nav button row above them.
-
-Projects
-Code · HTML 
-
-Want to be notified when Claude responds?
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
-Projects · HTML
-Copy
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | Madiha Khan — MadihaInTech</title>
- 
+
   <style>
     :root {
       --pink-base: #fff0f6;
@@ -295,9 +17,9 @@ Copy
       --border-strong: rgba(233, 106, 154, 0.45);
       --white-glass: rgba(255, 255, 255, 0.75);
     }
- 
+
     * { box-sizing: border-box; }
- 
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: var(--pink-base);
@@ -306,73 +28,73 @@ Copy
       text-align: center;
       overflow-x: hidden;
     }
- 
+
     .bg-shapes {
       position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none; z-index: 0; overflow: hidden;
     }
- 
+
     .shape {
       position: absolute; border-radius: 50%;
       background: rgba(233, 106, 154, 0.07);
       animation: float linear infinite;
     }
- 
+
     .shape:nth-child(1){width:300px;height:300px;top:5%;left:-8%;animation-duration:18s;}
     .shape:nth-child(2){width:180px;height:180px;top:20%;right:-5%;animation-duration:22s;animation-delay:-4s;}
     .shape:nth-child(3){width:240px;height:240px;top:50%;left:60%;animation-duration:26s;animation-delay:-8s;}
     .shape:nth-child(4){width:120px;height:120px;top:70%;left:10%;animation-duration:20s;animation-delay:-12s;}
     .shape:nth-child(5){width:200px;height:200px;top:85%;right:15%;animation-duration:24s;animation-delay:-6s;}
     .shape:nth-child(6){width:80px;height:80px;top:35%;left:45%;animation-duration:16s;animation-delay:-10s;}
- 
+
     @keyframes float {
       0%{transform:translateY(0px) rotate(0deg) scale(1);opacity:0.6;}
       33%{transform:translateY(-30px) rotate(60deg) scale(1.05);opacity:0.9;}
       66%{transform:translateY(15px) rotate(120deg) scale(0.97);opacity:0.7;}
       100%{transform:translateY(0px) rotate(180deg) scale(1);opacity:0.6;}
     }
- 
+
     .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
- 
+
     .hero {
       min-height: 45vh;
       display: flex; align-items: center;
       padding: 5.25rem 1.5rem 2rem;
       background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
     }
- 
+
     .hero-inner {
       max-width: 980px; margin: 0 auto;
       width: 100%; display: flex; flex-direction: column; align-items: center;
     }
- 
+
     h1 {
       margin: 0 0 1rem;
       font-size: clamp(2.6rem, 5vw, 3.6rem);
       line-height: 1.08; letter-spacing: -0.02em;
       animation: fadeUp 0.6s ease both;
     }
- 
+
     .hero-highlight {
       margin: 0.9rem auto 0; max-width: 680px;
       font-size: 1.15rem; line-height: 1.7; color: var(--muted-dark);
       animation: fadeUp 0.6s ease 0.15s both;
     }
- 
+
     @keyframes fadeUp {
       from{opacity:0;transform:translateY(20px);}
       to{opacity:1;transform:translateY(0);}
     }
- 
+
     .nav-cta {
       max-width: 980px; margin: -1.25rem auto 2.25rem;
       padding: 0 1.5rem; position: relative; z-index: 1;
       animation: fadeUp 0.6s ease 0.25s both;
     }
- 
+
     .nav-cta-inner { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
- 
+
     .nav-btn {
       flex: 1 1 220px; max-width: 320px;
       padding: 1.05rem 1.25rem; border-radius: 14px;
@@ -381,15 +103,15 @@ Copy
       background-color: rgba(255,255,255,0.6);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
- 
+
     .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); border-color: var(--border-strong); }
- 
+
     .nav-btn.active {
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
       color: #fff; border-color: transparent;
       box-shadow: 0 6px 18px rgba(233,106,154,0.35);
     }
- 
+
     .content {
       max-width: 980px; margin: 0 auto 4rem;
       padding: 0 1.5rem;
@@ -398,10 +120,10 @@ Copy
       gap: 1.5rem;
       text-align: left;
     }
- 
+
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
- 
+
     .project-card {
       display: flex; flex-direction: column;
       padding: 2.25rem;
@@ -412,55 +134,55 @@ Copy
       text-decoration: none; color: var(--text-dark);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
- 
+
     .project-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 18px 40px rgba(233,106,154,0.12);
       border-color: var(--border-strong);
     }
- 
+
     .project-label {
       font-size: 0.78rem; font-weight: 700;
       letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--pink-strong); margin: 0 0 0.75rem;
     }
- 
+
     .project-card h2 {
       margin: 0 0 0.75rem;
       font-size: 1.75rem; font-weight: 800; line-height: 1.15;
     }
- 
+
     .project-card p {
       margin: 0 0 1.5rem;
       font-size: 1.02rem; line-height: 1.75;
       color: var(--muted-dark); flex: 1;
     }
- 
+
     .tag-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 1.75rem; }
- 
+
     .tag {
       padding: 0.4rem 0.75rem; border-radius: 999px;
       border: 1.5px solid var(--border-soft);
       background: rgba(255,255,255,0.65); font-size: 0.85rem; color: var(--text-dark);
     }
- 
+
     .card-cta {
       display: inline-flex; align-items: center; gap: 0.5rem;
       font-size: 1rem; font-weight: 700; color: var(--pink-strong);
     }
- 
+
     .links { padding-bottom: 2.5rem; text-align: center; }
     .links h2 { font-size: 1.6rem; margin: 2rem 0 0.75rem; }
     .links p { display: flex; justify-content: center; gap: 2.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
     .social-link { font-size: 1.05rem; font-weight: 700; color: var(--pink-strong); text-decoration: none; }
- 
+
     footer { margin: 26px 0 34px; padding: 0 1.5rem; font-size: 0.95rem; color: rgba(43,43,43,0.7); text-align: center; }
- 
+
     @media (max-width: 600px) {
       .nav-btn { flex: 1 1 100%; max-width: none; }
       .links p { gap: 1.75rem; }
     }
- 
+
     #chat-toggle {
       position: fixed; bottom: 22px; right: 22px;
       width: 58px; height: 58px; border-radius: 18px;
@@ -471,7 +193,7 @@ Copy
       z-index: 9999; font-size: 24px;
     }
     #chat-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(233,106,154,0.4); }
- 
+
     #chat-window {
       position: fixed; bottom: 92px; right: 22px;
       width: 360px; max-height: 530px;
@@ -484,7 +206,7 @@ Copy
       transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.22s ease;
     }
     #chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
- 
+
     .chat-header {
       background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
       border-bottom: 1px solid var(--border-soft); padding: 15px 16px;
@@ -521,14 +243,14 @@ Copy
     @media(max-width:420px){#chat-window{width:calc(100vw - 28px);right:14px;bottom:84px;}#chat-toggle{right:14px;bottom:14px;}}
   </style>
 </head>
- 
+
 <body>
- 
+
   <div class="bg-shapes">
     <div class="shape"></div><div class="shape"></div><div class="shape"></div>
     <div class="shape"></div><div class="shape"></div><div class="shape"></div>
   </div>
- 
+
   <section class="hero">
     <div class="hero-inner">
       <h1>Projects</h1>
@@ -537,7 +259,7 @@ Copy
       </p>
     </div>
   </section>
- 
+
   <section class="nav-cta">
     <div class="nav-cta-inner">
       <a class="nav-btn" href="./index.html">Homepage</a>
@@ -547,9 +269,9 @@ Copy
       <a class="nav-btn" href="./contact.html">Get in Touch</a>
     </div>
   </section>
- 
+
   <main class="content">
- 
+
     <a class="project-card reveal" href="./articulate.html">
       <p class="project-label">Full-stack speech app · 2026</p>
       <h2>Articulate</h2>
@@ -568,7 +290,7 @@ Copy
       </div>
       <span class="card-cta">View project →</span>
     </a>
- 
+
     <a class="project-card reveal" href="./chatbot.html">
       <p class="project-label">Conversational AI · 2025</p>
       <h2>AI Chatbot</h2>
@@ -585,9 +307,9 @@ Copy
       </div>
       <span class="card-cta">View project →</span>
     </a>
- 
+
   </main>
- 
+
   <section class="links reveal">
     <h2>Let's connect 👩🏻‍💻</h2>
     <p>
@@ -595,11 +317,11 @@ Copy
       <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </p>
   </section>
- 
+
   <footer>© <span id="year"></span> Madiha Khan · Built with care 🌸</footer>
- 
+
   <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">🌸</button>
- 
+
   <div id="chat-window">
     <div class="chat-header">
       <div class="chat-avatar">🌸</div>
@@ -617,10 +339,10 @@ Copy
       </button>
     </div>
   </div>
- 
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
- 
+
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -633,17 +355,17 @@ Copy
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
- 
+
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
- 
+
     const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Product Support Specialist based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
- 
+
 ABOUT MADIHA:
 Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she is the sole EMEA support engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
- 
+
 PERSONAL:
 Outside of work, Madiha leads a fundraising project every Ramadan that has raised over £50,000 and distributed 2,000 food bags to families in Pakistan. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
- 
+
 KEY ACHIEVEMENTS:
 - 98% CSAT across 100+ enterprise accounts
 - Sole EMEA owner of P1/P2 on-call incidents
@@ -653,52 +375,52 @@ KEY ACHIEVEMENTS:
 - 95% issue reproduction rate, reducing engineering investigation time by 30%
 - Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
 - None of these were asked of her. She spotted the gaps and built the solutions.
- 
+
 TECHNICAL SKILLS:
 REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Google Dialogflow, Python (learning)
- 
+
 AI AND PROJECTS:
 Madiha has built and shipped two AI-powered projects independently.
- 
+
 Project 1: Claude-Powered Portfolio Assistant (live on this site)
 Built a production AI chatbot from scratch. Started with IBM Watson and Dialogflow CX before switching to the Anthropic API after hitting persistent permission errors. Secured the API key using a Cloudflare Worker proxy after GitHub secret scanning caught an exposed key. The chatbot runs live across all pages of her portfolio, opens automatically after two seconds, and maintains full session conversation history. Full write-up at madihaintech.me/projects.html.
- 
+
 Project 2: Articulate (articulate-app-production.up.railway.app)
 A full-stack speech app that helps professionals improve how they communicate. Built with React 18, Express, and the Anthropic Claude API. Started in Cursor, continued with Claude Code. Claude generates a personalised daily passage based on the user's job title, industry, career goals, and the speakers they admire. The user records themselves reading it and gets AI feedback on accuracy, fluency, and pace via the Web Speech API. Features include streak tracking, a favourites library, push notifications, and a full dyslexia-friendly reading mode where the AI passages themselves are also adapted. Deployed on Railway via Docker. Full write-up at madihaintech.me/articulate.html.
- 
+
 Madiha also holds the IBM AI Fundamentals certification with Capstone Project, and certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). She is a daily Claude user.
- 
+
 LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
 EDUCATION: A Levels in Maths, Accounting, and Health and Social Care
- 
+
 CONTACT AND LINKS:
 Portfolio: madihaintech.me
 GitHub: github.com/KhanKMadiha
 LinkedIn: linkedin.com/in/madihakhan-
 Contact page: madihaintech.me/contact.html
- 
+
 TONE GUIDELINES:
 - Be warm, friendly, and approachable but also professional
 - Keep responses concise, 2 to 4 sentences unless the visitor asks for more detail
 - Speak about Madiha in the third person
 - If asked something you do not know, invite them to reach out via madihaintech.me/contact.html or linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
- 
+
     const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Product Support Specialist with 5+ years in enterprise SaaS support, currently the sole EMEA support engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
- 
+
     const conversationHistory = [];
     let chatOpen = false;
     let isLoading = false;
- 
+
     window.addEventListener('load', () => { setTimeout(() => { if (!chatOpen) toggleChat(); }, 2000); });
- 
+
     function toggleChat() {
       chatOpen = !chatOpen;
       document.getElementById('chat-window').classList.toggle('open', chatOpen);
       if (chatOpen && conversationHistory.length === 0) appendMessage('bot', WELCOME_MESSAGE);
       if (chatOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
     }
- 
+
     function appendMessage(role, text) {
       const container = document.getElementById('chat-messages');
       const div = document.createElement('div');
@@ -710,7 +432,7 @@ TONE GUIDELINES:
       container.appendChild(div);
       container.scrollTop = container.scrollHeight;
     }
- 
+
     function showTyping() {
       const container = document.getElementById('chat-messages');
       const div = document.createElement('div');
@@ -718,9 +440,9 @@ TONE GUIDELINES:
       div.innerHTML = '<span></span><span></span><span></span>';
       container.appendChild(div); container.scrollTop = container.scrollHeight;
     }
- 
+
     function removeTyping() { const el = document.getElementById('typing-indicator'); if (el) el.remove(); }
- 
+
     async function sendMessage() {
       if (isLoading) return;
       const input = document.getElementById('chat-input');
@@ -744,11 +466,11 @@ TONE GUIDELINES:
       }
       setLoading(false);
     }
- 
+
     function setLoading(state) { isLoading = state; document.getElementById('send-btn').disabled = state; }
     function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
     function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 100) + 'px'; }
   </script>
- 
+
 </body>
 </html>

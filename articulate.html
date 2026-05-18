@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects | Madiha Khan — MadihaInTech</title>
+  <title>Articulate | Madiha Khan — MadihaInTech</title>
 
   <style>
     :root {
@@ -58,7 +58,7 @@
     .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
 
     .hero {
-      min-height: 45vh;
+      min-height: 55vh;
       display: flex; align-items: center;
       padding: 5.25rem 1.5rem 2rem;
       background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
@@ -69,15 +69,22 @@
       width: 100%; display: flex; flex-direction: column; align-items: center;
     }
 
+    .hero-label {
+      font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--pink-strong); margin: 0 0 1rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
     h1 {
       margin: 0 0 1rem;
       font-size: clamp(2.6rem, 5vw, 3.6rem);
       line-height: 1.08; letter-spacing: -0.02em;
-      animation: fadeUp 0.6s ease both;
+      animation: fadeUp 0.6s ease 0.05s both;
     }
 
     .hero-highlight {
-      margin: 0.9rem auto 0; max-width: 680px;
+      margin: 0.9rem auto 0; max-width: 760px;
       font-size: 1.15rem; line-height: 1.7; color: var(--muted-dark);
       animation: fadeUp 0.6s ease 0.15s both;
     }
@@ -106,78 +113,195 @@
 
     .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); border-color: var(--border-strong); }
 
-    .nav-btn.active {
+    .nav-btn.primary {
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
       color: #fff; border-color: transparent;
       box-shadow: 0 6px 18px rgba(233,106,154,0.35);
     }
 
+    .nav-btn.primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
     .content {
-      max-width: 980px; margin: 0 auto 4rem;
-      padding: 0 1.5rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      text-align: left;
+      max-width: 980px; margin: 0 auto 3.5rem;
+      padding: 0 1.5rem; text-align: left;
     }
 
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .project-card {
-      display: flex; flex-direction: column;
-      padding: 2.25rem;
+    .section-label {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--pink-strong);
+      margin: 0 0 1rem; text-align: center;
+    }
+
+    .intro-card {
+      padding: 2.25rem 2.5rem; border-radius: 22px;
       border: 1.5px solid var(--border-soft);
-      border-radius: 26px;
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(8px);
-      text-decoration: none; color: var(--text-dark);
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
+      margin-bottom: 2rem; text-align: left;
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .intro-card:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(0,0,0,0.06); border-color: var(--border-strong); }
+
+    .intro-card p { font-size: 1.05rem; line-height: 1.8; color: var(--muted-dark); margin: 0 0 1rem; }
+    .intro-card p:last-child { margin-bottom: 0; }
+    .intro-card strong { color: var(--text-dark); font-weight: 700; }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.25rem; }
+
+    .tag {
+      padding: 0.45rem 0.85rem; border-radius: 999px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.65); font-size: 0.9rem; color: var(--text-dark);
+    }
+
+    /* ---------- BUILD STEPS ---------- */
+    .stepper-nav {
+      display: flex; gap: 0.5rem; justify-content: center;
+      margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+
+    .phase-btn {
+      padding: 0.6rem 1.2rem; border-radius: 999px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 700;
+      color: var(--muted-dark); cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .phase-btn:hover { border-color: var(--border-strong); color: var(--text-dark); }
+
+    .phase-btn.active {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      color: #fff; box-shadow: 0 4px 14px rgba(233,106,154,0.35);
+    }
+
+    .phase-content {
+      display: none;
+      padding: 2rem 2.25rem; border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
+      margin-bottom: 1.5rem; text-align: left;
+      animation: phaseIn 0.35s ease both;
+    }
+
+    .phase-content.active { display: block; }
+
+    @keyframes phaseIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .phase-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
+
+    .phase-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.85rem; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; flex-shrink: 0;
+    }
+
+    .badge-1 { background: #fbe4ec; color: #c0476e; border: 1px solid rgba(233,106,154,0.3); }
+    .badge-2 { background: #fde8d8; color: #c05a2a; border: 1px solid rgba(233,140,106,0.3); }
+    .badge-3 { background: #e8f4fd; color: #2a6fc0; border: 1px solid rgba(106,163,233,0.3); }
+
+    .phase-title-wrap h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.2rem; }
+    .phase-title-wrap p { font-size: 0.92rem; color: var(--muted-dark); margin: 0; }
+
+    .phase-body p { font-size: 1rem; line-height: 1.8; color: var(--muted-dark); margin: 0 0 1rem; }
+    .phase-body p:last-child { margin-bottom: 0; }
+    .phase-body strong { color: var(--text-dark); }
+
+    .phase-nav { display: flex; justify-content: space-between; margin-top: 1.25rem; gap: 1rem; }
+
+    .phase-nav-btn {
+      padding: 0.7rem 1.25rem; border-radius: 12px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 700;
+      color: var(--text-dark); cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .phase-nav-btn:hover { border-color: var(--border-strong); box-shadow: 0 6px 16px rgba(0,0,0,0.07); }
+    .phase-nav-btn.primary {
+      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      color: #fff; border-color: transparent;
+      box-shadow: 0 4px 14px rgba(233,106,154,0.35);
+    }
+    .phase-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* ---------- FEATURE GRID ---------- */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin-bottom: 2rem;
+    }
+
+    .feature-card {
+      padding: 1.75rem 1.5rem; border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
+      text-align: left;
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 40px rgba(233,106,154,0.12);
-      border-color: var(--border-strong);
+    .feature-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.07); border-color: var(--border-strong); }
+
+    .feature-icon { font-size: 1.5rem; margin-bottom: 0.6rem; display: block; }
+    .feature-card h3 { font-size: 0.98rem; font-weight: 800; margin: 0 0 0.4rem; }
+    .feature-card p { font-size: 0.88rem; line-height: 1.65; color: var(--muted-dark); margin: 0; }
+
+    /* ---------- TECH STACK ---------- */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem; margin-bottom: 2rem;
     }
 
-    .project-label {
-      font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--pink-strong); margin: 0 0 0.75rem;
-    }
-
-    .project-card h2 {
-      margin: 0 0 0.75rem;
-      font-size: 1.75rem; font-weight: 800; line-height: 1.15;
-    }
-
-    .project-card p {
-      margin: 0 0 1.5rem;
-      font-size: 1.02rem; line-height: 1.75;
-      color: var(--muted-dark); flex: 1;
-    }
-
-    .tag-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 1.75rem; }
-
-    .tag {
-      padding: 0.4rem 0.75rem; border-radius: 999px;
+    .tool-card {
+      padding: 1.5rem 1rem; border-radius: 18px;
       border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.65); font-size: 0.85rem; color: var(--text-dark);
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
-    .card-cta {
+    .tool-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(233,106,154,0.12); border-color: var(--border-strong); }
+
+    .tool-logo {
+      width: 48px; height: 48px; border-radius: 14px;
+      border: 1.5px solid var(--border-soft); background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 0.75rem; overflow: hidden;
+    }
+
+    .tool-logo .tool-emoji { font-size: 1.5rem; }
+    .tool-name { font-size: 0.88rem; font-weight: 800; margin: 0 0 0.2rem; }
+    .tool-desc { font-size: 0.78rem; color: var(--muted-dark); margin: 0; line-height: 1.4; }
+
+    /* ---------- TRY IT CARD ---------- */
+    .try-card {
+      padding: 2.25rem 2.5rem; border-radius: 22px;
+      border: 1.5px solid var(--border-strong);
+      background: linear-gradient(135deg, rgba(253,213,232,0.5), rgba(251,228,236,0.4));
+      backdrop-filter: blur(8px);
+      text-align: center; margin-bottom: 2rem;
+    }
+
+    .try-card h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.6rem; }
+    .try-card p { font-size: 1rem; line-height: 1.75; color: var(--muted-dark); margin: 0 0 1.25rem; }
+    .try-card .live-btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 1rem; font-weight: 700; color: var(--pink-strong);
-    }
-
-    .card-badge {
-      display: inline-block;
-      padding: 0.3rem 0.7rem; border-radius: 999px;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+      padding: 0.85rem 1.75rem; border-radius: 14px;
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
-      color: #fff; margin-bottom: 1rem;
+      color: #fff; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+      box-shadow: 0 6px 18px rgba(233,106,154,0.35);
+      transition: opacity 0.2s ease, transform 0.2s ease;
     }
+    .try-card .live-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
     .links { padding-bottom: 2.5rem; text-align: center; }
     .links h2 { font-size: 1.6rem; margin: 2rem 0 0.75rem; }
@@ -189,6 +313,7 @@
     @media (max-width: 600px) {
       .nav-btn { flex: 1 1 100%; max-width: none; }
       .links p { gap: 1.75rem; }
+      .intro-card, .phase-content { padding: 1.75rem 1.5rem; }
     }
 
     #chat-toggle {
@@ -215,11 +340,7 @@
     }
     #chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
 
-    .chat-header {
-      background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
-      border-bottom: 1px solid var(--border-soft); padding: 15px 16px;
-      display: flex; align-items: center; gap: 11px; flex-shrink: 0;
-    }
+    .chat-header { background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%); border-bottom: 1px solid var(--border-soft); padding: 15px 16px; display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
     .chat-avatar { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--pink-strong), #f0a0c0); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
     .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
     .chat-header-info p { font-size: 0.73rem; color: var(--muted-dark); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
@@ -261,60 +382,193 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <h1>Projects</h1>
+      <p class="hero-label">Full-stack PWA · 2025</p>
+      <h1>Articulate</h1>
       <p class="hero-highlight">
-        Things I've built — exploring AI, product, and what happens when you ship something real.
+        A daily reading practice app for professionals who want to speak with more confidence.
+        Generates a personalised passage every day using AI — then lets you record yourself and get scored on accuracy, fluency and pace.
       </p>
     </div>
   </section>
 
   <section class="nav-cta">
     <div class="nav-cta-inner">
+      <a class="nav-btn primary" href="https://articulate-app-production.up.railway.app" target="_blank" rel="noopener noreferrer">Try it live →</a>
+      <a class="nav-btn" href="https://github.com/KhanKMadiha/articulate-app" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+      <a class="nav-btn" href="./projects.html">All Projects</a>
       <a class="nav-btn" href="./index.html">Homepage</a>
-      <a class="nav-btn" href="./about.html">About Me</a>
-      <a class="nav-btn" href="./skills.html">Skills &amp; Experience</a>
-      <a class="nav-btn active" href="./projects.html">Projects</a>
-      <a class="nav-btn" href="./contact.html">Get in Touch</a>
     </div>
   </section>
 
   <main class="content">
 
-    <a class="project-card reveal" href="./articulate.html">
-      <span class="card-badge">Live</span>
-      <p class="project-label">Full-stack PWA · 2025</p>
-      <h2>Articulate</h2>
+    <!-- WHAT IT DOES -->
+    <p class="section-label reveal">What it does</p>
+    <div class="intro-card reveal">
       <p>
-        A daily reading practice app for professionals who want to speak with more confidence.
-        AI-generated passages tailored to your career goals, speech recording, and delivery scoring.
-        Includes a full dyslexia-friendly mode.
+        Most professionals know what they want to say. The gap is how they say it — the clarity, the confidence, the delivery.
+        Articulate is built around a simple habit: read aloud every day, in your own voice, on topics that matter to your career.
+      </p>
+      <p>
+        Every day the app generates a new passage using Claude, personalised to your job title, industry, career goals, and the speakers you most want to sound like.
+        You record yourself reading it, and get AI feedback on how closely you followed the text, how fluent your delivery was, and whether your pace was right.
+      </p>
+      <p>
+        <strong>The goal is to make deliberate vocal practice as habitual as going to the gym.</strong>
       </p>
       <div class="tag-row">
-        <span class="tag">React</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">Claude API</span>
-        <span class="tag">Speech recognition</span>
-        <span class="tag">PWA</span>
+        <span class="tag">Daily AI passages</span>
+        <span class="tag">Speech recording</span>
+        <span class="tag">Delivery scoring</span>
+        <span class="tag">Streak tracking</span>
+        <span class="tag">Favourites library</span>
+        <span class="tag">Push notifications</span>
       </div>
-      <span class="card-cta">View project →</span>
-    </a>
+    </div>
 
-    <a class="project-card reveal" href="./chatbot.html">
-      <p class="project-label">Conversational AI · 2024</p>
-      <h2>AI Chatbot</h2>
-      <p>
-        A portfolio assistant chatbot built to answer questions about my work and guide visitors.
-        Started with IBM Watson, iterated through Dialogflow, and landed on a Claude-powered assistant
-        secured behind a Cloudflare Workers proxy.
-      </p>
-      <div class="tag-row">
-        <span class="tag">Anthropic API</span>
-        <span class="tag">Cloudflare Workers</span>
-        <span class="tag">Dialogflow</span>
-        <span class="tag">Prompt engineering</span>
+    <!-- HOW I BUILT IT -->
+    <p class="section-label reveal">How I built it</p>
+    <div class="reveal">
+      <div class="stepper-nav">
+        <button class="phase-btn active" onclick="showPhase(1)">The idea</button>
+        <button class="phase-btn" onclick="showPhase(2)">Building the core</button>
+        <button class="phase-btn" onclick="showPhase(3)">Accessibility update</button>
       </div>
-      <span class="card-cta">View project →</span>
-    </a>
+
+      <div class="phase-content active" id="phase-1">
+        <div class="phase-header">
+          <div><span class="phase-badge badge-1">01</span></div>
+          <div class="phase-title-wrap">
+            <h3>A coffee chat conversation</h3>
+            <p>Where the idea came from</p>
+          </div>
+        </div>
+        <div class="phase-body">
+          <p>A senior engineering manager told me something that stuck: <strong>"You need to learn how to speak different languages. To customers, to engineers, to execs. They all need something different."</strong></p>
+          <p>I wanted to build something to practise that — daily and deliberately. Reading aloud in your own voice, on topics that matter to your actual career, felt like the right habit to build.</p>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-nav-btn" disabled>Previous</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Building the core →</button>
+        </div>
+      </div>
+
+      <div class="phase-content" id="phase-2">
+        <div class="phase-header">
+          <div><span class="phase-badge badge-2">02</span></div>
+          <div class="phase-title-wrap">
+            <h3>React, Express and the Claude API</h3>
+            <p>Started in Cursor, continued in Claude Code</p>
+          </div>
+        </div>
+        <div class="phase-body">
+          <p>I built the passage generation pipeline, recording flow, and AI scoring end to end. Each passage is personalised to the user's job title, industry, goals, and the speakers they admire — generated fresh every day by Claude.</p>
+          <p>Recording uses the Web Speech API with real-time transcription. The transcript is compared against the original passage to score accuracy, fluency, and pace — with specific, constructive feedback, not just a number.</p>
+          <p>The app also tracks streaks, lets users save favourite passages to a library, and supports push notifications as an optional daily reminder.</p>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-nav-btn" onclick="showPhase(1)">← Previous</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Accessibility update →</button>
+        </div>
+      </div>
+
+      <div class="phase-content" id="phase-3">
+        <div class="phase-header">
+          <div><span class="phase-badge badge-3">03</span></div>
+          <div class="phase-title-wrap">
+            <h3>Dyslexia-friendly mode</h3>
+            <p>A complete reading experience redesign, not just a font toggle</p>
+          </div>
+        </div>
+        <div class="phase-body">
+          <p>I added a full dyslexia-friendly reading mode as a named feature within the app. One paragraph at a time, a reading ruler that follows your position, live word highlighting as you speak, syllable break markers, and an OpenDyslexic font option.</p>
+          <p>The AI passages themselves are also adjusted in dyslexia mode — shorter sentences, simpler vocabulary, and avoiding easily-confused homophones — so the accessibility goes all the way through to the content.</p>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-nav-btn" onclick="showPhase(2)">← Previous</button>
+          <button class="phase-nav-btn primary" onclick="document.getElementById('features-section').scrollIntoView({behavior:'smooth'})">See features ↓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <p class="section-label reveal" id="features-section">Features I'm most proud of</p>
+    <div class="feature-grid reveal">
+
+      <div class="feature-card">
+        <span class="feature-icon">♿</span>
+        <h3>Dyslexia-friendly mode</h3>
+        <p>One paragraph at a time, reading ruler, live word highlighting, syllable breaks, OpenDyslexic font — and AI passages written for it too.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">✨</span>
+        <h3>Personalised AI passages</h3>
+        <p>Claude generates each passage around your job, goals, focus areas, and the speakers you want to sound like. New every day.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🎙</span>
+        <h3>Delivery scoring</h3>
+        <p>AI scores your accuracy, fluency and pace after each recording — with specific, constructive feedback.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🔀</span>
+        <h3>Two daily flows</h3>
+        <p>Get straight to the passage, or do a quick energy and theme check-in first. Your choice every morning.</p>
+      </div>
+
+    </div>
+
+    <!-- TECH STACK -->
+    <p class="section-label reveal">Tech stack</p>
+    <div class="tools-grid reveal">
+
+      <div class="tool-card">
+        <div class="tool-logo"><span class="tool-emoji">⚛️</span></div>
+        <p class="tool-name">React 18</p>
+        <p class="tool-desc">Frontend with Vite and Tailwind CSS</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><span class="tool-emoji">🟢</span></div>
+        <p class="tool-name">Node.js + Express</p>
+        <p class="tool-desc">Backend API server</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><span class="tool-emoji">🤖</span></div>
+        <p class="tool-name">Anthropic Claude</p>
+        <p class="tool-desc">Passage generation and speech scoring</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><span class="tool-emoji">🎤</span></div>
+        <p class="tool-name">Web Speech API</p>
+        <p class="tool-desc">Real-time speech recognition</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><span class="tool-emoji">📱</span></div>
+        <p class="tool-name">PWA</p>
+        <p class="tool-desc">Service worker, offline support, push notifications</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><span class="tool-emoji">🚂</span></div>
+        <p class="tool-name">Railway + Docker</p>
+        <p class="tool-desc">Deployment and hosting</p>
+      </div>
+
+    </div>
+
+    <!-- TRY IT -->
+    <div class="try-card reveal">
+      <h3>Try it yourself 🎙</h3>
+      <p>The app is live and free to use. Set up your profile in about two minutes and get your first passage today.</p>
+      <a class="live-btn" href="https://articulate-app-production.up.railway.app" target="_blank" rel="noopener noreferrer">Open Articulate →</a>
+    </div>
 
   </main>
 
@@ -364,6 +618,15 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+    let currentPhase = 1;
+    function showPhase(n) {
+      document.querySelectorAll('.phase-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.phase-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById('phase-' + n).classList.add('active');
+      document.querySelectorAll('.phase-btn')[n - 1].classList.add('active');
+      currentPhase = n;
+    }
+
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
 
     const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Product Support Specialist based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
@@ -382,13 +645,12 @@ KEY ACHIEVEMENTS:
 - Reduced new hire ramp-up time by 30% through Jira workflows and playbooks
 - 95% issue reproduction rate, reducing engineering investigation time by 30%
 - Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
-- None of these were asked of her. She spotted the gaps and built the solutions.
 
 TECHNICAL SKILLS:
 REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Google Dialogflow, Python (learning)
 
 AI AND PROJECTS:
-Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Started with Dialogflow CX and IBM Watson before switching to the Anthropic API. Secured the API key using a Cloudflare Worker proxy. Also built Articulate, a full-stack PWA (React, Node.js, Claude API) for daily reading practice — generates personalised passages, records speech, and scores delivery. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). Daily Claude user.
+Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Also built Articulate, a full-stack PWA (React, Node.js, Claude API) for daily reading practice — generates personalised passages, records speech, and scores delivery. Completed IBM AI Fundamentals certification with Capstone Project. Daily Claude user.
 
 LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
 EDUCATION: A Levels in Maths, Accounting, and Health and Social Care

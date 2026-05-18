@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Madiha | Senior Product Support Specialist</title>
-
+ 
   <style>
     :root {
       --pink-base: #fff0f6;
@@ -17,9 +17,9 @@
       --border-strong: rgba(233, 106, 154, 0.45);
       --white-glass: rgba(255, 255, 255, 0.75);
     }
-
+ 
     * { box-sizing: border-box; }
-
+ 
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: var(--pink-base);
@@ -29,7 +29,7 @@
       text-align: center;
       overflow-x: hidden;
     }
-
+ 
     /* ---------- FLOATING BACKGROUND SHAPES ---------- */
     .bg-shapes {
       position: fixed;
@@ -39,31 +39,31 @@
       z-index: 0;
       overflow: hidden;
     }
-
+ 
     .shape {
       position: absolute;
       border-radius: 50%;
       background: rgba(233, 106, 154, 0.07);
       animation: float linear infinite;
     }
-
+ 
     .shape:nth-child(1) { width: 320px; height: 320px; top: 5%; left: -8%; animation-duration: 18s; animation-delay: 0s; }
     .shape:nth-child(2) { width: 180px; height: 180px; top: 20%; right: -5%; animation-duration: 22s; animation-delay: -4s; }
     .shape:nth-child(3) { width: 250px; height: 250px; top: 50%; left: 60%; animation-duration: 26s; animation-delay: -8s; }
     .shape:nth-child(4) { width: 120px; height: 120px; top: 70%; left: 10%; animation-duration: 20s; animation-delay: -12s; }
     .shape:nth-child(5) { width: 200px; height: 200px; top: 85%; right: 15%; animation-duration: 24s; animation-delay: -6s; }
     .shape:nth-child(6) { width: 90px; height: 90px; top: 38%; left: 44%; animation-duration: 16s; animation-delay: -10s; }
-
+ 
     @keyframes float {
       0%   { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.6; }
       33%  { transform: translateY(-30px) rotate(60deg) scale(1.05); opacity: 0.9; }
       66%  { transform: translateY(15px) rotate(120deg) scale(0.97); opacity: 0.7; }
       100% { transform: translateY(0px) rotate(180deg) scale(1); opacity: 0.6; }
     }
-
+ 
     /* ---------- Z-INDEX ---------- */
     .hero, .nav-cta, .page, .links, footer { position: relative; z-index: 1; }
-
+ 
     /* ---------- HERO ---------- */
     .hero {
       min-height: 55vh;
@@ -72,7 +72,7 @@
       padding: 5.25rem 1.5rem 2rem;
       background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
     }
-
+ 
     .hero-inner {
       max-width: 980px;
       margin: 0 auto;
@@ -81,7 +81,7 @@
       flex-direction: column;
       align-items: center;
     }
-
+ 
     h1 {
       font-size: clamp(2.4rem, 5vw, 3.6rem);
       line-height: 1.08;
@@ -90,7 +90,7 @@
       opacity: 0;
       animation: fadeUp 0.6s ease 0.15s both;
     }
-
+ 
     .hero-sub {
       font-size: 1.15rem;
       line-height: 1.75;
@@ -100,7 +100,7 @@
       opacity: 0;
       animation: fadeUp 0.6s ease 0.25s both;
     }
-
+ 
     /* ---------- NAV CTA ---------- */
     .nav-cta {
       max-width: 980px;
@@ -110,14 +110,14 @@
       position: relative;
       z-index: 1;
     }
-
+ 
     .nav-cta-inner {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
       justify-content: center;
     }
-
+ 
     .nav-btn {
       flex: 1 1 220px;
       max-width: 320px;
@@ -131,32 +131,32 @@
       background-color: rgba(255, 255, 255, 0.6);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
-
+ 
     .nav-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
       border-color: var(--border-strong);
     }
-
+ 
     .nav-btn.active {
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
       color: #fff;
       border-color: transparent;
       box-shadow: 0 6px 18px rgba(233, 106, 154, 0.35);
     }
-
+ 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
+ 
     /* ---------- PAGE ---------- */
     .page {
       max-width: 980px;
       margin: 0 auto 4rem;
       padding: 0 1.5rem;
     }
-
+ 
     /* ---------- SCROLL REVEAL ---------- */
     .reveal {
       opacity: 0;
@@ -167,7 +167,7 @@
       opacity: 1;
       transform: translateY(0);
     }
-
+ 
     /* ---------- SECTION LABEL ---------- */
     .section-label {
       font-size: 0.8rem;
@@ -178,7 +178,7 @@
       margin-bottom: 1rem;
       text-align: center;
     }
-
+ 
     /* ---------- PROSE CARD ---------- */
     .prose-card {
       padding: 2.25rem 2.5rem;
@@ -190,27 +190,27 @@
       margin-bottom: 1.5rem;
       transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
-
+ 
     .prose-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 34px rgba(0, 0, 0, 0.06);
       border-color: var(--border-strong);
     }
-
+ 
     .prose-card p {
       font-size: 1rem;
       line-height: 1.8;
       color: var(--muted-dark);
       margin: 0 0 1rem;
     }
-
+ 
     .prose-card p:last-child { margin-bottom: 0; }
-
+ 
     .prose-card strong {
       color: var(--text-dark);
       font-weight: 700;
     }
-
+ 
     /* ---------- QUOTE BLOCK ---------- */
     .quote-block {
       padding: 2.25rem 2.5rem;
@@ -221,7 +221,7 @@
       margin-bottom: 1.5rem;
       text-align: center;
     }
-
+ 
     .quote-block p {
       font-size: 1.2rem;
       font-style: italic;
@@ -230,7 +230,7 @@
       color: var(--text-dark);
       margin: 0;
     }
-
+ 
     /* ---------- TWO-COL PANELS ---------- */
     .two-col {
       display: grid;
@@ -238,14 +238,14 @@
       gap: 1rem;
       margin-bottom: 1.5rem;
     }
-
+ 
     .two-col .panel:last-child:nth-child(odd) {
       grid-column: 1 / -1;
       max-width: 50%;
       margin: 0 auto;
       width: 100%;
     }
-
+ 
     .panel {
       padding: 1.75rem 1.75rem;
       border-radius: 22px;
@@ -255,39 +255,39 @@
       text-align: center;
       transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
-
+ 
     .panel:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
       border-color: var(--border-strong);
     }
-
+ 
     .panel-icon {
       font-size: 1.8rem;
       margin-bottom: 0.75rem;
       display: block;
     }
-
+ 
     .panel h3 {
       font-size: 1rem;
       font-weight: 800;
       margin: 0 0 0.6rem;
     }
-
+ 
     .panel p {
       font-size: 0.92rem;
       line-height: 1.7;
       color: var(--muted-dark);
       margin: 0;
     }
-
+ 
     /* ---------- TIMELINE ---------- */
     .timeline {
       position: relative;
       text-align: left;
       margin-bottom: 1.5rem;
     }
-
+ 
     .timeline::before {
       content: '';
       position: absolute;
@@ -298,7 +298,7 @@
       background: linear-gradient(to bottom, var(--pink-strong), rgba(233, 106, 154, 0.15));
       border-radius: 2px;
     }
-
+ 
     .timeline-item {
       display: flex;
       gap: 1.25rem;
@@ -307,12 +307,12 @@
       transform: translateX(-16px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
-
+ 
     .timeline-item.visible {
       opacity: 1;
       transform: translateX(0);
     }
-
+ 
     .timeline-dot {
       flex-shrink: 0;
       width: 38px;
@@ -328,7 +328,7 @@
       position: relative;
       z-index: 1;
     }
-
+ 
     .timeline-content {
       flex: 1;
       padding: 1.4rem 1.6rem;
@@ -338,12 +338,12 @@
       backdrop-filter: blur(8px);
       transition: box-shadow 0.2s ease, border-color 0.2s ease;
     }
-
+ 
     .timeline-content:hover {
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       border-color: var(--border-strong);
     }
-
+ 
     .timeline-meta {
       font-size: 0.78rem;
       font-weight: 700;
@@ -352,20 +352,20 @@
       color: var(--pink-strong);
       margin-bottom: 0.3rem;
     }
-
+ 
     .timeline-content h3 {
       font-size: 1rem;
       font-weight: 800;
       margin: 0 0 0.3rem;
     }
-
+ 
     .timeline-content p {
       font-size: 0.9rem;
       line-height: 1.65;
       color: var(--muted-dark);
       margin: 0;
     }
-
+ 
     /* ---------- HIGHLIGHT CARD ---------- */
     .highlight-card {
       padding: 2rem 2.25rem;
@@ -380,39 +380,104 @@
       text-align: left;
       transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
     }
-
+ 
     .highlight-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 34px rgba(0, 0, 0, 0.07);
       border-color: var(--border-strong);
     }
-
+ 
     .highlight-icon {
       font-size: 2.2rem;
       flex-shrink: 0;
     }
-
+ 
     .highlight-text h3 {
       font-size: 1.05rem;
       font-weight: 800;
       margin: 0 0 0.5rem;
     }
-
+ 
     .highlight-text p {
       font-size: 0.95rem;
       line-height: 1.75;
       color: var(--muted-dark);
       margin: 0;
     }
-
+ 
+    /* ---------- FEATURED PROJECTS ---------- */
+    .featured-projects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+ 
+    .project-card {
+      padding: 2rem 2.25rem;
+      border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(8px);
+      text-align: left;
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+ 
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.07);
+      border-color: var(--border-strong);
+    }
+ 
+    .project-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+ 
+    .project-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 0 0 0.5rem;
+    }
+ 
+    .project-card p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--muted-dark);
+      margin: 0 0 1.25rem;
+      flex: 1;
+    }
+ 
+    .project-link {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--pink-strong);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: auto;
+    }
+ 
+    .project-link:hover { text-decoration: underline; }
+ 
+    @media (max-width: 600px) {
+      .two-col { grid-template-columns: 1fr; }
+      .featured-projects { grid-template-columns: 1fr; }
+      .prose-card, .quote-block { padding: 1.75rem 1.5rem; }
+      .highlight-card { flex-direction: column; gap: 0.75rem; }
+    }
+ 
     /* ---------- LINKS ---------- */
     .links { padding-bottom: 2.5rem; }
-
+ 
     .links h2 {
       font-size: 1.6rem;
       margin: 2rem 0 0.75rem;
     }
-
+ 
     .links p {
       display: flex;
       justify-content: center;
@@ -420,14 +485,14 @@
       margin-top: 1.25rem;
       flex-wrap: wrap;
     }
-
+ 
     .social-link {
       font-size: 1.05rem;
       font-weight: 700;
       color: var(--pink-strong);
       text-decoration: none;
     }
-
+ 
     /* ---------- FOOTER ---------- */
     footer {
       margin: 26px 0 34px;
@@ -435,13 +500,7 @@
       font-size: 0.95rem;
       color: rgba(43, 43, 43, 0.7);
     }
-
-    @media (max-width: 600px) {
-      .two-col { grid-template-columns: 1fr; }
-      .prose-card, .quote-block { padding: 1.75rem 1.5rem; }
-      .highlight-card { flex-direction: column; gap: 0.75rem; }
-    }
-
+ 
     /* ---------- CHATBOT ---------- */
     #chat-toggle {
       position: fixed;
@@ -456,12 +515,12 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       z-index: 9999; font-size: 24px;
     }
-
+ 
     #chat-toggle:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 30px rgba(233, 106, 154, 0.4);
     }
-
+ 
     #chat-window {
       position: fixed;
       bottom: 92px; right: 22px;
@@ -478,38 +537,38 @@
       opacity: 0; pointer-events: none;
       transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease;
     }
-
+ 
     #chat-window.open {
       transform: scale(1) translateY(0);
       opacity: 1; pointer-events: all;
     }
-
+ 
     .chat-header {
       background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
       border-bottom: 1px solid var(--border-soft);
       padding: 15px 16px;
       display: flex; align-items: center; gap: 11px; flex-shrink: 0;
     }
-
+ 
     .chat-avatar {
       width: 38px; height: 38px; border-radius: 12px;
       background: linear-gradient(135deg, var(--pink-strong), #f0a0c0);
       display: flex; align-items: center; justify-content: center;
       font-size: 18px; flex-shrink: 0;
     }
-
+ 
     .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
     .chat-header-info p { font-size: 0.73rem; color: var(--muted-dark); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
-
+ 
     .online-dot { width: 7px; height: 7px; background: #4caf82; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-
+ 
     .chat-close {
       margin-left: auto; background: none; border: none; cursor: pointer;
       color: var(--muted-dark); font-size: 17px; line-height: 1; padding: 4px;
       border-radius: 6px; transition: background 0.15s;
     }
     .chat-close:hover { background: rgba(233, 106, 154, 0.12); }
-
+ 
     .chat-messages {
       flex: 1; overflow-y: auto; padding: 14px 14px 10px;
       display: flex; flex-direction: column; gap: 9px; scroll-behavior: smooth;
@@ -517,7 +576,7 @@
     .chat-messages::-webkit-scrollbar { width: 4px; }
     .chat-messages::-webkit-scrollbar-track { background: transparent; }
     .chat-messages::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 4px; }
-
+ 
     .msg {
       max-width: 84%; padding: 10px 13px; border-radius: 16px;
       font-size: 0.875rem; line-height: 1.58; animation: msgIn 0.22s ease;
@@ -534,7 +593,7 @@
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
       color: #fff; border-bottom-right-radius: 5px; align-self: flex-end;
     }
-
+ 
     .typing-indicator {
       display: flex; gap: 4px; padding: 11px 14px;
       background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft);
@@ -548,7 +607,7 @@
       0%,60%,100% { transform: translateY(0); opacity: 0.6; }
       30% { transform: translateY(-5px); opacity: 1; }
     }
-
+ 
     .chat-input-area {
       padding: 11px 13px; border-top: 1px solid var(--border-soft);
       background: rgba(255,255,255,0.6); display: flex; gap: 8px;
@@ -563,7 +622,7 @@
     }
     .chat-input-area textarea:focus { border-color: var(--pink-strong); }
     .chat-input-area textarea::placeholder { color: rgba(43,43,43,0.4); }
-
+ 
     .send-btn {
       width: 36px; height: 36px; border-radius: 11px;
       background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
@@ -576,16 +635,16 @@
     .send-btn:active { transform: scale(0.95); }
     .send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     .send-btn svg { width: 15px; height: 15px; fill: white; }
-
+ 
     @media (max-width: 420px) {
       #chat-window { width: calc(100vw - 28px); right: 14px; bottom: 84px; }
       #chat-toggle { right: 14px; bottom: 14px; }
     }
   </style>
 </head>
-
+ 
 <body>
-
+ 
   <!-- FLOATING SHAPES -->
   <div class="bg-shapes">
     <div class="shape"></div>
@@ -595,7 +654,7 @@
     <div class="shape"></div>
     <div class="shape"></div>
   </div>
-
+ 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
@@ -605,7 +664,7 @@
       </p>
     </div>
   </section>
-
+ 
   <!-- NAV -->
   <section class="nav-cta">
     <div class="nav-cta-inner">
@@ -616,14 +675,14 @@
       <a class="nav-btn" href="./contact.html">Get in Touch</a>
     </div>
   </section>
-
+ 
   <div class="page">
-
+ 
     <!-- QUOTE -->
     <div class="quote-block reveal">
       <p>"Every system I have built started the same way. Noticing something that could be better, and caring enough to do something about it."</p>
     </div>
-
+ 
     <!-- HOW I GOT HERE -->
     <p class="section-label reveal">How I got here</p>
     <div class="prose-card reveal">
@@ -640,11 +699,11 @@
         That same drive runs through everything I do. I genuinely want to make things better for people, and I always have.
       </p>
     </div>
-
+ 
     <!-- CAREER TIMELINE -->
     <p class="section-label reveal">Career journey</p>
     <div class="timeline">
-
+ 
       <div class="timeline-item">
         <div class="timeline-dot">🌸</div>
         <div class="timeline-content">
@@ -653,7 +712,7 @@
           <p>Sole EMEA support engineer. P1/P2 on-call ownership across 100+ enterprise accounts. Built Datadog dashboards, knowledge base infrastructure, and escalation playbooks from scratch.</p>
         </div>
       </div>
-
+ 
       <div class="timeline-item">
         <div class="timeline-dot">📡</div>
         <div class="timeline-content">
@@ -662,7 +721,7 @@
           <p>Managed all EMEA enterprise escalations: SSO, SAML, OAuth, REST API debugging. 95% resolution rate. Reduced engineering investigation time by 20% through systematic reproduction.</p>
         </div>
       </div>
-
+ 
       <div class="timeline-item">
         <div class="timeline-dot">💎</div>
         <div class="timeline-content">
@@ -671,7 +730,7 @@
           <p>98% CSAT managing 50+ daily interactions across phone, email, and chat. Resolved 300+ escalated tickets in a single week. Built 30 templates that improved first contact resolution by 25%.</p>
         </div>
       </div>
-
+ 
       <div class="timeline-item">
         <div class="timeline-dot">🏥</div>
         <div class="timeline-content">
@@ -680,9 +739,29 @@
           <p>50+ inbound calls daily during peak pandemic operations. First-call resolution with empathy in a high-pressure, high-stakes environment.</p>
         </div>
       </div>
-
+ 
     </div>
-
+ 
+    <!-- FEATURED PROJECTS -->
+    <p class="section-label reveal">Featured projects</p>
+    <div class="featured-projects reveal">
+ 
+      <div class="project-card">
+        <div class="project-card-icon">🤖</div>
+        <h3>Claude-Powered Portfolio Assistant</h3>
+        <p>Built a production AI chatbot from scratch. Started with Dialogflow CX, hit real permission and security issues, switched to the Anthropic API, and secured the key using a Cloudflare Worker proxy. The chatbot on this page is the live result.</p>
+        <a class="project-link" href="./projects.html">Read the full story →</a>
+      </div>
+ 
+      <div class="project-card">
+        <div class="project-card-icon">🎙️</div>
+        <h3>Articulate</h3>
+        <p>A speech app that helps professionals improve how they communicate. Built with React, Express, and the Claude API. Generates personalised daily passages, records your delivery, and scores you on accuracy, fluency, and pace.</p>
+        <a class="project-link" href="./articulate.html">See the project →</a>
+      </div>
+ 
+    </div>
+ 
     <!-- BEYOND WORK -->
     <p class="section-label reveal">Beyond work</p>
     <div class="highlight-card reveal">
@@ -692,9 +771,9 @@
         <p>Every year during Ramadan, I lead a fundraising project that has raised over £50,000 and distributed 2,000 food bags to families in Pakistan. It started small and grew because I kept improving it: better outreach, better logistics, better follow-through. The same instinct that makes me build better support systems is what makes this work. <strong>I genuinely want to make things better for people.</strong> </p>
       </div>
     </div>
-
+ 
   </div>
-
+ 
   <!-- LINKS -->
   <section class="links reveal">
     <h2>Let's connect 👩🏻‍💻</h2>
@@ -704,15 +783,15 @@
       <a class="social-link" href="./contact.html">Contact</a>
     </p>
   </section>
-
+ 
   <!-- FOOTER -->
   <footer>
     © <span id="year"></span> Madiha Khan · Built with care 🌸
   </footer>
-
+ 
   <!-- CHATBOT -->
   <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">🌸</button>
-
+ 
   <div id="chat-window">
     <div class="chat-header">
       <div class="chat-avatar">🌸</div>
@@ -733,10 +812,10 @@
       </button>
     </div>
   </div>
-
+ 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
+ 
     // ── SCROLL REVEAL ──────────────────────────────────────────
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -749,9 +828,9 @@
         }
       });
     }, { threshold: 0.1 });
-
+ 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
+ 
     // ── TIMELINE REVEAL ────────────────────────────────────────
     const timelineObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
@@ -761,20 +840,20 @@
         }
       });
     }, { threshold: 0.15 });
-
+ 
     document.querySelectorAll('.timeline-item').forEach(el => timelineObserver.observe(el));
-
+ 
     // ── CHATBOT ────────────────────────────────────────────────
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
-
+ 
     const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Product Support Specialist based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
-
+ 
 ABOUT MADIHA:
 Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she is the sole EMEA support engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
-
+ 
 PERSONAL:
 Outside of work, Madiha leads a fundraising project every Ramadan that has raised over £50,000 and distributed 2,000 food bags to families in Pakistan. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
-
+ 
 KEY ACHIEVEMENTS:
 - 98% CSAT across 100+ enterprise accounts
 - Sole EMEA owner of P1/P2 on-call incidents
@@ -784,49 +863,57 @@ KEY ACHIEVEMENTS:
 - 95% issue reproduction rate, reducing engineering investigation time by 30%
 - Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
 - None of these were asked of her. She spotted the gaps and built the solutions.
-
+ 
 TECHNICAL SKILLS:
 REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Google Dialogflow, Python (learning)
-
+ 
 AI AND PROJECTS:
-Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Started with Dialogflow CX and IBM Watson before switching to the Anthropic API. Secured the API key using a Cloudflare Worker proxy. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). Daily Claude user.
-
+Madiha has built and shipped two AI-powered projects independently.
+ 
+Project 1: Claude-Powered Portfolio Assistant (live on this site)
+Built a production AI chatbot from scratch. Started with IBM Watson and Dialogflow CX before switching to the Anthropic API after hitting persistent permission errors. Secured the API key using a Cloudflare Worker proxy after GitHub secret scanning caught an exposed key. The chatbot runs live across all pages of her portfolio, opens automatically after two seconds, and maintains full session conversation history. Full write-up at madihaintech.me/projects.html.
+ 
+Project 2: Articulate (articulate-app-production.up.railway.app)
+A full-stack speech app that helps professionals improve how they communicate. Built with React 18, Express, and the Anthropic Claude API. Started in Cursor, continued with Claude Code. Claude generates a personalised daily passage based on the user's job title, industry, career goals, and the speakers they admire. The user records themselves reading it and gets AI feedback on accuracy, fluency, and pace via the Web Speech API. Features include streak tracking, a favourites library, push notifications, and a full dyslexia-friendly reading mode where the AI passages themselves are also adapted. Deployed on Railway via Docker. Full write-up at madihaintech.me/articulate.html.
+ 
+Madiha also holds the IBM AI Fundamentals certification with Capstone Project, and certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). She is a daily Claude user.
+ 
 LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
-
+ 
 EDUCATION: A Levels in Maths, Accounting, and Health and Social Care
-
+ 
 CONTACT AND LINKS:
 Portfolio: madihaintech.me
 GitHub: github.com/KhanKMadiha
 LinkedIn: linkedin.com/in/madihakhan-
 Contact page: madihaintech.me/contact.html
-
+ 
 TARGET ROLES: AI Support Engineer, Senior Support Engineer, Support Operations Specialist, Product Support Specialist (Technical), ideally at companies like Anthropic, OpenAI, Cloudflare, Stack Overflow, or similar developer platform and infrastructure companies.
-
+ 
 TONE GUIDELINES:
 - Be warm, friendly, and approachable but also professional
 - Keep responses concise, 2 to 4 sentences unless the visitor asks for more detail
 - Speak about Madiha in the third person: say "Madiha has..." or "She specialises in..." rather than "I"
 - If asked something you do not know, say you are not sure but invite them to reach out to Madiha directly via the Contact page at madihaintech.me/contact.html, or on LinkedIn at linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
-
+ 
     const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Product Support Specialist with 5+ years in enterprise SaaS support, currently the sole EMEA support engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
-
+ 
     const conversationHistory = [];
     let chatOpen = false;
     let isLoading = false;
-
+ 
     window.addEventListener('load', () => {
       setTimeout(() => { if (!chatOpen) toggleChat(); }, 2000);
     });
-
+ 
     function toggleChat() {
       chatOpen = !chatOpen;
       document.getElementById('chat-window').classList.toggle('open', chatOpen);
       if (chatOpen && conversationHistory.length === 0) appendMessage('bot', WELCOME_MESSAGE);
       if (chatOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
     }
-
+ 
     function appendMessage(role, text) {
       const container = document.getElementById('chat-messages');
       const div = document.createElement('div');
@@ -838,7 +925,7 @@ TONE GUIDELINES:
       container.appendChild(div);
       container.scrollTop = container.scrollHeight;
     }
-
+ 
     function showTyping() {
       const container = document.getElementById('chat-messages');
       const div = document.createElement('div');
@@ -848,12 +935,12 @@ TONE GUIDELINES:
       container.appendChild(div);
       container.scrollTop = container.scrollHeight;
     }
-
+ 
     function removeTyping() {
       const el = document.getElementById('typing-indicator');
       if (el) el.remove();
     }
-
+ 
     async function sendMessage() {
       if (isLoading) return;
       const input = document.getElementById('chat-input');
@@ -888,22 +975,22 @@ TONE GUIDELINES:
       }
       setLoading(false);
     }
-
+ 
     function setLoading(state) {
       isLoading = state;
       document.getElementById('send-btn').disabled = state;
     }
-
+ 
     function handleKey(e) {
       if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
     }
-
+ 
     function autoResize(el) {
       el.style.height = 'auto';
       el.style.height = Math.min(el.scrollHeight, 100) + 'px';
     }
   </script>
-
+ 
 </body>
 </html>
 

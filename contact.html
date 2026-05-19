@@ -66,10 +66,10 @@
     .hero, .nav-cta, .page, footer { position: relative; z-index: 1; }
 
     .hero {
-      min-height: 55vh;
+      min-height: 82vh;
       display: flex;
       align-items: center;
-      padding: 6.5rem 1.5rem 2.5rem;
+      padding: 6.5rem 1.5rem 4rem;
       background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
     }
 
@@ -243,6 +243,66 @@
       font-size: 0.93rem;
       color: var(--muted-dark);
       line-height: 1.6;
+    }
+
+    /* ── contact form ── */
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+    .contact-form label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted-dark);
+      text-align: left;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      background: rgba(255,255,255,0.8);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      resize: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(212, 164, 160, 0.15);
+    }
+    .contact-form textarea { min-height: 130px; line-height: 1.6; }
+    .form-submit {
+      align-self: flex-end;
+      padding: 0.85rem 2rem;
+      border-radius: 12px;
+      border: none;
+      background: var(--text-dark);
+      color: #fff;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .form-submit:hover { opacity: 0.82; transform: translateY(-1px); }
+    .form-success {
+      display: none;
+      padding: 1rem;
+      border-radius: 12px;
+      background: rgba(121, 210, 121, 0.12);
+      border: 1.5px solid rgba(121, 210, 121, 0.35);
+      font-size: 0.95rem;
+      color: #2d7a2d;
+      text-align: center;
     }
 
     footer {
@@ -453,9 +513,9 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <h1>Get in Touch 👋🏼</h1>
+      <h1>Open to the right opportunity</h1>
       <p class="hero-sub">
-        LinkedIn or the contact form below is the best way to reach me. <br> I typically reply within one to two business days.
+        If you're hiring for a senior support or AI-adjacent role, I'd love to hear from you. Use the form below or reach out on LinkedIn directly.
       </p>
     </div>
   </section>
@@ -463,36 +523,43 @@
   <div class="page">
 
     <div class="card reveal">
-      <h2>Let's connect</h2>
-      <p>
-        If something here caught your eye, or you just want to say hello, I'm always happy to chat. Drop me a message and I'll get back to you.
-      </p>
+      <h2>Send a message</h2>
+      <p style="margin-bottom:1.5rem;">I typically reply within one to two business days.</p>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mykvkzlv" method="POST">
+        <div class="form-row">
+          <label>
+            Your name
+            <input type="text" name="name" placeholder="Jane Smith" required>
+          </label>
+          <label>
+            Your email
+            <input type="email" name="email" placeholder="jane@company.com" required>
+          </label>
+        </div>
+        <label>
+          Company / role (optional)
+          <input type="text" name="company" placeholder="e.g. Anthropic · Recruiting">
+        </label>
+        <label>
+          Message
+          <textarea name="message" placeholder="Tell me about the role or just say hello..." required></textarea>
+        </label>
+        <button type="submit" class="form-submit">Send message</button>
+        <div class="form-success" id="formSuccess">Message sent — I'll be in touch soon.</div>
+      </form>
     </div>
 
     <div class="card reveal">
-      <h2>Reach out directly</h2>
+      <h2>Or reach out directly</h2>
       <div class="contact-list">
-
         <a class="contact-pill" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">
           <div class="pill-left">
-            <span class="pill-icon">💼</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right:0.6rem;flex-shrink:0"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             LinkedIn
           </div>
-          <span class="pill-meta">Connect and message</span>
+          <span class="pill-meta">Fastest response</span>
         </a>
-
-        <a class="contact-pill" href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">
-          <div class="pill-left">
-            <span class="pill-icon">🐙</span>
-            GitHub
-          </div>
-          <span class="pill-meta">See my work</span>
-        </a>
-
       </div>
-      <p class="helper">
-        For anything urgent, LinkedIn is fastest.
-      </p>
     </div>
 
   </div>
@@ -673,6 +740,35 @@ TONE GUIDELINES:
     function autoResize(el) {
       el.style.height = 'auto';
       el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+    }
+
+    // Handle form submission via fetch so we stay on the page
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('.form-submit');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.reset();
+            document.getElementById('formSuccess').style.display = 'block';
+            btn.style.display = 'none';
+          } else {
+            btn.textContent = 'Something went wrong — try LinkedIn';
+            btn.disabled = false;
+          }
+        } catch {
+          btn.textContent = 'Something went wrong — try LinkedIn';
+          btn.disabled = false;
+        }
+      });
     }
   </script>
 

@@ -104,28 +104,11 @@
     .send-btn svg{width:15px;height:15px;fill:white;}
     @media(max-width:420px){#chat-window{width:calc(100vw - 28px);right:14px;bottom:84px;}#chat-toggle{right:14px;bottom:14px;}}
 
-    /* ---------- CAREER CAROUSEL ---------- */
-    .career-carousel-wrap { margin-bottom:1.5rem; overflow:hidden; }
-    .career-track { display:flex; gap:1rem; transition:transform 0.35s ease; }
-    .flip-card { flex:0 0 calc(33.333% - 0.75rem); min-width:220px; max-width:280px; height:195px; perspective:1000px; cursor:pointer; }
-    .flip-inner { position:relative; width:100%; height:100%; transition:transform 0.5s ease; transform-style:preserve-3d; }
-    .flip-card.flipped .flip-inner { transform:rotateY(180deg); }
-    .flip-front,.flip-back { position:absolute; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; border-radius:18px; border:1.5px solid var(--border-soft); padding:1.25rem; box-sizing:border-box; background:rgba(255,255,255,0.75); backdrop-filter:blur(8px); }
-    .flip-back { transform:rotateY(180deg); background:linear-gradient(135deg,rgba(237,232,230,0.55),rgba(237,232,230,0.45)); }
-    .logo-wrap { width:40px; height:40px; border-radius:11px; border:1.5px solid var(--border-soft); background:#fff; display:flex; align-items:center; justify-content:center; margin-bottom:0.6rem; overflow:hidden; }
-    .logo-wrap img { width:28px; height:28px; object-fit:contain; }
-    .flip-role { font-size:0.95rem; font-weight:800; color:var(--text-dark); margin:0 0 0.25rem; }
-    .flip-company { font-size:0.85rem; color:var(--muted-dark); margin:0 0 0.5rem; }
-    .flip-dates { font-size:0.75rem; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.06em; margin:0; }
-    .flip-hint { font-size:0.72rem; color:rgba(180,140,135,0.55); margin:0.5rem 0 0; }
-    .back-role { font-size:0.88rem; font-weight:800; color:#8B5E5B; margin:0 0 0.5rem; }
-    .back-detail { font-size:0.82rem; color:var(--muted-dark); line-height:1.65; margin:0; }
-    .career-nav { display:flex; gap:0.5rem; margin-top:0.75rem; justify-content:center; align-items:center; }
-    .career-btn { width:32px; height:32px; border-radius:8px; border:1.5px solid var(--border-strong); background:rgba(255,255,255,0.7); cursor:pointer; font-size:14px; color:var(--accent); display:flex; align-items:center; justify-content:center; transition:background 0.2s; }
-    .career-btn:hover { background:rgba(180,140,135,0.1); }
-    .career-dots { display:flex; gap:6px; }
-    .career-dot { width:6px; height:6px; border-radius:50%; background:rgba(180,140,135,0.2); transition:background 0.2s; }
-    .career-dot.active { background:var(--accent); }
+    .tools-list { display: flex; flex-direction: column; }
+    .tools-row { display: flex; align-items: baseline; gap: 1.5rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border-soft); }
+    .tools-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .tools-cat { font-size: 0.78rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.09em; min-width: 130px; flex-shrink: 0; }
+    .tools-val { font-size: 0.98rem; color: var(--muted-dark); line-height: 1.6; }
 
   
     /* ── sticky top nav ── */
@@ -214,7 +197,7 @@
     <div class="hero-inner">
       <h1>Skills &amp; Experience</h1>
       <p class="hero-highlight">
-        APIs. Authentication systems. Observability dashboards. Incident ownership. Here is the technical depth behind the support.
+        The technical depth behind the support work.
       </p>
     </div>
   </section>
@@ -233,79 +216,46 @@
       </div>
     </section>
 
-    <p class="section-label reveal">Tools by impact area</p>
+    <p class="section-label reveal">Tools</p>
     <section class="card reveal">
-      <p class="tools-sub">Tools change. Systems thinking, ownership, and communication do not.</p>
-      <div class="tools-grid">
-
-        <div class="tool-tile reveal">
-          <div class="tool-top"><strong>Support platforms</strong></div>
-          <p class="tool-desc">Zendesk, Freshdesk, Salesforce, Intercom</p>
-          <div class="tool-tags"><span class="tag">Case ownership</span><span class="tag">SLAs</span><span class="tag">Ticket workflows</span></div>
+      <div class="tools-list">
+        <div class="tools-row">
+          <span class="tools-cat">Support</span>
+          <span class="tools-val">Zendesk, Freshdesk, Salesforce, Intercom</span>
         </div>
-
-        <div class="tool-tile reveal">
-          <div class="tool-top"><strong>Incident response</strong></div>
-          <p class="tool-desc">PagerDuty, Rootly, Jira, Slack, Confluence</p>
-          <div class="tool-tags"><span class="tag">P1/P2 on-call</span><span class="tag">Escalations</span><span class="tag">Post-mortems</span></div>
+        <div class="tools-row">
+          <span class="tools-cat">Incident response</span>
+          <span class="tools-val">PagerDuty, Jira, Confluence, Slack</span>
         </div>
-
-        <div class="tool-tile reveal">
-          <div class="tool-top"><strong>Observability</strong></div>
-          <p class="tool-desc">Datadog, Elasticsearch, Kibana, Browser DevTools</p>
-          <div class="tool-tags"><span class="tag">Custom dashboards</span><span class="tag">Log analysis</span><span class="tag">Error tracing</span></div>
+        <div class="tools-row">
+          <span class="tools-cat">Observability</span>
+          <span class="tools-val">Datadog, Elasticsearch, Kibana, Browser DevTools</span>
         </div>
-
-        <div class="tool-tile reveal">
-          <div class="tool-top"><strong>APIs and authentication</strong></div>
-          <p class="tool-desc">REST APIs, Postman, SSO, SAML, OAuth, DNS</p>
-          <div class="tool-tags"><span class="tag">API debugging</span><span class="tag">SSO migrations</span><span class="tag">Integration support</span></div>
+        <div class="tools-row">
+          <span class="tools-cat">APIs and auth</span>
+          <span class="tools-val">REST APIs, Postman, SSO, SAML, OAuth, DNS</span>
         </div>
-
-        <div class="tool-tile reveal">
-          <div class="tool-top"><strong>Technical foundations</strong></div>
-          <p class="tool-desc">JavaScript, SQL, Bash, Docker, HTML/CSS, Git/GitHub, Python (learning)</p>
-          <div class="tool-tags"><span class="tag">Issue reproduction</span><span class="tag">Scripting</span><span class="tag">Version control</span></div>
+        <div class="tools-row">
+          <span class="tools-cat">Technical</span>
+          <span class="tools-val">JavaScript, SQL, Bash, Docker, Git/GitHub, Python (learning)</span>
         </div>
-
-        <div class="tool-tile reveal">
-          <div class="tool-top"><strong>AI and automation</strong></div>
-          <p class="tool-desc">Claude (Anthropic API), Cloudflare Workers, Google Dialogflow, IBM Watson</p>
-          <div class="tool-tags"><span class="tag">Prompt engineering</span><span class="tag">Chatbot deployment</span><span class="tag">Proxy architecture</span></div>
+        <div class="tools-row">
+          <span class="tools-cat">AI</span>
+          <span class="tools-val">Anthropic Claude API, Cloudflare Workers, Prompt engineering</span>
         </div>
-
-        <div class="tool-tile reveal">
-          <div class="tool-top"><strong>Documentation</strong></div>
-          <p class="tool-desc">Knowledge bases, troubleshooting playbooks, API docs, onboarding guides</p>
-          <div class="tool-tags"><span class="tag">Self-service enablement</span><span class="tag">Team scaling</span></div>
-        </div>
-
-        <div class="tool-tile reveal">
-          <div class="tool-top"><strong>Languages</strong></div>
-          <p class="tool-desc">English, Urdu, Hindi (all fluent), Punjabi (intermediate)</p>
-          <div class="tool-tags"><span class="tag">EMEA coverage</span><span class="tag">Enterprise communication</span></div>
-        </div>
-
       </div>
     </section>
 
     <p class="section-label reveal">Certifications</p>
     <section class="card reveal" style="text-align:center;">
-      <p>AI and technical certifications:</p>
       <div class="cert-row">
-        <span class="cert-tag">IBM AI Fundamentals with Capstone Project</span>
-        <span class="cert-tag">Generative AI: Prompt Engineering Basics</span>
-        <span class="cert-tag">Generative AI: Introduction and Applications</span>
-        <span class="cert-tag">Datadog: Performance Monitoring Zero to Hero</span>
-      </div>
-      <p style="margin-top:1.25rem;">Developer certifications:</p>
-      <div class="cert-row">
-        <span class="cert-tag">Creating API Documentation</span>
-        <span class="cert-tag">Introduction to Web APIs</span>
-        <span class="cert-tag">Learning REST APIs</span>
+        <span class="cert-tag">IBM AI Fundamentals</span>
+        <span class="cert-tag">Generative AI: Prompt Engineering</span>
+        <span class="cert-tag">Datadog: Performance Monitoring</span>
+        <span class="cert-tag">REST APIs</span>
         <span class="cert-tag">JavaScript</span>
-        <span class="cert-tag">SQL Essential Training</span>
-        <span class="cert-tag">Linux and Bash Scripting</span>
+        <span class="cert-tag">SQL</span>
+        <span class="cert-tag">Linux and Bash</span>
         <span class="cert-tag">HTML5 and CSS3</span>
         <span class="cert-tag">Python (ongoing)</span>
       </div>

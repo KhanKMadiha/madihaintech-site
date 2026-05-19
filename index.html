@@ -1073,19 +1073,20 @@ TONE GUIDELINES:
   <script>
     (function () {
       const LINES = [
-        { text: '$ investigating P1 — client #042', cls: 'cmd' },
-        { text: '  pulling API gateway logs...',    cls: 'dim' },
-        { text: '  → POST /api/v2/surveys  403',    cls: '' },
-        { text: '  → auth header: missing scope',   cls: 'warn' },
-        { text: '',                                 cls: '' },
-        { text: '  reproduced in staging ✓',        cls: 'ok' },
-        { text: '  root cause: OAuth misconfigured', cls: '' },
-        { text: '',                                 cls: '' },
-        { text: '  patch deployed to prod ✓',       cls: 'ok' },
-        { text: '  client notified + followed up',  cls: 'dim' },
-        { text: '',                                 cls: '' },
-        { text: '  Resolution: 43 mins',            cls: 'stat' },
-        { text: '  CSAT: 5 / 5  ★',                 cls: 'stat' },
+        { text: '$ ticket #4821 · P1 · Enterprise',    cls: 'cmd' },
+        { text: '  Client: EMEA account · 200 users affected', cls: '' },
+        { text: '  Issue: dashboard inaccessible since 09:00', cls: 'warn' },
+        { text: '',                                            cls: '' },
+        { text: '  Investigating...',                         cls: 'dim' },
+        { text: '  → API timeout on /reports endpoint',       cls: '' },
+        { text: '  → root cause: rate limit misconfigured',   cls: '' },
+        { text: '',                                            cls: '' },
+        { text: '  Fix deployed ✓  — 1hr 48mins',             cls: 'ok' },
+        { text: '  200 users unblocked',                      cls: 'ok' },
+        { text: '  KB article created for future cases',      cls: 'dim' },
+        { text: '',                                            cls: '' },
+        { text: '  CSAT: 5 / 5  ★',                          cls: 'stat' },
+        { text: '  "Resolved faster than expected"',          cls: 'stat' },
       ];
       const CHAR_DELAY = 38;
       const LINE_PAUSE = 320;

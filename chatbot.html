@@ -62,9 +62,9 @@
     .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
 
     .hero {
-      min-height: 82vh;
+      min-height: 65vh;
       display: flex; align-items: center;
-      padding: 6.5rem 1.5rem 4rem;
+      padding: 6.5rem 1.5rem 2.5rem;
       background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
     }
 
@@ -85,23 +85,6 @@
       font-size: 1.15rem; line-height: 1.7; color: var(--muted-dark);
       animation: fadeUp 0.6s ease 0.15s both;
     }
-
-    .hero-actions {
-      display: flex; align-items: center; gap: 1rem; justify-content: center;
-      margin-top: 1.75rem; flex-wrap: wrap;
-      animation: fadeUp 0.6s ease 0.25s both;
-    }
-
-    .hero-action-secondary {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.6rem 1.25rem; border-radius: 999px;
-      border: 1.5px solid var(--border-strong);
-      font-size: 0.95rem; font-weight: 600; color: var(--text-dark);
-      text-decoration: none; background: rgba(255,255,255,0.6);
-      transition: border-color 0.2s ease, background 0.2s ease;
-    }
-
-    .hero-action-secondary:hover { border-color: var(--accent); background: rgba(255,255,255,0.9); }
 
     @keyframes fadeUp {
       from{opacity:0;transform:translateY(20px);}
@@ -517,31 +500,18 @@
       <p class="hero-highlight">
         How I went from a Permission Denied error in Dialogflow to a live Claude-powered assistant secured with Cloudflare Workers. The full story, including every struggle.
       </p>
-      <div class="hero-actions">
-        <a class="hero-action-secondary" href="https://github.com/KhanKMadiha/madihaintech-site" target="_blank" rel="noopener noreferrer">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          View code
-        </a>
-      </div>
     </div>
   </section>
 
   <main class="content">
 
     <!-- INTRO -->
-    <p class="section-label reveal">What this project is</p>
     <div class="intro-card reveal">
       <p>
-        The chatbot in the bottom right corner of every page on this site is something I built completely from scratch.
+        This didn't start as a portfolio piece. It started as something I wanted to actually understand, and it broke in every way it could before it worked.
       </p>
       <p>
-        It's a live, production AI assistant that answers questions about my experience, skills, and career, so anyone visiting the site can explore my background interactively rather than just reading static text.
-      </p>
-      <p>
-        What started as a simple experiment became a full journey through conversational AI design, API integration, security incidents, and infrastructure decisions.
-      </p>
-      <p>
-        <strong>Every mistake led somewhere useful.</strong>
+        Three platforms. A live security incident caught by GitHub. A complete infrastructure rebuild. The chatbot in the corner of this page is what came out the other side, and a Senior Manager at GitHub called it awesome.
       </p>
       <div class="tag-row">
         <span class="tag">Conversational AI</span>

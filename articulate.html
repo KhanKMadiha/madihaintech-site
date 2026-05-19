@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <title>Articulate | Madiha Khan — MadihaInTech</title>
 
   <style>
@@ -21,7 +24,7 @@
     * { box-sizing: border-box; }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
       background-color: var(--bg-base);
       color: var(--text-dark);
       margin: 0; padding: 0;
@@ -60,7 +63,7 @@
     .hero {
       min-height: 55vh;
       display: flex; align-items: center;
-      padding: 5.25rem 1.5rem 2rem;
+      padding: 6.5rem 1.5rem 2.5rem;
       background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
     }
 
@@ -370,10 +373,65 @@
     .send-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
     .send-btn svg{width:15px;height:15px;fill:white;}
     @media(max-width:420px){#chat-window{width:calc(100vw - 28px);right:14px;bottom:84px;}#chat-toggle{right:14px;bottom:14px;}}
+  
+    /* ── sticky top nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      padding: 0 1.75rem;
+      background: rgba(250, 250, 248, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .site-nav-brand {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      margin-right: auto;
+    }
+    .site-nav-links {
+      display: flex;
+      gap: 0.25rem;
+    }
+    .site-nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(26,26,26,0.55);
+      text-decoration: none;
+      padding: 0.35rem 0.7rem;
+      border-radius: 8px;
+      transition: color 0.15s ease;
+    }
+    .site-nav-links a:hover { color: var(--text-dark); }
+    .site-nav-links a.active {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+    @media (max-width: 540px) {
+      .site-nav-brand { display: none; }
+      .site-nav { padding: 0 1rem; justify-content: center; }
+    }
   </style>
 </head>
 
 <body>
+<nav class="site-nav">
+  <a class="site-nav-brand" href="./index.html">Madiha Khan</a>
+  <div class="site-nav-links">
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./skills.html">Skills</a>
+    <a class="active" href="./projects.html">Projects</a>
+    <a href="./contact.html">Contact</a>
+  </div>
+</nav>
 
   <section class="hero">
     <div class="hero-inner">
@@ -383,16 +441,6 @@
         A daily reading practice app for professionals who want to speak with more confidence.
         Generates a personalised passage every day using AI which then then lets you record yourself and get scored on accuracy, fluency and pace.
       </p>
-    </div>
-  </section>
-
-  <section class="nav-cta">
-    <div class="nav-cta-inner">
-      <a class="nav-btn" href="./index.html">Homepage</a>
-      <a class="nav-btn" href="./about.html">About Me</a>
-      <a class="nav-btn" href="./skills.html">Skills &amp; Experience</a>
-      <a class="nav-btn" href="./projects.html">All Projects</a>
-      <a class="nav-btn" href="./contact.html">Get in Touch</a>
     </div>
   </section>
 

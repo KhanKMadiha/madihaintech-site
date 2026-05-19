@@ -7,14 +7,14 @@
  
   <style>
     :root {
-      --pink-base: #fff0f6;
-      --pink-soft: #fbe4ec;
-      --pink-strong: #e96a9a;
-      --pink-light: #fdd5e8;
-      --text-dark: #2b2b2b;
-      --muted-dark: rgba(43, 43, 43, 0.7);
-      --border-soft: rgba(233, 106, 154, 0.25);
-      --border-strong: rgba(233, 106, 154, 0.45);
+      --pink-base: #FAFAF8;
+      --pink-soft: #F5EEEC;
+      --pink-strong: #D4A4A0;
+      --pink-light: #EDE8E6;
+      --text-dark: #1A1A1A;
+      --muted-dark: rgba(26, 26, 26, 0.6);
+      --border-soft: rgba(180, 140, 135, 0.2);
+      --border-strong: rgba(180, 140, 135, 0.38);
       --white-glass: rgba(255, 255, 255, 0.75);
     }
  
@@ -43,7 +43,7 @@
     .shape {
       position: absolute;
       border-radius: 50%;
-      background: rgba(233, 106, 154, 0.07);
+      background: rgba(180, 140, 135, 0.06);
       animation: float linear infinite;
     }
  
@@ -139,10 +139,10 @@
     }
  
     .nav-btn.active {
-      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
       color: #fff;
       border-color: transparent;
-      box-shadow: 0 6px 18px rgba(233, 106, 154, 0.35);
+      box-shadow: 0 6px 18px rgba(180, 140, 135, 0.25);
     }
  
     @keyframes fadeUp {
@@ -216,7 +216,7 @@
       padding: 2.25rem 2.5rem;
       border-radius: 22px;
       border: 1.5px solid var(--border-strong);
-      background: linear-gradient(135deg, rgba(253, 213, 232, 0.5), rgba(251, 228, 236, 0.4));
+      background: linear-gradient(135deg, rgba(237, 232, 230, 0.5), rgba(237, 232, 230, 0.4));
       backdrop-filter: blur(8px);
       margin-bottom: 1.5rem;
       text-align: center;
@@ -295,7 +295,7 @@
       top: 8px;
       bottom: 8px;
       width: 2px;
-      background: linear-gradient(to bottom, var(--pink-strong), rgba(233, 106, 154, 0.15));
+      background: linear-gradient(to bottom, var(--pink-strong), rgba(180, 140, 135, 0.15));
       border-radius: 2px;
     }
  
@@ -318,12 +318,12 @@
       width: 38px;
       height: 38px;
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1rem;
-      box-shadow: 0 4px 12px rgba(233, 106, 154, 0.3);
+      box-shadow: 0 4px 12px rgba(180, 140, 135, 0.3);
       margin-top: 2px;
       position: relative;
       z-index: 1;
@@ -498,7 +498,7 @@
       margin: 26px 0 34px;
       padding: 0 1.5rem;
       font-size: 0.95rem;
-      color: rgba(43, 43, 43, 0.7);
+      color: rgba(26, 26, 26, 0.6);
     }
  
     /* ---------- CHATBOT ---------- */
@@ -511,14 +511,14 @@
       border: 1.5px solid var(--border-strong);
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 24px rgba(233, 106, 154, 0.28);
+      box-shadow: 0 8px 24px rgba(180, 140, 135, 0.28);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       z-index: 9999; font-size: 24px;
     }
  
     #chat-toggle:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(233, 106, 154, 0.4);
+      box-shadow: 0 12px 30px rgba(180, 140, 135, 0.4);
     }
  
     #chat-window {
@@ -530,7 +530,7 @@
       -webkit-backdrop-filter: blur(14px);
       border: 1.5px solid var(--border-soft);
       border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(233, 106, 154, 0.15), 0 4px 16px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 20px 50px rgba(180, 140, 135, 0.15), 0 4px 16px rgba(0, 0, 0, 0.06);
       display: flex; flex-direction: column;
       overflow: hidden; z-index: 9998;
       transform: scale(0.92) translateY(14px);
@@ -552,9 +552,9 @@
  
     .chat-avatar {
       width: 38px; height: 38px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--pink-strong), #f0a0c0);
+      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.05em; color: #fff; flex-shrink: 0;
     }
  
     .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
@@ -567,7 +567,7 @@
       color: var(--muted-dark); font-size: 17px; line-height: 1; padding: 4px;
       border-radius: 6px; transition: background 0.15s;
     }
-    .chat-close:hover { background: rgba(233, 106, 154, 0.12); }
+    .chat-close:hover { background: rgba(180, 140, 135, 0.12); }
  
     .chat-messages {
       flex: 1; overflow-y: auto; padding: 14px 14px 10px;
@@ -590,7 +590,7 @@
       border-bottom-left-radius: 5px; align-self: flex-start; color: var(--text-dark);
     }
     .msg.user {
-      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
       color: #fff; border-bottom-right-radius: 5px; align-self: flex-end;
     }
  
@@ -621,17 +621,17 @@
       transition: border-color 0.2s;
     }
     .chat-input-area textarea:focus { border-color: var(--pink-strong); }
-    .chat-input-area textarea::placeholder { color: rgba(43,43,43,0.4); }
+    .chat-input-area textarea::placeholder { color: rgba(26,26,26,0.4); }
  
     .send-btn {
       width: 36px; height: 36px; border-radius: 11px;
-      background: linear-gradient(135deg, var(--pink-strong), #f07eb0);
+      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
       border: none; cursor: pointer; display: flex; align-items: center;
       justify-content: center; flex-shrink: 0;
       transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s;
-      box-shadow: 0 4px 12px rgba(233,106,154,0.32);
+      box-shadow: 0 4px 12px rgba(180,140,135,0.32);
     }
-    .send-btn:hover { transform: scale(1.07); box-shadow: 0 6px 16px rgba(233,106,154,0.42); }
+    .send-btn:hover { transform: scale(1.07); box-shadow: 0 6px 16px rgba(180,140,135,0.42); }
     .send-btn:active { transform: scale(0.95); }
     .send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     .send-btn svg { width: 15px; height: 15px; fill: white; }
@@ -705,7 +705,7 @@
     <div class="timeline">
  
       <div class="timeline-item">
-        <div class="timeline-dot">🌸</div>
+        <div class="timeline-dot">⭐</div>
         <div class="timeline-content">
           <div class="timeline-meta">Jan 2025 to Present</div>
           <h3>Senior Product Support Specialist · Stack Overflow</h3>
@@ -786,15 +786,15 @@
  
   <!-- FOOTER -->
   <footer>
-    © <span id="year"></span> Madiha Khan · Built with care 🌸
+    © <span id="year"></span> Madiha Khan · Built with care
   </footer>
  
   <!-- CHATBOT -->
-  <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">🌸</button>
+  <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">💬</button>
  
   <div id="chat-window">
     <div class="chat-header">
-      <div class="chat-avatar">🌸</div>
+      <div class="chat-avatar">PA</div>
       <div class="chat-header-info">
         <h4>Madiha's Portfolio Assistant</h4>
         <p><span class="online-dot"></span>Ask me anything</p>

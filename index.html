@@ -329,8 +329,6 @@
       color: var(--accent);
       line-height: 1;
       margin-bottom: 0.4rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
     }
 
     .stat-label {
@@ -383,7 +381,86 @@
     }
 
     /* ---------- WIDE FEATURE CARD ---------- */
-    .feature-card {
+    /* ---------- PROJECT CARDS ---------- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(8px);
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      text-align: left;
+    }
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.07);
+      border-color: var(--border-strong);
+    }
+    .project-card-top { flex: 1; }
+    .project-type {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .project-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin: 0 0 0.65rem;
+      color: var(--text-dark);
+    }
+    .project-card p {
+      font-size: 0.97rem;
+      line-height: 1.7;
+      color: var(--muted-dark);
+      margin: 0 0 1.25rem;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .project-btn {
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .project-btn.primary {
+      background: linear-gradient(135deg, var(--accent), #E0B8B4);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(180, 140, 135, 0.28);
+    }
+    .project-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(180, 140, 135, 0.38); }
+    .project-btn.secondary {
+      border: 1.5px solid var(--border-strong);
+      color: var(--text-dark);
+      background: transparent;
+    }
+    .project-btn.secondary:hover { transform: translateY(-1px); border-color: var(--accent); }
+    @media(max-width: 640px) { .projects-grid { grid-template-columns: 1fr; } }
+
+    /* ---------- FEATURE CARD (legacy) ---------- */
       padding: 2.25rem 2.25rem;
       border-radius: 22px;
       border: 1.5px solid var(--border-soft);
@@ -431,24 +508,6 @@
       font-weight: 700;
       color: var(--accent);
       text-decoration: none;
-    }
-
-    .feature-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      margin: 0 0 0.5rem;
-    }
-
-    .feature-card--secondary {
-      opacity: 0.85;
-      border-style: dashed;
-    }
-
-    .feature-card--secondary .feature-text h3 {
-      font-size: 1.05rem;
     }
 
     /* ---------- TAG ROW ---------- */
@@ -840,27 +899,44 @@
       </div>
     </div>
 
-    <!-- FEATURED PROJECT -->
-    <p class="section-label reveal">Featured project</p>
-    <div class="feature-card reveal">
-      <div class="feature-card-inner">
-        <div class="feature-text">
-          <p class="feature-label">Full-stack app · 2026</p>
+    <!-- FEATURED PROJECTS -->
+    <p class="section-label reveal">Projects</p>
+    <div class="projects-grid reveal">
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <span class="project-type">Full-stack PWA · 2026</span>
           <h3>Articulate</h3>
-          <p>A speech coaching app built from scratch with React and Node.js. Generates AI-tailored practice passages based on your career goals, records your delivery, and scores you on accuracy, fluency, and pace. Includes a complete dyslexia-friendly mode. Deployed to production on Railway.</p>
-          <a class="feature-link" href="./articulate.html">View project →</a>
+          <p>A speech practice app for professionals. Claude generates a personalised passage every day, you record yourself, and AI scores your accuracy, fluency, and pace. Includes a full dyslexia-friendly mode built from scratch.</p>
+        </div>
+        <div class="project-tags">
+          <span class="tag">React</span>
+          <span class="tag">Claude API</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">PWA</span>
+        </div>
+        <div class="project-links">
+          <a href="https://articulate-app-production.up.railway.app" target="_blank" rel="noopener" class="project-btn primary">Open app</a>
+          <a href="./articulate.html" class="project-btn secondary">Read the story</a>
         </div>
       </div>
-    </div>
-    <div class="feature-card feature-card--secondary reveal">
-      <div class="feature-card-inner">
-        <div class="feature-text">
-          <p class="feature-label">Conversational AI · 2025</p>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <span class="project-type">Conversational AI · 2025</span>
           <h3>Claude-Powered Portfolio Assistant</h3>
-          <p>Built a production AI assistant from scratch, secured behind a Cloudflare Workers proxy. Hit real problems, iterated through three platforms, and shipped something that works. The chatbot in the corner is the live result.</p>
-          <a class="feature-link" href="./chatbot.html">Read the full story →</a>
+          <p>Built a production AI assistant from scratch, secured behind a Cloudflare Workers proxy. Three platforms, a live security incident, and a complete rebuild before it worked. The chatbot in the corner is the result.</p>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Anthropic API</span>
+          <span class="tag">Cloudflare Workers</span>
+          <span class="tag">Prompt engineering</span>
+        </div>
+        <div class="project-links">
+          <a href="./chatbot.html" class="project-btn primary">Read the story</a>
         </div>
       </div>
+
     </div>
 
     <!-- TOOLBOX -->
@@ -955,7 +1031,6 @@
       const step = 16;
       const increment = target / (duration / step);
       let current = 0;
-      el.style.opacity = 1;
       const timer = setInterval(() => {
         current += increment;
         if (current >= target) { current = target; clearInterval(timer); }

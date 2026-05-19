@@ -69,10 +69,10 @@
  
     /* ---------- HERO ---------- */
     .hero {
-      min-height: 55vh;
+      min-height: 82vh;
       display: flex;
       align-items: center;
-      padding: 6.5rem 1.5rem 2.5rem;
+      padding: 6.5rem 1.5rem 4rem;
       background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
     }
  
@@ -318,18 +318,32 @@
  
     .timeline-dot {
       flex-shrink: 0;
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
+      background: rgba(255,255,255,0.95);
+      border: 1.5px solid var(--border-soft);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
-      box-shadow: 0 4px 12px rgba(180, 140, 135, 0.3);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(180, 140, 135, 0.15);
       margin-top: 2px;
       position: relative;
       z-index: 1;
+    }
+    .timeline-dot img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+    .timeline-dot-fb {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.01em;
+      text-align: center;
+      line-height: 1.1;
     }
  
     .timeline-content {
@@ -732,90 +746,80 @@
         <strong>I spotted the gaps, built the solutions, and documented them so they scaled beyond me.</strong>
       </p>
       <p>
-        That instinct didn't come from a traditional route. I started teaching myself to code during the pandemic out of pure curiosity, moved through customer-facing roles, and found my way into product support. Outside of work, I lead a Ramadan fundraising project that has raised over £50,000 and reached 2,000 families in Pakistan.
-      </p>
-      <p>
-        That same drive runs through everything I do. I genuinely want to make things better for people, and I always have.
+        That instinct didn't come from a traditional route. I started teaching myself to code during the pandemic out of pure curiosity, moved through customer-facing roles, and found my way into product support. That same drive runs through everything I do — I genuinely want to make things better for people, and I always have.
       </p>
     </div>
  
+    <!-- BEYOND WORK -->
+    <p class="section-label reveal">Beyond work</p>
+    <div class="highlight-card reveal">
+      <div class="highlight-text">
+        <h3>Ramadan fundraising: £50,000 raised, 2,000 families reached</h3>
+        <p>Every year during Ramadan, I lead a fundraising project that has raised over £50,000 and distributed 2,000 food bags to families in Pakistan. It started small and grew because I kept improving it — better outreach, better logistics, better follow-through. The same instinct that makes me build better support systems is what makes this work. <strong>I genuinely want to make things better for people.</strong></p>
+      </div>
+    </div>
+
     <!-- CAREER TIMELINE -->
     <p class="section-label reveal">Career journey</p>
     <div class="timeline">
- 
+
       <div class="timeline-item">
-        <div class="timeline-dot">⭐</div>
+        <div class="timeline-dot">
+          <img src="https://logo.clearbit.com/stackoverflow.com" alt="Stack Overflow"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <span class="timeline-dot-fb" style="display:none">SO</span>
+        </div>
         <div class="timeline-content">
           <div class="timeline-meta">Jan 2025 to Present</div>
           <h3>Senior Product Support Engineer · Stack Overflow</h3>
           <p>Sole EMEA support engineer. P1/P2 on-call ownership across 100+ enterprise accounts. Built Datadog dashboards, knowledge base infrastructure, and escalation playbooks from scratch.</p>
         </div>
       </div>
- 
+
       <div class="timeline-item">
-        <div class="timeline-dot">📡</div>
+        <div class="timeline-dot">
+          <img src="https://logo.clearbit.com/alida.com" alt="Alida"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <span class="timeline-dot-fb" style="display:none">AL</span>
+        </div>
         <div class="timeline-content">
           <div class="timeline-meta">Feb 2023 to Nov 2024</div>
           <h3>Technical Support Analyst · Alida</h3>
           <p>Managed all EMEA enterprise escalations: SSO, SAML, OAuth, REST API debugging. 95% resolution rate. Reduced engineering investigation time by 20% through systematic reproduction.</p>
         </div>
       </div>
- 
+
       <div class="timeline-item">
-        <div class="timeline-dot">💎</div>
+        <div class="timeline-dot">
+          <img src="https://logo.clearbit.com/monicavinader.com" alt="Monica Vinader"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <span class="timeline-dot-fb" style="display:none">MV</span>
+        </div>
         <div class="timeline-content">
           <div class="timeline-meta">Nov 2021 to Feb 2023</div>
           <h3>Customer Care Associate · Monica Vinader</h3>
           <p>98% CSAT managing 50+ daily interactions across phone, email, and chat. Resolved 300+ escalated tickets in a single week. Built 30 templates that improved first contact resolution by 25%.</p>
         </div>
       </div>
- 
+
       <div class="timeline-item">
-        <div class="timeline-dot">🏥</div>
+        <div class="timeline-dot">
+          <span class="timeline-dot-fb" style="display:flex">119</span>
+        </div>
         <div class="timeline-content">
           <div class="timeline-meta">Sep 2021 to Nov 2021</div>
           <h3>Call Agent · 119 COVID Helpline</h3>
           <p>50+ inbound calls daily during peak pandemic operations. First-call resolution with empathy in a high-pressure, high-stakes environment.</p>
         </div>
       </div>
- 
-    </div>
- 
-    <!-- FEATURED PROJECTS -->
-    <p class="section-label reveal">Featured projects</p>
-    <div class="featured-projects reveal">
- 
-      <div class="project-card">
-        <div class="project-card-icon">🤖</div>
-        <h3>Claude-Powered Portfolio Assistant</h3>
-        <p>Built a production AI chatbot from scratch. Started with Dialogflow CX, hit real permission and security issues, switched to the Anthropic API, and secured the key using a Cloudflare Worker proxy. The chatbot on this page is the live result.</p>
-        <a class="project-link" href="./projects.html">Read the full story →</a>
-      </div>
- 
-      <div class="project-card">
-        <div class="project-card-icon">🎙️</div>
-        <h3>Articulate</h3>
-        <p>A speech app that helps professionals improve how they communicate. Built with React, Express, and the Claude API. Generates personalised daily passages, records your delivery, and scores you on accuracy, fluency, and pace.</p>
-        <a class="project-link" href="./articulate.html">See the project →</a>
-      </div>
- 
-    </div>
- 
-    <!-- BEYOND WORK -->
-    <p class="section-label reveal">Beyond work</p>
-    <div class="highlight-card reveal">
-      <div class="highlight-icon">🌙</div>
-      <div class="highlight-text">
-        <h3>Ramadan fundraising: £50,000 raised, 2,000 families reached</h3>
-        <p>Every year during Ramadan, I lead a fundraising project that has raised over £50,000 and distributed 2,000 food bags to families in Pakistan. It started small and grew because I kept improving it: better outreach, better logistics, better follow-through. The same instinct that makes me build better support systems is what makes this work. <strong>I genuinely want to make things better for people.</strong> </p>
-      </div>
+
     </div>
  
   </div>
  
   <!-- LINKS -->
   <section class="links reveal">
-    <h2>Let's connect 👩🏻‍💻</h2>
+    <h2>Let's connect</h2>
     <p>
       <a class="social-link" href="https://github.com/KhanKMadiha" target="_blank">GitHub</a>
       <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>

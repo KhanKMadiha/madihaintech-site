@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <title>Articulate | Madiha Khan — MadihaInTech</title>
+  <title>Articulate | Madiha Khan</title>
 
   <style>
     :root {
@@ -61,7 +61,7 @@
     .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
 
     .hero {
-      min-height: 55vh;
+      min-height: 65vh;
       display: flex; align-items: center;
       padding: 6.5rem 1.5rem 2.5rem;
       background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
@@ -282,6 +282,7 @@
     }
 
     .tool-logo .tool-emoji { font-size: 1.5rem; }
+    .tool-initial { font-size: 0.75rem; font-weight: 800; color: var(--muted-dark); letter-spacing: 0.02em; }
     .tool-name { font-size: 0.88rem; font-weight: 800; margin: 0 0 0.2rem; }
     .tool-desc { font-size: 0.78rem; color: var(--muted-dark); margin: 0; line-height: 1.4; }
 
@@ -435,11 +436,11 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <p class="hero-label">Full-stack PWA · 2025</p>
+      <p class="hero-label">Full-stack PWA · 2026</p>
       <h1>Articulate</h1>
       <p class="hero-highlight">
         A daily reading practice app for professionals who want to speak with more confidence.
-        Generates a personalised passage every day using AI which then then lets you record yourself and get scored on accuracy, fluency and pace.
+        Generates a personalised passage every day using AI, then lets you record yourself and get scored on accuracy, fluency and pace.
       </p>
     </div>
   </section>
@@ -506,8 +507,8 @@
           </div>
         </div>
         <div class="phase-body">
-          <p>I built the passage generation pipeline, recording flow, and AI scoring end to end. Each passage is personalised to the user's job title, industry, goals, and the speakers they admire — generated fresh every day by Claude.</p>
-          <p>Recording uses the Web Speech API with real-time transcription. The transcript is compared against the original passage to score accuracy, fluency, and pace — with specific, constructive feedback, not just a number.</p>
+          <p>I built the passage generation pipeline, recording flow, and AI scoring end to end. Each passage is personalised to the user's job title, industry, goals, and the speakers they admire, generated fresh every day by Claude.</p>
+          <p>Recording uses the Web Speech API with real-time transcription. The transcript is compared against the original passage to score accuracy, fluency, and pace, with specific, constructive feedback, not just a number.</p>
           <p>The app also tracks streaks, lets users save favourite passages to a library, and supports push notifications as an optional daily reminder.</p>
         </div>
         <div class="phase-nav">
@@ -526,7 +527,7 @@
         </div>
         <div class="phase-body">
           <p>I added a full dyslexia-friendly reading mode as a named feature within the app. One paragraph at a time, a reading ruler that follows your position, live word highlighting as you speak, syllable break markers, and an OpenDyslexic font option.</p>
-          <p>The AI passages themselves are also adjusted in dyslexia mode — shorter sentences, simpler vocabulary, and avoiding easily-confused homophones — so the accessibility goes all the way through to the content.</p>
+          <p>The AI passages themselves are also adjusted in dyslexia mode: shorter sentences, simpler vocabulary, and avoiding easily-confused homophones — so the accessibility goes all the way through to the content.</p>
         </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" onclick="showPhase(2)">← Previous</button>
@@ -542,7 +543,7 @@
       <div class="feature-card">
         <span class="feature-icon">♿</span>
         <h3>Dyslexia-friendly mode</h3>
-        <p>One paragraph at a time, reading ruler, live word highlighting, syllable breaks, OpenDyslexic font — and AI passages written for it too.</p>
+        <p>One paragraph at a time, reading ruler, live word highlighting, syllable breaks, OpenDyslexic font, and AI passages written for it too.</p>
       </div>
 
       <div class="feature-card">
@@ -554,7 +555,7 @@
       <div class="feature-card">
         <span class="feature-icon">🎙</span>
         <h3>Delivery scoring</h3>
-        <p>AI scores your accuracy, fluency and pace after each recording — with specific, constructive feedback.</p>
+        <p>AI scores your accuracy, fluency and pace after each recording, with specific, constructive feedback.</p>
       </div>
 
       <div class="feature-card">
@@ -570,37 +571,37 @@
     <div class="tools-grid reveal">
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-emoji">⚛️</span></div>
+        <div class="tool-logo"><span class="tool-initial">Re</span></div>
         <p class="tool-name">React 18</p>
         <p class="tool-desc">Frontend with Vite and Tailwind CSS</p>
       </div>
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-emoji">🟢</span></div>
+        <div class="tool-logo"><span class="tool-initial">No</span></div>
         <p class="tool-name">Node.js + Express</p>
         <p class="tool-desc">Backend API server</p>
       </div>
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-emoji">🤖</span></div>
+        <div class="tool-logo"><span class="tool-initial">AI</span></div>
         <p class="tool-name">Anthropic Claude</p>
         <p class="tool-desc">Passage generation and speech scoring</p>
       </div>
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-emoji">🎤</span></div>
+        <div class="tool-logo"><span class="tool-initial">WS</span></div>
         <p class="tool-name">Web Speech API</p>
         <p class="tool-desc">Real-time speech recognition</p>
       </div>
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-emoji">📱</span></div>
+        <div class="tool-logo"><span class="tool-initial">PW</span></div>
         <p class="tool-name">PWA</p>
         <p class="tool-desc">Service worker, offline support, push notifications</p>
       </div>
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-emoji">🚂</span></div>
+        <div class="tool-logo"><span class="tool-initial">Rw</span></div>
         <p class="tool-name">Railway + Docker</p>
         <p class="tool-desc">Deployment and hosting</p>
       </div>
@@ -609,7 +610,7 @@
 
     <!-- TRY IT -->
     <div class="try-card reveal">
-      <h3>Try it yourself 🎙</h3>
+      <h3>Try it yourself</h3>
       <p>The app is live and free to use. Set up your profile in about two minutes and get your first passage today.</p>
       <a class="live-btn" href="https://articulate-app-production.up.railway.app" target="_blank" rel="noopener noreferrer">Open Articulate →</a>
     </div>
@@ -617,7 +618,7 @@
   </main>
 
   <section class="links reveal">
-    <h2>Let's connect 👩🏻‍💻</h2>
+    <h2>Let's connect</h2>
     <p>
       <a class="social-link" href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>

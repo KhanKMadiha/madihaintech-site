@@ -61,9 +61,9 @@
     .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
 
     .hero {
-      min-height: 45vh;
+      min-height: 65vh;
       display: flex; align-items: center;
-      padding: 6.5rem 1.5rem 2.5rem;
+      padding: 6.5rem 1.5rem 4rem;
       background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
     }
 
@@ -172,6 +172,17 @@
     .card-cta {
       display: inline-flex; align-items: center; gap: 0.5rem;
       font-size: 1rem; font-weight: 700; color: var(--accent);
+    }
+
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
+    .card-header h2 { margin: 0; }
+    .status-badge {
+      flex-shrink: 0;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 0.3rem 0.7rem;
+      border-radius: 999px; border: 1.5px solid rgba(76, 175, 130, 0.35);
+      background: rgba(76, 175, 130, 0.1); color: #2d7a5a;
+      margin-top: 0.2rem;
     }
 
     .links { padding-bottom: 2.5rem; text-align: center; }
@@ -306,9 +317,9 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <h1>Projects</h1>
+      <h1>Things I've built</h1>
       <p class="hero-highlight">
-        Things I've built whilst exploring AI, product, and what happens when you ship something real.
+        I build to learn and ship to prove it. Everything here is live, iterated on, and deployed to production — not just started.
       </p>
     </div>
   </section>
@@ -316,19 +327,19 @@
   <main class="content">
 
     <a class="project-card reveal" href="./articulate.html">
-      <p class="project-label">Full-stack speech app · 2026</p>
-      <h2>Articulate</h2>
+      <p class="project-label">Full-stack app · 2026</p>
+      <div class="card-header">
+        <h2>Articulate</h2>
+        <span class="status-badge">Live</span>
+      </div>
       <p>
-        A speech app that helps professionals improve how they communicate.
-        AI-generated passages tailored to your career goals, speech recording, and delivery scoring.
-        Includes a full dyslexia-friendly mode.
+        A speech coaching app built from scratch with React and Node.js. Generates AI-tailored practice passages based on your career goals, records your delivery, and scores you on accuracy, fluency, and pace. Includes a complete dyslexia-friendly mode built from scratch. Deployed to production on Railway.
       </p>
       <div class="tag-row">
         <span class="tag">React</span>
         <span class="tag">Node.js</span>
         <span class="tag">Claude API</span>
         <span class="tag">Speech recognition</span>
-        <span class="tag">Cursor</span>
         <span class="tag">Railway</span>
       </div>
       <span class="card-cta">View project →</span>
@@ -336,17 +347,18 @@
 
     <a class="project-card reveal" href="./chatbot.html">
       <p class="project-label">Conversational AI · 2025</p>
-      <h2>AI Chatbot</h2>
+      <div class="card-header">
+        <h2>Claude-Powered Portfolio Assistant</h2>
+        <span class="status-badge">Live · 3 iterations</span>
+      </div>
       <p>
-        A portfolio assistant chatbot built to answer questions about my work and guide visitors.
-        Started with IBM Watson, iterated through Dialogflow, and landed on a Claude-powered assistant
-        secured behind a Cloudflare Workers proxy.
+        Built through three full iterations — IBM Watson, Google Dialogflow CX, then the Anthropic API. Hit real production problems at every stage: missing permissions, API key exposure, CORS failures. Solved each one. The live version uses a Cloudflare Workers proxy to secure the key server-side. The iteration story is the point — this is what shipping actually looks like.
       </p>
       <div class="tag-row">
         <span class="tag">Anthropic API</span>
         <span class="tag">Cloudflare Workers</span>
-        <span class="tag">Dialogflow</span>
         <span class="tag">Prompt engineering</span>
+        <span class="tag">Security</span>
       </div>
       <span class="card-cta">View project →</span>
     </a>
@@ -354,7 +366,7 @@
   </main>
 
   <section class="links reveal">
-    <h2>Let's connect 👩🏻‍💻</h2>
+    <h2>Let's connect</h2>
     <p>
       <a class="social-link" href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a class="social-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>

@@ -7,10 +7,10 @@
 
   <style>
     :root {
-      --pink-base: #FAFAF8;
-      --pink-soft: #F5EEEC;
-      --pink-strong: #D4A4A0;
-      --pink-light: #EDE8E6;
+      --bg-base: #FAFAF8;
+      --surface: #F5EEEC;
+      --accent: #D4A4A0;
+      --surface-soft: #EDE8E6;
       --text-dark: #1A1A1A;
       --muted-dark: rgba(26, 26, 26, 0.6);
       --border-soft: rgba(180, 140, 135, 0.2);
@@ -22,7 +22,7 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--pink-base);
+      background-color: var(--bg-base);
       color: var(--text-dark);
       margin: 0; padding: 0;
       text-align: center;
@@ -61,7 +61,7 @@
       min-height: 55vh;
       display: flex; align-items: center;
       padding: 5.25rem 1.5rem 2rem;
-      background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
+      background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
     }
 
     .hero-inner {
@@ -72,7 +72,7 @@
     .hero-label {
       font-size: 0.82rem; font-weight: 700;
       letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--pink-strong); margin: 0 0 1rem;
+      color: var(--accent); margin: 0 0 1rem;
       animation: fadeUp 0.6s ease both;
     }
 
@@ -114,7 +114,7 @@
     .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); border-color: var(--border-strong); }
 
     .nav-btn.primary {
-      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
+      background: linear-gradient(135deg, var(--accent), #E0B8B4);
       color: #fff; border-color: transparent;
       box-shadow: 0 6px 18px rgba(180,140,135,0.25);
     }
@@ -131,7 +131,7 @@
 
     .section-label {
       font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--pink-strong);
+      text-transform: uppercase; color: var(--accent);
       margin: 0 0 1rem; text-align: center;
     }
 
@@ -175,7 +175,7 @@
 
     .phase-btn.active {
       border-color: transparent;
-      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
+      background: linear-gradient(135deg, var(--accent), #E0B8B4);
       color: #fff; box-shadow: 0 4px 14px rgba(180,140,135,0.25);
     }
 
@@ -227,7 +227,7 @@
 
     .phase-nav-btn:hover { border-color: var(--border-strong); box-shadow: 0 6px 16px rgba(0,0,0,0.07); }
     .phase-nav-btn.primary {
-      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
+      background: linear-gradient(135deg, var(--accent), #E0B8B4);
       color: #fff; border-color: transparent;
       box-shadow: 0 4px 14px rgba(180,140,135,0.25);
     }
@@ -296,7 +296,7 @@
     .try-card .live-btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.85rem 1.75rem; border-radius: 14px;
-      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
+      background: linear-gradient(135deg, var(--accent), #E0B8B4);
       color: #fff; text-decoration: none; font-weight: 800; font-size: 1.05rem;
       box-shadow: 0 6px 18px rgba(180,140,135,0.25);
       transition: opacity 0.2s ease, transform 0.2s ease;
@@ -306,7 +306,7 @@
     .links { padding-bottom: 2.5rem; text-align: center; }
     .links h2 { font-size: 1.6rem; margin: 2rem 0 0.75rem; }
     .links p { display: flex; justify-content: center; gap: 2.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
-    .social-link { font-size: 1.05rem; font-weight: 700; color: var(--pink-strong); text-decoration: none; }
+    .social-link { font-size: 1.05rem; font-weight: 700; color: var(--accent); text-decoration: none; }
 
     footer { margin: 26px 0 34px; padding: 0 1.5rem; font-size: 0.95rem; color: rgba(26,26,26,0.6); text-align: center; }
 
@@ -319,7 +319,7 @@
     #chat-toggle {
       position: fixed; bottom: 22px; right: 22px;
       width: 58px; height: 58px; border-radius: 18px;
-      background: var(--pink-soft); border: 1.5px solid var(--border-strong);
+      background: var(--surface); border: 1.5px solid var(--border-strong);
       cursor: pointer; display: flex; align-items: center; justify-content: center;
       box-shadow: 0 8px 24px rgba(180,140,135,0.28);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -340,8 +340,8 @@
     }
     #chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
 
-    .chat-header { background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%); border-bottom: 1px solid var(--border-soft); padding: 15px 16px; display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
-    .chat-avatar { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--pink-strong), #E0B8B4); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; color: #fff; flex-shrink: 0; }
+    .chat-header { background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%); border-bottom: 1px solid var(--border-soft); padding: 15px 16px; display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
+    .chat-avatar { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #E0B8B4); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; color: #fff; flex-shrink: 0; }
     .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
     .chat-header-info p { font-size: 0.73rem; color: var(--muted-dark); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
     .online-dot { width: 7px; height: 7px; background: #4caf82; border-radius: 50%; display: inline-block; flex-shrink: 0; }
@@ -354,17 +354,17 @@
     .msg { max-width: 84%; padding: 10px 13px; border-radius: 16px; font-size: 0.875rem; line-height: 1.58; animation: msgIn 0.22s ease; }
     @keyframes msgIn { from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:translateY(0);} }
     .msg.bot { background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft); border-bottom-left-radius: 5px; align-self: flex-start; color: var(--text-dark); }
-    .msg.user { background: linear-gradient(135deg,var(--pink-strong),#E0B8B4); color: #fff; border-bottom-right-radius: 5px; align-self: flex-end; }
+    .msg.user { background: linear-gradient(135deg,var(--accent),#E0B8B4); color: #fff; border-bottom-right-radius: 5px; align-self: flex-end; }
     .typing-indicator { display: flex; gap: 4px; padding: 11px 14px; background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft); border-radius: 16px; border-bottom-left-radius: 5px; align-self: flex-start; width: fit-content; animation: msgIn 0.2s ease; }
-    .typing-indicator span { width: 6px; height: 6px; background: var(--pink-strong); border-radius: 50%; animation: bounce 1.2s infinite; }
+    .typing-indicator span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: bounce 1.2s infinite; }
     .typing-indicator span:nth-child(2){animation-delay:0.2s;}
     .typing-indicator span:nth-child(3){animation-delay:0.4s;}
     @keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:0.6;}30%{transform:translateY(-5px);opacity:1;} }
     .chat-input-area { padding: 11px 13px; border-top: 1px solid var(--border-soft); background: rgba(255,255,255,0.6); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; }
     .chat-input-area textarea { flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px; padding: 9px 11px; font-family: 'Segoe UI',sans-serif; font-size: 0.875rem; color: var(--text-dark); background: rgba(255,255,255,0.88); resize: none; outline: none; max-height: 100px; line-height: 1.45; transition: border-color 0.2s; }
-    .chat-input-area textarea:focus { border-color: var(--pink-strong); }
+    .chat-input-area textarea:focus { border-color: var(--accent); }
     .chat-input-area textarea::placeholder { color: rgba(26,26,26,0.4); }
-    .send-btn { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg,var(--pink-strong),#E0B8B4); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.15s ease,box-shadow 0.15s ease,opacity 0.15s; box-shadow: 0 4px 12px rgba(180,140,135,0.32); }
+    .send-btn { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg,var(--accent),#E0B8B4); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.15s ease,box-shadow 0.15s ease,opacity 0.15s; box-shadow: 0 4px 12px rgba(180,140,135,0.32); }
     .send-btn:hover{transform:scale(1.07);box-shadow:0 6px 16px rgba(180,140,135,0.42);}
     .send-btn:active{transform:scale(0.95);}
     .send-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
@@ -374,11 +374,6 @@
 </head>
 
 <body>
-
-  <div class="bg-shapes">
-    <div class="shape"></div><div class="shape"></div><div class="shape"></div>
-    <div class="shape"></div><div class="shape"></div><div class="shape"></div>
-  </div>
 
   <section class="hero">
     <div class="hero-inner">
@@ -674,8 +669,6 @@ TONE GUIDELINES:
     const conversationHistory = [];
     let chatOpen = false;
     let isLoading = false;
-
-    window.addEventListener('load', () => { setTimeout(() => { if (!chatOpen) toggleChat(); }, 2000); });
 
     function toggleChat() {
       chatOpen = !chatOpen;

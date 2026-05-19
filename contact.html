@@ -7,10 +7,10 @@
 
   <style>
     :root {
-      --pink-base: #FAFAF8;
-      --pink-soft: #F5EEEC;
-      --pink-strong: #D4A4A0;
-      --pink-light: #EDE8E6;
+      --bg-base: #FAFAF8;
+      --surface: #F5EEEC;
+      --accent: #D4A4A0;
+      --surface-soft: #EDE8E6;
       --text-dark: #1A1A1A;
       --muted-dark: rgba(26, 26, 26, 0.6);
       --border-soft: rgba(180, 140, 135, 0.2);
@@ -22,7 +22,7 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--pink-base);
+      background-color: var(--bg-base);
       color: var(--text-dark);
       margin: 0;
       padding: 0;
@@ -67,7 +67,7 @@
       display: flex;
       align-items: center;
       padding: 5.25rem 1.5rem 2rem;
-      background: linear-gradient(180deg, var(--pink-soft) 0%, transparent 100%);
+      background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
     }
 
     .hero-inner {
@@ -138,7 +138,7 @@
     }
 
     .nav-btn.active {
-      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
+      background: linear-gradient(135deg, var(--accent), #E0B8B4);
       color: #fff;
       border-color: transparent;
       box-shadow: 0 6px 18px rgba(180, 140, 135, 0.25);
@@ -256,7 +256,7 @@
       bottom: 22px; right: 22px;
       width: 58px; height: 58px;
       border-radius: 18px;
-      background: var(--pink-soft);
+      background: var(--surface);
       border: 1.5px solid var(--border-strong);
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
@@ -293,7 +293,7 @@
     }
 
     .chat-header {
-      background: linear-gradient(135deg, var(--pink-soft) 0%, var(--pink-light) 100%);
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%);
       border-bottom: 1px solid var(--border-soft);
       padding: 15px 16px;
       display: flex; align-items: center; gap: 11px; flex-shrink: 0;
@@ -301,7 +301,7 @@
 
     .chat-avatar {
       width: 38px; height: 38px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
+      background: linear-gradient(135deg, var(--accent), #E0B8B4);
       display: flex; align-items: center; justify-content: center;
       font-size: 12px; font-weight: 800; letter-spacing: 0.05em; color: #fff; flex-shrink: 0;
     }
@@ -338,7 +338,7 @@
       border-bottom-left-radius: 5px; align-self: flex-start; color: var(--text-dark);
     }
     .msg.user {
-      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
+      background: linear-gradient(135deg, var(--accent), #E0B8B4);
       color: #fff; border-bottom-right-radius: 5px; align-self: flex-end;
     }
 
@@ -348,7 +348,7 @@
       border-radius: 16px; border-bottom-left-radius: 5px;
       align-self: flex-start; width: fit-content; animation: msgIn 0.2s ease;
     }
-    .typing-indicator span { width: 6px; height: 6px; background: var(--pink-strong); border-radius: 50%; animation: bounce 1.2s infinite; }
+    .typing-indicator span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: bounce 1.2s infinite; }
     .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
     .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes bounce {
@@ -368,12 +368,12 @@
       resize: none; outline: none; max-height: 100px; line-height: 1.45;
       transition: border-color 0.2s;
     }
-    .chat-input-area textarea:focus { border-color: var(--pink-strong); }
+    .chat-input-area textarea:focus { border-color: var(--accent); }
     .chat-input-area textarea::placeholder { color: rgba(26,26,26,0.4); }
 
     .send-btn {
       width: 36px; height: 36px; border-radius: 11px;
-      background: linear-gradient(135deg, var(--pink-strong), #E0B8B4);
+      background: linear-gradient(135deg, var(--accent), #E0B8B4);
       border: none; cursor: pointer; display: flex; align-items: center;
       justify-content: center; flex-shrink: 0;
       transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s;
@@ -392,15 +392,6 @@
 </head>
 
 <body>
-
-  <div class="bg-shapes">
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-  </div>
 
   <section class="hero">
     <div class="hero-inner">
@@ -552,10 +543,6 @@ TONE GUIDELINES:
     const conversationHistory = [];
     let chatOpen = false;
     let isLoading = false;
-
-    window.addEventListener('load', () => {
-      setTimeout(() => { if (!chatOpen) toggleChat(); }, 2000);
-    });
 
     function toggleChat() {
       chatOpen = !chatOpen;

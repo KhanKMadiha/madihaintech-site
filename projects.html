@@ -61,7 +61,7 @@
     .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
 
     .hero {
-      min-height: 65vh;
+      min-height: 82vh;
       display: flex; align-items: center;
       padding: 6.5rem 1.5rem 4rem;
       background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
@@ -134,7 +134,7 @@
       border-radius: 26px;
       background: rgba(255,255,255,0.55);
       backdrop-filter: blur(8px);
-      text-decoration: none; color: var(--text-dark);
+      color: var(--text-dark);
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
@@ -142,6 +142,10 @@
       transform: translateY(-4px);
       box-shadow: 0 18px 40px rgba(180,140,135,0.12);
       border-color: var(--border-strong);
+    }
+
+    .card-footer {
+      display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
     }
 
     .project-label {
@@ -172,7 +176,17 @@
     .card-cta {
       display: inline-flex; align-items: center; gap: 0.5rem;
       font-size: 1rem; font-weight: 700; color: var(--accent);
+      text-decoration: none;
     }
+
+    .card-github {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--muted-dark); text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .card-github:hover { color: var(--text-dark); }
 
     .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
     .card-header h2 { margin: 0; }
@@ -353,7 +367,7 @@
 
   <main class="content">
 
-    <a class="project-card reveal" href="./articulate.html">
+    <div class="project-card reveal">
       <p class="project-label">Full-stack app · 2026</p>
       <div class="card-header">
         <h2>Articulate</h2>
@@ -371,18 +385,24 @@
         <span class="tag">Cursor</span>
         <span class="tag">Railway</span>
       </div>
-      <span class="card-cta">View project →</span>
-    </a>
+      <div class="card-footer">
+        <a class="card-cta" href="./articulate.html">View project →</a>
+        <a class="card-github" href="https://github.com/KhanKMadiha/articulate-app" target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View code
+        </a>
+      </div>
+    </div>
 
-    <a class="project-card reveal" href="./chatbot.html">
+    <div class="project-card reveal">
       <p class="project-label">Conversational AI · 2025</p>
       <div class="card-header">
         <h2>Claude-Powered Portfolio Assistant</h2>
         <span class="status-badge">Live · 3 iterations</span>
       </div>
-      <p class="project-sub">Hit real problems at every stage. Figured each one out. Three iterations to get it right.</p>
+      <p class="project-sub">Three full iterations. Real production problems at every stage. Each one solved.</p>
       <p>
-        Built through three full iterations: IBM Watson, Google Dialogflow CX, then the Anthropic API. Hit real production problems at every stage: missing permissions, API key exposure, CORS failures. Solved each one. The live version uses a Cloudflare Workers proxy to secure the key server-side. The iteration story is the point. This is what shipping actually looks like.
+        Started with IBM Watson, moved to Google Dialogflow CX, then rebuilt on the Anthropic API. Each version came with its own production issues: missing permissions, API key exposure, CORS failures. The live version uses a Cloudflare Workers proxy to keep the key server-side.
       </p>
       <div class="tag-row">
         <span class="tag">Anthropic API</span>
@@ -390,8 +410,14 @@
         <span class="tag">Prompt engineering</span>
         <span class="tag">Security</span>
       </div>
-      <span class="card-cta">View project →</span>
-    </a>
+      <div class="card-footer">
+        <a class="card-cta" href="./chatbot.html">View project →</a>
+        <a class="card-github" href="https://github.com/KhanKMadiha/madihaintech-site" target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View code
+        </a>
+      </div>
+    </div>
 
   </main>
 

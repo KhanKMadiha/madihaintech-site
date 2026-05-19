@@ -32,7 +32,7 @@
       100%{transform:translateY(0px) rotate(180deg) scale(1);opacity:0.6;}
     }
     .hero,.nav-cta,.content,.links,footer{position:relative;z-index:1;}
-    .hero { min-height:55vh; display:flex; align-items:center; padding:6.5rem 1.5rem 2.5rem; background:linear-gradient(180deg,var(--surface) 0%,transparent 100%); }
+    .hero { min-height:82vh; display:flex; align-items:center; padding:6.5rem 1.5rem 4rem; background:linear-gradient(180deg,var(--surface) 0%,transparent 100%); }
     .hero-inner { max-width:980px; margin:0 auto; width:100%; display:flex; flex-direction:column; align-items:center; }
     h1 { margin:0 0 1rem; font-size:clamp(2.6rem,5vw,3.6rem); line-height:1.08; letter-spacing:-0.02em; animation:fadeUp 0.6s ease both; }
     .hero-highlight { margin:0.9rem auto 0; max-width:860px; font-size:1.15rem; line-height:1.7; color:var(--muted-dark); animation:fadeUp 0.6s ease 0.15s both; }
@@ -66,6 +66,12 @@
     @media(min-width:720px){.tool-tile{grid-column:span 6;}}
     @media(min-width:1024px){.tool-tile{grid-column:span 4;}}
     @media(max-width:800px){.grid{grid-template-columns:1fr;}}
+    .intro-card { margin:0 auto 1.5rem; padding:1.75rem 2.25rem; border-radius:26px; border:1.5px solid var(--border-soft); background:rgba(255,255,255,0.45); text-align:center; }
+    .intro-card p { font-size:1.08rem; line-height:1.75; color:var(--muted-dark); margin:0; }
+    .bridge-card { margin:1.5rem auto 0; padding:2rem 2.25rem; border-radius:26px; border:1.5px solid var(--border-soft); background:rgba(255,255,255,0.45); text-align:center; }
+    .bridge-card p { font-size:1.05rem; line-height:1.7; color:var(--muted-dark); margin:0 0 1.25rem; }
+    .bridge-link { display:inline-block; font-size:0.95rem; font-weight:700; color:var(--accent); text-decoration:none; }
+    .bridge-link:hover { text-decoration:underline; }
     .cert-row { display:flex; flex-wrap:wrap; gap:0.65rem; margin-top:0.5rem; justify-content:center; }
     .cert-tag { padding:0.55rem 0.85rem; border-radius:999px; border:1.5px solid var(--border-soft); background:rgba(255,255,255,0.65); font-size:0.93rem; color:var(--text-dark); transition:border-color 0.2s ease,transform 0.2s ease; }
     .cert-tag:hover { border-color:var(--border-strong); transform:translateY(-1px); }
@@ -204,6 +210,10 @@
 
   <main class="content">
 
+    <section class="intro-card reveal">
+      <p>I picked most of this up by doing. Some in work, some in my own time because I needed to understand something properly. The tools change. How you investigate, how you build something that stops the same problem coming back. That part doesn't.</p>
+    </section>
+
     <p class="section-label reveal">Core strengths</p>
     <section class="card reveal">
       <div class="grid">
@@ -259,6 +269,11 @@
         <span class="cert-tag">HTML5 and CSS3</span>
         <span class="cert-tag">Python (ongoing)</span>
       </div>
+    </section>
+
+    <section class="bridge-card reveal">
+      <p>The certifications gave me a foundation. The projects are where I found out what I actually knew.</p>
+      <a class="bridge-link" href="./projects.html">See what I've built →</a>
     </section>
 
   </main>

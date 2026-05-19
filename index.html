@@ -329,6 +329,8 @@
       color: var(--accent);
       line-height: 1;
       margin-bottom: 0.4rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .stat-label {
@@ -429,6 +431,24 @@
       font-weight: 700;
       color: var(--accent);
       text-decoration: none;
+    }
+
+    .feature-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin: 0 0 0.5rem;
+    }
+
+    .feature-card--secondary {
+      opacity: 0.85;
+      border-style: dashed;
+    }
+
+    .feature-card--secondary .feature-text h3 {
+      font-size: 1.05rem;
     }
 
     /* ---------- TAG ROW ---------- */
@@ -825,9 +845,20 @@
     <div class="feature-card reveal">
       <div class="feature-card-inner">
         <div class="feature-text">
+          <p class="feature-label">Full-stack app · 2026</p>
+          <h3>Articulate</h3>
+          <p>A speech coaching app built from scratch with React and Node.js. Generates AI-tailored practice passages based on your career goals, records your delivery, and scores you on accuracy, fluency, and pace. Includes a complete dyslexia-friendly mode. Deployed to production on Railway.</p>
+          <a class="feature-link" href="./articulate.html">View project →</a>
+        </div>
+      </div>
+    </div>
+    <div class="feature-card feature-card--secondary reveal">
+      <div class="feature-card-inner">
+        <div class="feature-text">
+          <p class="feature-label">Conversational AI · 2025</p>
           <h3>Claude-Powered Portfolio Assistant</h3>
-          <p>Built a production AI chatbot from scratch. Started with Dialogflow CX, hit real permission and security issues, switched to the Anthropic API, and secured the key using a Cloudflare Worker proxy. The chatbot on this page is the live result. Ask it anything about my work.</p>
-          <a class="feature-link" href="./projects.html">Read the full story →</a>
+          <p>Built through three iterations — IBM Watson, Dialogflow CX, then the Anthropic API. Hit real production problems at each stage. The live version is secured with a Cloudflare Workers proxy. The chatbot in the corner of every page is the result.</p>
+          <a class="feature-link" href="./chatbot.html">Read the full story →</a>
         </div>
       </div>
     </div>
@@ -924,6 +955,7 @@
       const step = 16;
       const increment = target / (duration / step);
       let current = 0;
+      el.style.opacity = 1;
       const timer = setInterval(() => {
         current += increment;
         if (current >= target) { current = target; clearInterval(timer); }

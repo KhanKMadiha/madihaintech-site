@@ -174,8 +174,13 @@
       font-size: 1rem; font-weight: 700; color: var(--accent);
     }
 
-    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
     .card-header h2 { margin: 0; }
+    .project-sub {
+      margin: 0 0 1.25rem;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--text-dark); line-height: 1.5;
+    }
     .status-badge {
       flex-shrink: 0;
       font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
@@ -332,6 +337,7 @@
         <h2>Articulate</h2>
         <span class="status-badge">Live</span>
       </div>
+      <p class="project-sub">Built a full-stack speech coaching platform from scratch. AI passages, delivery scoring, dyslexia mode. Shipped to production.</p>
       <p>
         A speech coaching app built from scratch with React and Node.js. Generates AI-tailored practice passages based on your career goals, records your delivery, and scores you on accuracy, fluency, and pace. Includes a complete dyslexia-friendly mode built from scratch. Deployed to production on Railway.
       </p>
@@ -352,6 +358,7 @@
         <h2>Claude-Powered Portfolio Assistant</h2>
         <span class="status-badge">Live · 3 iterations</span>
       </div>
+      <p class="project-sub">An API key exposed in production. Three full iterations later: a secured, live AI chatbot.</p>
       <p>
         Built through three full iterations: IBM Watson, Google Dialogflow CX, then the Anthropic API. Hit real production problems at every stage: missing permissions, API key exposure, CORS failures. Solved each one. The live version uses a Cloudflare Workers proxy to secure the key server-side. The iteration story is the point. This is what shipping actually looks like.
       </p>

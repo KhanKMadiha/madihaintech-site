@@ -104,13 +104,13 @@
     .send-btn svg{width:15px;height:15px;fill:white;}
     @media(max-width:420px){#chat-window{width:calc(100vw - 28px);right:14px;bottom:84px;}#chat-toggle{right:14px;bottom:14px;}}
 
-    .strength-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.15rem; max-width:980px; margin:0 auto 1.5rem; padding:0 1.5rem; }
-    .strength-card { padding:2rem 1.75rem; border:1.5px solid var(--border-soft); border-radius:26px; background:rgba(255,255,255,0.55); backdrop-filter:blur(8px); text-align:left; transition:box-shadow 0.25s ease,border-color 0.25s ease,transform 0.25s ease; }
+    .strength-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.15rem; max-width:980px; margin:0 auto 1.5rem; padding:0 1.5rem; }
+    @media(max-width:700px){ .strength-grid { grid-template-columns:repeat(2,1fr); } }
+    .strength-card { padding:2rem 1.75rem; border:1.5px solid var(--border-soft); border-radius:26px; background:rgba(255,255,255,0.55); backdrop-filter:blur(8px); text-align:center; transition:box-shadow 0.25s ease,border-color 0.25s ease,transform 0.25s ease; }
     .strength-card:hover { box-shadow:0 14px 34px rgba(0,0,0,0.08); border-color:var(--border-strong); transform:translateY(-2px); }
-    .strength-number { font-size:2.6rem; font-weight:800; color:var(--accent); letter-spacing:-0.03em; line-height:1; margin-bottom:0.5rem; }
-    .strength-title { font-size:1rem; font-weight:700; margin:0 0 0.65rem; color:var(--text-dark); }
+    .strength-number { font-size:2.6rem; font-weight:800; color:var(--accent); letter-spacing:-0.03em; line-height:1; margin-bottom:0.4rem; display:block; }
+    .strength-title { font-size:1rem; font-weight:700; margin:0 0 0.75rem; color:var(--text-dark); }
     .strength-body { font-size:0.95rem; line-height:1.65; color:var(--muted-dark); margin:0; }
-    @media(max-width:600px){ .strength-grid { grid-template-columns:1fr; padding:0 1.5rem; } }
 
     .tools-list { display: flex; flex-direction: column; }
     .tools-row { display: flex; align-items: baseline; gap: 1.5rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border-soft); }
@@ -216,24 +216,24 @@
 
     <section class="strength-grid reveal">
       <div class="strength-card">
-        <div class="strength-number">95%</div>
+        <span class="strength-number">95%</span>
         <h3 class="strength-title">Issue reproduction rate</h3>
         <p class="strength-body">Engineering gets log evidence, reproduction steps, and root cause analysis. Not just a forwarded ticket. That 30% reduction in investigation time is the result.</p>
       </div>
       <div class="strength-card">
-        <div class="strength-number">25%</div>
+        <span class="strength-number">25%</span>
         <h3 class="strength-title">Faster P1/P2 resolution</h3>
         <p class="strength-body">Built Datadog observability dashboards across 100+ enterprise environments. Proactive monitoring of API failures, auth systems, and error logs before customers noticed.</p>
       </div>
       <div class="strength-card">
-        <div class="strength-number">20%</div>
+        <span class="strength-number">20%</span>
         <h3 class="strength-title">Fewer repeat tickets</h3>
         <p class="strength-body">Authored 50+ knowledge base articles and troubleshooting playbooks. Built because the gaps existed, not because anyone asked.</p>
       </div>
       <div class="strength-card">
-        <div class="strength-number">98%</div>
+        <span class="strength-number">98%</span>
         <h3 class="strength-title">CSAT, sole EMEA engineer</h3>
-        <p class="strength-body">Every ticket, every tier, every P1/P2 on-call incident across 100+ enterprise accounts. Maintained through incidents, live customer calls, and situations I had never seen before.</p>
+        <p class="strength-body">Every ticket, every tier, every P1/P2 on-call incident across 100+ enterprise accounts. Maintained through live customer calls, engineering escalations, and ambiguous situations with no playbook.</p>
       </div>
     </section>
 

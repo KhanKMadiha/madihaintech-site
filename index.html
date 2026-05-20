@@ -91,6 +91,7 @@
       margin-bottom: 1rem;
       opacity: 0;
       animation: fadeUp 0.5s ease 0.05s both;
+      white-space: nowrap;
     }
 
     h1 {
@@ -580,6 +581,7 @@
 
     @media (max-width: 760px) {
       .three-col { grid-template-columns: 1fr 1fr; }
+      .hero-role { white-space: normal; }
     }
 
     @media (max-width: 480px) {
@@ -786,7 +788,7 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-text">
-        <p class="hero-role">Senior Support Professional, Voice of the Customer</p>
+        <p class="hero-role">Senior Support Professional &nbsp;·&nbsp; Voice of the Customer</p>
         <h1>Madiha Khan</h1>
         <p class="hero-sub">
           I close the loop between what customers experience and what gets built. When I am not on a ticket I am turning support signals into product decisions.
@@ -807,7 +809,7 @@
           <span class="t-dot t-dot-r"></span>
           <span class="t-dot t-dot-y"></span>
           <span class="t-dot t-dot-g"></span>
-          <span class="t-title">support-session.log</span>
+          <span class="t-title">voc-analysis.log</span>
         </div>
         <div class="t-body" id="terminalBody"></div>
       </div>
@@ -831,8 +833,8 @@
         <div class="stat-label">Faster P1/P2 resolution via Datadog dashboards</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" data-target="100" data-suffix="+">0</div>
-        <div class="stat-label">Enterprise accounts managed across EMEA</div>
+        <div class="stat-number" data-target="40" data-suffix="+">0</div>
+        <div class="stat-label">High impact feature requests surfaced to product and engineering annually</div>
       </div>
     </div>
 
@@ -840,11 +842,11 @@
     <div class="three-col">
       <div class="card reveal">
         <h3>Closing the feedback loop</h3>
-        <p>I turn ticket patterns into product decisions. When I spot a recurring issue I do not just resolve it, I surface the signal to engineering and product so it gets fixed at the root. That is the difference between support and Voice of the Customer.</p>
+        <p>Most support teams close tickets. I close loops. When I spot a recurring pattern or a feature request gaining traction, I build the case for engineering and product, with log evidence, reproduction steps, and the customer context that turns a ticket trend into a roadmap decision.</p>
       </div>
       <div class="card reveal">
-        <h3>Being ahead of the game</h3>
-        <p>When I am not on a ticket I am looking for gaps in documentation and building enablement material before clients have to ask for it. I build the dashboards, playbooks, and knowledge bases that stop the same issues coming back.</p>
+        <h3>From manual triage to pipelines</h3>
+        <p>I do not just escalate issues, I build the systems that make escalation smarter. That means structured feedback pipelines, Jira workflows, and documentation frameworks that move teams from reactive triage to proactive pattern recognition at scale.</p>
       </div>
       <div class="card reveal">
         <h3>Deep investigation</h3>
@@ -1017,6 +1019,9 @@ Madiha has always been fascinated by technology and driven by a genuine desire t
 PERSONAL:
 Outside of work, Madiha leads a fundraising project every Ramadan that has raised over £50,000 and distributed thousands of food bags to families in Pakistan. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
 
+VOICE OF THE CUSTOMER AND FEEDBACK LOOP WORK:
+At Stack Overflow, Madiha built a customer feedback pipeline that allows both support and product teams to submit insights more easily, making the process more scalable. She surfaces 15+ high impact feature requests to product and engineering annually by identifying recurring ticket patterns and building structured cases with log evidence, reproduction steps, and customer context. She acts as the primary liaison between EMEA customers and engineering teams, turning ticket trends into roadmap decisions. This is not just support work, it is systemic influence on what gets built.
+
 KEY ACHIEVEMENTS:
 - 98% CSAT across 100+ enterprise accounts
 - Sole EMEA owner of P1/P2 on-call incidents
@@ -1025,7 +1030,8 @@ KEY ACHIEVEMENTS:
 - Reduced new hire ramp-up time by 30% through Jira workflows and playbooks
 - 95% issue reproduction rate, reducing engineering investigation time by 30%
 - Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
-- None of these were asked of her. She spotted the gaps and built the solutions.
+- 10+ high impact feature requests surfaced to product and engineering annually
+- Built customer feedback pipeline at Stack Overflow enabling scalable VoC across support and product teams
 
 TECHNICAL SKILLS:
 REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Cloudflare Workers, Prompt engineering, Python (learning)
@@ -1140,25 +1146,32 @@ TONE GUIDELINES:
       el.style.height = 'auto';
       el.style.height = Math.min(el.scrollHeight, 100) + 'px';
     }
+
+    setTimeout(() => {
+      if (!chatOpen) toggleChat();
+    }, 2000);
   </script>
 
   <script>
     (function () {
       const LINES = [
-        { text: '$ ticket #4821 · P1 · Enterprise',    cls: 'cmd' },
-        { text: '  Client: EMEA account · 200 users affected', cls: '' },
-        { text: '  Issue: dashboard inaccessible since 09:00', cls: 'warn' },
-        { text: '',                                            cls: '' },
-        { text: '  Investigating...',                         cls: 'dim' },
-        { text: '  → API timeout on /reports endpoint',       cls: '' },
-        { text: '  → root cause: rate limit misconfigured',   cls: '' },
-        { text: '',                                            cls: '' },
-        { text: '  Fix deployed ✓  — 1hr 48mins',             cls: 'ok' },
-        { text: '  200 users unblocked',                      cls: 'ok' },
-        { text: '  KB article created for future cases',      cls: 'dim' },
-        { text: '',                                            cls: '' },
-        { text: '  CSAT: 5 / 5  ★',                          cls: 'stat' },
-        { text: '  "Resolved faster than expected"',          cls: 'stat' },
+        { text: '$ voc-analysis · Stack Overflow EMEA',  cls: 'cmd' },
+        { text: '  Scanning 847 tickets · last 30 days', cls: 'dim' },
+        { text: '',                                       cls: '' },
+        { text: '  Pattern detected: SSO timeout errors',cls: 'warn' },
+        { text: '  Affected accounts: 14 enterprise',    cls: '' },
+        { text: '  First reported: 18 days ago',         cls: '' },
+        { text: '',                                       cls: '' },
+        { text: '  Root cause identified...',            cls: 'dim' },
+        { text: '  → SAML assertion expiry mismatch',    cls: '' },
+        { text: '  → Not a user error. Product gap.',    cls: '' },
+        { text: '',                                       cls: '' },
+        { text: '  Building case for engineering...',    cls: 'dim' },
+        { text: '  → Log evidence attached',             cls: 'ok' },
+        { text: '  → Reproduction steps documented',     cls: 'ok' },
+        { text: '  → Feature request raised ✓',          cls: 'ok' },
+        { text: '',                                       cls: '' },
+        { text: '  Ticket trend → roadmap decision',     cls: 'stat' },
       ];
       const CHAR_DELAY = 38;
       const LINE_PAUSE = 320;

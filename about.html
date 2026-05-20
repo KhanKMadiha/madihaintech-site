@@ -33,7 +33,6 @@
       overflow-x: hidden;
     }
  
-    /* ---------- FLOATING BACKGROUND SHAPES ---------- */
     .bg-shapes {
       position: fixed;
       top: 0; left: 0;
@@ -64,10 +63,8 @@
       100% { transform: translateY(0px) rotate(180deg) scale(1); opacity: 0.6; }
     }
  
-    /* ---------- Z-INDEX ---------- */
     .hero, .nav-cta, .page, .links, footer { position: relative; z-index: 1; }
  
-    /* ---------- HERO ---------- */
     .hero {
       min-height: 82vh;
       display: flex;
@@ -104,7 +101,6 @@
       animation: fadeUp 0.6s ease 0.25s both;
     }
  
-    /* ---------- NAV CTA ---------- */
     .nav-cta {
       max-width: 980px;
       margin: -1.25rem auto 2.25rem;
@@ -153,14 +149,12 @@
       to   { opacity: 1; transform: translateY(0); }
     }
  
-    /* ---------- PAGE ---------- */
     .page {
       max-width: 980px;
       margin: 0 auto 4rem;
       padding: 0 1.5rem;
     }
  
-    /* ---------- SCROLL REVEAL ---------- */
     .reveal {
       opacity: 0;
       transform: translateY(28px);
@@ -171,7 +165,6 @@
       transform: translateY(0);
     }
  
-    /* ---------- SECTION LABEL ---------- */
     .section-label {
       font-size: 0.8rem;
       font-weight: 700;
@@ -182,7 +175,6 @@
       text-align: center;
     }
  
-    /* ---------- PROSE CARD ---------- */
     .prose-card {
       padding: 2.25rem 2.5rem;
       border-radius: 22px;
@@ -214,7 +206,6 @@
       font-weight: 700;
     }
  
-    /* ---------- QUOTE BLOCK ---------- */
     .quote-block {
       padding: 0 1rem 1.75rem;
       margin-bottom: 1.5rem;
@@ -231,7 +222,6 @@
       margin: 0;
     }
  
-    /* ---------- TWO-COL PANELS ---------- */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -281,7 +271,6 @@
       margin: 0;
     }
  
-    /* ---------- TIMELINE ---------- */
     .timeline {
       position: relative;
       text-align: left;
@@ -380,7 +369,6 @@
       margin: 0;
     }
  
-    /* ---------- HIGHLIGHT CARD ---------- */
     .highlight-card {
       padding: 2rem 2.25rem;
       border-radius: 22px;
@@ -419,7 +407,6 @@
       margin: 0;
     }
  
-    /* ---------- FEATURED PROJECTS ---------- */
     .featured-projects {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -484,7 +471,6 @@
       .highlight-card { flex-direction: column; gap: 0.75rem; }
     }
  
-    /* ---------- LINKS ---------- */
     .links { padding-bottom: 2.5rem; }
  
     .links h2 {
@@ -500,7 +486,6 @@
       flex-wrap: wrap;
     }
  
-    /* ---------- FOOTER ---------- */
     footer {
       margin: 26px 0 34px;
       padding: 0 1.5rem;
@@ -508,7 +493,6 @@
       color: rgba(26, 26, 26, 0.6);
     }
  
-    /* ---------- CHATBOT ---------- */
     #chat-toggle {
       position: fixed;
       bottom: 22px; right: 22px;
@@ -648,7 +632,6 @@
       #chat-toggle { right: 14px; bottom: 14px; }
     }
   
-    /* ── sticky top nav ── */
     .site-nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -730,40 +713,43 @@
   </div>
 </nav>
  
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <h1>The person behind the Support Engineer</h1>
+      <h1>The person who closes the loop</h1>
       <p class="hero-sub">
         Self-taught. Systems-minded. Genuinely curious about what breaks, why it breaks, and how to make sure it never breaks the same way twice.
       </p>
     </div>
   </section>
  
-  <!-- NAV -->
- 
   <div class="page">
  
-    <!-- QUOTE -->
     <div class="quote-block reveal">
       <p>"Every system I have built started the same way. Noticing something that could be better, and caring enough to do something about it."</p>
     </div>
  
-    <!-- HOW I GOT HERE -->
     <p class="section-label reveal">How I got here</p>
     <div class="prose-card reveal">
       <p>
-        I'm the sole EMEA support engineer at Stack Overflow, owning every ticket and every P1/P2 incident across 100+ enterprise accounts.
+        I am the sole EMEA support professional at Stack Overflow, owning every ticket and every P1/P2 incident across 100+ enterprise accounts. I treat every recurring issue as a signal, not just a workload. It is what happens after I spot a pattern.
       </p>
       <p>
-        When I found gaps in documentation or process, I built the thing that filled them and made sure it worked without me.
+        At Alida I built my first customer feedback pipeline. When I spotted a pattern I did not just flag it, I built the process that made sure it reached engineering and product every time.
       </p>
       <p>
-        That instinct didn't come from a traditional route. I started teaching myself to code during the pandemic out of pure curiosity, moved through customer-facing roles, and found my way into product support. That same drive runs through everything I do. I genuinely want to make things better for people, and I always have.
+        I did the same thing at Stack Overflow. New company, same gap. So I built it again from scratch.
+      </p>
+      <p>
+        That is how I surface 40+ high impact feature requests to engineering and product every year. Not by luck. By having a system.
+      </p>
+      <p>
+        When I found gaps in documentation or process, I built the thing that filled them and made sure it worked without me. Datadog dashboards, escalation playbooks, knowledge base infrastructure. None of it was asked of me. I spotted the gaps and built the solutions.
+      </p>
+      <p>
+        My route into tech was not traditional. I started teaching myself to code during the pandemic out of pure curiosity, moved through customer-facing roles, and found my way into product support. That same drive runs through everything I do. I genuinely want to make things better for people, and I always have.
       </p>
     </div>
  
-    <!-- BEYOND WORK -->
     <p class="section-label reveal">Beyond work</p>
     <div class="highlight-card reveal">
       <div class="highlight-text">
@@ -772,7 +758,6 @@
       </div>
     </div>
 
-    <!-- CAREER TIMELINE -->
     <p class="section-label reveal">Career journey</p>
     <div class="timeline">
 
@@ -784,8 +769,8 @@
         </div>
         <div class="timeline-content">
           <div class="timeline-meta">Jan 2025 to Present</div>
-          <h3>Senior Product Support Engineer · Stack Overflow</h3>
-          <p>Sole EMEA support engineer. P1/P2 on-call ownership across 100+ enterprise accounts. Built Datadog dashboards, knowledge base infrastructure, and escalation playbooks from scratch.</p>
+          <h3>Senior Product Support Specialist · Stack Overflow</h3>
+          <p>Sole EMEA support professional. P1/P2 on-call ownership across 100+ enterprise accounts. Built a customer feedback pipeline connecting support insights to product and engineering. Surfaces 40+ high impact feature requests annually. Built Datadog dashboards, knowledge base infrastructure, and escalation playbooks from scratch.</p>
         </div>
       </div>
 
@@ -798,7 +783,7 @@
         <div class="timeline-content">
           <div class="timeline-meta">Feb 2023 to Nov 2024</div>
           <h3>Technical Support Analyst · Alida</h3>
-          <p>Managed all EMEA enterprise escalations: SSO, SAML, OAuth, REST API debugging. 95% resolution rate. Reduced engineering investigation time by 20% through systematic reproduction.</p>
+          <p>Managed all EMEA enterprise escalations: SSO, SAML, OAuth, REST API debugging. 95% resolution rate. Reduced engineering investigation time by 20% through systematic reproduction. Built first customer feedback pipeline connecting support insights to engineering and product.</p>
         </div>
       </div>
 
@@ -830,8 +815,7 @@
  
   </div>
  
-  <!-- LINKS -->
-    <section class="links reveal">
+  <section class="links reveal">
     <h2>Let's connect</h2>
     <div class="connect-links">
       <a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">
@@ -849,12 +833,10 @@
     </div>
   </section>
  
-  <!-- FOOTER -->
   <footer>
     © <span id="year"></span> Madiha Khan · Built with care
   </footer>
  
-  <!-- CHATBOT -->
   <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">💬</button>
  
   <div id="chat-window">
@@ -881,7 +863,6 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
  
-    // ── SCROLL REVEAL ──────────────────────────────────────────
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -896,7 +877,6 @@
  
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
  
-    // ── TIMELINE REVEAL ────────────────────────────────────────
     const timelineObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
@@ -908,17 +888,19 @@
  
     document.querySelectorAll('.timeline-item').forEach(el => timelineObserver.observe(el));
  
-    // ── CHATBOT ────────────────────────────────────────────────
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
  
-    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Technical Support Engineer and AI enthusiast based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
- 
+    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional and Voice of the Customer specialist based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
+
 ABOUT MADIHA:
-Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Engineer at Stack Overflow (January 2025 to present), where she is the sole EMEA support engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
- 
+Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she is the sole EMEA support professional. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
+
 PERSONAL:
 Outside of work, Madiha leads a fundraising project every Ramadan that has raised over £50,000 and distributed 2,000 food bags to families in Pakistan. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
- 
+
+VOICE OF THE CUSTOMER AND FEEDBACK LOOP WORK:
+At Stack Overflow, Madiha built a customer feedback pipeline that allows both support and product teams to submit insights more easily, making the process more scalable. She surfaces 40+ high impact feature requests to product and engineering annually by identifying recurring ticket patterns and building structured cases with log evidence, reproduction steps, and customer context. She acts as the primary liaison between EMEA customers and engineering teams, turning ticket trends into roadmap decisions. This is not just support work, it is systemic influence on what gets built.
+
 KEY ACHIEVEMENTS:
 - 98% CSAT across 100+ enterprise accounts
 - Sole EMEA owner of P1/P2 on-call incidents
@@ -927,42 +909,43 @@ KEY ACHIEVEMENTS:
 - Reduced new hire ramp-up time by 30% through Jira workflows and playbooks
 - 95% issue reproduction rate, reducing engineering investigation time by 30%
 - Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
-- None of these were asked of her. She spotted the gaps and built the solutions.
- 
+- 40+ high impact feature requests surfaced to product and engineering annually
+- Built customer feedback pipeline at Stack Overflow enabling scalable VoC across support and product teams
+
 TECHNICAL SKILLS:
-REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Google Dialogflow, Python (learning)
- 
+REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Cloudflare Workers, Prompt engineering, Python (learning)
+
 AI AND PROJECTS:
 Madiha has built and shipped two AI-powered projects independently.
- 
+
 Project 1: Claude-Powered Portfolio Assistant (live on this site)
-Built a production AI chatbot from scratch. Started with IBM Watson and Dialogflow CX before switching to the Anthropic API after hitting persistent permission errors. Secured the API key using a Cloudflare Worker proxy after GitHub secret scanning caught an exposed key. The chatbot runs live across all pages of her portfolio, opens automatically after two seconds, and maintains full session conversation history. Full write-up at madihaintech.me/projects.html.
- 
+Built a production AI chatbot from scratch. Started with IBM Watson and Dialogflow CX before switching to the Anthropic API after hitting persistent permission errors. Secured the API key using a Cloudflare Worker proxy after GitHub secret scanning caught an exposed key. The chatbot runs live across all pages of her portfolio. Full write-up at madihaintech.me/chatbot.html.
+
 Project 2: Articulate (articulate-app-production.up.railway.app)
-A full-stack speech app that helps professionals improve how they communicate. Built with React 18, Express, and the Anthropic Claude API. Started in Cursor, continued with Claude Code. Claude generates a personalised daily passage based on the user's job title, industry, career goals, and the speakers they admire. The user records themselves reading it and gets AI feedback on accuracy, fluency, and pace via the Web Speech API. Features include streak tracking, a favourites library, push notifications, and a full dyslexia-friendly reading mode where the AI passages themselves are also adapted. Deployed on Railway via Docker. Full write-up at madihaintech.me/articulate.html.
- 
-Madiha also holds the IBM AI Fundamentals certification with Capstone Project, and certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). She is a daily Claude user.
- 
+A full-stack speech practice app. Claude generates a personalised daily passage, the user records themselves, and AI scores accuracy, fluency, and pace. Includes a full dyslexia-friendly mode. Built with React, Node.js, and the Anthropic Claude API. Deployed on Railway. Full write-up at madihaintech.me/articulate.html.
+
+Madiha also holds the IBM AI Fundamentals certification with Capstone Project and is a daily Claude user.
+
 LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
- 
+
 EDUCATION: A Levels in Maths, Accounting, and Health and Social Care
- 
+
 CONTACT AND LINKS:
 Portfolio: madihaintech.me
 GitHub: github.com/KhanKMadiha
 LinkedIn: linkedin.com/in/madihakhan-
 Contact page: madihaintech.me/contact.html
- 
-TARGET ROLES: AI Support Engineer, Senior Support Engineer, Support Operations Specialist, Product Support Specialist (Technical), ideally at companies like Anthropic, OpenAI, Cloudflare, Cursor, Stack Overflow, or similar AI-first developer platform and infrastructure companies.
- 
+
+TARGET ROLES: Product Quality Engineer, Support Operations Specialist, Voice of the Customer Lead, Senior Supportability Engineer, ideally at companies like Cursor, GitHub, Anthropic, OpenAI, or similar AI-first developer platform companies.
+
 TONE GUIDELINES:
 - Be warm, friendly, and approachable but also professional
 - Keep responses concise, 2 to 4 sentences unless the visitor asks for more detail
 - Speak about Madiha in the third person: say "Madiha has..." or "She specialises in..." rather than "I"
 - If asked something you do not know, say you are not sure but invite them to reach out to Madiha directly via the Contact page at madihaintech.me/contact.html, or on LinkedIn at linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
- 
-    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Technical Support Engineer with 5+ years in enterprise SaaS support and a focus on AI-first companies. She is currently the sole EMEA support engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
+
+    const WELCOME_MESSAGE = "Hi there! I am Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional and Voice of the Customer specialist with 5+ years in enterprise SaaS support. She closes the loop between what customers experience and what gets built.\n\nFeel free to ask me anything about her experience, skills, or what she is looking for next!";
  
     const conversationHistory = [];
     let chatOpen = false;
@@ -1025,7 +1008,7 @@ TONE GUIDELINES:
           })
         });
         const data = await response.json();
-        const reply = data?.content?.[0]?.text || "I'm sorry, I wasn't able to get a response just now. Please try again in a moment!";
+        const reply = data?.content?.[0]?.text || "I am sorry, I was not able to get a response just now. Please try again in a moment!";
         removeTyping();
         appendMessage('bot', reply);
         conversationHistory.push({ role: 'assistant', content: reply });

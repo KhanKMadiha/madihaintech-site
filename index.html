@@ -33,7 +33,6 @@
       overflow-x: hidden;
     }
 
-    /* ---------- FLOATING BACKGROUND SHAPES ---------- */
     .bg-shapes {
       position: fixed;
       top: 0; left: 0;
@@ -64,10 +63,8 @@
       100% { transform: translateY(0px) rotate(180deg) scale(1); opacity: 0.6; }
     }
 
-    /* ---------- Z-INDEX STACK ---------- */
     .hero, .page, .links, footer { position: relative; z-index: 1; }
 
-    /* ---------- HERO ---------- */
     .hero {
       min-height: 82vh;
       display: flex;
@@ -146,7 +143,6 @@
       animation: fadeUp 0.6s ease 0.3s both;
     }
 
-    /* ── hero two-col on desktop ── */
     .hero-text { display: flex; flex-direction: column; flex: 1 1 0; min-width: 0; }
     @media (min-width: 860px) {
       .hero-inner { flex-direction: row !important; align-items: center; text-align: left; gap: 3.5rem; }
@@ -154,7 +150,6 @@
       .hero-social { justify-content: flex-start; }
     }
 
-    /* ── terminal card ── */
     .hero-terminal {
       display: none;
       flex: 1 1 0;
@@ -221,7 +216,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---------- NAV CTA ---------- */
     .nav-cta {
       max-width: 980px;
       margin: -1.25rem auto 2.25rem;
@@ -238,14 +232,12 @@
       justify-content: center;
     }
 
-    /* ---------- PAGE WRAPPER ---------- */
     .page {
       max-width: 980px;
       margin: 0 auto 3.5rem;
       padding: 3rem 1.5rem;
     }
 
-    /* ---------- SCROLL ANIMATION ---------- */
     .reveal {
       opacity: 0;
       transform: translateY(28px);
@@ -257,7 +249,6 @@
       transform: translateY(0);
     }
 
-    /* ---------- SECTION LABEL ---------- */
     .section-label {
       font-size: 0.8rem;
       font-weight: 700;
@@ -268,7 +259,6 @@
       text-align: center;
     }
 
-    /* ---------- INTRO CARD ---------- */
     .intro-card {
       padding: 2.25rem 2.5rem;
       border-radius: 22px;
@@ -300,7 +290,6 @@
       font-weight: 700;
     }
 
-    /* ---------- STAT STRIP ---------- */
     .stat-strip {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -337,7 +326,6 @@
       line-height: 1.4;
     }
 
-    /* ---------- THREE-COL CARDS ---------- */
     .three-col {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -380,8 +368,6 @@
       margin: 0;
     }
 
-    /* ---------- WIDE FEATURE CARD ---------- */
-    /* ---------- PROJECT CARDS ---------- */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -460,16 +446,6 @@
     .project-btn.secondary:hover { transform: translateY(-1px); border-color: var(--accent); }
     @media(max-width: 640px) { .projects-grid { grid-template-columns: 1fr; } }
 
-    /* ---------- FEATURE CARD (legacy) ---------- */
-      padding: 2.25rem 2.25rem;
-      border-radius: 22px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(8px);
-      margin-bottom: 2rem;
-      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-    }
-
     .feature-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 34px rgba(0, 0, 0, 0.07);
@@ -510,7 +486,6 @@
       text-decoration: none;
     }
 
-    /* ---------- TAG ROW ---------- */
     .tag-row {
       display: flex;
       flex-wrap: wrap;
@@ -528,7 +503,6 @@
       color: var(--text-dark);
     }
 
-    /* ---------- CLOSING CARD ---------- */
     .closing-card {
       padding: 2.5rem 2.5rem;
       border-radius: 22px;
@@ -562,7 +536,6 @@
       flex-wrap: wrap;
     }
 
-    /* ---------- LINKS ---------- */
     .links { padding-bottom: 2.5rem; }
 
     .links h2 {
@@ -585,7 +558,6 @@
       text-decoration: none;
     }
 
-    /* ---------- FOOTER ---------- */
     footer {
       margin: 26px 0 34px;
       padding: 0 1.5rem;
@@ -614,7 +586,6 @@
       .three-col { grid-template-columns: 1fr; }
     }
 
-    /* ---------- CHATBOT ---------- */
     #chat-toggle {
       position: fixed;
       bottom: 22px; right: 22px;
@@ -753,8 +724,7 @@
       #chat-window { width: calc(100vw - 28px); right: 14px; bottom: 84px; }
       #chat-toggle { right: 14px; bottom: 14px; }
     }
-  
-    /* ── sticky top nav ── */
+
     .site-nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -813,14 +783,13 @@
   </div>
 </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-text">
         <p class="hero-role">Senior Support Professional, Voice of the Customer</p>
         <h1>Madiha Khan</h1>
         <p class="hero-sub">
-          I help enterprise users get the most out of their developer tools. When I'm not on a ticket, I'm looking for the gaps before anyone has to ask. 
+          I close the loop between what customers experience and what gets built. When I am not on a ticket I am turning support signals into product decisions.
         </p>
         <div class="hero-social">
           <a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">
@@ -845,11 +814,8 @@
     </div>
   </section>
 
-  <!-- NAV -->
-
   <div class="page">
 
-    <!-- STATS -->
     <p class="section-label reveal">Impact by the numbers</p>
     <div class="stat-strip reveal">
       <div class="stat-card">
@@ -870,36 +836,34 @@
       </div>
     </div>
 
-    <!-- WHAT I BRING -->
     <p class="section-label reveal">What I bring</p>
     <div class="three-col">
       <div class="card reveal">
-        <h3>I genuinely enjoy helping people</h3>
-        <p>It's why I got into support and it's why I'm still here. I get real satisfaction knowing someone walked away less stuck than when they came in.</p>
-      </div>
-      <div class="card reveal">
-        <h3>Deep investigation</h3>
-        <p>I trace issues to their root cause using Datadog, Elasticsearch, Postman, and browser DevTools. When I escalate to engineering, they get log evidence and a reproduction case. They know exactly what they're dealing with.</p>
+        <h3>Closing the feedback loop</h3>
+        <p>I turn ticket patterns into product decisions. When I spot a recurring issue I do not just resolve it, I surface the signal to engineering and product so it gets fixed at the root. That is the difference between support and Voice of the Customer.</p>
       </div>
       <div class="card reveal">
         <h3>Being ahead of the game</h3>
-        <p>When I'm not on a ticket, I'm looking for gaps in documentation and building enablement material before clients have to ask for it. I build the dashboards, playbooks, and knowledge bases that stop the same issues coming back.</p>
+        <p>When I am not on a ticket I am looking for gaps in documentation and building enablement material before clients have to ask for it. I build the dashboards, playbooks, and knowledge bases that stop the same issues coming back.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Deep investigation</h3>
+        <p>I trace issues to their root cause using Datadog, Elasticsearch, Postman, and browser DevTools. When I escalate to engineering they get log evidence and a reproduction case. They know exactly what they are dealing with.</p>
       </div>
       <div class="card reveal">
         <h3>Calm under pressure</h3>
-        <p>Sole EMEA owner of P1/P2 on-call across 100+ enterprise accounts. The kind of situations where you've never seen the error before and 200 users are waiting.</p>
+        <p>Sole EMEA owner of P1/P2 on-call across 100+ enterprise accounts. The kind of situations where you have never seen the error before and 200 users are waiting.</p>
       </div>
       <div class="card reveal">
-        <h3>Learning by doing</h3>
-        <p>The IBM AI certification was fine. But I needed to build something with it. That's where the chatbot came from. IBM AI certified. Daily Claude user.</p>
+        <h3>Building with AI</h3>
+        <p>I do not just use AI tools, I build with them. A live Claude powered portfolio assistant, a full stack speech practice app, and more in progress. IBM AI certified and a daily Claude user.</p>
       </div>
       <div class="card reveal">
         <h3>Technical depth</h3>
-        <p>REST APIs, SSO, SAML, OAuth every day. When something breaks I'm in the request headers and logs, not just reading the error message on screen.</p>
+        <p>REST APIs, SSO, SAML, OAuth every day. When something breaks I am in the request headers and logs, not just reading the error message on screen.</p>
       </div>
     </div>
 
-    <!-- FEATURED PROJECTS -->
     <p class="section-label reveal">Projects</p>
     <div class="projects-grid reveal">
 
@@ -939,7 +903,6 @@
 
     </div>
 
-    <!-- TOOLBOX -->
     <p class="section-label reveal">Toolbox</p>
     <div class="tag-row reveal">
       <span class="tag">REST APIs</span>
@@ -961,7 +924,6 @@
       <span class="tag">Python (learning)</span>
     </div>
 
-    <!-- CLOSING -->
     <div class="closing-card reveal">
       <h3>Want to know more?</h3>
       <p>My chatbot can answer questions about my experience and skills. Or explore the rest of the site to see my full background, the story behind the AI project, or get in touch directly.</p>
@@ -976,12 +938,10 @@
 
   <p class="site-closing">I close the loop between what customers experience and what gets built. When I am not on a ticket I am turning support signals into product decisions.</p>
 
-  <!-- FOOTER -->
   <footer>
     © <span id="year"></span> Madiha Khan · Built with care
   </footer>
 
-  <!-- CHATBOT -->
   <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">💬</button>
 
   <div id="chat-window">
@@ -1008,7 +968,6 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // SCROLL REVEAL
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1023,7 +982,6 @@
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // COUNTING STATS
     function animateCount(el) {
       const target = parseInt(el.dataset.target);
       const suffix = el.dataset.suffix || '';
@@ -1049,16 +1007,15 @@
 
     document.querySelectorAll('.stat-strip').forEach(el => statObserver.observe(el));
 
-    // CHATBOT
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
 
-    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Technical Support Engineer and AI enthusiast based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
+    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional and Voice of the Customer specialist based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
 
 ABOUT MADIHA:
-Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Engineer at Stack Overflow (January 2025 to present), where she is the sole EMEA support engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
+Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she is the sole EMEA support professional. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
 
 PERSONAL:
-Outside of work, Madiha leads a fundraising project every Ramadan that has raised over £25,000 and distributed 2,000 food bags to families in Pakistan. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
+Outside of work, Madiha leads a fundraising project every Ramadan that has raised over £50,000 and distributed thousands of food bags to families in Pakistan. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
 
 KEY ACHIEVEMENTS:
 - 98% CSAT across 100+ enterprise accounts
@@ -1071,10 +1028,10 @@ KEY ACHIEVEMENTS:
 - None of these were asked of her. She spotted the gaps and built the solutions.
 
 TECHNICAL SKILLS:
-REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Google Dialogflow, Python (learning)
+REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Cloudflare Workers, Prompt engineering, Python (learning)
 
 AI AND PROJECTS:
-Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Started with Dialogflow CX and IBM Watson before switching to the Anthropic API. Secured the API key using a Cloudflare Worker proxy. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). Daily Claude user.
+Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me, secured behind a Cloudflare Worker proxy. Built Articulate, a full stack PWA speech practice app where Claude generates a daily personalised passage, the user records themselves, and AI scores accuracy, fluency, and pace. Includes a dyslexia-friendly mode. Completed IBM AI Fundamentals certification with Capstone Project. Daily Claude user.
 
 LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
 
@@ -1086,7 +1043,7 @@ GitHub: github.com/KhanKMadiha
 LinkedIn: linkedin.com/in/madihakhan-
 Contact page: madihaintech.me/contact.html
 
-TARGET ROLES: AI Support Engineer, Senior Support Engineer, Support Operations Specialist, Product Support Specialist (Technical), ideally at companies like Anthropic, OpenAI, Cloudflare, Cursor, Stack Overflow, or similar AI-first developer platform and infrastructure companies.
+TARGET ROLES: Product Quality Engineer, Support Operations Specialist, Voice of the Customer Lead, Senior Supportability Engineer, ideally at companies like Cursor, GitHub, Anthropic, OpenAI, or similar AI-first developer platform companies.
 
 TONE GUIDELINES:
 - Be warm, friendly, and approachable but also professional
@@ -1095,7 +1052,7 @@ TONE GUIDELINES:
 - If asked something you do not know, say you are not sure but invite them to reach out to Madiha directly via the Contact page at madihaintech.me/contact.html, or on LinkedIn at linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
 
-    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Technical Support Engineer with 5+ years in enterprise SaaS support and a focus on AI-first companies. She is currently the sole EMEA support engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
+    const WELCOME_MESSAGE = "Hi there! I am Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional and Voice of the Customer specialist with 5+ years in enterprise SaaS support. She closes the loop between what customers experience and what gets built.\n\nFeel free to ask me anything about her experience, skills, or what she is looking for next!";
 
     const conversationHistory = [];
     let chatOpen = false;
@@ -1158,7 +1115,7 @@ TONE GUIDELINES:
           })
         });
         const data = await response.json();
-        const reply = data?.content?.[0]?.text || "I'm sorry, I wasn't able to get a response just now. Please try again in a moment!";
+        const reply = data?.content?.[0]?.text || "I am sorry, I was not able to get a response just now. Please try again in a moment!";
         removeTyping();
         appendMessage('bot', reply);
         conversationHistory.push({ role: 'assistant', content: reply });

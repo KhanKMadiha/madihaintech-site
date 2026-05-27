@@ -1,57 +1,74 @@
-# Madiha in Tech - Portfolio Site
+# Madiha in Tech — Portfolio Site
 
-Personal portfolio documenting my journey as a Senior Support Engineer working across SaaS platforms, developer tooling, and AI-powered support infrastructure.
+Personal portfolio built by a Senior Support Professional with 5+ years in customer-facing and technical support roles, specialising in developer-facing platforms across EMEA. The site documents my technical background, projects, and approach to AI-native support operations.
 
 **Live site:** [madihaintech.me](https://madihaintech.me)
 
----
+-----
 
-## About This Portfolio
-
-This site showcases:
-
-- 5+ years of experience across tech and customer support
-- Enterprise platform expertise including SSO, APIs, integrations, and incident response
-- Two featured projects built and shipped independently: an AI speech app and an AI portfolio chatbot
-- Measurable impact: 98% CSAT, 25% faster P1/P2 resolution, 20% reduction in repeat tickets
-
----
-
-## What is Inside
-
-### Portfolio Website
+## What is on the site
 
 - Professional summary and positioning
-- Skills and experience documentation
-- Impact metrics and key achievements
-- Technical competencies and toolbox
+- Key achievements and impact metrics (98% CSAT, 25% faster P1/P2 resolution, 20% fewer repeat tickets)
+- Technical skills and tooling
+- Project showcase including a live AI chatbot
+- Contact information
 
-### Featured Projects
+-----
 
-**[Articulate](https://madihaintech.me/articulate.html)** — a full-stack speech app that helps professionals improve how they speak. Started in Cursor and completed in Claude Code. Built with React, Node.js/Express, the Anthropic API, and the Web Speech API. Claude generates a personalised reading passage every day based on your job title, industry, goals, and the speakers you admire. You record yourself and get scored on accuracy, fluency, and pace. Includes a full dyslexia-friendly mode: one paragraph at a time, a reading ruler, live word highlighting, syllable break markers, and AI passages rewritten for accessibility. Deployed on Railway via Docker. [Try it live](https://articulate-app-production.up.railway.app)
+## Featured: AI Support Chatbot
 
-**[AI Portfolio Chatbot](https://madihaintech.me/chatbot.html)** — a conversational assistant built to answer questions about my work and guide visitors around the site. Started with IBM Watson, iterated through Google Dialogflow CX, and landed on a Claude-powered assistant secured behind a Cloudflare Workers proxy with the API key stored as an encrypted secret and CORS locked to the portfolio domain.
+An embedded conversational chatbot powered by the **Anthropic Claude API**, secured via a **Cloudflare Worker proxy** to keep API keys off the client.
 
----
+The chatbot is designed with a support engineering mindset: clear user guidance, structured decision paths, and thoughtful handling of ambiguity. It demonstrates how I think about conversational AI systems, not just how to build them.
 
-## Technical Stack
+**What it shows:**
 
-- **Frontend:** HTML5, CSS3, JavaScript (portfolio site); React 18 with Vite and Tailwind CSS (Articulate)
-- **Backend:** Node.js + Express (Articulate); Cloudflare Workers proxy (chatbot)
-- **AI:** Anthropic API (Claude) across both projects
-- **Speech:** Web Speech API
-- **Deployment:** Railway + Docker (Articulate); GitHub Pages with custom domain (portfolio)
-- **Development tools:** Cursor, Claude Code
-- **Version Control:** Git/GitHub
+- Claude API integration with a secure Cloudflare Worker proxy
+- Conversation flow design rooted in real support patterns
+- Applied AI thinking: where automation adds value and where it does not
 
----
+-----
+
+## Tech stack
+
+|Layer          |Technology                                   |
+|---------------|---------------------------------------------|
+|Frontend       |HTML5, CSS3, JavaScript                      |
+|AI             |Anthropic Claude API                         |
+|Security       |Cloudflare Workers (API proxy)               |
+|Hosting        |GitHub Pages (custom domain: madihaintech.me)|
+|Version control|Git, GitHub                                  |
+
+-----
+
+## Other projects
+
+### Articulate
+
+AI-powered speech practice PWA. Claude generates a personalised daily passage based on your job title, goals, and speaking style. Record yourself and get scored on accuracy, fluency, and pace. Includes a dyslexia-friendly mode.
+
+[Live app](https://articulate-app-production.up.railway.app) · [Repo](https://github.com/KhanKMadiha/articulate-app)
+
+### Support Ticket Analyser
+
+A four-step support workflow tool: paste a ticket, match internal documentation, draft a response, generate a KB article, and publish to Notion via a Cloudflare Worker.
+
+[Repo](https://github.com/KhanKMadiha/support-dashboard)
+
+-----
+
+## Background
+
+I am a Senior Support Professional currently at Stack Overflow, where I own the full ticket lifecycle across EMEA for 100+ enterprise environments. My work sits at the intersection of technical escalation, observability, documentation, and operational infrastructure.
+
+I build portfolio projects to stay close to the tools and systems I work with professionally and to explore where AI genuinely improves support operations rather than just adding noise.
+
+-----
 
 ## Contact
 
-- **LinkedIn:** [linkedin.com/in/madihakhan-](https://www.linkedin.com/in/madihakhan-)
+- **Email:** [madihaintech@gmail.com](mailto:madihaintech@gmail.com)
+- **LinkedIn:** [linkedin.com/in/madihakhan-](https://linkedin.com/in/madihakhan-)
 - **Portfolio:** [madihaintech.me](https://madihaintech.me)
 - **GitHub:** [github.com/KhanKMadiha](https://github.com/KhanKMadiha)
-
----
-
-*Built with care by Madiha Khan*

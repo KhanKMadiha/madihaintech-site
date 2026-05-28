@@ -4,7 +4,7 @@ Personal portfolio built by a Senior Support Professional with 5+ years in custo
 
 **Live site:** [madihaintech.me](https://madihaintech.me)
 
------
+---
 
 ## What is on the site
 
@@ -14,7 +14,7 @@ Personal portfolio built by a Senior Support Professional with 5+ years in custo
 - Project showcase including a live AI chatbot
 - Contact information
 
------
+---
 
 ## Featured: AI Support Chatbot
 
@@ -23,40 +23,38 @@ An embedded conversational chatbot powered by the **Anthropic Claude API**, secu
 The chatbot is designed with a support engineering mindset: clear user guidance, structured decision paths, and thoughtful handling of ambiguity. It demonstrates how I think about conversational AI systems, not just how to build them.
 
 **What it shows:**
-
 - Claude API integration with a secure Cloudflare Worker proxy
 - Conversation flow design rooted in real support patterns
 - Applied AI thinking: where automation adds value and where it does not
 
------
+---
 
 ## Tech stack
 
-|Layer          |Technology                                   |
-|---------------|---------------------------------------------|
-|Frontend       |HTML5, CSS3, JavaScript                      |
-|AI             |Anthropic Claude API                         |
-|Security       |Cloudflare Workers (API proxy)               |
-|Hosting        |GitHub Pages (custom domain: madihaintech.me)|
-|Version control|Git, GitHub                                  |
+| Layer | Technology |
+|-------|------------|
+| Frontend | HTML5, CSS3, JavaScript |
+| AI | Anthropic Claude API |
+| Security | Cloudflare Workers (API proxy) |
+| Hosting | GitHub Pages (custom domain: madihaintech.me) |
+| Version control | Git, GitHub |
+| Editor | Cursor · Claude Code |
 
------
+---
 
 ## Other projects
 
 ### Articulate
-
 AI-powered speech practice PWA. Claude generates a personalised daily passage based on your job title, goals, and speaking style. Record yourself and get scored on accuracy, fluency, and pace. Includes a dyslexia-friendly mode.
 
 [Live app](https://articulate-app-production.up.railway.app) · [Repo](https://github.com/KhanKMadiha/articulate-app)
 
 ### Support Ticket Analyser
-
 A four-step support workflow tool: paste a ticket, match internal documentation, draft a response, generate a KB article, and publish to Notion via a Cloudflare Worker.
 
-[Repo](https://github.com/KhanKMadiha/support-dashboard)
+[Live demo](https://khankmadiha.github.io/support-ticket-analyser/) · [Repo](https://github.com/KhanKMadiha/support-ticket-analyser)
 
------
+---
 
 ## Background
 
@@ -64,11 +62,11 @@ I am a Senior Support Professional currently at Stack Overflow, where I own the 
 
 I build portfolio projects to stay close to the tools and systems I work with professionally and to explore where AI genuinely improves support operations rather than just adding noise.
 
------
+---
 
 ## Contact
 
-- **Email:** [madihaintech@gmail.com](mailto:madihaintech@gmail.com)
+- **Email:** madihaintech@gmail.com
 - **LinkedIn:** [linkedin.com/in/madihakhan-](https://linkedin.com/in/madihakhan-)
 - **Portfolio:** [madihaintech.me](https://madihaintech.me)
 - **GitHub:** [github.com/KhanKMadiha](https://github.com/KhanKMadiha)

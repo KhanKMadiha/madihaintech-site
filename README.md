@@ -38,7 +38,6 @@ The chatbot is designed with a support engineering mindset: clear user guidance,
 | Security | Cloudflare Workers (API proxy) |
 | Hosting | GitHub Pages (custom domain: madihaintech.me) |
 | Version control | Git, GitHub |
-| Editor | Claude Code |
 
 ---
 

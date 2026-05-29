@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <title>Articulate | Madiha Khan</title>
+  <title>Support Ticket Analyser | Madiha Khan</title>
 
   <style>
     :root {
@@ -27,7 +27,8 @@
       font-family: 'Inter', 'Segoe UI', sans-serif;
       background-color: var(--bg-base);
       color: var(--text-dark);
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       text-align: center;
       overflow-x: hidden;
     }
@@ -61,9 +62,9 @@
     .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
 
     .hero {
-      min-height: 65vh;
+      min-height: 82vh;
       display: flex; align-items: center;
-      padding: 6.5rem 1.5rem 2.5rem;
+      padding: 6.5rem 1.5rem 4rem;
       background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
     }
 
@@ -72,22 +73,15 @@
       width: 100%; display: flex; flex-direction: column; align-items: center;
     }
 
-    .hero-label {
-      font-size: 0.82rem; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--accent); margin: 0 0 1rem;
-      animation: fadeUp 0.6s ease both;
-    }
-
     h1 {
       margin: 0 0 1rem;
       font-size: clamp(2.6rem, 5vw, 3.6rem);
       line-height: 1.08; letter-spacing: -0.02em;
-      animation: fadeUp 0.6s ease 0.05s both;
+      animation: fadeUp 0.6s ease both;
     }
 
     .hero-highlight {
-      margin: 0.9rem auto 0; max-width: 760px;
+      margin: 0.9rem auto 0; max-width: 860px;
       font-size: 1.15rem; line-height: 1.7; color: var(--muted-dark);
       animation: fadeUp 0.6s ease 0.15s both;
     }
@@ -96,6 +90,32 @@
       from{opacity:0;transform:translateY(20px);}
       to{opacity:1;transform:translateY(0);}
     }
+
+    .hero-actions {
+      display: flex; align-items: center; gap: 1rem; justify-content: center;
+      margin-top: 1.75rem; flex-wrap: wrap;
+      animation: fadeUp 0.6s ease 0.25s both;
+    }
+
+    .hero-action-primary {
+      padding: 0.6rem 1.4rem; border-radius: 999px;
+      background: var(--accent); color: #fff;
+      font-size: 0.95rem; font-weight: 700; text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .hero-action-primary:hover { opacity: 0.88; }
+
+    .hero-action-secondary {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.6rem 1.25rem; border-radius: 999px;
+      border: 1.5px solid var(--border-strong);
+      font-size: 0.95rem; font-weight: 600; color: var(--text-dark);
+      text-decoration: none; background: rgba(255,255,255,0.6);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .hero-action-secondary:hover { border-color: var(--accent); background: rgba(255,255,255,0.9); }
 
     .nav-cta {
       max-width: 980px; margin: -1.25rem auto 2.25rem;
@@ -116,13 +136,11 @@
 
     .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); border-color: var(--border-strong); }
 
-    .nav-btn.primary {
+    .nav-btn.active {
       background: linear-gradient(135deg, var(--accent), #E0B8B4);
       color: #fff; border-color: transparent;
       box-shadow: 0 6px 18px rgba(180,140,135,0.25);
     }
-
-    .nav-btn.primary:hover { opacity: 0.9; transform: translateY(-2px); }
 
     .content {
       max-width: 980px; margin: 0 auto 3.5rem;
@@ -138,6 +156,7 @@
       margin: 0 0 1rem; text-align: center;
     }
 
+    /* ---------- INTRO CARD ---------- */
     .intro-card {
       padding: 2.25rem 2.5rem; border-radius: 22px;
       border: 1.5px solid var(--border-soft);
@@ -160,7 +179,7 @@
       background: rgba(255,255,255,0.65); font-size: 0.9rem; color: var(--text-dark);
     }
 
-    /* ---------- BUILD STEPS ---------- */
+    /* ---------- PHASE STEPPER ---------- */
     .stepper-nav {
       display: flex; gap: 0.5rem; justify-content: center;
       margin-bottom: 1.5rem; flex-wrap: wrap;
@@ -210,6 +229,7 @@
     .badge-1 { background: #F5EEEC; color: #8B5E5B; border: 1px solid rgba(180,140,135,0.3); }
     .badge-2 { background: #fde8d8; color: #c05a2a; border: 1px solid rgba(233,140,106,0.3); }
     .badge-3 { background: #e8f4fd; color: #2a6fc0; border: 1px solid rgba(106,163,233,0.3); }
+    .badge-4 { background: #e8fdf0; color: #2ac06a; border: 1px solid rgba(106,233,163,0.3); }
 
     .phase-title-wrap h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.2rem; }
     .phase-title-wrap p { font-size: 0.92rem; color: var(--muted-dark); margin: 0; }
@@ -217,7 +237,49 @@
     .phase-body p { font-size: 1rem; line-height: 1.8; color: var(--muted-dark); margin: 0 0 1rem; }
     .phase-body p:last-child { margin-bottom: 0; }
     .phase-body strong { color: var(--text-dark); }
+    .phase-body code {
+      background: rgba(180,140,135,0.1); border: 1px solid rgba(180,140,135,0.2);
+      padding: 0.15rem 0.45rem; border-radius: 6px; font-size: 0.9rem; font-family: monospace;
+    }
 
+    /* ---------- STRUGGLE TOGGLE ---------- */
+    .struggle-toggle {
+      margin-top: 1.25rem;
+      border-radius: 14px;
+      border: 1.5px solid var(--border-soft);
+      overflow: hidden;
+    }
+
+    .struggle-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 1.1rem; cursor: pointer;
+      background: rgba(180,140,135,0.06);
+      transition: background 0.2s;
+    }
+
+    .struggle-header:hover { background: rgba(180,140,135,0.1); }
+
+    .struggle-header-left { display: flex; align-items: center; gap: 0.6rem; }
+    .struggle-icon { font-size: 1rem; }
+    .struggle-label { font-size: 0.88rem; font-weight: 700; color: var(--accent); }
+    .struggle-chevron { font-size: 0.75rem; color: var(--accent); transition: transform 0.25s; }
+
+    .struggle-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+      padding: 0 1.1rem;
+      border-top: 1px solid transparent;
+    }
+
+    .struggle-body.open {
+      max-height: 300px;
+      padding: 1rem 1.1rem;
+      border-top-color: var(--border-soft);
+    }
+
+    .struggle-body p { font-size: 0.93rem; line-height: 1.7; color: var(--muted-dark); margin: 0; }
+
+    /* ---------- PHASE NAV BUTTONS ---------- */
     .phase-nav { display: flex; justify-content: space-between; margin-top: 1.25rem; gap: 1rem; }
 
     .phase-nav-btn {
@@ -236,38 +298,11 @@
     }
     .phase-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-    /* ---------- FEATURE GRID ---------- */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem; margin-bottom: 2rem;
-    }
-
-    .feature-card {
-      padding: 1.75rem 1.5rem; border-radius: 22px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
-      text-align: left;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .feature-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.07); border-color: var(--border-strong); }
-
-    .feature-icon { font-size: 1.5rem; margin-bottom: 0.6rem; display: block; }
-    .feature-card h3 { font-size: 0.98rem; font-weight: 800; margin: 0 0 0.4rem; }
-    .feature-card p { font-size: 0.88rem; line-height: 1.65; color: var(--muted-dark); margin: 0; }
-
-    /* ---------- TECH STACK ---------- */
+    /* ---------- TOOLS SECTION ---------- */
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 0.75rem; margin-bottom: 2rem;
-    }
-    @media (max-width: 700px) {
-      .tools-grid { grid-template-columns: repeat(4, 1fr); }
-    }
-    @media (max-width: 420px) {
-      .tools-grid { grid-template-columns: repeat(3, 1fr); }
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem; margin-bottom: 2rem;
     }
 
     .tool-card {
@@ -287,10 +322,32 @@
       margin: 0 auto 0.75rem; overflow: hidden;
     }
 
+    .tool-logo img { width: 32px; height: 32px; object-fit: contain; }
     .tool-logo .tool-emoji { font-size: 1.5rem; }
     .tool-initial { font-size: 0.75rem; font-weight: 800; color: var(--muted-dark); letter-spacing: 0.02em; }
+
     .tool-name { font-size: 0.88rem; font-weight: 800; margin: 0 0 0.2rem; }
     .tool-desc { font-size: 0.78rem; color: var(--muted-dark); margin: 0; line-height: 1.4; }
+
+    /* ---------- LEARNINGS SECTION ---------- */
+    .learnings-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-bottom: 2rem;
+    }
+
+    .learning-card {
+      padding: 1.75rem 1.5rem; border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
+      text-align: left;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .learning-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.07); border-color: var(--border-strong); }
+
+    .learning-icon { font-size: 1.6rem; margin-bottom: 0.6rem; display: block; }
+    .learning-card h3 { font-size: 0.98rem; font-weight: 800; margin: 0 0 0.4rem; }
+    .learning-card p { font-size: 0.88rem; line-height: 1.65; color: var(--muted-dark); margin: 0; }
 
     /* ---------- TRY IT CARD ---------- */
     .try-card {
@@ -302,7 +359,8 @@
     }
 
     .try-card h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.6rem; }
-    .try-card p { font-size: 1rem; line-height: 1.75; color: var(--muted-dark); margin: 0 0 1.25rem; }
+    .try-card p { font-size: 1rem; line-height: 1.75; color: var(--muted-dark); margin: 0 0 0.5rem; }
+    .try-card .powered { font-size: 0.88rem; color: var(--muted-dark); }
     .try-card .live-btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.85rem 1.75rem; border-radius: 14px;
@@ -312,7 +370,17 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
     }
     .try-card .live-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    .try-card .secondary-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 1.75rem; border-radius: 14px;
+      border: 1.5px solid var(--border-strong);
+      color: var(--text-dark); text-decoration: none; font-weight: 700; font-size: 1rem;
+      background: rgba(255,255,255,0.6);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .try-card .secondary-btn:hover { border-color: var(--accent); background: rgba(255,255,255,0.9); }
 
+    /* ---------- LINKS ---------- */
     .links { padding-bottom: 2.5rem; text-align: center; }
     .links h2 { font-size: 1.6rem; margin: 2rem 0 0.75rem; }
     .links p { display: flex; justify-content: center; gap: 2.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
@@ -320,11 +388,11 @@
     footer { margin: 26px 0 34px; padding: 0 1.5rem; font-size: 0.95rem; color: rgba(26,26,26,0.6); text-align: center; }
 
     @media (max-width: 600px) {
-      .nav-btn { flex: 1 1 100%; max-width: none; }
-      .links p { gap: 1.75rem; }
+      .learnings-grid { grid-template-columns: 1fr; }
       .intro-card, .phase-content { padding: 1.75rem 1.5rem; }
     }
 
+    /* ---------- CHATBOT ---------- */
     #chat-toggle {
       position: fixed; bottom: 22px; right: 22px;
       width: 58px; height: 58px; border-radius: 18px;
@@ -349,8 +417,16 @@
     }
     #chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
 
-    .chat-header { background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%); border-bottom: 1px solid var(--border-soft); padding: 15px 16px; display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
-    .chat-avatar { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #E0B8B4); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; color: #fff; flex-shrink: 0; }
+    .chat-header {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%);
+      border-bottom: 1px solid var(--border-soft); padding: 15px 16px;
+      display: flex; align-items: center; gap: 11px; flex-shrink: 0;
+    }
+    .chat-avatar {
+      width: 38px; height: 38px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #E0B8B4);
+      display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; color: #fff; flex-shrink: 0;
+    }
     .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
     .chat-header-info p { font-size: 0.73rem; color: var(--muted-dark); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
     .online-dot { width: 7px; height: 7px; background: #4caf82; border-radius: 50%; display: inline-block; flex-shrink: 0; }
@@ -464,174 +540,235 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <p class="hero-label">Full-stack PWA · 2026</p>
-      <h1>Articulate</h1>
+      <h1>Support Ticket Analyser</h1>
       <p class="hero-highlight">
-        A daily reading practice app for professionals who want to speak with more confidence.
-        Generates a personalised passage every day using AI, then lets you record yourself and get scored on accuracy, fluency and pace.
+        An AI-native support workflow I built to close the loop from ticket to knowledge base — documentation matching, gap detection, response drafting, and KB publish. Designed for the same problems a Product Quality Engineer owns every day.
       </p>
+      <div class="hero-actions">
+        <a class="hero-action-primary" href="https://khankmadiha.github.io/support-dashboard/" target="_blank" rel="noopener noreferrer">Open demo →</a>
+        <a class="hero-action-secondary" href="https://github.com/KhanKMadiha/support-dashboard" target="_blank" rel="noopener noreferrer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View code
+        </a>
+      </div>
     </div>
   </section>
 
   <main class="content">
 
-    <!-- WHAT IT DOES -->
+    <!-- INTRO -->
     <div class="intro-card reveal">
       <p>
-        I built this because a senior engineering manager told me something I couldn't shake. You need to learn how to speak different languages. To customers, to engineers, to execs.
+        At Stack Overflow I am the sole EMEA support engineer for 100+ enterprise accounts. Most of my impact does not come from closing tickets faster — it comes from <strong>closing loops</strong>: spotting when the same SAML error hits three accounts, proving it with logs, and getting the right fix prioritised.
       </p>
       <p>
-        So I built a full-stack PWA that generates a personalised reading passage every day using Claude, records your delivery, and scores your accuracy, fluency, and pace. It's live, free to use, and includes a complete dyslexia-friendly mode built from scratch.
+        This project is the tooling I wish existed on every shift: paste a ticket, see whether we already have a strong KB match, surface documentation gaps before they become repeat tickets, draft a response grounded in internal docs, and turn the resolution into a publishable article. Steps 1–3 run for real in the browser; step 4 can publish to Notion via a secured Cloudflare Worker when you run in live mode.
+      </p>
+      <p>
+        <strong>Try the interactive demo:</strong> <a href="https://khankmadiha.github.io/support-dashboard/" target="_blank" rel="noopener noreferrer">https://khankmadiha.github.io/support-dashboard/</a> (portfolio-safe demo mode — no real customer data, no API keys in the browser).
       </p>
       <div class="tag-row">
-        <span class="tag">Daily AI passages</span>
-        <span class="tag">Speech recording</span>
-        <span class="tag">Delivery scoring</span>
-        <span class="tag">Streak tracking</span>
-        <span class="tag">Favourites library</span>
-        <span class="tag">Push notifications</span>
+        <span class="tag">Voice of the Customer</span>
+        <span class="tag">Documentation gaps</span>
+        <span class="tag">Quality operations</span>
+        <span class="tag">Anthropic API</span>
+        <span class="tag">Cloudflare Workers</span>
+        <span class="tag">Notion API</span>
+        <span class="tag">JavaScript</span>
       </div>
     </div>
 
-    <!-- HOW I BUILT IT -->
-    <p class="section-label reveal">How I built it</p>
+    <div class="intro-card reveal" style="border-color: rgba(42, 111, 192, 0.35); background: rgba(232, 244, 253, 0.45);">
+      <p class="section-label" style="text-align:left;margin-bottom:0.75rem;">Mapped to Product Quality Engineering</p>
+      <p style="margin:0;font-size:1rem;line-height:1.75;color:var(--muted-dark);">
+        Cursor's PQE role owns the feedback loop between users and product — VoC synthesis, agentic prioritisation, senior escalation, and tooling that scales quality operations. This prototype demonstrates that mindset in code: structured signal extraction, explicit match thresholds, gap surfacing for product, and infrastructure you can ship safely to a public URL.
+      </p>
+    </div>
+
+    <!-- PHASE STEPPER -->
+    <p class="section-label reveal">The four-step workflow</p>
     <div class="reveal">
       <div class="stepper-nav">
-        <button class="phase-btn active" onclick="showPhase(1)">The idea</button>
-        <button class="phase-btn" onclick="showPhase(2)">Building the core</button>
-        <button class="phase-btn" onclick="showPhase(3)">Accessibility update</button>
+        <button class="phase-btn active" onclick="showPhase(1)">Why I built it</button>
+        <button class="phase-btn" onclick="showPhase(2)">Match &amp; gaps</button>
+        <button class="phase-btn" onclick="showPhase(3)">Response &amp; KB</button>
+        <button class="phase-btn" onclick="showPhase(4)">Architecture</button>
       </div>
 
+      <!-- PHASE 1 -->
       <div class="phase-content active" id="phase-1">
         <div class="phase-header">
-          <div><span class="phase-badge badge-1">01</span></div>
+          <div><span class="phase-badge badge-1">Step 1</span></div>
           <div class="phase-title-wrap">
-            <h3>A coffee chat conversation</h3>
-            <p>Where the idea came from</p>
+            <h3>From reactive triage to a closed loop</h3>
+            <p>The problem enterprise support actually needs solved</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>A senior engineering manager told me something that stuck: <strong>"You need to learn how to speak different languages. To customers, to engineers, to execs. They all need something different."</strong></p>
-          <p>I wanted to build something to practise that, daily and deliberately. Reading aloud in your own voice, on topics that matter to your actual career, felt like the right habit to build.</p>
+          <p>Every week I see the same pattern: a customer hits an SSO or integration edge case, support writes a great one-off reply, and the knowledge never makes it back into the catalogue. Six weeks later, another enterprise opens the same ticket.</p>
+          <p>I built this workflow to model how senior quality operations should feel: <strong>ticket in → evidence of existing docs → explicit gap when there is not an 80%+ match → response grounded in resolution steps → KB draft ready for review → publish.</strong> That is the same loop I run manually with Datadog, Jira, and our internal KB — here it is interactive and repeatable.</p>
+        </div>
+        <div class="struggle-toggle">
+          <div class="struggle-header" onclick="toggleStruggle(this)">
+            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">Design choice</span></div>
+            <span class="struggle-chevron">▼</span>
+          </div>
+          <div class="struggle-body">
+            <p>I deliberately used a keyword relevance scorer instead of hiding everything behind an LLM for step 2. Recruiters and engineers can see <em>why</em> a doc matched, which keywords fired, and what counts as a documentation gap. Transparency beats black-box triage when you are trying to earn engineering trust.</p>
+          </div>
         </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" disabled>Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Building the core →</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Match &amp; gaps →</button>
         </div>
       </div>
 
+      <!-- PHASE 2 -->
       <div class="phase-content" id="phase-2">
         <div class="phase-header">
-          <div><span class="phase-badge badge-2">02</span></div>
+          <div><span class="phase-badge badge-2">Step 2</span></div>
           <div class="phase-title-wrap">
-            <h3>React, Express and the Claude API</h3>
-            <p>Started in Cursor, continued in Claude Code</p>
+            <h3>Documentation match and gap detection</h3>
+            <p>Strong match at 80%+, related articles at 30–79%</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>I started building in Cursor, then moved to Claude Code as the project grew in complexity. The passage generation pipeline, recording flow, and AI scoring were all built end to end. Each passage is personalised to the user's job title, industry, goals, and the speakers they admire, generated fresh every day by Claude.</p>
-          <p>Recording uses the Web Speech API with real-time transcription. The transcript is compared against the original passage to score accuracy, fluency, and pace, with specific, constructive feedback, not just a number.</p>
-          <p>The app also tracks streaks, lets users save favourite passages to a library, and supports push notifications as an optional daily reminder.</p>
+          <p>Paste a ticket (or load the sample SSO/SAML scenario) and the app tokenises the text, scores every article in the catalogue, and classifies the result:</p>
+          <p><strong>Strong match (≥80%):</strong> surfaces the winning article, shows matched keywords, and pre-fills a suggested response from documented resolution steps.<br>
+          <strong>Documentation gap (&lt;80%):</strong> labels the gap explicitly and shows related articles in the 30–79% band so the agent still has troubleshooting context while product knows the KB is missing something.</p>
+          <p>That gap state is product signal — the same kind I escalate when I see three enterprise accounts hit an undocumented SAML assertion failure.</p>
+        </div>
+        <div class="struggle-toggle">
+          <div class="struggle-header" onclick="toggleStruggle(this)">
+            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">The struggle</span></div>
+            <span class="struggle-chevron">▼</span>
+          </div>
+          <div class="struggle-body">
+            <p>Getting thresholds right mattered. Too low and everything looks like a match; too high and you cry wolf on gaps. I landed on 80% / 30% after tuning against a realistic SSO ticket and a catalogue of enterprise-style articles (SAML, SCIM, API keys, billing).</p>
+          </div>
         </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" onclick="showPhase(1)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Accessibility update →</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Response &amp; KB →</button>
         </div>
       </div>
 
+      <!-- PHASE 3 -->
       <div class="phase-content" id="phase-3">
         <div class="phase-header">
-          <div><span class="phase-badge badge-3">03</span></div>
+          <div><span class="phase-badge badge-3">Step 3</span></div>
           <div class="phase-title-wrap">
-            <h3>Dyslexia-friendly mode</h3>
-            <p>A complete reading experience redesign, not just a font toggle</p>
+            <h3>Response drafting and KB capture</h3>
+            <p>Human in the loop before anything ships</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>I noticed someone struggling to read while I was testing the app and it stuck with me. I didn't want to just add a font toggle and call it accessibility. So I rebuilt the entire reading experience from scratch for dyslexic users: one paragraph at a time, a reading ruler that follows your position, live word highlighting as you speak, syllable break markers, and an OpenDyslexic font option.</p>
-          <p>The AI passages themselves are adjusted too: shorter sentences, simpler vocabulary, avoiding easily-confused homophones. The accessibility goes all the way through to the content, not just the interface.</p>
+          <p>Step 3 keeps the agent in control: edit the suggested response, copy to clipboard, and keep the original ticket visible for context. Step 4 generates a structured KB draft — title, category, summary, numbered troubleshooting steps, tags — with markdown download.</p>
+          <p>In <strong>live mode</strong>, Claude drafts the article and a Cloudflare Worker publishes to a sandbox Notion database (properties + page body blocks). In <strong>portfolio demo mode</strong> on GitHub Pages, steps 1–3 stay real; publish is simulated so visitors can try the flow without API keys or customer PII.</p>
+        </div>
+        <div class="struggle-toggle">
+          <div class="struggle-header" onclick="toggleStruggle(this)">
+            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">The struggle</span></div>
+            <span class="struggle-chevron">▼</span>
+          </div>
+          <div class="struggle-body">
+            <p>Public demos and production secrets do not mix. I added automatic demo detection for <code>*.github.io</code> plus explicit <code>?live=1</code> / <code>?demo=1</code> flags so reviewers get a safe default and I can still run the full stack locally or in a private environment.</p>
+          </div>
         </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" onclick="showPhase(2)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="document.getElementById('features-section').scrollIntoView({behavior:'smooth'})">See features ↓</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(4)">Next: Architecture →</button>
+        </div>
+      </div>
+
+      <!-- PHASE 4 -->
+      <div class="phase-content" id="phase-4">
+        <div class="phase-header">
+          <div><span class="phase-badge badge-4">Step 4</span></div>
+          <div class="phase-title-wrap">
+            <h3>Architecture and security</h3>
+            <p>Static app + Worker proxy — same pattern as my portfolio chatbot</p>
+          </div>
+        </div>
+        <div class="phase-body">
+          <p>The front end is vanilla HTML/CSS/JS hosted on GitHub Pages. Secrets never touch the browser: a Cloudflare Worker proxies Anthropic and Notion requests, with API keys stored as Wrangler secrets.</p>
+          <p>Open source on GitHub with a README that documents demo vs live behaviour, deployment steps, and privacy expectations — because quality tooling only scales if other people can run and trust it.</p>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-nav-btn" onclick="showPhase(3)">← Previous</button>
+          <button class="phase-nav-btn primary" onclick="document.getElementById('tools-section').scrollIntoView({behavior:'smooth'})">See tools used ↓</button>
         </div>
       </div>
     </div>
 
-    <!-- FEATURES -->
-    <p class="section-label reveal" id="features-section">Features I'm most proud of</p>
-    <div class="feature-grid reveal">
+    <!-- TOOLS USED -->
+    <p class="section-label reveal" id="tools-section">Tools used</p>
+    <div class="tools-grid reveal">
 
-      <div class="feature-card">
-        <span class="feature-icon">♿</span>
-        <h3>Dyslexia-friendly mode</h3>
-        <p>One paragraph at a time, reading ruler, live word highlighting, syllable breaks, OpenDyslexic font, and AI passages written for it too.</p>
+      <div class="tool-card">
+        <div class="tool-logo"><span class="tool-initial">JS</span></div>
+        <p class="tool-name">Vanilla JavaScript</p>
+        <p class="tool-desc">Workflow, matching engine, demo mode</p>
       </div>
 
-      <div class="feature-card">
-        <span class="feature-icon">✨</span>
-        <h3>Personalised AI passages</h3>
-        <p>Claude generates each passage around your job, goals, focus areas, and the speakers you want to sound like. New every day.</p>
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"></div>
+        <p class="tool-name">Claude</p>
+        <p class="tool-desc">KB draft generation in live mode</p>
       </div>
 
-      <div class="feature-card">
-        <span class="feature-icon">🎙</span>
-        <h3>Delivery scoring</h3>
-        <p>AI scores your accuracy, fluency and pace after each recording, with specific, constructive feedback.</p>
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=64" alt="Cloudflare"></div>
+        <p class="tool-name">Cloudflare Workers</p>
+        <p class="tool-desc">Secured proxy for Claude + Notion</p>
       </div>
 
-      <div class="feature-card">
-        <span class="feature-icon">🔀</span>
-        <h3>Two daily flows</h3>
-        <p>Get straight to the passage, or do a quick energy and theme check-in first. Your choice every morning.</p>
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" alt="Notion"></div>
+        <p class="tool-name">Notion API</p>
+        <p class="tool-desc">KB publish target (sandbox DB)</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" alt="GitHub"></div>
+        <p class="tool-name">GitHub Pages</p>
+        <p class="tool-desc">Public demo hosting</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=cursor.com&sz=64" alt="Cursor"></div>
+        <p class="tool-name">Cursor</p>
+        <p class="tool-desc">Primary IDE — tab completion, inline edits, and chat used throughout the build</p>
       </div>
 
     </div>
 
-    <!-- TECH STACK -->
-    <p class="section-label reveal">Tech stack</p>
-    <div class="tools-grid reveal">
+    <!-- WHAT I LEARNED -->
+    <p class="section-label reveal">What I learned</p>
+    <div class="learnings-grid reveal">
 
-      <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">Re</span></div>
-        <p class="tool-name">React 18</p>
-        <p class="tool-desc">Frontend with Vite and Tailwind CSS</p>
+      <div class="learning-card">
+        <span class="learning-icon">🔄</span>
+        <h3>Quality is a systems problem</h3>
+        <p>The win is not a prettier reply — it is a repeatable loop that turns customer pain into documented, searchable knowledge and clearer product signal.</p>
       </div>
 
-      <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">No</span></div>
-        <p class="tool-name">Node.js + Express</p>
-        <p class="tool-desc">Backend API server</p>
+      <div class="learning-card">
+        <span class="learning-icon">📊</span>
+        <h3>Gaps are VoC data</h3>
+        <p>When match scores fall below threshold, that is not failure — it is prioritisation input for docs and engineering, with related articles as interim context.</p>
       </div>
 
-      <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">AI</span></div>
-        <p class="tool-name">Anthropic Claude</p>
-        <p class="tool-desc">Passage generation and speech scoring</p>
+      <div class="learning-card">
+        <span class="learning-icon">🔐</span>
+        <h3>Ship demos safely by design</h3>
+        <p>Portfolio mode defaults on GitHub Pages; secrets stay on the Worker. Reviewers can explore the full UX without risking API keys or customer PII.</p>
       </div>
 
-      <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">WS</span></div>
-        <p class="tool-name">Web Speech API</p>
-        <p class="tool-desc">Real-time speech recognition</p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">PW</span></div>
-        <p class="tool-name">PWA</p>
-        <p class="tool-desc">Service worker, offline support, push notifications</p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">Rw</span></div>
-        <p class="tool-name">Railway + Docker</p>
-        <p class="tool-desc">Deployment and hosting</p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">Cu</span></div>
-        <p class="tool-name">Cursor</p>
-        <p class="tool-desc">Built the initial version in Cursor</p>
+      <div class="learning-card">
+        <span class="learning-icon">🤝</span>
+        <h3>Know where AI needs a human</h3>
+        <p>Gap detection is deterministic and auditable; Claude handles drafting where a human still reviews before publish. Building this sharpened my instinct for where AI assistance breaks down — which is exactly what support at an AI product requires.</p>
       </div>
 
     </div>
@@ -639,8 +776,12 @@
     <!-- TRY IT -->
     <div class="try-card reveal">
       <h3>Try it yourself</h3>
-      <p>The app is live and free to use. Set up your profile in about two minutes and get your first passage today.</p>
-      <a class="live-btn" href="https://articulate-app-production.up.railway.app" target="_blank" rel="noopener noreferrer">Open Articulate →</a>
+      <p>Run the live demo on GitHub Pages — click <strong>Load sample ticket</strong> for an enterprise SSO scenario, walk through match/gap logic, and preview the KB publish flow.</p>
+      <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+        <a class="live-btn" href="https://khankmadiha.github.io/support-dashboard/" target="_blank" rel="noopener noreferrer">Open interactive demo →</a>
+        <a class="secondary-btn" href="https://github.com/KhanKMadiha/support-dashboard" target="_blank" rel="noopener noreferrer">View source on GitHub</a>
+      </div>
+      <p class="powered">Case study · <a href="https://madihaintech.me/support-dashboard.html">https://madihaintech.me/support-dashboard.html</a></p>
     </div>
 
   </main>
@@ -688,6 +829,7 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // SCROLL REVEAL
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -701,6 +843,7 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+    // PHASE STEPPER
     let currentPhase = 1;
     function showPhase(n) {
       document.querySelectorAll('.phase-content').forEach(el => el.classList.remove('active'));
@@ -710,12 +853,22 @@
       currentPhase = n;
     }
 
+    // STRUGGLE TOGGLE
+    function toggleStruggle(header) {
+      const body = header.nextElementSibling;
+      const chevron = header.querySelector('.struggle-chevron');
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    }
+
+    // CHATBOT
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
 
     const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Technical Support Engineer and AI enthusiast based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
 
 ABOUT MADIHA:
-Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Engineer at Stack Overflow (January 2025 to present), where she owns the entire EMEA ticket lifecycle independently, from first contact through to resolution, covering P1/P2 incident ownership and enterprise escalations across 100+ enterprise accounts. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
+Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Engineer at Stack Overflow (January 2025 to present), where she is the sole EMEA support engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
 
 PERSONAL:
 Outside of work, Madiha raised over £50,000 through a campaign providing food bags to people in need. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
@@ -728,16 +881,15 @@ KEY ACHIEVEMENTS:
 - Reduced new hire ramp-up time by 30% through Jira workflows and playbooks
 - 95% issue reproduction rate, reducing engineering investigation time by 30%
 - Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
+- None of these were asked of her. She spotted the gaps and built the solutions.
 
 TECHNICAL SKILLS:
 REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Google Dialogflow, Python (learning)
 
 AI AND PROJECTS:
-Built Support Ticket Analyser — an AI-native Voice of the Customer workflow covering documentation matching, gap detection, response drafting, and Notion KB publish. Portfolio-safe demo on GitHub Pages, live mode via Cloudflare Worker. Full write-up at madihaintech.me/support-dashboard.html. Demo: khankmadiha.github.io/support-dashboard/
+Built Support Ticket Analyser — an AI-native support workflow (documentation matching, gap detection, response drafting, Notion KB publish) with portfolio-safe demo mode on GitHub Pages and Cloudflare Worker-secured live mode. Full write-up at madihaintech.me/support-dashboard.html. Demo: khankmadiha.github.io/support-dashboard/
 
-Also built Articulate, a full-stack PWA speech practice app where Claude generates a daily personalised passage, the user records themselves, and AI scores accuracy, fluency, and pace. Includes a dyslexia-friendly mode. Built with React, Claude API, and Node.js. Live at articulate-app-production.up.railway.app
-
-Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Secured the API key using a Cloudflare Worker proxy. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing).
+Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Started with Dialogflow CX and IBM Watson before switching to the Anthropic API. Secured the API key using a Cloudflare Worker proxy. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). Daily Claude user.
 
 LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
 EDUCATION: A Levels in Maths, Accounting, and Health and Social Care
@@ -821,3 +973,4 @@ TONE GUIDELINES:
 
 </body>
 </html>
+

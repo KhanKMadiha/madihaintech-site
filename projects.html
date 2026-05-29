@@ -372,6 +372,33 @@
   <main class="content">
 
     <div class="project-card reveal">
+      <p class="project-label">Voice of the Customer · 2026</p>
+      <div class="card-header">
+        <h2>Support Ticket Analyser</h2>
+        <div class="card-header-right">
+          <span class="status-badge">Live demo</span>
+          <a class="card-github" href="https://github.com/KhanKMadiha/support-dashboard" target="_blank" rel="noopener noreferrer" title="View code on GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+      <p class="project-sub">The documentation gap is a product signal. I built the tooling to prove it.</p>
+      <p>
+        An AI-native VoC workflow: paste a ticket, score it against the knowledge base, surface documentation gaps, draft a response, and publish a KB article directly to Notion. Steps 1–3 run live in the browser; step 4 uses a Cloudflare Worker to proxy the Anthropic and Notion APIs with secrets off the client.
+      </p>
+      <div class="tag-row">
+        <span class="tag">Voice of the Customer</span>
+        <span class="tag">Anthropic API</span>
+        <span class="tag">Cloudflare Workers</span>
+        <span class="tag">Notion API</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Cursor</span>
+      </div>
+      <a class="card-cta" href="./support-dashboard.html">View project →</a>
+    </div>
+
+    <div class="project-card reveal">
       <p class="project-label">Full-stack app · 2026</p>
       <div class="card-header">
         <h2>Articulate</h2>
@@ -487,10 +514,10 @@
     const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Technical Support Engineer and AI enthusiast based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
 
 ABOUT MADIHA:
-Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Engineer at Stack Overflow (January 2025 to present), where she is the sole EMEA support engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
+Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Engineer at Stack Overflow (January 2025 to present), where she owns the entire EMEA ticket lifecycle independently, from first contact through to resolution, covering P1/P2 incident ownership and enterprise escalations across 100+ enterprise accounts. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
 
 PERSONAL:
-Outside of work, Madiha leads a fundraising project every Ramadan that has raised over £50,000 and distributed 2,000 food bags to families in Pakistan. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
+Outside of work, Madiha raised over £50,000 through a campaign providing food bags to people in need. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
 
 KEY ACHIEVEMENTS:
 - 98% CSAT across 100+ enterprise accounts
@@ -532,7 +559,7 @@ TONE GUIDELINES:
 - If asked something you do not know, invite them to reach out via madihaintech.me/contact.html or linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
 
-    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Technical Support Engineer with 5+ years in enterprise SaaS support and a focus on AI-first companies. She is currently the sole EMEA support engineer at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or what she's looking for next!";
+    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Product Support Engineer with 5+ years in enterprise SaaS support. She currently owns the entire EMEA support function at Stack Overflow across 100+ enterprise accounts.\n\nFeel free to ask me anything about her experience, skills, or projects!";
 
     const conversationHistory = [];
     let chatOpen = false;

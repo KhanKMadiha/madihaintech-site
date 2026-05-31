@@ -62,15 +62,25 @@
     .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
 
     .hero {
-      min-height: 82vh;
+      min-height: 65vh;
       display: flex; align-items: center;
-      padding: 6.5rem 1.5rem 4rem;
+      padding: 6.5rem 1.5rem 2.5rem;
       background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
     }
 
     .hero-inner {
       max-width: 980px; margin: 0 auto;
       width: 100%; display: flex; flex-direction: column; align-items: center;
+    }
+
+    .project-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.75rem;
+      animation: fadeUp 0.6s ease both;
     }
 
     h1 {
@@ -90,32 +100,6 @@
       from{opacity:0;transform:translateY(20px);}
       to{opacity:1;transform:translateY(0);}
     }
-
-    .hero-actions {
-      display: flex; align-items: center; gap: 1rem; justify-content: center;
-      margin-top: 1.75rem; flex-wrap: wrap;
-      animation: fadeUp 0.6s ease 0.25s both;
-    }
-
-    .hero-action-primary {
-      padding: 0.6rem 1.4rem; border-radius: 999px;
-      background: var(--accent); color: #fff;
-      font-size: 0.95rem; font-weight: 700; text-decoration: none;
-      transition: opacity 0.2s ease;
-    }
-
-    .hero-action-primary:hover { opacity: 0.88; }
-
-    .hero-action-secondary {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.6rem 1.25rem; border-radius: 999px;
-      border: 1.5px solid var(--border-strong);
-      font-size: 0.95rem; font-weight: 600; color: var(--text-dark);
-      text-decoration: none; background: rgba(255,255,255,0.6);
-      transition: border-color 0.2s ease, background 0.2s ease;
-    }
-
-    .hero-action-secondary:hover { border-color: var(--accent); background: rgba(255,255,255,0.9); }
 
     .nav-cta {
       max-width: 980px; margin: -1.25rem auto 2.25rem;
@@ -277,7 +261,8 @@
       border-top-color: var(--border-soft);
     }
 
-    .struggle-body p { font-size: 0.93rem; line-height: 1.7; color: var(--muted-dark); margin: 0; }
+    .struggle-body p { font-size: 0.93rem; line-height: 1.7; color: var(--muted-dark); margin: 0 0 0.75rem; }
+    .struggle-body p:last-child { margin-bottom: 0; }
 
     /* ---------- PHASE NAV BUTTONS ---------- */
     .phase-nav { display: flex; justify-content: space-between; margin-top: 1.25rem; gap: 1rem; }
@@ -361,24 +346,6 @@
     .try-card h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.6rem; }
     .try-card p { font-size: 1rem; line-height: 1.75; color: var(--muted-dark); margin: 0 0 0.5rem; }
     .try-card .powered { font-size: 0.88rem; color: var(--muted-dark); }
-    .try-card .live-btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.85rem 1.75rem; border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      color: #fff; text-decoration: none; font-weight: 800; font-size: 1.05rem;
-      box-shadow: 0 6px 18px rgba(180,140,135,0.25);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-    .try-card .live-btn:hover { opacity: 0.9; transform: translateY(-2px); }
-    .try-card .secondary-btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.85rem 1.75rem; border-radius: 14px;
-      border: 1.5px solid var(--border-strong);
-      color: var(--text-dark); text-decoration: none; font-weight: 700; font-size: 1rem;
-      background: rgba(255,255,255,0.6);
-      transition: border-color 0.2s ease, background 0.2s ease;
-    }
-    .try-card .secondary-btn:hover { border-color: var(--accent); background: rgba(255,255,255,0.9); }
 
     /* ---------- LINKS ---------- */
     .links { padding-bottom: 2.5rem; text-align: center; }
@@ -540,17 +507,14 @@
 
   <section class="hero">
     <div class="hero-inner">
+      <p class="project-label">SUPPORT OPERATIONS · 2026</p>
       <h1>Support Ticket Analyser</h1>
       <p class="hero-highlight">
-        An AI-native support workflow I built to close the loop from ticket to knowledge base — documentation matching, gap detection, response drafting, and KB publish. Designed for the same problems a Product Quality Engineer owns every day.
+        An AI-native support workflow that closes the loop from ticket to knowledge base: Documentation matching, gap detection, response drafting, and KB publish to Notion.
       </p>
-      <div class="hero-actions">
-        <a class="hero-action-primary" href="https://khankmadiha.github.io/support-dashboard/" target="_blank" rel="noopener noreferrer">Open demo →</a>
-        <a class="hero-action-secondary" href="https://github.com/KhanKMadiha/support-dashboard" target="_blank" rel="noopener noreferrer">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          View code
-        </a>
-      </div>
+      <p class="hero-highlight">
+        Built from scratch because this gap exists in every support team I have ever worked in.
+      </p>
     </div>
   </section>
 
@@ -559,30 +523,26 @@
     <!-- INTRO -->
     <div class="intro-card reveal">
       <p>
-        At Stack Overflow I am the sole EMEA support engineer for 100+ enterprise accounts. Most of my impact does not come from closing tickets faster — it comes from <strong>closing loops</strong>: spotting when the same SAML error hits three accounts, proving it with logs, and getting the right fix prioritised.
+        Most support teams resolve the same issues repeatedly because the knowledge never gets captured. A support engineer fixes the problem, sends the response, and moves on. No article gets written. The next support engineer starts from scratch.
+      </p>
+      <p><strong>This tool changes that.</strong></p>
+      <p>
+        Built to reduce repeat ticket volume by automatically detecting documentation gaps, drafting responses grounded in existing knowledge, and publishing KB articles directly to Notion without leaving the workflow.
       </p>
       <p>
-        This project is the tooling I wish existed on every shift: paste a ticket, see whether we already have a strong KB match, surface documentation gaps before they become repeat tickets, draft a response grounded in internal docs, and turn the resolution into a publishable article. Steps 1–3 run for real in the browser; step 4 can publish to Notion via a secured Cloudflare Worker when you run in live mode.
+        I have worked autonomously throughout my career in support, often as the only person covering a region or a function. That taught me early that good documentation is the difference between a team that scales and one that depends on a single person knowing everything.
       </p>
       <p>
-        <strong>Try the interactive demo:</strong> <a href="https://khankmadiha.github.io/support-dashboard/" target="_blank" rel="noopener noreferrer">https://khankmadiha.github.io/support-dashboard/</a> (portfolio-safe demo mode — no real customer data, no API keys in the browser).
+        Every ticket is an opportunity to capture knowledge that did not exist before. This tool makes that automatic.
       </p>
       <div class="tag-row">
         <span class="tag">Voice of the Customer</span>
         <span class="tag">Documentation gaps</span>
         <span class="tag">Quality operations</span>
+        <span class="tag">Cursor</span>
         <span class="tag">Anthropic API</span>
-        <span class="tag">Cloudflare Workers</span>
         <span class="tag">Notion API</span>
-        <span class="tag">JavaScript</span>
       </div>
-    </div>
-
-    <div class="intro-card reveal" style="border-color: rgba(42, 111, 192, 0.35); background: rgba(232, 244, 253, 0.45);">
-      <p class="section-label" style="text-align:left;margin-bottom:0.75rem;">Mapped to Product Quality Engineering</p>
-      <p style="margin:0;font-size:1rem;line-height:1.75;color:var(--muted-dark);">
-        Cursor's PQE role owns the feedback loop between users and product — VoC synthesis, agentic prioritisation, senior escalation, and tooling that scales quality operations. This prototype demonstrates that mindset in code: structured signal extraction, explicit match thresholds, gap surfacing for product, and infrastructure you can ship safely to a public URL.
-      </p>
     </div>
 
     <!-- PHASE STEPPER -->
@@ -601,12 +561,14 @@
           <div><span class="phase-badge badge-1">Step 1</span></div>
           <div class="phase-title-wrap">
             <h3>From reactive triage to a closed loop</h3>
-            <p>The problem enterprise support actually needs solved</p>
+            <p>The gap most support teams never close</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>Every week I see the same pattern: a customer hits an SSO or integration edge case, support writes a great one-off reply, and the knowledge never makes it back into the catalogue. Six weeks later, another enterprise opens the same ticket.</p>
-          <p>I built this workflow to model how senior quality operations should feel: <strong>ticket in → evidence of existing docs → explicit gap when there is not an 80%+ match → response grounded in resolution steps → KB draft ready for review → publish.</strong> That is the same loop I run manually with Datadog, Jira, and our internal KB — here it is interactive and repeatable.</p>
+          <p>Every week I see the same pattern: A customer hits an SSO or integration edge case, support writes a great one-off reply, and the knowledge never gets documented. Six weeks later, another enterprise opens the same ticket.</p>
+          <p>I built this workflow to model how senior quality operations should feel:</p>
+          <p><strong>Ticket in → Evidence of existing docs → Explicit gap flagged → Response drafted → KB article reviewed → Published.</strong></p>
+          <p>That is the same loop I run manually with Datadog, Jira, and our internal knowledge base. Here it is interactive and repeatable.</p>
         </div>
         <div class="struggle-toggle">
           <div class="struggle-header" onclick="toggleStruggle(this)">
@@ -614,7 +576,8 @@
             <span class="struggle-chevron">▼</span>
           </div>
           <div class="struggle-body">
-            <p>I deliberately used a keyword relevance scorer instead of hiding everything behind an LLM for step 2. Recruiters and engineers can see <em>why</em> a doc matched, which keywords fired, and what counts as a documentation gap. Transparency beats black-box triage when you are trying to earn engineering trust.</p>
+            <p>Step 2 uses a keyword relevance scorer so every match is explainable. You can see exactly which keywords fired, why a match was found, and what counts as a gap.</p>
+            <p>When you are telling an engineering team a documentation gap exists, you need to show your working. A black-box answer does not cut it.</p>
           </div>
         </div>
         <div class="phase-nav">
@@ -633,10 +596,11 @@
           </div>
         </div>
         <div class="phase-body">
-          <p>Paste a ticket (or load the sample SSO/SAML scenario) and the app tokenises the text, scores every article in the catalogue, and classifies the result:</p>
-          <p><strong>Strong match (≥80%):</strong> surfaces the winning article, shows matched keywords, and pre-fills a suggested response from documented resolution steps.<br>
-          <strong>Documentation gap (&lt;80%):</strong> labels the gap explicitly and shows related articles in the 30–79% band so the agent still has troubleshooting context while product knows the KB is missing something.</p>
-          <p>That gap state is product signal — the same kind I escalate when I see three enterprise accounts hit an undocumented SAML assertion failure.</p>
+          <p>Paste a ticket (or load the sample SSO/SAML scenario) and the tool scans the ticket, scores every article in the knowledge base, and classifies the result:</p>
+          <p><strong>Strong match (80%+):</strong> Finds the closest matching article, shows matched keywords, and pre-fills a suggested response from documented resolution steps.<br>
+          <strong>Documentation gap (below 80%):</strong> Labels the gap explicitly and shows related articles in the 30–79% band so the support engineer still has troubleshooting context while product knows the knowledge base is missing something.</p>
+          <p>That gap state is a signal that documentation needs to be created, not just that a ticket needs closing.</p>
+          <p>This tool makes sure it does not get forgotten.</p>
         </div>
         <div class="struggle-toggle">
           <div class="struggle-header" onclick="toggleStruggle(this)">
@@ -644,7 +608,8 @@
             <span class="struggle-chevron">▼</span>
           </div>
           <div class="struggle-body">
-            <p>Getting thresholds right mattered. Too low and everything looks like a match; too high and you cry wolf on gaps. I landed on 80% / 30% after tuning against a realistic SSO ticket and a catalogue of enterprise-style articles (SAML, SCIM, API keys, billing).</p>
+            <p>Getting the thresholds right mattered. Too low and everything looks like a match. Too high and you flag gaps that are not real gaps.</p>
+            <p>I landed on 80% and 30% after testing against realistic enterprise support scenarios.</p>
           </div>
         </div>
         <div class="phase-nav">
@@ -658,13 +623,14 @@
         <div class="phase-header">
           <div><span class="phase-badge badge-3">Step 3</span></div>
           <div class="phase-title-wrap">
-            <h3>Response drafting and KB capture</h3>
+            <h3>Draft, review, and publish</h3>
             <p>Human in the loop before anything ships</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>Step 3 keeps the agent in control: edit the suggested response, copy to clipboard, and keep the original ticket visible for context. Step 4 generates a structured KB draft — title, category, summary, numbered troubleshooting steps, tags — with markdown download.</p>
-          <p>In <strong>live mode</strong>, Claude drafts the article and a Cloudflare Worker publishes to a sandbox Notion database (properties + page body blocks). In <strong>portfolio demo mode</strong> on GitHub Pages, steps 1–3 stay real; publish is simulated so visitors can try the flow without API keys or customer PII.</p>
+          <p>Step 3 lets you edit the suggested response with the original ticket visible for context, then move to step 4 where Claude generates a structured KB draft with title, category, summary, troubleshooting steps, and tags.</p>
+          <p>Approve it and it publishes directly to a live Notion database. Every article that goes through this workflow becomes part of the knowledge base the next support engineer can search.</p>
+          <p>In <strong>portfolio demo mode</strong> the full flow is still interactive. The publish step is simulated so visitors can experience it without needing API keys.</p>
         </div>
         <div class="struggle-toggle">
           <div class="struggle-header" onclick="toggleStruggle(this)">
@@ -672,7 +638,7 @@
             <span class="struggle-chevron">▼</span>
           </div>
           <div class="struggle-body">
-            <p>Public demos and production secrets do not mix. I added automatic demo detection for <code>*.github.io</code> plus explicit <code>?live=1</code> / <code>?demo=1</code> flags so reviewers get a safe default and I can still run the full stack locally or in a private environment.</p>
+            <p>Public demos and production secrets do not mix. The tool automatically runs in safe demo mode when opened from GitHub Pages so visitors can explore the full workflow without any risk of exposing API keys or real customer data.</p>
           </div>
         </div>
         <div class="phase-nav">
@@ -686,13 +652,14 @@
         <div class="phase-header">
           <div><span class="phase-badge badge-4">Step 4</span></div>
           <div class="phase-title-wrap">
-            <h3>Architecture and security</h3>
-            <p>Static app + Worker proxy — same pattern as my portfolio chatbot</p>
+            <h3>Built to be trusted</h3>
+            <p>Secure by default, open source, and deployable by anyone</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>The front end is vanilla HTML/CSS/JS hosted on GitHub Pages. Secrets never touch the browser: a Cloudflare Worker proxies Anthropic and Notion requests, with API keys stored as Wrangler secrets.</p>
-          <p>Open source on GitHub with a README that documents demo vs live behaviour, deployment steps, and privacy expectations — because quality tooling only scales if other people can run and trust it.</p>
+          <p>The front end is hosted on GitHub Pages. API keys never touch the browser. A Cloudflare Worker handles all requests to Anthropic and Notion, with keys stored as encrypted environment variables.</p>
+          <p>Open source on GitHub with a README covering demo and live mode, deployment steps, and privacy expectations.</p>
+          <p>Quality tooling only scales if other people can run and trust it.</p>
         </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" onclick="showPhase(3)">← Previous</button>
@@ -708,37 +675,37 @@
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">JS</span></div>
         <p class="tool-name">Vanilla JavaScript</p>
-        <p class="tool-desc">Workflow, matching engine, demo mode</p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"></div>
-        <p class="tool-name">Claude</p>
-        <p class="tool-desc">KB draft generation in live mode</p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=64" alt="Cloudflare"></div>
-        <p class="tool-name">Cloudflare Workers</p>
-        <p class="tool-desc">Secured proxy for Claude + Notion</p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" alt="Notion"></div>
-        <p class="tool-name">Notion API</p>
-        <p class="tool-desc">KB publish target (sandbox DB)</p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" alt="GitHub"></div>
-        <p class="tool-name">GitHub Pages</p>
-        <p class="tool-desc">Public demo hosting</p>
+        <p class="tool-desc">Workflow logic, matching engine, and demo mode</p>
       </div>
 
       <div class="tool-card">
         <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=cursor.com&sz=64" alt="Cursor"></div>
         <p class="tool-name">Cursor</p>
-        <p class="tool-desc">Primary IDE — tab completion, inline edits, and chat used throughout the build</p>
+        <p class="tool-desc">Built the entire project using Cursor as the primary development environment</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"></div>
+        <p class="tool-name">Claude</p>
+        <p class="tool-desc">KB article drafting and structured content generation</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=64" alt="Cloudflare"></div>
+        <p class="tool-name">Cloudflare Workers</p>
+        <p class="tool-desc">Secure proxy for all API requests</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" alt="Notion"></div>
+        <p class="tool-name">Notion API</p>
+        <p class="tool-desc">Live knowledge base publish target</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" alt="GitHub"></div>
+        <p class="tool-name">GitHub Pages</p>
+        <p class="tool-desc">Demo and portfolio hosting</p>
       </div>
 
     </div>
@@ -750,25 +717,19 @@
       <div class="learning-card">
         <span class="learning-icon">🔄</span>
         <h3>Quality is a systems problem</h3>
-        <p>The win is not a prettier reply — it is a repeatable loop that turns customer pain into documented, searchable knowledge and clearer product signal.</p>
+        <p>The goal is not a faster reply. It is a repeatable loop that turns a resolved ticket into documented knowledge that benefits the whole team.</p>
       </div>
 
       <div class="learning-card">
         <span class="learning-icon">📊</span>
-        <h3>Gaps are VoC data</h3>
-        <p>When match scores fall below threshold, that is not failure — it is prioritisation input for docs and engineering, with related articles as interim context.</p>
-      </div>
-
-      <div class="learning-card">
-        <span class="learning-icon">🔐</span>
-        <h3>Ship demos safely by design</h3>
-        <p>Portfolio mode defaults on GitHub Pages; secrets stay on the Worker. Reviewers can explore the full UX without risking API keys or customer PII.</p>
+        <h3>Gaps are signals, not failures</h3>
+        <p>When match scores fall below threshold that is not a problem. It is information. It tells you exactly what needs documenting next.</p>
       </div>
 
       <div class="learning-card">
         <span class="learning-icon">🤝</span>
-        <h3>Know where AI needs a human</h3>
-        <p>Gap detection is deterministic and auditable; Claude handles drafting where a human still reviews before publish. Building this sharpened my instinct for where AI assistance breaks down — which is exactly what support at an AI product requires.</p>
+        <h3>AI amplifies judgment</h3>
+        <p>Matching and gap detection stay deterministic and explainable. Claude handles drafting, humans review before anything publishes, because that review step is non-negotiable.</p>
       </div>
 
     </div>
@@ -776,12 +737,13 @@
     <!-- TRY IT -->
     <div class="try-card reveal">
       <h3>Try it yourself</h3>
-      <p>Run the live demo on GitHub Pages — click <strong>Load sample ticket</strong> for an enterprise SSO scenario, walk through match/gap logic, and preview the KB publish flow.</p>
-      <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
-        <a class="live-btn" href="https://khankmadiha.github.io/support-dashboard/" target="_blank" rel="noopener noreferrer">Open interactive demo →</a>
-        <a class="secondary-btn" href="https://github.com/KhanKMadiha/support-dashboard" target="_blank" rel="noopener noreferrer">View source on GitHub</a>
-      </div>
-      <p class="powered">Case study · <a href="https://madihaintech.me/support-dashboard.html">https://madihaintech.me/support-dashboard.html</a></p>
+      <p>Run the <strong>live demo</strong> on GitHub Pages.</p>
+      <p>Click <strong>Load sample ticket</strong> → walk through <strong>match and gap logic</strong> → preview the <strong>KB publish flow</strong>.</p>
+      <p style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+        <a class="nav-btn" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer" style="display:inline-block;max-width:none;flex:0 1 auto;">Open interactive demo →</a>
+        <a class="nav-btn" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer" style="display:inline-block;max-width:none;flex:0 1 auto;">View source on GitHub →</a>
+      </p>
+
     </div>
 
   </main>
@@ -868,28 +830,29 @@
     const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Technical Support Engineer and AI enthusiast based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
 
 ABOUT MADIHA:
-Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Engineer at Stack Overflow (January 2025 to present), where she is the sole EMEA support engineer. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
+Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she owns the entire EMEA ticket lifecycle independently, from first contact through to resolution, covering P1/P2 incident ownership and enterprise escalations across 100+ accounts. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
 
 PERSONAL:
-Outside of work, Madiha raised over £50,000 through a campaign providing food bags to people in need. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
+Outside of work, Madiha raised over £50,000 through a campaign providing food bags to people in need. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction and every system she builds.
 
 KEY ACHIEVEMENTS:
 - 98% CSAT across 100+ enterprise accounts
-- Sole EMEA owner of P1/P2 on-call incidents
+- P1/P2 incident ownership across EMEA
 - Built Datadog dashboards cutting P1/P2 resolution time by 25%
 - Authored 50+ knowledge base articles reducing repeat tickets by 20%
 - Reduced new hire ramp-up time by 30% through Jira workflows and playbooks
 - 95% issue reproduction rate, reducing engineering investigation time by 30%
 - Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
-- None of these were asked of her. She spotted the gaps and built the solutions.
 
 TECHNICAL SKILLS:
-REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Google Dialogflow, Python (learning)
+REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, Rootly, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Google Dialogflow, Python (learning)
 
 AI AND PROJECTS:
-Built Support Ticket Analyser — an AI-native support workflow (documentation matching, gap detection, response drafting, Notion KB publish) with portfolio-safe demo mode on GitHub Pages and Cloudflare Worker-secured live mode. Full write-up at madihaintech.me/support-dashboard.html. Demo: khankmadiha.github.io/support-dashboard/
+Built Support Ticket Analyser, an AI-native support workflow covering documentation matching, gap detection, response drafting, and Notion KB publish. Portfolio-safe demo on GitHub Pages with Cloudflare Worker-secured live mode. Full write-up at madihaintech.me/support-dashboard.html. Demo at khankmadiha.github.io/support-ticket-analyser/
 
-Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Started with Dialogflow CX and IBM Watson before switching to the Anthropic API. Secured the API key using a Cloudflare Worker proxy. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). Daily Claude user.
+Also built Articulate, a full-stack PWA speech practice app where Claude generates a daily personalised passage, the user records themselves, and AI scores accuracy, fluency, and pace. Includes a dyslexia-friendly mode. Built with React, Claude API, and Node.js. Live at articulate-app-production.up.railway.app
+
+Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Secured the API key using a Cloudflare Worker proxy. Completed IBM AI Fundamentals certification with Capstone Project. Also holds certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing).
 
 LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
 EDUCATION: A Levels in Maths, Accounting, and Health and Social Care
@@ -907,7 +870,7 @@ TONE GUIDELINES:
 - If asked something you do not know, invite them to reach out via madihaintech.me/contact.html or linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
 
-    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Product Support Engineer with 5+ years in enterprise SaaS support. She currently owns the entire EMEA support function at Stack Overflow across 100+ enterprise accounts.\n\nFeel free to ask me anything about her experience, skills, or projects!";
+    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional with 5+ years in enterprise SaaS support, currently leading EMEA support operations at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or projects!";
 
     const conversationHistory = [];
     let chatOpen = false;

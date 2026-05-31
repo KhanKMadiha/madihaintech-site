@@ -10,341 +10,89 @@
 
   <style>
     :root {
-      --bg-base: #FAFAF8;
-      --surface: #F5EEEC;
-      --accent: #D4A4A0;
-      --surface-soft: #EDE8E6;
-      --text-dark: #1A1A1A;
-      --muted-dark: rgba(26, 26, 26, 0.6);
-      --border-soft: rgba(180, 140, 135, 0.2);
-      --border-strong: rgba(180, 140, 135, 0.38);
-      --white-glass: rgba(255, 255, 255, 0.75);
+      --bg-base: #FAFAF8; --surface: #F5EEEC; --accent: #D4A4A0;
+      --surface-soft: #EDE8E6; --text-dark: #1A1A1A; --muted-dark: rgba(26,26,26,0.6);
+      --border-soft: rgba(180,140,135,0.2); --border-strong: rgba(180,140,135,0.38);
+      --white-glass: rgba(255,255,255,0.75);
     }
-
     * { box-sizing: border-box; }
-
-    body {
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      background-color: var(--bg-base);
-      color: var(--text-dark);
-      margin: 0; padding: 0;
-      text-align: center;
-      overflow-x: hidden;
-    }
-
-    .bg-shapes {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none; z-index: 0; overflow: hidden;
-    }
-
-    .shape {
-      position: absolute; border-radius: 50%;
-      background: rgba(180, 140, 135, 0.06);
-      animation: float linear infinite;
-    }
-
+    body { font-family:'Inter','Segoe UI',sans-serif; background-color:var(--bg-base); color:var(--text-dark); margin:0; padding:0; text-align:center; overflow-x:hidden; }
+    .bg-shapes { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
+    .shape { position:absolute; border-radius:50%; background:rgba(180,140,135,0.06); animation:float linear infinite; }
     .shape:nth-child(1){width:300px;height:300px;top:5%;left:-8%;animation-duration:18s;}
     .shape:nth-child(2){width:180px;height:180px;top:20%;right:-5%;animation-duration:22s;animation-delay:-4s;}
     .shape:nth-child(3){width:240px;height:240px;top:50%;left:60%;animation-duration:26s;animation-delay:-8s;}
     .shape:nth-child(4){width:120px;height:120px;top:70%;left:10%;animation-duration:20s;animation-delay:-12s;}
     .shape:nth-child(5){width:200px;height:200px;top:85%;right:15%;animation-duration:24s;animation-delay:-6s;}
     .shape:nth-child(6){width:80px;height:80px;top:35%;left:45%;animation-duration:16s;animation-delay:-10s;}
-
-    @keyframes float {
-      0%{transform:translateY(0px) rotate(0deg) scale(1);opacity:0.6;}
-      33%{transform:translateY(-30px) rotate(60deg) scale(1.05);opacity:0.9;}
-      66%{transform:translateY(15px) rotate(120deg) scale(0.97);opacity:0.7;}
-      100%{transform:translateY(0px) rotate(180deg) scale(1);opacity:0.6;}
-    }
-
-    .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
-
-    .hero {
-      min-height: 82vh;
-      display: flex; align-items: center;
-      padding: 6.5rem 1.5rem 4rem;
-      background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
-    }
-
-    .hero-inner {
-      max-width: 980px; margin: 0 auto;
-      width: 100%; display: flex; flex-direction: column; align-items: center;
-    }
-
-    h1 {
-      margin: 0 0 1rem;
-      font-size: clamp(2.6rem, 5vw, 3.6rem);
-      line-height: 1.08; letter-spacing: -0.02em;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .hero-highlight {
-      margin: 0.9rem auto 0; max-width: 680px;
-      font-size: 1.15rem; line-height: 1.7; color: var(--muted-dark);
-      animation: fadeUp 0.6s ease 0.15s both;
-    }
-
-    @keyframes fadeUp {
-      from{opacity:0;transform:translateY(20px);}
-      to{opacity:1;transform:translateY(0);}
-    }
-
-    .nav-cta {
-      max-width: 980px; margin: -1.25rem auto 2.25rem;
-      padding: 0 1.5rem; position: relative; z-index: 1;
-      animation: fadeUp 0.6s ease 0.25s both;
-    }
-
-    .nav-cta-inner { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-
-    .nav-btn {
-      flex: 1 1 220px; max-width: 320px;
-      padding: 1.05rem 1.25rem; border-radius: 14px;
-      font-size: 1.05rem; font-weight: 700; text-decoration: none;
-      color: var(--text-dark); border: 1.5px solid var(--border-soft);
-      background-color: rgba(255,255,255,0.6);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); border-color: var(--border-strong); }
-
-    .nav-btn.active {
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      color: #fff; border-color: transparent;
-      box-shadow: 0 6px 18px rgba(180,140,135,0.25);
-    }
-
-    .content {
-      max-width: 980px; margin: 0 auto 4rem;
-      padding: 0 1.5rem;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      text-align: left;
-    }
-
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    .project-card {
-      display: flex; flex-direction: column;
-      padding: 2.25rem;
-      border: 1.5px solid var(--border-soft);
-      border-radius: 26px;
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(8px);
-      color: var(--text-dark);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 40px rgba(180,140,135,0.12);
-      border-color: var(--border-strong);
-    }
-
-    .card-footer {
-      display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
-    }
-
-    .project-label {
-      font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--accent); margin: 0 0 0.75rem;
-    }
-
-    .project-card h2 {
-      margin: 0 0 0.75rem;
-      font-size: 1.75rem; font-weight: 800; line-height: 1.15;
-    }
-
-    .project-card p {
-      margin: 0 0 1.5rem;
-      font-size: 1.02rem; line-height: 1.75;
-      color: var(--muted-dark); flex: 1;
-    }
-
-    .tag-row { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 1.75rem; }
-
-    .tag {
-      padding: 0.4rem 0.75rem; border-radius: 999px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.65); font-size: 0.85rem; color: var(--text-dark);
-    }
-
-    .card-cta {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 1rem; font-weight: 700; color: var(--accent);
-      text-decoration: none;
-    }
-
-    .card-github {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      font-size: 0.8rem; font-weight: 600;
-      color: var(--muted-dark); text-decoration: none;
-      padding: 0.3rem 0.65rem; border-radius: 999px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.5);
-      transition: color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .card-github:hover { color: var(--text-dark); border-color: var(--border-strong); }
-
-    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
-    .card-header h2 { margin: 0; }
-    .card-header-right { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
-    .project-sub {
-      margin: 0 0 1.25rem;
-      font-size: 1.05rem; font-weight: 600;
-      color: var(--text-dark); line-height: 1.5;
-    }
-    .status-badge {
-      flex-shrink: 0;
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
-      text-transform: uppercase; padding: 0.3rem 0.7rem;
-      border-radius: 999px; border: 1.5px solid rgba(76, 175, 130, 0.35);
-      background: rgba(76, 175, 130, 0.1); color: #2d7a5a;
-      margin-top: 0.2rem;
-    }
-
-    .links { padding-bottom: 2.5rem; text-align: center; }
-    .links h2 { font-size: 1.6rem; margin: 2rem 0 0.75rem; }
-    .links p { display: flex; justify-content: center; gap: 2.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
-
-    footer { margin: 26px 0 34px; padding: 0 1.5rem; font-size: 0.95rem; color: rgba(26,26,26,0.6); text-align: center; }
-
-    @media (max-width: 600px) {
-      .nav-btn { flex: 1 1 100%; max-width: none; }
-      .links p { gap: 1.75rem; }
-    }
-
-    #chat-toggle {
-      position: fixed; bottom: 22px; right: 22px;
-      width: 58px; height: 58px; border-radius: 18px;
-      background: var(--surface); border: 1.5px solid var(--border-strong);
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 24px rgba(180,140,135,0.28);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      z-index: 9999; font-size: 24px;
-    }
-    #chat-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(180,140,135,0.4); }
-
-    #chat-window {
-      position: fixed; bottom: 92px; right: 22px;
-      width: 360px; max-height: 530px;
-      background: var(--white-glass); backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1.5px solid var(--border-soft); border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(180,140,135,0.15), 0 4px 16px rgba(0,0,0,0.06);
-      display: flex; flex-direction: column; overflow: hidden; z-index: 9998;
-      transform: scale(0.92) translateY(14px); opacity: 0; pointer-events: none;
-      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.22s ease;
-    }
-    #chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
-
-    .chat-header {
-      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%);
-      border-bottom: 1px solid var(--border-soft); padding: 15px 16px;
-      display: flex; align-items: center; gap: 11px; flex-shrink: 0;
-    }
-    .chat-avatar { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #E0B8B4); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; color: #fff; flex-shrink: 0; }
-    .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
-    .chat-header-info p { font-size: 0.73rem; color: var(--muted-dark); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
-    .online-dot { width: 7px; height: 7px; background: #4caf82; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-    .chat-close { margin-left: auto; background: none; border: none; cursor: pointer; color: var(--muted-dark); font-size: 17px; line-height: 1; padding: 4px; border-radius: 6px; transition: background 0.15s; }
-    .chat-close:hover { background: rgba(180,140,135,0.12); }
-    .chat-messages { flex: 1; overflow-y: auto; padding: 14px 14px 10px; display: flex; flex-direction: column; gap: 9px; scroll-behavior: smooth; }
-    .chat-messages::-webkit-scrollbar { width: 4px; }
-    .chat-messages::-webkit-scrollbar-track { background: transparent; }
-    .chat-messages::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 4px; }
-    .msg { max-width: 84%; padding: 10px 13px; border-radius: 16px; font-size: 0.875rem; line-height: 1.58; animation: msgIn 0.22s ease; }
+    @keyframes float { 0%{transform:translateY(0px) rotate(0deg) scale(1);opacity:0.6;} 33%{transform:translateY(-30px) rotate(60deg) scale(1.05);opacity:0.9;} 66%{transform:translateY(15px) rotate(120deg) scale(0.97);opacity:0.7;} 100%{transform:translateY(0px) rotate(180deg) scale(1);opacity:0.6;} }
+    .hero,.nav-cta,.content,.links,footer { position:relative; z-index:1; }
+    .hero { min-height:42vh; display:flex; align-items:center; padding:6.5rem 1.5rem 2.5rem; background:linear-gradient(180deg,var(--surface) 0%,transparent 100%); }
+    .hero-inner { max-width:980px; margin:0 auto; width:100%; display:flex; flex-direction:column; align-items:center; }
+    .project-label-hero { font-size:0.78rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin:0 0 0.75rem; animation:fadeUp 0.6s ease both; }
+    h1 { margin:0 0 1rem; font-size:clamp(2.6rem,5vw,3.6rem); line-height:1.08; letter-spacing:-0.02em; animation:fadeUp 0.6s ease both; }
+    .hero-highlight { margin:0.9rem auto 0; max-width:680px; font-size:1.15rem; line-height:1.7; color:var(--muted-dark); animation:fadeUp 0.6s ease 0.15s both; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+    .content { max-width:980px; margin:0 auto 4rem; padding:0 1.5rem; display:grid; grid-template-columns:1fr; gap:1.5rem; text-align:left; }
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.55s ease,transform 0.55s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .project-card { display:flex; flex-direction:column; padding:2.25rem; border:1.5px solid var(--border-soft); border-radius:26px; background:rgba(255,255,255,0.55); backdrop-filter:blur(8px); color:var(--text-dark); transition:transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease; }
+    .project-card:hover { transform:translateY(-4px); box-shadow:0 18px 40px rgba(180,140,135,0.12); border-color:var(--border-strong); }
+    .project-label { font-size:0.78rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin:0 0 0.75rem; }
+    .project-card h2 { margin:0 0 0.75rem; font-size:1.75rem; font-weight:800; line-height:1.15; }
+    .project-card p { margin:0 0 1.5rem; font-size:1.02rem; line-height:1.75; color:var(--muted-dark); flex:1; }
+    .tag-row { display:flex; flex-wrap:wrap; gap:0.55rem; margin-bottom:1.75rem; }
+    .tag { padding:0.4rem 0.75rem; border-radius:999px; border:1.5px solid var(--border-soft); background:rgba(255,255,255,0.65); font-size:0.85rem; color:var(--text-dark); }
+    .card-cta { display:inline-flex; align-items:center; gap:0.5rem; font-size:1rem; font-weight:700; color:var(--accent); text-decoration:none; }
+    .card-github { display:inline-flex; align-items:center; gap:0.35rem; font-size:0.8rem; font-weight:600; color:var(--muted-dark); text-decoration:none; padding:0.3rem 0.65rem; border-radius:999px; border:1.5px solid var(--border-soft); background:rgba(255,255,255,0.5); transition:color 0.2s ease,border-color 0.2s ease; }
+    .card-github:hover { color:var(--text-dark); border-color:var(--border-strong); }
+    .card-header { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-bottom:0.5rem; }
+    .card-header h2 { margin:0; }
+    .card-header-right { display:flex; align-items:center; gap:0.6rem; flex-shrink:0; }
+    .project-sub { margin:0 0 1.25rem; font-size:1.05rem; font-weight:600; color:var(--text-dark); line-height:1.5; }
+    .status-badge { flex-shrink:0; font-size:0.72rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:0.3rem 0.7rem; border-radius:999px; border:1.5px solid rgba(76,175,130,0.35); background:rgba(76,175,130,0.1); color:#2d7a5a; margin-top:0.2rem; }
+    .links { padding-bottom:2.5rem; text-align:center; }
+    .links h2 { font-size:1.6rem; margin:2rem 0 0.75rem; }
+    footer { margin:26px 0 34px; padding:0 1.5rem; font-size:0.95rem; color:rgba(26,26,26,0.6); text-align:center; }
+    #chat-toggle { position:fixed; bottom:22px; right:22px; width:58px; height:58px; border-radius:18px; background:var(--surface); border:1.5px solid var(--border-strong); cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(180,140,135,0.28); transition:transform 0.2s ease,box-shadow 0.2s ease; z-index:9999; font-size:24px; }
+    #chat-toggle:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(180,140,135,0.4); }
+    #chat-window { position:fixed; bottom:92px; right:22px; width:360px; max-height:530px; background:var(--white-glass); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border:1.5px solid var(--border-soft); border-radius:24px; box-shadow:0 20px 50px rgba(180,140,135,0.15),0 4px 16px rgba(0,0,0,0.06); display:flex; flex-direction:column; overflow:hidden; z-index:9998; transform:scale(0.92) translateY(14px); opacity:0; pointer-events:none; transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1),opacity 0.22s ease; }
+    #chat-window.open { transform:scale(1) translateY(0); opacity:1; pointer-events:all; }
+    .chat-header { background:linear-gradient(135deg,var(--surface) 0%,var(--surface-soft) 100%); border-bottom:1px solid var(--border-soft); padding:15px 16px; display:flex; align-items:center; gap:11px; flex-shrink:0; }
+    .chat-avatar { width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg,var(--accent),#E0B8B4); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; letter-spacing:0.05em; color:#fff; flex-shrink:0; }
+    .chat-header-info h4 { font-size:0.92rem; font-weight:700; color:var(--text-dark); line-height:1.2; }
+    .chat-header-info p { font-size:0.73rem; color:var(--muted-dark); margin-top:2px; display:flex; align-items:center; gap:4px; }
+    .online-dot { width:7px; height:7px; background:#4caf82; border-radius:50%; display:inline-block; flex-shrink:0; }
+    .chat-close { margin-left:auto; background:none; border:none; cursor:pointer; color:var(--muted-dark); font-size:17px; line-height:1; padding:4px; border-radius:6px; transition:background 0.15s; }
+    .chat-close:hover { background:rgba(180,140,135,0.12); }
+    .chat-messages { flex:1; overflow-y:auto; padding:14px 14px 10px; display:flex; flex-direction:column; gap:9px; scroll-behavior:smooth; }
+    .chat-messages::-webkit-scrollbar { width:4px; }
+    .chat-messages::-webkit-scrollbar-track { background:transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background:var(--border-soft); border-radius:4px; }
+    .msg { max-width:84%; padding:10px 13px; border-radius:16px; font-size:0.875rem; line-height:1.58; animation:msgIn 0.22s ease; }
     @keyframes msgIn { from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:translateY(0);} }
-    .msg.bot { background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft); border-bottom-left-radius: 5px; align-self: flex-start; color: var(--text-dark); }
-    .msg.user { background: linear-gradient(135deg,var(--accent),#E0B8B4); color: #fff; border-bottom-right-radius: 5px; align-self: flex-end; }
-    .typing-indicator { display: flex; gap: 4px; padding: 11px 14px; background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft); border-radius: 16px; border-bottom-left-radius: 5px; align-self: flex-start; width: fit-content; animation: msgIn 0.2s ease; }
-    .typing-indicator span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: bounce 1.2s infinite; }
-    .typing-indicator span:nth-child(2){animation-delay:0.2s;}
-    .typing-indicator span:nth-child(3){animation-delay:0.4s;}
+    .msg.bot { background:rgba(255,255,255,0.92); border:1px solid var(--border-soft); border-bottom-left-radius:5px; align-self:flex-start; color:var(--text-dark); }
+    .msg.user { background:linear-gradient(135deg,var(--accent),#E0B8B4); color:#fff; border-bottom-right-radius:5px; align-self:flex-end; }
+    .typing-indicator { display:flex; gap:4px; padding:11px 14px; background:rgba(255,255,255,0.92); border:1px solid var(--border-soft); border-radius:16px; border-bottom-left-radius:5px; align-self:flex-start; width:fit-content; animation:msgIn 0.2s ease; }
+    .typing-indicator span { width:6px; height:6px; background:var(--accent); border-radius:50%; animation:bounce 1.2s infinite; }
+    .typing-indicator span:nth-child(2){animation-delay:0.2s;} .typing-indicator span:nth-child(3){animation-delay:0.4s;}
     @keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:0.6;}30%{transform:translateY(-5px);opacity:1;} }
-    .chat-input-area { padding: 11px 13px; border-top: 1px solid var(--border-soft); background: rgba(255,255,255,0.6); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; }
-    .chat-input-area textarea { flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px; padding: 9px 11px; font-family: 'Segoe UI',sans-serif; font-size: 0.875rem; color: var(--text-dark); background: rgba(255,255,255,0.88); resize: none; outline: none; max-height: 100px; line-height: 1.45; transition: border-color 0.2s; }
-    .chat-input-area textarea:focus { border-color: var(--accent); }
-    .chat-input-area textarea::placeholder { color: rgba(26,26,26,0.4); }
-    .send-btn { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg,var(--accent),#E0B8B4); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.15s ease,box-shadow 0.15s ease,opacity 0.15s; box-shadow: 0 4px 12px rgba(180,140,135,0.32); }
-    .send-btn:hover{transform:scale(1.07);box-shadow:0 6px 16px rgba(180,140,135,0.42);}
-    .send-btn:active{transform:scale(0.95);}
-    .send-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
-    .send-btn svg{width:15px;height:15px;fill:white;}
+    .chat-input-area { padding:11px 13px; border-top:1px solid var(--border-soft); background:rgba(255,255,255,0.6); display:flex; gap:8px; align-items:flex-end; flex-shrink:0; }
+    .chat-input-area textarea { flex:1; border:1.5px solid var(--border-soft); border-radius:12px; padding:9px 11px; font-family:'Inter','Segoe UI',sans-serif; font-size:0.875rem; color:var(--text-dark); background:rgba(255,255,255,0.88); resize:none; outline:none; max-height:100px; line-height:1.45; transition:border-color 0.2s; }
+    .chat-input-area textarea:focus { border-color:var(--accent); }
+    .chat-input-area textarea::placeholder { color:rgba(26,26,26,0.4); }
+    .send-btn { width:36px; height:36px; border-radius:11px; background:linear-gradient(135deg,var(--accent),#E0B8B4); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:transform 0.15s ease,box-shadow 0.15s ease,opacity 0.15s; box-shadow:0 4px 12px rgba(180,140,135,0.32); }
+    .send-btn:hover{transform:scale(1.07);box-shadow:0 6px 16px rgba(180,140,135,0.42);} .send-btn:active{transform:scale(0.95);} .send-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;} .send-btn svg{width:15px;height:15px;fill:white;}
     @media(max-width:420px){#chat-window{width:calc(100vw - 28px);right:14px;bottom:84px;}#chat-toggle{right:14px;bottom:14px;}}
-  
-    /* ── sticky top nav ── */
-    .site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 999;
-      height: 58px;
-      display: flex;
-      align-items: center;
-      padding: 0 1.75rem;
-      background: rgba(250, 250, 248, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-soft);
-    }
-    .site-nav-brand {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      margin-right: auto;
-    }
-    .site-nav-links {
-      display: flex;
-      gap: 0.25rem;
-    }
-    .site-nav-links a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: rgba(26,26,26,0.55);
-      text-decoration: none;
-      padding: 0.35rem 0.7rem;
-      border-radius: 8px;
-      transition: color 0.15s ease;
-    }
-    .site-nav-links a:hover { color: var(--text-dark); }
-    .site-nav-links a.active {
-      color: var(--text-dark);
-      font-weight: 700;
-    }
-    @media (max-width: 540px) {
-      .site-nav-brand { display: none; }
-      .site-nav { padding: 0 1rem; justify-content: center; }
-    }
-    .connect-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 1.25rem;
-      flex-wrap: wrap;
-    }
-    .connect-links a {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: rgba(26,26,26,0.55);
-      text-decoration: none;
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.6);
-      transition: color 0.15s ease, border-color 0.15s ease;
-    }
-    .connect-links a:hover { color: var(--text-dark); border-color: var(--border-strong); }
-    .connect-links svg { flex-shrink: 0; }
+    .site-nav { position:fixed; top:0; left:0; right:0; z-index:999; height:58px; display:flex; align-items:center; padding:0 1.75rem; background:rgba(250,250,248,0.88); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--border-soft); }
+    .site-nav-brand { font-size:0.95rem; font-weight:700; color:var(--text-dark); text-decoration:none; letter-spacing:0.01em; margin-right:auto; }
+    .site-nav-links { display:flex; gap:0.25rem; }
+    .site-nav-links a { font-size:0.875rem; font-weight:500; color:rgba(26,26,26,0.55); text-decoration:none; padding:0.35rem 0.7rem; border-radius:8px; transition:color 0.15s ease; }
+    .site-nav-links a:hover { color:var(--text-dark); } .site-nav-links a.active { color:var(--text-dark); font-weight:700; }
+    @media(max-width:540px){.site-nav-brand{display:none;}.site-nav{padding:0 1rem;justify-content:center;}}
+    .connect-links { display:flex; gap:1rem; justify-content:center; margin-top:1.25rem; flex-wrap:wrap; }
+    .connect-links a { display:flex; align-items:center; gap:0.45rem; font-size:0.875rem; font-weight:600; color:rgba(26,26,26,0.55); text-decoration:none; padding:0.45rem 0.9rem; border-radius:999px; border:1.5px solid var(--border-soft); background:rgba(255,255,255,0.6); transition:color 0.15s ease,border-color 0.15s ease; }
+    .connect-links a:hover { color:var(--text-dark); border-color:var(--border-strong); } .connect-links svg { flex-shrink:0; }
   </style>
 </head>
 
@@ -362,9 +110,10 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <h1>Things I've built</h1>
+      <p class="project-label-hero">PROJECTS</p>
+      <h1>Things I have built</h1>
       <p class="hero-highlight">
-        I learn by doing. These didn't start as portfolio pieces. They started as things I wanted to actually understand, and building was the only way to get there.
+        I learn by doing. These did not start as portfolio pieces. They started as things I wanted to actually understand, and building was the only way to get there.
       </p>
     </div>
   </section>
@@ -377,16 +126,14 @@
         <h2>Support Ticket Analyser</h2>
         <div class="card-header-right">
           <span class="status-badge">Live demo</span>
-          <a class="card-github" href="https://github.com/KhanKMadiha/support-dashboard" target="_blank" rel="noopener noreferrer" title="View code on GitHub">
+          <a class="card-github" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer" title="View code on GitHub">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
         </div>
       </div>
       <p class="project-sub">The documentation gap is a product signal. I built the tooling to prove it.</p>
-      <p>
-        An AI-native VoC workflow: paste a ticket, score it against the knowledge base, surface documentation gaps, draft a response, and publish a KB article directly to Notion. Steps 1–3 run live in the browser; step 4 uses a Cloudflare Worker to proxy the Anthropic and Notion APIs with secrets off the client.
-      </p>
+      <p>An AI-native VoC workflow: paste a ticket, score it against the knowledge base, surface documentation gaps, draft a response, and publish a KB article directly to Notion. Steps 1 to 3 run live in the browser; step 4 uses a Cloudflare Worker to proxy the Anthropic and Notion APIs with secrets off the client.</p>
       <div class="tag-row">
         <span class="tag">Voice of the Customer</span>
         <span class="tag">Anthropic API</span>
@@ -411,9 +158,7 @@
         </div>
       </div>
       <p class="project-sub">I wanted to feel what users feel when they hit a problem. So I built the whole thing from scratch and found out.</p>
-      <p>
-        A speech coaching app built from scratch with React and Node.js. Generates AI-tailored practice passages based on your career goals, records your delivery, and scores you on accuracy, fluency, and pace. Includes a complete dyslexia-friendly mode built from scratch. Deployed to production on Railway.
-      </p>
+      <p>A speech coaching app built from scratch with React and Node.js. Generates AI-tailored practice passages based on your career goals, records your delivery, and scores you on accuracy, fluency, and pace. Includes a complete dyslexia-friendly mode. Deployed to production on Railway.</p>
       <div class="tag-row">
         <span class="tag">React</span>
         <span class="tag">Node.js</span>
@@ -438,9 +183,7 @@
         </div>
       </div>
       <p class="project-sub">Three full iterations. Real production problems at every stage. Each one solved.</p>
-      <p>
-        Started with IBM Watson, moved to Google Dialogflow CX, then rebuilt on the Anthropic API. Each version came with its own production issues: missing permissions, API key exposure, CORS failures. The live version uses a Cloudflare Workers proxy to keep the key server-side.
-      </p>
+      <p>Started with IBM Watson, moved to Google Dialogflow CX, then rebuilt on the Anthropic API. Each version came with its own production issues: missing permissions, API key exposure, CORS failures. The live version uses a Cloudflare Workers proxy to keep the key server-side.</p>
       <div class="tag-row">
         <span class="tag">Anthropic API</span>
         <span class="tag">Cloudflare Workers</span>
@@ -452,7 +195,7 @@
 
   </main>
 
-    <section class="links reveal">
+  <section class="links reveal">
     <h2>Let's connect</h2>
     <div class="connect-links">
       <a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">
@@ -473,7 +216,6 @@
   <footer>© <span id="year"></span> Madiha Khan · Built with care</footer>
 
   <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">💬</button>
-
 
   <div id="chat-window">
     <div class="chat-header">
@@ -511,37 +253,32 @@
 
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
 
-    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Technical Support Engineer and AI enthusiast based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
+    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional and Voice of the Customer specialist based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
 
 ABOUT MADIHA:
-Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Engineer at Stack Overflow (January 2025 to present), where she owns the entire EMEA ticket lifecycle independently, from first contact through to resolution, covering P1/P2 incident ownership and enterprise escalations across 100+ enterprise accounts. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
+Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she works autonomously and owns the full EMEA ticket lifecycle, from first contact through to resolution, covering P1/P2 incident ownership and enterprise escalations across 100+ accounts. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
 
 PERSONAL:
-Outside of work, Madiha raised over £50,000 through a campaign providing food bags to people in need. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction.
+Outside of work, Madiha raised over £50,000 through a campaign providing food bags to people in need. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction and every system she builds.
 
 KEY ACHIEVEMENTS:
 - 98% CSAT across 100+ enterprise accounts
-- Sole EMEA owner of P1/P2 on-call incidents
+- Full EMEA ticket lifecycle ownership including P1/P2 on-call incidents
 - Built Datadog dashboards cutting P1/P2 resolution time by 25%
 - Authored 50+ knowledge base articles reducing repeat tickets by 20%
 - Reduced new hire ramp-up time by 30% through Jira workflows and playbooks
 - 95% issue reproduction rate, reducing engineering investigation time by 30%
 - Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
-- None of these were asked of her. She spotted the gaps and built the solutions.
 
 TECHNICAL SKILLS:
-REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Google Dialogflow, Python (learning)
+REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Rootly, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Cloudflare Workers, Cursor, Prompt engineering, Python (learning)
 
 AI AND PROJECTS:
-Madiha has built and shipped two AI-powered projects independently.
+Built Support Ticket Analyser, an AI-native support workflow tool that detects documentation gaps, drafts responses grounded in existing knowledge, and publishes KB articles directly to Notion. Built using Cursor, Claude API, Cloudflare Workers, and Notion API. Live demo at khankmadiha.github.io/support-ticket-analyser and full write-up at madihaintech.me/support-dashboard.html.
 
-Project 1: Claude-Powered Portfolio Assistant (live on this site)
-Built a production AI chatbot from scratch. Started with IBM Watson and Dialogflow CX before switching to the Anthropic API after hitting persistent permission errors. Secured the API key using a Cloudflare Worker proxy after GitHub secret scanning caught an exposed key. The chatbot runs live across all pages of her portfolio, opens automatically after two seconds, and maintains full session conversation history. Full write-up at madihaintech.me/projects.html.
+Also built Articulate, a full stack PWA speech practice app where Claude generates a daily personalised passage, the user records themselves, and AI scores accuracy, fluency, and pace. Includes a dyslexia-friendly mode. Built with React, Claude API, and Node.js. Live at articulate-app-production.up.railway.app. Full write-up at madihaintech.me/articulate.html.
 
-Project 2: Articulate (articulate-app-production.up.railway.app)
-A full-stack speech app that helps professionals improve how they communicate. Built with React 18, Express, and the Anthropic Claude API. Started in Cursor, continued with Claude Code. Claude generates a personalised daily passage based on the user's job title, industry, career goals, and the speakers they admire. The user records themselves reading it and gets AI feedback on accuracy, fluency, and pace via the Web Speech API. Features include streak tracking, a favourites library, push notifications, and a full dyslexia-friendly reading mode where the AI passages themselves are also adapted. Deployed on Railway via Docker. Full write-up at madihaintech.me/articulate.html.
-
-Madiha also holds the IBM AI Fundamentals certification with Capstone Project, and certifications in Generative AI Prompt Engineering, Datadog Performance Monitoring, REST APIs, JavaScript, SQL, Linux and Bash, HTML5 and CSS3, and Python (ongoing). She is a daily Claude user.
+Built and deployed a Claude-powered AI chatbot on her portfolio site at madihaintech.me. Secured the API key using a Cloudflare Worker proxy. Full story at madihaintech.me/chatbot.html. Completed IBM AI Fundamentals certification with Capstone Project.
 
 LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
 EDUCATION: A Levels in Maths, Accounting, and Health and Social Care
@@ -559,7 +296,7 @@ TONE GUIDELINES:
 - If asked something you do not know, invite them to reach out via madihaintech.me/contact.html or linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
 
-    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Product Support Engineer with 5+ years in enterprise SaaS support. She currently owns the entire EMEA support function at Stack Overflow across 100+ enterprise accounts.\n\nFeel free to ask me anything about her experience, skills, or projects!";
+    const WELCOME_MESSAGE = "Hi there! I am Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional with 5+ years in enterprise SaaS support. She works autonomously across EMEA, owns the full ticket lifecycle, and builds the systems that make support smarter.\n\nFeel free to ask me anything about her experience, skills, or projects!";
 
     const conversationHistory = [];
     let chatOpen = false;
@@ -609,7 +346,7 @@ TONE GUIDELINES:
           body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: SYSTEM_PROMPT, messages: conversationHistory })
         });
         const data = await response.json();
-        const reply = data?.content?.[0]?.text || "I'm sorry, I wasn't able to get a response just now. Please try again in a moment!";
+        const reply = data?.content?.[0]?.text || "I am sorry, I was not able to get a response just now. Please try again in a moment!";
         removeTyping(); appendMessage('bot', reply);
         conversationHistory.push({ role: 'assistant', content: reply });
       } catch (err) {

@@ -499,7 +499,7 @@
   <div class="site-nav-links">
     <a href="./index.html">Home</a>
     <a href="./about.html">About</a>
-    <a href="./skills.html">Technical depth</a>
+    <a href="./skills.html">Skills</a>
     <a class="active" href="./projects.html">Projects</a>
     <a href="./contact.html">Contact</a>
   </div>
@@ -546,7 +546,7 @@
     </div>
 
     <!-- PHASE STEPPER -->
-    <p class="section-label reveal">The four-step workflow</p>
+    <p class="section-label reveal">The workflow</p>
     <div class="reveal">
       <div class="stepper-nav">
         <button class="phase-btn active" onclick="showPhase(1)">Why I built it</button>
@@ -596,7 +596,7 @@
           </div>
         </div>
         <div class="phase-body">
-          <p>Paste a ticket (or load the sample SSO/SAML scenario) and the tool scans the ticket, scores every article in the knowledge base, and classifies the result:</p>
+          <p>Load the <strong>Sample: Strong Match</strong> or <strong>Sample: Documentation Gap</strong> ticket and the tool scans it, scores every article in the knowledge base, and classifies the result:</p>
           <p><strong>Strong match (80%+):</strong> Finds the closest matching article, shows matched keywords, and pre-fills a suggested response from documented resolution steps.<br>
           <strong>Documentation gap (below 80%):</strong> Labels the gap explicitly and shows related articles in the 30–79% band so the support engineer still has troubleshooting context while product knows the knowledge base is missing something.</p>
           <p>That gap state is a signal that documentation needs to be created, not just that a ticket needs closing.</p>
@@ -628,8 +628,9 @@
           </div>
         </div>
         <div class="phase-body">
-          <p>Step 3 lets you edit the suggested response with the original ticket visible for context, then move to step 4 where Claude generates a structured KB draft with title, category, summary, troubleshooting steps, and tags.</p>
-          <p>Approve it and it publishes directly to a live Notion database. Every article that goes through this workflow becomes part of the knowledge base the next support engineer can search.</p>
+          <p>Step 3 lets you edit the suggested response with the original ticket visible for context.</p>
+          <p><strong>On a strong match</strong>, the workflow ends here. Documentation already exists, so no new KB article is created.</p>
+          <p><strong>On a documentation gap</strong>, the workflow continues to Step 4 where Claude generates a structured KB draft with title, category, summary, troubleshooting steps, and tags. Approve it and it publishes directly to a live Notion database. Every article that goes through this workflow becomes part of the knowledge base the next support engineer can search.</p>
           <p>In <strong>portfolio demo mode</strong> the full flow is still interactive. The publish step is simulated so visitors can experience it without needing API keys.</p>
         </div>
         <div class="struggle-toggle">
@@ -738,7 +739,7 @@
     <div class="try-card reveal">
       <h3>Try it yourself</h3>
       <p>Run the <strong>live demo</strong> on GitHub Pages.</p>
-      <p>Click <strong>Load sample ticket</strong> → walk through <strong>match and gap logic</strong> → preview the <strong>KB publish flow</strong>.</p>
+      <p>Click <strong>Sample: Strong Match</strong> to see documentation found and a response suggested. Click <strong>Sample: Documentation Gap</strong> to see the gap detection flow → response drafting → KB publish. The gap sample rotates across four scenarios on each click.</p>
       <p style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
         <a class="nav-btn" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer" style="display:inline-block;max-width:none;flex:0 1 auto;">Open interactive demo →</a>
         <a class="nav-btn" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer" style="display:inline-block;max-width:none;flex:0 1 auto;">View source on GitHub →</a>
@@ -870,7 +871,7 @@ TONE GUIDELINES:
 - If asked something you do not know, invite them to reach out via madihaintech.me/contact.html or linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
 
-    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional with 5+ years in enterprise SaaS support, currently leading EMEA support operations at Stack Overflow.\n\nFeel free to ask me anything about her experience, skills, or projects!";
+    const WELCOME_MESSAGE = "Hi there! I am Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional with 5+ years in enterprise SaaS support. She works autonomously across EMEA, owns the full ticket lifecycle, and builds the systems that make support smarter.\n\nFeel free to ask me anything about her experience, skills, or projects!";
 
     const conversationHistory = [];
     let chatOpen = false;

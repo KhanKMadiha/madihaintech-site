@@ -187,7 +187,7 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-text">
-        <p class="hero-role">Senior Support Professional &nbsp;·&nbsp; Closing the loop between what customers experience and what gets built</p>
+        <p class="hero-role">Senior Support Professional &nbsp;·&nbsp; Voice of the Customer</p>
         <h1>Madiha Khan</h1>
         <div class="hero-social">
           <a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">
@@ -203,7 +203,7 @@
       <div class="hero-terminal" aria-hidden="true">
         <div class="t-bar">
           <span class="t-dot t-dot-r"></span><span class="t-dot t-dot-y"></span><span class="t-dot t-dot-g"></span>
-          <span class="t-title">voc-analysis.log</span>
+          <span class="t-title">support-analysis.log</span>
         </div>
         <div class="t-body" id="terminalBody"></div>
       </div>
@@ -484,23 +484,23 @@ TONE GUIDELINES:
   <script>
     (function () {
       const LINES = [
-        { text: '$ voc-analysis · Stack Overflow EMEA',  cls: 'cmd' },
-        { text: '  Scanning 847 tickets · last 30 days', cls: 'dim' },
-        { text: '',                                       cls: '' },
-        { text: '  Pattern detected: SSO timeout errors',cls: 'warn' },
-        { text: '  Affected accounts: 14 enterprise',    cls: '' },
-        { text: '  First reported: 18 days ago',         cls: '' },
-        { text: '',                                       cls: '' },
-        { text: '  Root cause identified...',            cls: 'dim' },
-        { text: '  → SAML assertion expiry mismatch',    cls: '' },
-        { text: '  → Not a user error. Product gap.',    cls: '' },
-        { text: '',                                       cls: '' },
-        { text: '  Building case for engineering...',    cls: 'dim' },
-        { text: '  → Log evidence attached',             cls: 'ok' },
-        { text: '  → Reproduction steps documented',     cls: 'ok' },
-        { text: '  → Feature request raised ✓',          cls: 'ok' },
-        { text: '',                                       cls: '' },
-        { text: '  Ticket trend → roadmap decision',     cls: 'stat' },
+        { text: '$ support-analysis · Cursor',            cls: 'cmd' },
+        { text: '  Scanning 1,240 tickets · last 30 days', cls: 'dim' },
+        { text: '',                                         cls: '' },
+        { text: '  Pattern detected: tab key not accepting suggestions', cls: 'warn' },
+        { text: '  Affected users: 47 across Pro and Business', cls: '' },
+        { text: '  First reported: 14 days ago',           cls: '' },
+        { text: '',                                         cls: '' },
+        { text: '  Root cause identified...',              cls: 'dim' },
+        { text: '  → Keybinding conflict with VS Code extension', cls: '' },
+        { text: '  → Not a user error. Product gap.',      cls: '' },
+        { text: '',                                         cls: '' },
+        { text: '  Building case for engineering...',      cls: 'dim' },
+        { text: '  → Log evidence attached',               cls: 'ok' },
+        { text: '  → Reproduction steps documented',       cls: 'ok' },
+        { text: '  → Feature request raised ✓',            cls: 'ok' },
+        { text: '',                                         cls: '' },
+        { text: '  Ticket trend → roadmap decision',       cls: 'stat' },
       ];
       const CHAR_DELAY = 38; const LINE_PAUSE = 320; const END_PAUSE = 3200;
       const body = document.getElementById('terminalBody');
@@ -521,4 +521,5 @@ TONE GUIDELINES:
   </script>
 
 </body>
+</html>
 </html>

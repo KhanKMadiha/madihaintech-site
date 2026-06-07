@@ -299,27 +299,6 @@
     }
     .phase-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-    /* ---------- FEATURE GRID ---------- */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem; margin-bottom: 2rem;
-    }
-
-    .feature-card {
-      padding: 1.75rem 1.5rem; border-radius: 22px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
-      text-align: left;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .feature-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.07); border-color: var(--border-strong); }
-
-    .feature-icon { font-size: 1.5rem; margin-bottom: 0.6rem; display: block; }
-    .feature-card h3 { font-size: 0.98rem; font-weight: 800; margin: 0 0 0.4rem; }
-    .feature-card p { font-size: 0.88rem; line-height: 1.65; color: var(--muted-dark); margin: 0; }
-
     /* ---------- TECH STACK ---------- */
     .tools-grid {
       display: grid;
@@ -519,7 +498,7 @@
   <div class="site-nav-links">
     <a href="./index.html">Home</a>
     <a href="./about.html">About</a>
-    <a href="./skills.html">Skills</a>
+    <a href="./skills.html">Technical depth</a>
     <a class="active" href="./projects.html">Projects</a>
     <a href="./contact.html">Contact</a>
   </div>
@@ -527,10 +506,10 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <p class="hero-label">Voice of the Customer · 2026</p>
+      <p class="hero-label">Product Feedback · 2026</p>
       <h1>Feedback Loop</h1>
       <p class="hero-highlight">
-        An AI-native VoC dashboard I built to close the loop from support feature requests to engineering-ready briefs — structured intake, theme synthesis, enterprise-weighted prioritisation, and PDF export. Designed for the same problems a Product Quality Engineer owns every day.
+        An AI-native system that takes feature requests and turns them into a brief engineering can act on.
       </p>
       <div class="hero-actions">
         <a class="hero-action-primary" href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer">Open demo →</a>
@@ -546,30 +525,20 @@
 
     <!-- WHAT IT DOES -->
     <div class="intro-card reveal">
-      <p>
-        At Stack Overflow I surface 15+ high-impact feature requests to product and engineering every year — spotting recurring ticket patterns, building structured cases with log evidence, and weighting enterprise accounts higher in the queue. Most of that work still happens in spreadsheets and Slack threads.
-      </p>
-      <p>
-        Feedback Loop is the tooling I wish existed on every VoC review: capture structured feature requests, filter and select from the queue, let Claude group them into ranked themes with priority scores weighted by account tier, and export a PDF product brief engineering can actually use.
-      </p>
-      <p>
-        <strong>Try the live demo:</strong> <a href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer">feedback-loop.pages.dev/src/dashboard.html</a> — submit a request on the intake form first, then analyse tickets on the dashboard. AI synthesis runs via a secured Cloudflare Worker (5 runs per IP per hour on the public demo).
-      </p>
+      <p>The pattern is always the same.</p>
+      <p>A customer submits a feature request, another submits the same one two weeks later, and by the end of the quarter the same request is sitting across multiple tickets from different accounts.</p>
+      <p>Someone has to manually go through every ticket, identify the pattern, and write up individual feature requests engineering can access and prioritise.</p>
+      <p>Feedback Loop is a dashboard that centralises feature requests in one place.</p>
+      <p>You can filter the queue by request type and account, then run a Claude-powered analysis that groups requests and prioritises by account tier, and export a PDF brief you can hand straight to engineering.</p>
+      <p><strong>Try it:</strong> Use the mock tickets already loaded or submit your own, then open the dashboard to analyse and export a brief.</p>
       <div class="tag-row">
-        <span class="tag">Voice of the Customer</span>
-        <span class="tag">Theme synthesis</span>
-        <span class="tag">Enterprise weighting</span>
+        <span class="tag">Cursor</span>
         <span class="tag">Anthropic API</span>
         <span class="tag">Cloudflare Workers</span>
         <span class="tag">JavaScript</span>
+        <span class="tag">Feature Requests</span>
+        <span class="tag">PDF Export</span>
       </div>
-    </div>
-
-    <div class="intro-card reveal" style="border-color: rgba(42, 111, 192, 0.35); background: rgba(232, 244, 253, 0.45);">
-      <p class="section-label" style="text-align:left;margin-bottom:0.75rem;">Mapped to Product Quality Engineering</p>
-      <p style="margin:0;font-size:1rem;line-height:1.75;color:var(--muted-dark);">
-        A PQE owns the feedback loop between users and product — VoC synthesis, agentic prioritisation, senior escalation, and tooling that scales quality operations. This prototype demonstrates that mindset: structured signal intake, explicit tier-weighted scoring, theme ranking with business context, and infrastructure you can ship safely to a public URL.
-      </p>
     </div>
 
     <!-- HOW I BUILT IT -->
@@ -586,21 +555,21 @@
         <div class="phase-header">
           <div><span class="phase-badge badge-1">01</span></div>
           <div class="phase-title-wrap">
-            <h3>From spreadsheet triage to a closed loop</h3>
-            <p>The VoC problem enterprise support actually needs solved</p>
+            <h3>The loop I run manually every quarter</h3>
+            <p>Why spreadsheets are not a VoC programme</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>Every quarter I see the same pattern: three enterprise accounts ask for SAML session timeout controls, two Pro accounts want bulk user export, and the requests sit in separate tickets until someone manually connects the dots in a slide deck.</p>
-          <p>I built Feedback Loop to model how senior quality operations should feel: <strong>structured intake → filterable queue → AI theme synthesis → enterprise-weighted priority → exportable brief.</strong> That is the same loop I run manually with Jira and internal dashboards — here it is interactive and repeatable.</p>
+          <p>The pattern never changes. Enterprise accounts submit the same requests in separate tickets across a quarter. I spot them, pull the threads together, weight by account tier, and build a case for engineering. It is useful work. It should not take half a day in Jira and a slide deck.</p>
+          <p>I built Feedback Loop to make that loop <strong>structured, repeatable, and fast:</strong> agents log requests through a proper intake form, the queue is filterable by tier and type, Claude synthesises themes with enterprise-weighted priority scores, and the output is a PDF brief ready to share in a roadmap meeting — not a wall of Slack messages.</p>
         </div>
         <div class="struggle-toggle">
           <div class="struggle-header" onclick="toggleStruggle(this)">
-            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">Design choice</span></div>
+            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">How this differs from Support Ticket Analyser</span></div>
             <span class="struggle-chevron">▼</span>
           </div>
           <div class="struggle-body">
-            <p>This is deliberately different from my Support Ticket Analyser project. That tool handles single-ticket KB gap workflows. Feedback Loop handles multi-ticket queue synthesis — the step that happens <em>after</em> triage, when you need to tell engineering what to build next and why.</p>
+            <p>Support Ticket Analyser handles one ticket at a time: match it to the knowledge base, spot the gap, draft a response, publish a KB article. Feedback Loop handles the queue — the step that happens after triage, when you need to tell engineering what to build next and why. Different problems, different tools.</p>
           </div>
         </div>
         <div class="phase-nav">
@@ -614,12 +583,12 @@
           <div><span class="phase-badge badge-2">02</span></div>
           <div class="phase-title-wrap">
             <h3>Structured intake and ticket queue</h3>
-            <p>Request type, account tier, and context — not free-text chaos</p>
+            <p>Metadata that makes prioritisation defensible</p>
           </div>
         </div>
         <div class="phase-body">
           <p>The intake form captures feature requests by <strong>request type</strong> (Authentication, API, Integrations, User Management, Billing), <strong>account tier</strong> (Enterprise, Pro, Free), and structured context fields. Everything persists in local storage so the demo works without a backend database.</p>
-          <p>On the dashboard, Step 1 lets you filter by type and tier, then select tickets for analysis. I wanted recruiters and engineers to see the same signal I see when reviewing a VoC queue — not a wall of unstructured text.</p>
+          <p>On the dashboard, Step 1 lets you filter by type and tier, then select tickets for analysis. I wanted anyone reviewing this to see the same signal I see when going through a real VoC queue — not free-text chaos.</p>
         </div>
         <div class="struggle-toggle">
           <div class="struggle-header" onclick="toggleStruggle(this)">
@@ -627,7 +596,7 @@
             <span class="struggle-chevron">▼</span>
           </div>
           <div class="struggle-body">
-            <p>Naming and information architecture took several iterations — Feature Signal, VoC Dashboard, Feedback Loop. The final name matches what the tool actually does: close the loop between customer signal and engineering action.</p>
+            <p>The mock data went through seven versions. The first read like bug reports. Then it was too employer-specific. Then the categories confused anyone who was not already inside the product. It took longer to get twenty tickets that felt genuinely realistic and well spread across five request types than it took to build the intake form. The tool went through three names too — Feature Signal, VoC Dashboard, Feedback Loop. The final name is the one that says what it actually does.</p>
           </div>
         </div>
         <div class="phase-nav">
@@ -646,7 +615,7 @@
         </div>
         <div class="phase-body">
           <p>Step 2 sends selected tickets to Claude via a Cloudflare Worker proxy. The model groups them into themes, scores priority 1–10 using frequency and account tier (Enterprise &gt; Pro &gt; Free), and returns summaries, recommended actions, and affected accounts.</p>
-          <p>Step 3 exports a formatted PDF product brief with per-ticket supporting evidence — the artifact I would actually attach to a Jira epic or product review deck.</p>
+          <p>Step 3 exports a formatted PDF product brief with per-ticket supporting evidence — the artifact I would actually attach to a Jira epic or drop into a product review.</p>
         </div>
         <div class="struggle-toggle">
           <div class="struggle-header" onclick="toggleStruggle(this)">
@@ -654,7 +623,7 @@
             <span class="struggle-chevron">▼</span>
           </div>
           <div class="struggle-body">
-            <p>PDF export broke on deploy because jsPDF 2.5.2 on cdnjs returned a 404. Swapping to 2.5.1 fixed it — a reminder that portfolio demos need the same dependency hygiene as production apps.</p>
+            <p>The PDF export broke twice. First version generated a blank document. Second version had content but looked like a raw data dump. Then on deploy, jsPDF 2.5.2 on cdnjs returned a 404 — the whole export silently failed until I checked the console. Swapped to 2.5.1 and rebuilt the layout from scratch: page break logic, ticket blocks splitting mid-page, section headers, information hierarchy. Six mockup iterations before it read like something you would actually hand to an engineering lead in a meeting.</p>
           </div>
         </div>
         <div class="phase-nav">
@@ -675,51 +644,30 @@
           <p>The static app deploys to Cloudflare Pages via GitHub Actions. The Anthropic API key lives in a Cloudflare Worker (<code>feedback-loop-proxy</code>) with origin allowlisting and KV-backed rate limiting — 5 synthesis runs per IP per hour on the public demo.</p>
           <p>Local dev uses a static file server on port 3000 and the Worker on port 8787. Same pattern as my portfolio chatbot and Support Ticket Analyser: never ship API keys to the browser.</p>
         </div>
+        <div class="struggle-toggle">
+          <div class="struggle-header" onclick="toggleStruggle(this)">
+            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">The struggle</span></div>
+            <span class="struggle-chevron">▼</span>
+          </div>
+          <div class="struggle-body">
+            <p>API key issues took up more time than any other single problem. Invalid x-api-key errors from a malformed .dev.vars file, double-pasted key prefix, proxy not restarted after editing environment variables. Two terminals running simultaneously — one for the static server, one for the Worker proxy — and losing track of which was which. The rate limit also triggered during testing, which was actually the proof that the safeguard worked.</p>
+          </div>
+        </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" onclick="showPhase(3)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="document.getElementById('features-section').scrollIntoView({behavior:'smooth'})">See features ↓</button>
+          <button class="phase-nav-btn primary" onclick="document.getElementById('stack-section').scrollIntoView({behavior:'smooth'})">See the stack ↓</button>
         </div>
       </div>
     </div>
 
-    <!-- FEATURES -->
-    <p class="section-label reveal" id="features-section">Features I'm most proud of</p>
-    <div class="feature-grid reveal">
-
-      <div class="feature-card">
-        <span class="feature-icon">📋</span>
-        <h3>Structured VoC intake</h3>
-        <p>Request type, account tier, and context fields — the metadata that makes prioritisation defensible to engineering.</p>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-icon">🎯</span>
-        <h3>Enterprise-weighted scoring</h3>
-        <p>Priority 1–10 from frequency and tier weighting. Enterprise accounts pull rank the way they do in real VoC reviews.</p>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-icon">🧠</span>
-        <h3>Claude theme synthesis</h3>
-        <p>Groups selected tickets into themes with summaries, recommended actions, and affected accounts — not just a keyword cluster.</p>
-      </div>
-
-      <div class="feature-card">
-        <span class="feature-icon">📄</span>
-        <h3>PDF product briefs</h3>
-        <p>Export an engineering-ready brief with supporting ticket evidence. The artifact you attach to a roadmap conversation.</p>
-      </div>
-
-    </div>
-
     <!-- TECH STACK -->
-    <p class="section-label reveal">Tech stack</p>
+    <p class="section-label reveal" id="stack-section">Tech stack</p>
     <div class="tools-grid reveal">
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">JS</span></div>
-        <p class="tool-name">Vanilla JavaScript</p>
-        <p class="tool-desc">Dashboard, intake form, local persistence</p>
+        <div class="tool-logo"><span class="tool-initial">Cu</span></div>
+        <p class="tool-name">Cursor</p>
+        <p class="tool-desc">Built end to end in Cursor</p>
       </div>
 
       <div class="tool-card">
@@ -753,9 +701,9 @@
       </div>
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">Cu</span></div>
-        <p class="tool-name">Cursor</p>
-        <p class="tool-desc">Built end to end in Cursor</p>
+        <div class="tool-logo"><span class="tool-initial">JS</span></div>
+        <p class="tool-name">Vanilla JavaScript</p>
+        <p class="tool-desc">Dashboard, intake form, local persistence</p>
       </div>
 
     </div>

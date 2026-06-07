@@ -555,23 +555,15 @@
         <div class="phase-header">
           <div><span class="phase-badge badge-1">01</span></div>
           <div class="phase-title-wrap">
-            <h3>The loop I run manually every quarter</h3>
-            <p>Why spreadsheets are not a VoC programme</p>
+            <h3>Why I built it this way</h3>
+            <p>Having a system means every feature request gets captured, grouped, and actioned</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>The pattern never changes. Enterprise accounts submit the same requests in separate tickets across a quarter. I spot them, pull the threads together, weight by account tier, and build a case for engineering. It is useful work. It should not take half a day in Jira and a slide deck.</p>
-          <p>I built Feedback Loop to make that loop <strong>structured, repeatable, and fast:</strong> agents log requests through a proper intake form, the queue is filterable by tier and type, Claude synthesises themes with enterprise-weighted priority scores, and the output is a PDF brief ready to share in a roadmap meeting — not a wall of Slack messages.</p>
+          <p>Feature requests come in through support tickets. I go through them manually, spot the pattern, submit individual feature requests, and build a case for engineering.</p>
+          <p>Feedback Loop replaces the manual steps. The dashboard ensures nothing gets missed, and the PDF gives engineering a consistent brief every time.</p>
         </div>
-        <div class="struggle-toggle">
-          <div class="struggle-header" onclick="toggleStruggle(this)">
-            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">How this differs from Support Ticket Analyser</span></div>
-            <span class="struggle-chevron">▼</span>
-          </div>
-          <div class="struggle-body">
-            <p>Support Ticket Analyser handles one ticket at a time: match it to the knowledge base, spot the gap, draft a response, publish a KB article. Feedback Loop handles the queue — the step that happens after triage, when you need to tell engineering what to build next and why. Different problems, different tools.</p>
-          </div>
-        </div>
+
         <div class="phase-nav">
           <button class="phase-nav-btn" disabled>Previous</button>
           <button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Intake &amp; queue →</button>

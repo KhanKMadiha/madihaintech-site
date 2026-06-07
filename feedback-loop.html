@@ -303,7 +303,7 @@
     /* ---------- TECH STACK ---------- */
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 0.75rem; margin-bottom: 2rem;
     }
     @media (max-width: 700px) {
@@ -548,8 +548,7 @@
       <div class="stepper-nav">
         <button class="phase-btn active" onclick="showPhase(1)">Why I built it</button>
         <button class="phase-btn" onclick="showPhase(2)">Intake &amp; queue</button>
-        <button class="phase-btn" onclick="showPhase(3)">Themes &amp; briefs</button>
-        <button class="phase-btn" onclick="showPhase(4)">Ship it live</button>
+        <button class="phase-btn" onclick="showPhase(3)">Analysis &amp; export</button>
       </div>
 
       <div class="phase-content active" id="phase-1">
@@ -603,13 +602,13 @@
         <div class="phase-header">
           <div><span class="phase-badge badge-3">03</span></div>
           <div class="phase-title-wrap">
-            <h3>AI theme synthesis and PDF briefs</h3>
-            <p>Claude groups, ranks, and packages signal for engineering</p>
+            <h3>Step 2 and 3: Analysis and export</h3>
+            <p>Claude groups the requests, scores by priority, and generates a brief you can act on</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>Step 2 sends selected tickets to Claude via a Cloudflare Worker proxy. The model groups them into themes, scores priority 1–10 using frequency and account tier (Enterprise &gt; Pro &gt; Free), and returns summaries, recommended actions, and affected accounts.</p>
-          <p>Step 3 exports a formatted PDF product brief with per-ticket supporting evidence — the artifact I would actually attach to a Jira epic or drop into a product review.</p>
+          <p>Step 2 sends the selected tickets to Claude via a secured Cloudflare Worker. Claude then groups them into themes, scores each one by priority based on how frequently it appears and which account tiers are asking for it, and returns a summary with recommended actions and affected accounts.</p>
+          <p>Step 3 exports a PDF document with supporting evidence for each ticket, the document I would attach to a Jira epic or bring into a product review meeting.</p>
         </div>
         <div class="struggle-toggle">
           <div class="struggle-header" onclick="toggleStruggle(this)">
@@ -617,38 +616,13 @@
             <span class="struggle-chevron">▼</span>
           </div>
           <div class="struggle-body">
-            <p>The PDF export broke twice. First version generated a blank document. Second version had content but looked like a raw data dump. Then on deploy, jsPDF 2.5.2 on cdnjs returned a 404 — the whole export silently failed until I checked the console. Swapped to 2.5.1 and rebuilt the layout from scratch: page break logic, ticket blocks splitting mid-page, section headers, information hierarchy. Six mockup iterations before it read like something you would actually hand to an engineering lead in a meeting.</p>
+            <p>The PDF export broke twice. The first version generated a blank document. The second had content but the layout was unreadable.</p>
+            <p>When I deployed, the PDF library returned a 404 and the whole export silently failed until I checked the console. I used Cursor's debugger to trace and resolve the issue, then rebuilt the PDF layout from scratch.</p>
+            <p>The document includes a theme summary, the accounts affected, a recommended action for engineering, and a breakdown of each ticket with the feature request, why it matters to the customer, and the account tier and priority.</p>
           </div>
         </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" onclick="showPhase(2)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(4)">Next: Ship it live →</button>
-        </div>
-      </div>
-
-      <div class="phase-content" id="phase-4">
-        <div class="phase-header">
-          <div><span class="phase-badge badge-4">04</span></div>
-          <div class="phase-title-wrap">
-            <h3>Cloudflare Pages + Worker proxy</h3>
-            <p>Public demo with secrets off the client</p>
-          </div>
-        </div>
-        <div class="phase-body">
-          <p>The static app deploys to Cloudflare Pages via GitHub Actions. The Anthropic API key lives in a Cloudflare Worker (<code>feedback-loop-proxy</code>) with origin allowlisting and KV-backed rate limiting — 5 synthesis runs per IP per hour on the public demo.</p>
-          <p>Local dev uses a static file server on port 3000 and the Worker on port 8787. Same pattern as my portfolio chatbot and Support Ticket Analyser: never ship API keys to the browser.</p>
-        </div>
-        <div class="struggle-toggle">
-          <div class="struggle-header" onclick="toggleStruggle(this)">
-            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">The struggle</span></div>
-            <span class="struggle-chevron">▼</span>
-          </div>
-          <div class="struggle-body">
-            <p>API key issues took up more time than any other single problem. Invalid x-api-key errors from a malformed .dev.vars file, double-pasted key prefix, proxy not restarted after editing environment variables. Two terminals running simultaneously — one for the static server, one for the Worker proxy — and losing track of which was which. The rate limit also triggered during testing, which was actually the proof that the safeguard worked.</p>
-          </div>
-        </div>
-        <div class="phase-nav">
-          <button class="phase-nav-btn" onclick="showPhase(3)">← Previous</button>
           <button class="phase-nav-btn primary" onclick="document.getElementById('stack-section').scrollIntoView({behavior:'smooth'})">See the stack ↓</button>
         </div>
       </div>
@@ -667,37 +641,31 @@
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">AI</span></div>
         <p class="tool-name">Anthropic Claude</p>
-        <p class="tool-desc">Theme synthesis and prioritisation</p>
+        <p class="tool-desc">Groups requests and scores priority</p>
       </div>
 
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">CF</span></div>
         <p class="tool-name">Cloudflare Workers</p>
-        <p class="tool-desc">API proxy, rate limiting, origin checks</p>
+        <p class="tool-desc">Secures the API key and rate limits the public demo</p>
       </div>
 
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">PG</span></div>
         <p class="tool-name">Cloudflare Pages</p>
-        <p class="tool-desc">Static hosting via GitHub Actions</p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">KV</span></div>
-        <p class="tool-name">Workers KV</p>
-        <p class="tool-desc">Per-IP rate limit counters</p>
+        <p class="tool-desc">Hosts the live demo</p>
       </div>
 
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">PDF</span></div>
         <p class="tool-name">jsPDF</p>
-        <p class="tool-desc">Exportable product briefs</p>
+        <p class="tool-desc">Generates the PDF document</p>
       </div>
 
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">JS</span></div>
-        <p class="tool-name">Vanilla JavaScript</p>
-        <p class="tool-desc">Dashboard, intake form, local persistence</p>
+        <p class="tool-name">JavaScript</p>
+        <p class="tool-desc">Dashboard, intake form, ticket storage</p>
       </div>
 
     </div>

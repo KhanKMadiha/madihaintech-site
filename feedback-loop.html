@@ -157,7 +157,8 @@
       border-top-color: var(--border-soft);
     }
 
-    .struggle-body p { font-size: 0.93rem; line-height: 1.7; color: var(--muted-dark); margin: 0; }
+    .struggle-body p { font-size: 0.93rem; line-height: 1.7; color: var(--muted-dark); margin: 0 0 0.75rem; }
+    .struggle-body p:last-child { margin-bottom: 0; }
 
     .nav-cta {
       max-width: 980px; margin: -1.25rem auto 2.25rem;
@@ -574,13 +575,13 @@
         <div class="phase-header">
           <div><span class="phase-badge badge-2">02</span></div>
           <div class="phase-title-wrap">
-            <h3>Structured intake and ticket queue</h3>
-            <p>Metadata that makes prioritisation defensible</p>
+            <h3>Step 1: Intake and queue</h3>
+            <p>Filter by request type and account, select your tickets, then run the analysis</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>The intake form captures feature requests by <strong>request type</strong> (Authentication, API, Integrations, User Management, Billing), <strong>account tier</strong> (Enterprise, Pro, Free), and structured context fields. Everything persists in local storage so the demo works without a backend database.</p>
-          <p>On the dashboard, Step 1 lets you filter by type and tier, then select tickets for analysis. I wanted anyone reviewing this to see the same signal I see when going through a real VoC queue — not free-text chaos.</p>
+          <p>The intake form captures feature requests by request type (Authentication, API, Integrations, User Management, Billing) and account tier (Enterprise, Pro, Free). Every submission goes straight into the dashboard queue.</p>
+          <p>From there you filter by type and tier, select the tickets you want to analyse, and move to Step 2.</p>
         </div>
         <div class="struggle-toggle">
           <div class="struggle-header" onclick="toggleStruggle(this)">
@@ -588,7 +589,8 @@
             <span class="struggle-chevron">▼</span>
           </div>
           <div class="struggle-body">
-            <p>The mock data went through seven versions. The first read like bug reports. Then it was too employer-specific. Then the categories confused anyone who was not already inside the product. It took longer to get twenty tickets that felt genuinely realistic and well spread across five request types than it took to build the intake form. The tool went through three names too — Feature Signal, VoC Dashboard, Feedback Loop. The final name is the one that says what it actually does.</p>
+            <p>The mock data went through seven versions. The first read like bug reports. Then it was too employer-specific. Then I noticed that the categories would have confused anyone who was not familiar with the product.</p>
+            <p>It took longer to get twenty tickets that felt genuinely realistic and well spread across five request types than it took to build the intake form.</p>
           </div>
         </div>
         <div class="phase-nav">

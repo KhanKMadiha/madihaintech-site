@@ -121,7 +121,7 @@
   <main class="content">
 
     <div class="project-card reveal">
-      <p class="project-label">Voice of the Customer · 2026</p>
+      <p class="project-label">Product Feedback · 2026</p>
       <div class="card-header">
         <h2>Feedback Loop</h2>
         <div class="card-header-right">
@@ -132,16 +132,13 @@
           </a>
         </div>
       </div>
-      <p class="project-sub">Support feature requests → AI-ranked themes → engineering-ready briefs.</p>
-      <p>
-        An AI-native VoC pipeline: structured feature request intake, filter and select tickets from the queue, Claude groups them into ranked themes with enterprise-weighted priority scores, and export a PDF product brief for engineering. API access secured behind a Cloudflare Worker with rate limiting.
-      </p>
+      <p class="project-sub">Turning feature requests into an engineering brief in three steps.</p>
+      <p>Feature requests arrive in separate tickets. The Feedback Loop dashboard brings them together, groups them by theme, and exports a PDF document you can hand straight to engineering.</p>
       <div class="tag-row">
-        <span class="tag">Voice of the Customer</span>
+        <span class="tag">Cursor</span>
         <span class="tag">Anthropic API</span>
         <span class="tag">Cloudflare Workers</span>
         <span class="tag">JavaScript</span>
-        <span class="tag">Cursor</span>
       </div>
       <a class="card-cta" href="./feedback-loop.html">View project →</a>
     </div>
@@ -159,14 +156,13 @@
         </div>
       </div>
       <p class="project-sub">The documentation gap is a product signal. I built the tooling to prove it.</p>
-      <p>An AI-native VoC workflow: paste a ticket, score it against the knowledge base, surface documentation gaps, draft a response, and publish a KB article directly to Notion. Steps 1 to 3 run live in the browser; step 4 uses a Cloudflare Worker to proxy the Anthropic and Notion APIs with secrets off the client.</p>
+      <p>Paste a ticket, match it against the knowledge base, surface any documentation gaps, draft a response, and publish a KB article directly to Notion.</p>
       <div class="tag-row">
-        <span class="tag">Voice of the Customer</span>
+        <span class="tag">Cursor</span>
         <span class="tag">Anthropic API</span>
         <span class="tag">Cloudflare Workers</span>
         <span class="tag">Notion API</span>
         <span class="tag">JavaScript</span>
-        <span class="tag">Cursor</span>
       </div>
       <a class="card-cta" href="./support-dashboard.html">View project →</a>
     </div>
@@ -279,7 +275,7 @@
 
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
 
-    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional and Voice of the Customer specialist based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
+    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
 
 ABOUT MADIHA:
 Madiha has always been fascinated by technology and driven by a genuine desire to help people. She started teaching herself to code during the pandemic, which opened the door into tech support. She has spent the last five years building real depth in enterprise SaaS support. She is currently Senior Product Support Specialist at Stack Overflow (January 2025 to present), where she works autonomously and owns the full EMEA ticket lifecycle, from first contact through to resolution, covering P1/P2 incident ownership and enterprise escalations across 100+ accounts. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
@@ -295,6 +291,7 @@ KEY ACHIEVEMENTS:
 - Reduced new hire ramp-up time by 30% through Jira workflows and playbooks
 - 95% issue reproduction rate, reducing engineering investigation time by 30%
 - Led SSO migration for 100+ enterprise accounts, delivering multi-million pound cost savings
+- Surfaces 40+ high impact feature requests to product and engineering annually
 
 TECHNICAL SKILLS:
 REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Bash, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, PagerDuty, Rootly, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Cloudflare Workers, Cursor, Prompt engineering, Python (learning)
@@ -303,13 +300,13 @@ AI AND PROJECTS:
 Madiha has built and shipped multiple AI-powered projects independently.
 
 Project 1: Feedback Loop (feedback-loop.pages.dev/src/dashboard.html)
-An AI-native VoC dashboard: structured feature request intake, Claude theme synthesis, enterprise-weighted prioritisation, and exportable PDF product briefs. Deployed on Cloudflare Pages with Worker-secured Anthropic API. Full write-up at madihaintech.me/feedback-loop.html.
+An AI-native dashboard that takes feature requests and turns them into a brief engineering can act on. Built in Cursor. Live on Cloudflare Pages with Worker-secured Anthropic API. Full write-up at madihaintech.me/feedback-loop.html.
 
 Project 2: Support Ticket Analyser (khankmadiha.github.io/support-ticket-analyser)
 An AI-native support workflow tool that detects documentation gaps, drafts responses grounded in existing knowledge, and publishes KB articles directly to Notion. Built using Cursor, Claude API, Cloudflare Workers, and Notion API. Full write-up at madihaintech.me/support-dashboard.html.
 
 Project 3: Claude-Powered Portfolio Assistant (live on this site)
-Built a production AI chatbot from scratch. Started with IBM Watson and Dialogflow CX before switching to the Anthropic API after hitting persistent permission errors. Secured the API key using a Cloudflare Worker proxy after GitHub secret scanning caught an exposed key. The chatbot runs live across all pages of her portfolio. Full write-up at madihaintech.me/chatbot.html.
+Built a production AI chatbot from scratch. Started with IBM Watson and Dialogflow CX before switching to the Anthropic API. Secured the API key using a Cloudflare Worker proxy. Full write-up at madihaintech.me/chatbot.html.
 
 Project 4: Articulate (articulate-app-production.up.railway.app)
 A full-stack speech practice app. Claude generates a personalised daily passage, the user records themselves, and AI scores accuracy, fluency, and pace. Includes a full dyslexia-friendly mode. Built with React, Node.js, and the Anthropic Claude API. Deployed on Railway. Full write-up at madihaintech.me/articulate.html.

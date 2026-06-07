@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <title>Articulate | Madiha Khan</title>
+  <title>Feedback Loop | Madiha Khan</title>
 
   <style>
     :root {
@@ -96,6 +96,68 @@
       from{opacity:0;transform:translateY(20px);}
       to{opacity:1;transform:translateY(0);}
     }
+
+    .hero-actions {
+      display: flex; align-items: center; gap: 1rem; justify-content: center;
+      margin-top: 1.75rem; flex-wrap: wrap;
+      animation: fadeUp 0.6s ease 0.25s both;
+    }
+
+    .hero-action-primary {
+      padding: 0.6rem 1.4rem; border-radius: 999px;
+      background: var(--accent); color: #fff;
+      font-size: 0.95rem; font-weight: 700; text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .hero-action-primary:hover { opacity: 0.88; }
+
+    .hero-action-secondary {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.6rem 1.25rem; border-radius: 999px;
+      border: 1.5px solid var(--border-strong);
+      font-size: 0.95rem; font-weight: 600; color: var(--text-dark);
+      text-decoration: none; background: rgba(255,255,255,0.6);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .hero-action-secondary:hover { border-color: var(--accent); background: rgba(255,255,255,0.9); }
+
+    .struggle-toggle {
+      margin-top: 1.25rem;
+      border-radius: 14px;
+      border: 1.5px solid var(--border-soft);
+      overflow: hidden;
+    }
+
+    .struggle-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 1.1rem; cursor: pointer;
+      background: rgba(180,140,135,0.06);
+      transition: background 0.2s;
+    }
+
+    .struggle-header:hover { background: rgba(180,140,135,0.1); }
+
+    .struggle-header-left { display: flex; align-items: center; gap: 0.6rem; }
+    .struggle-icon { font-size: 1rem; }
+    .struggle-label { font-size: 0.88rem; font-weight: 700; color: var(--accent); }
+    .struggle-chevron { font-size: 0.75rem; color: var(--accent); transition: transform 0.25s; }
+
+    .struggle-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+      padding: 0 1.1rem;
+      border-top: 1px solid transparent;
+    }
+
+    .struggle-body.open {
+      max-height: 300px;
+      padding: 1rem 1.1rem;
+      border-top-color: var(--border-soft);
+    }
+
+    .struggle-body p { font-size: 0.93rem; line-height: 1.7; color: var(--muted-dark); margin: 0; }
 
     .nav-cta {
       max-width: 980px; margin: -1.25rem auto 2.25rem;
@@ -210,6 +272,7 @@
     .badge-1 { background: #F5EEEC; color: #8B5E5B; border: 1px solid rgba(180,140,135,0.3); }
     .badge-2 { background: #fde8d8; color: #c05a2a; border: 1px solid rgba(233,140,106,0.3); }
     .badge-3 { background: #e8f4fd; color: #2a6fc0; border: 1px solid rgba(106,163,233,0.3); }
+    .badge-4 { background: #e8fdf0; color: #2ac06a; border: 1px solid rgba(106,233,163,0.3); }
 
     .phase-title-wrap h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.2rem; }
     .phase-title-wrap p { font-size: 0.92rem; color: var(--muted-dark); margin: 0; }
@@ -456,7 +519,7 @@
   <div class="site-nav-links">
     <a href="./index.html">Home</a>
     <a href="./about.html">About</a>
-    <a href="./skills.html">Technical depth</a>
+    <a href="./skills.html">Skills</a>
     <a class="active" href="./projects.html">Projects</a>
     <a href="./contact.html">Contact</a>
   </div>
@@ -464,12 +527,18 @@
 
   <section class="hero">
     <div class="hero-inner">
-      <p class="hero-label">Full-stack PWA · 2026</p>
-      <h1>Articulate</h1>
+      <p class="hero-label">Voice of the Customer · 2026</p>
+      <h1>Feedback Loop</h1>
       <p class="hero-highlight">
-        A daily reading practice app for professionals who want to speak with more confidence.
-        Generates a personalised passage every day using AI, then lets you record yourself and get scored on accuracy, fluency and pace.
+        An AI-native VoC dashboard I built to close the loop from support feature requests to engineering-ready briefs — structured intake, theme synthesis, enterprise-weighted prioritisation, and PDF export. Designed for the same problems a Product Quality Engineer owns every day.
       </p>
+      <div class="hero-actions">
+        <a class="hero-action-primary" href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer">Open demo →</a>
+        <a class="hero-action-secondary" href="https://github.com/KhanKMadiha/feedback-loop" target="_blank" rel="noopener noreferrer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View code
+        </a>
+      </div>
     </div>
   </section>
 
@@ -478,45 +547,65 @@
     <!-- WHAT IT DOES -->
     <div class="intro-card reveal">
       <p>
-        I built this because a senior engineering manager told me something I couldn't shake. You need to learn how to speak different languages. To customers, to engineers, to execs.
+        At Stack Overflow I surface 15+ high-impact feature requests to product and engineering every year — spotting recurring ticket patterns, building structured cases with log evidence, and weighting enterprise accounts higher in the queue. Most of that work still happens in spreadsheets and Slack threads.
       </p>
       <p>
-        So I built a full-stack PWA that generates a personalised reading passage every day using Claude, records your delivery, and scores your accuracy, fluency, and pace. It's live, free to use, and includes a complete dyslexia-friendly mode built from scratch.
+        Feedback Loop is the tooling I wish existed on every VoC review: capture structured feature requests, filter and select from the queue, let Claude group them into ranked themes with priority scores weighted by account tier, and export a PDF product brief engineering can actually use.
+      </p>
+      <p>
+        <strong>Try the live demo:</strong> <a href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer">feedback-loop.pages.dev/src/dashboard.html</a> — submit a request on the intake form first, then analyse tickets on the dashboard. AI synthesis runs via a secured Cloudflare Worker (5 runs per IP per hour on the public demo).
       </p>
       <div class="tag-row">
-        <span class="tag">Daily AI passages</span>
-        <span class="tag">Speech recording</span>
-        <span class="tag">Delivery scoring</span>
-        <span class="tag">Streak tracking</span>
-        <span class="tag">Favourites library</span>
-        <span class="tag">Push notifications</span>
+        <span class="tag">Voice of the Customer</span>
+        <span class="tag">Theme synthesis</span>
+        <span class="tag">Enterprise weighting</span>
+        <span class="tag">Anthropic API</span>
+        <span class="tag">Cloudflare Workers</span>
+        <span class="tag">JavaScript</span>
       </div>
+    </div>
+
+    <div class="intro-card reveal" style="border-color: rgba(42, 111, 192, 0.35); background: rgba(232, 244, 253, 0.45);">
+      <p class="section-label" style="text-align:left;margin-bottom:0.75rem;">Mapped to Product Quality Engineering</p>
+      <p style="margin:0;font-size:1rem;line-height:1.75;color:var(--muted-dark);">
+        A PQE owns the feedback loop between users and product — VoC synthesis, agentic prioritisation, senior escalation, and tooling that scales quality operations. This prototype demonstrates that mindset: structured signal intake, explicit tier-weighted scoring, theme ranking with business context, and infrastructure you can ship safely to a public URL.
+      </p>
     </div>
 
     <!-- HOW I BUILT IT -->
     <p class="section-label reveal">How I built it</p>
     <div class="reveal">
       <div class="stepper-nav">
-        <button class="phase-btn active" onclick="showPhase(1)">The idea</button>
-        <button class="phase-btn" onclick="showPhase(2)">Building the core</button>
-        <button class="phase-btn" onclick="showPhase(3)">Accessibility update</button>
+        <button class="phase-btn active" onclick="showPhase(1)">Why I built it</button>
+        <button class="phase-btn" onclick="showPhase(2)">Intake &amp; queue</button>
+        <button class="phase-btn" onclick="showPhase(3)">Themes &amp; briefs</button>
+        <button class="phase-btn" onclick="showPhase(4)">Ship it live</button>
       </div>
 
       <div class="phase-content active" id="phase-1">
         <div class="phase-header">
           <div><span class="phase-badge badge-1">01</span></div>
           <div class="phase-title-wrap">
-            <h3>A coffee chat conversation</h3>
-            <p>Where the idea came from</p>
+            <h3>From spreadsheet triage to a closed loop</h3>
+            <p>The VoC problem enterprise support actually needs solved</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>A senior engineering manager told me something that stuck: <strong>"You need to learn how to speak different languages. To customers, to engineers, to execs. They all need something different."</strong></p>
-          <p>I wanted to build something to practise that, daily and deliberately. Reading aloud in your own voice, on topics that matter to your actual career, felt like the right habit to build.</p>
+          <p>Every quarter I see the same pattern: three enterprise accounts ask for SAML session timeout controls, two Pro accounts want bulk user export, and the requests sit in separate tickets until someone manually connects the dots in a slide deck.</p>
+          <p>I built Feedback Loop to model how senior quality operations should feel: <strong>structured intake → filterable queue → AI theme synthesis → enterprise-weighted priority → exportable brief.</strong> That is the same loop I run manually with Jira and internal dashboards — here it is interactive and repeatable.</p>
+        </div>
+        <div class="struggle-toggle">
+          <div class="struggle-header" onclick="toggleStruggle(this)">
+            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">Design choice</span></div>
+            <span class="struggle-chevron">▼</span>
+          </div>
+          <div class="struggle-body">
+            <p>This is deliberately different from my Support Ticket Analyser project. That tool handles single-ticket KB gap workflows. Feedback Loop handles multi-ticket queue synthesis — the step that happens <em>after</em> triage, when you need to tell engineering what to build next and why.</p>
+          </div>
         </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" disabled>Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Building the core →</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Intake &amp; queue →</button>
         </div>
       </div>
 
@@ -524,18 +613,26 @@
         <div class="phase-header">
           <div><span class="phase-badge badge-2">02</span></div>
           <div class="phase-title-wrap">
-            <h3>React, Express and the Claude API</h3>
-            <p>Started in Cursor, continued in Claude Code</p>
+            <h3>Structured intake and ticket queue</h3>
+            <p>Request type, account tier, and context — not free-text chaos</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>I started building in Cursor, then moved to Claude Code as the project grew in complexity. The passage generation pipeline, recording flow, and AI scoring were all built end to end. Each passage is personalised to the user's job title, industry, goals, and the speakers they admire, generated fresh every day by Claude.</p>
-          <p>Recording uses the Web Speech API with real-time transcription. The transcript is compared against the original passage to score accuracy, fluency, and pace, with specific, constructive feedback, not just a number.</p>
-          <p>The app also tracks streaks, lets users save favourite passages to a library, and supports push notifications as an optional daily reminder.</p>
+          <p>The intake form captures feature requests by <strong>request type</strong> (Authentication, API, Integrations, User Management, Billing), <strong>account tier</strong> (Enterprise, Pro, Free), and structured context fields. Everything persists in local storage so the demo works without a backend database.</p>
+          <p>On the dashboard, Step 1 lets you filter by type and tier, then select tickets for analysis. I wanted recruiters and engineers to see the same signal I see when reviewing a VoC queue — not a wall of unstructured text.</p>
+        </div>
+        <div class="struggle-toggle">
+          <div class="struggle-header" onclick="toggleStruggle(this)">
+            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">The struggle</span></div>
+            <span class="struggle-chevron">▼</span>
+          </div>
+          <div class="struggle-body">
+            <p>Naming and information architecture took several iterations — Feature Signal, VoC Dashboard, Feedback Loop. The final name matches what the tool actually does: close the loop between customer signal and engineering action.</p>
+          </div>
         </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" onclick="showPhase(1)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Accessibility update →</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Themes &amp; briefs →</button>
         </div>
       </div>
 
@@ -543,16 +640,43 @@
         <div class="phase-header">
           <div><span class="phase-badge badge-3">03</span></div>
           <div class="phase-title-wrap">
-            <h3>Dyslexia-friendly mode</h3>
-            <p>A complete reading experience redesign, not just a font toggle</p>
+            <h3>AI theme synthesis and PDF briefs</h3>
+            <p>Claude groups, ranks, and packages signal for engineering</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>I noticed someone struggling to read while I was testing the app and it stuck with me. I didn't want to just add a font toggle and call it accessibility. So I rebuilt the entire reading experience from scratch for dyslexic users: one paragraph at a time, a reading ruler that follows your position, live word highlighting as you speak, syllable break markers, and an OpenDyslexic font option.</p>
-          <p>The AI passages themselves are adjusted too: shorter sentences, simpler vocabulary, avoiding easily-confused homophones. The accessibility goes all the way through to the content, not just the interface.</p>
+          <p>Step 2 sends selected tickets to Claude via a Cloudflare Worker proxy. The model groups them into themes, scores priority 1–10 using frequency and account tier (Enterprise &gt; Pro &gt; Free), and returns summaries, recommended actions, and affected accounts.</p>
+          <p>Step 3 exports a formatted PDF product brief with per-ticket supporting evidence — the artifact I would actually attach to a Jira epic or product review deck.</p>
+        </div>
+        <div class="struggle-toggle">
+          <div class="struggle-header" onclick="toggleStruggle(this)">
+            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">The struggle</span></div>
+            <span class="struggle-chevron">▼</span>
+          </div>
+          <div class="struggle-body">
+            <p>PDF export broke on deploy because jsPDF 2.5.2 on cdnjs returned a 404. Swapping to 2.5.1 fixed it — a reminder that portfolio demos need the same dependency hygiene as production apps.</p>
+          </div>
         </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" onclick="showPhase(2)">← Previous</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(4)">Next: Ship it live →</button>
+        </div>
+      </div>
+
+      <div class="phase-content" id="phase-4">
+        <div class="phase-header">
+          <div><span class="phase-badge badge-4">04</span></div>
+          <div class="phase-title-wrap">
+            <h3>Cloudflare Pages + Worker proxy</h3>
+            <p>Public demo with secrets off the client</p>
+          </div>
+        </div>
+        <div class="phase-body">
+          <p>The static app deploys to Cloudflare Pages via GitHub Actions. The Anthropic API key lives in a Cloudflare Worker (<code>feedback-loop-proxy</code>) with origin allowlisting and KV-backed rate limiting — 5 synthesis runs per IP per hour on the public demo.</p>
+          <p>Local dev uses a static file server on port 3000 and the Worker on port 8787. Same pattern as my portfolio chatbot and Support Ticket Analyser: never ship API keys to the browser.</p>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-nav-btn" onclick="showPhase(3)">← Previous</button>
           <button class="phase-nav-btn primary" onclick="document.getElementById('features-section').scrollIntoView({behavior:'smooth'})">See features ↓</button>
         </div>
       </div>
@@ -563,27 +687,27 @@
     <div class="feature-grid reveal">
 
       <div class="feature-card">
-        <span class="feature-icon">♿</span>
-        <h3>Dyslexia-friendly mode</h3>
-        <p>One paragraph at a time, reading ruler, live word highlighting, syllable breaks, OpenDyslexic font, and AI passages written for it too.</p>
+        <span class="feature-icon">📋</span>
+        <h3>Structured VoC intake</h3>
+        <p>Request type, account tier, and context fields — the metadata that makes prioritisation defensible to engineering.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">✨</span>
-        <h3>Personalised AI passages</h3>
-        <p>Claude generates each passage around your job, goals, focus areas, and the speakers you want to sound like. New every day.</p>
+        <span class="feature-icon">🎯</span>
+        <h3>Enterprise-weighted scoring</h3>
+        <p>Priority 1–10 from frequency and tier weighting. Enterprise accounts pull rank the way they do in real VoC reviews.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🎙</span>
-        <h3>Delivery scoring</h3>
-        <p>AI scores your accuracy, fluency and pace after each recording, with specific, constructive feedback.</p>
+        <span class="feature-icon">🧠</span>
+        <h3>Claude theme synthesis</h3>
+        <p>Groups selected tickets into themes with summaries, recommended actions, and affected accounts — not just a keyword cluster.</p>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🔀</span>
-        <h3>Two daily flows</h3>
-        <p>Get straight to the passage, or do a quick energy and theme check-in first. Your choice every morning.</p>
+        <span class="feature-icon">📄</span>
+        <h3>PDF product briefs</h3>
+        <p>Export an engineering-ready brief with supporting ticket evidence. The artifact you attach to a roadmap conversation.</p>
       </div>
 
     </div>
@@ -593,45 +717,45 @@
     <div class="tools-grid reveal">
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">Re</span></div>
-        <p class="tool-name">React 18</p>
-        <p class="tool-desc">Frontend with Vite and Tailwind CSS</p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">No</span></div>
-        <p class="tool-name">Node.js + Express</p>
-        <p class="tool-desc">Backend API server</p>
+        <div class="tool-logo"><span class="tool-initial">JS</span></div>
+        <p class="tool-name">Vanilla JavaScript</p>
+        <p class="tool-desc">Dashboard, intake form, local persistence</p>
       </div>
 
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">AI</span></div>
         <p class="tool-name">Anthropic Claude</p>
-        <p class="tool-desc">Passage generation and speech scoring</p>
+        <p class="tool-desc">Theme synthesis and prioritisation</p>
       </div>
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">WS</span></div>
-        <p class="tool-name">Web Speech API</p>
-        <p class="tool-desc">Real-time speech recognition</p>
+        <div class="tool-logo"><span class="tool-initial">CF</span></div>
+        <p class="tool-name">Cloudflare Workers</p>
+        <p class="tool-desc">API proxy, rate limiting, origin checks</p>
       </div>
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">PW</span></div>
-        <p class="tool-name">PWA</p>
-        <p class="tool-desc">Service worker, offline support, push notifications</p>
+        <div class="tool-logo"><span class="tool-initial">PG</span></div>
+        <p class="tool-name">Cloudflare Pages</p>
+        <p class="tool-desc">Static hosting via GitHub Actions</p>
       </div>
 
       <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">Rw</span></div>
-        <p class="tool-name">Railway + Docker</p>
-        <p class="tool-desc">Deployment and hosting</p>
+        <div class="tool-logo"><span class="tool-initial">KV</span></div>
+        <p class="tool-name">Workers KV</p>
+        <p class="tool-desc">Per-IP rate limit counters</p>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-logo"><span class="tool-initial">PDF</span></div>
+        <p class="tool-name">jsPDF</p>
+        <p class="tool-desc">Exportable product briefs</p>
       </div>
 
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">Cu</span></div>
         <p class="tool-name">Cursor</p>
-        <p class="tool-desc">Built the initial version in Cursor</p>
+        <p class="tool-desc">Built end to end in Cursor</p>
       </div>
 
     </div>
@@ -639,8 +763,8 @@
     <!-- TRY IT -->
     <div class="try-card reveal">
       <h3>Try it yourself</h3>
-      <p>The app is live and free to use. Set up your profile in about two minutes and get your first passage today.</p>
-      <a class="live-btn" href="https://articulate-app-production.up.railway.app" target="_blank" rel="noopener noreferrer">Open Articulate →</a>
+      <p>Submit a feature request, then open the dashboard to filter tickets, run AI analysis, and export a PDF brief.</p>
+      <a class="live-btn" href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer">Open Feedback Loop →</a>
     </div>
 
   </main>
@@ -708,6 +832,14 @@
       document.getElementById('phase-' + n).classList.add('active');
       document.querySelectorAll('.phase-btn')[n - 1].classList.add('active');
       currentPhase = n;
+    }
+
+    function toggleStruggle(header) {
+      const body = header.nextElementSibling;
+      const chevron = header.querySelector('.struggle-chevron');
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
     }
 
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';

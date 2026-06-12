@@ -32,244 +32,68 @@
       overflow-x: hidden;
     }
 
-    .bg-shapes {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none; z-index: 0; overflow: hidden;
-    }
-
-    .shape {
-      position: absolute; border-radius: 50%;
-      background: rgba(180, 140, 135, 0.06);
-      animation: float linear infinite;
-    }
-
+    .bg-shapes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+    .shape { position: absolute; border-radius: 50%; background: rgba(180, 140, 135, 0.06); animation: float linear infinite; }
     .shape:nth-child(1){width:300px;height:300px;top:5%;left:-8%;animation-duration:18s;}
     .shape:nth-child(2){width:180px;height:180px;top:20%;right:-5%;animation-duration:22s;animation-delay:-4s;}
     .shape:nth-child(3){width:240px;height:240px;top:50%;left:60%;animation-duration:26s;animation-delay:-8s;}
     .shape:nth-child(4){width:120px;height:120px;top:70%;left:10%;animation-duration:20s;animation-delay:-12s;}
     .shape:nth-child(5){width:200px;height:200px;top:85%;right:15%;animation-duration:24s;animation-delay:-6s;}
     .shape:nth-child(6){width:80px;height:80px;top:35%;left:45%;animation-duration:16s;animation-delay:-10s;}
-
-    @keyframes float {
-      0%{transform:translateY(0px) rotate(0deg) scale(1);opacity:0.6;}
-      33%{transform:translateY(-30px) rotate(60deg) scale(1.05);opacity:0.9;}
-      66%{transform:translateY(15px) rotate(120deg) scale(0.97);opacity:0.7;}
-      100%{transform:translateY(0px) rotate(180deg) scale(1);opacity:0.6;}
-    }
+    @keyframes float { 0%{transform:translateY(0px) rotate(0deg) scale(1);opacity:0.6;} 33%{transform:translateY(-30px) rotate(60deg) scale(1.05);opacity:0.9;} 66%{transform:translateY(15px) rotate(120deg) scale(0.97);opacity:0.7;} 100%{transform:translateY(0px) rotate(180deg) scale(1);opacity:0.6;} }
 
     .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
 
-    .hero {
-      min-height: 65vh;
-      display: flex; align-items: center;
-      padding: 6.5rem 1.5rem 2.5rem;
-      background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
-    }
+    .hero { min-height: 65vh; display: flex; align-items: center; padding: 6.5rem 1.5rem 2.5rem; background: linear-gradient(180deg, var(--surface) 0%, transparent 100%); }
+    .hero-inner { max-width: 980px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .hero-label { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 1rem; animation: fadeUp 0.6s ease both; }
+    h1 { margin: 0 0 1rem; font-size: clamp(2.6rem, 5vw, 3.6rem); line-height: 1.08; letter-spacing: -0.02em; animation: fadeUp 0.6s ease 0.05s both; }
+    .hero-highlight { margin: 0.9rem auto 0; max-width: 760px; font-size: 1.15rem; line-height: 1.7; color: var(--muted-dark); animation: fadeUp 0.6s ease 0.15s both; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
 
-    .hero-inner {
-      max-width: 980px; margin: 0 auto;
-      width: 100%; display: flex; flex-direction: column; align-items: center;
-    }
-
-    .hero-label {
-      font-size: 0.82rem; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--accent); margin: 0 0 1rem;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    h1 {
-      margin: 0 0 1rem;
-      font-size: clamp(2.6rem, 5vw, 3.6rem);
-      line-height: 1.08; letter-spacing: -0.02em;
-      animation: fadeUp 0.6s ease 0.05s both;
-    }
-
-    .hero-highlight {
-      margin: 0.9rem auto 0; max-width: 760px;
-      font-size: 1.15rem; line-height: 1.7; color: var(--muted-dark);
-      animation: fadeUp 0.6s ease 0.15s both;
-    }
-
-    @keyframes fadeUp {
-      from{opacity:0;transform:translateY(20px);}
-      to{opacity:1;transform:translateY(0);}
-    }
-
-    .hero-actions {
-      display: flex; align-items: center; gap: 1rem; justify-content: center;
-      margin-top: 1.75rem; flex-wrap: wrap;
-      animation: fadeUp 0.6s ease 0.25s both;
-    }
-
-    .hero-action-primary {
-      padding: 0.6rem 1.4rem; border-radius: 999px;
-      background: var(--accent); color: #fff;
-      font-size: 0.95rem; font-weight: 700; text-decoration: none;
-      transition: opacity 0.2s ease;
-    }
-
+    .hero-actions { display: flex; align-items: center; gap: 1rem; justify-content: center; margin-top: 1.75rem; flex-wrap: wrap; animation: fadeUp 0.6s ease 0.25s both; }
+    .hero-action-primary { padding: 0.6rem 1.4rem; border-radius: 999px; background: var(--accent); color: #fff; font-size: 0.95rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s ease; }
     .hero-action-primary:hover { opacity: 0.88; }
-
-    .hero-action-secondary {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.6rem 1.25rem; border-radius: 999px;
-      border: 1.5px solid var(--border-strong);
-      font-size: 0.95rem; font-weight: 600; color: var(--text-dark);
-      text-decoration: none; background: rgba(255,255,255,0.6);
-      transition: border-color 0.2s ease, background 0.2s ease;
-    }
-
+    .hero-action-secondary { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.6rem 1.25rem; border-radius: 999px; border: 1.5px solid var(--border-strong); font-size: 0.95rem; font-weight: 600; color: var(--text-dark); text-decoration: none; background: rgba(255,255,255,0.6); transition: border-color 0.2s ease, background 0.2s ease; }
     .hero-action-secondary:hover { border-color: var(--accent); background: rgba(255,255,255,0.9); }
 
-    .struggle-toggle {
-      margin-top: 1.25rem;
-      border-radius: 14px;
-      border: 1.5px solid var(--border-soft);
-      overflow: hidden;
-    }
-
-    .struggle-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.9rem 1.1rem; cursor: pointer;
-      background: rgba(180,140,135,0.06);
-      transition: background 0.2s;
-    }
-
+    .struggle-toggle { margin-top: 1.25rem; border-radius: 14px; border: 1.5px solid var(--border-soft); overflow: hidden; }
+    .struggle-header { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 1.1rem; cursor: pointer; background: rgba(180,140,135,0.06); transition: background 0.2s; }
     .struggle-header:hover { background: rgba(180,140,135,0.1); }
-
     .struggle-header-left { display: flex; align-items: center; gap: 0.6rem; }
     .struggle-icon { font-size: 1rem; }
     .struggle-label { font-size: 0.88rem; font-weight: 700; color: var(--accent); }
     .struggle-chevron { font-size: 0.75rem; color: var(--accent); transition: transform 0.25s; }
-
-    .struggle-body {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.25s ease;
-      padding: 0 1.1rem;
-      border-top: 1px solid transparent;
-    }
-
-    .struggle-body.open {
-      max-height: 300px;
-      padding: 1rem 1.1rem;
-      border-top-color: var(--border-soft);
-    }
-
+    .struggle-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s ease; padding: 0 1.1rem; border-top: 1px solid transparent; }
+    .struggle-body.open { max-height: 300px; padding: 1rem 1.1rem; border-top-color: var(--border-soft); }
     .struggle-body p { font-size: 0.93rem; line-height: 1.7; color: var(--muted-dark); margin: 0 0 0.75rem; }
     .struggle-body p:last-child { margin-bottom: 0; }
 
-    .nav-cta {
-      max-width: 980px; margin: -1.25rem auto 2.25rem;
-      padding: 0 1.5rem; position: relative; z-index: 1;
-      animation: fadeUp 0.6s ease 0.25s both;
-    }
-
-    .nav-cta-inner { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-
-    .nav-btn {
-      flex: 1 1 220px; max-width: 320px;
-      padding: 1.05rem 1.25rem; border-radius: 14px;
-      font-size: 1.05rem; font-weight: 700; text-decoration: none;
-      color: var(--text-dark); border: 1.5px solid var(--border-soft);
-      background-color: rgba(255,255,255,0.6);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); border-color: var(--border-strong); }
-
-    .nav-btn.primary {
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      color: #fff; border-color: transparent;
-      box-shadow: 0 6px 18px rgba(180,140,135,0.25);
-    }
-
-    .nav-btn.primary:hover { opacity: 0.9; transform: translateY(-2px); }
-
-    .content {
-      max-width: 980px; margin: 0 auto 3.5rem;
-      padding: 0 1.5rem; text-align: left;
-    }
-
+    .content { max-width: 980px; margin: 0 auto 3.5rem; padding: 0 1.5rem; text-align: left; }
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+    .section-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 0 0 1rem; text-align: center; }
 
-    .section-label {
-      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent);
-      margin: 0 0 1rem; text-align: center;
-    }
-
-    .intro-card {
-      padding: 2.25rem 2.5rem; border-radius: 22px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
-      margin-bottom: 2rem; text-align: left;
-      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-    }
-
+    .intro-card { padding: 2.25rem 2.5rem; border-radius: 22px; border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.55); backdrop-filter: blur(8px); margin-bottom: 2rem; text-align: left; transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease; }
     .intro-card:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(0,0,0,0.06); border-color: var(--border-strong); }
-
     .intro-card p { font-size: 1.05rem; line-height: 1.8; color: var(--muted-dark); margin: 0 0 1rem; }
     .intro-card p:last-child { margin-bottom: 0; }
     .intro-card strong { color: var(--text-dark); font-weight: 700; }
 
     .tag-row { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.25rem; }
+    .tag { padding: 0.45rem 0.85rem; border-radius: 999px; border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.65); font-size: 0.9rem; color: var(--text-dark); }
 
-    .tag {
-      padding: 0.45rem 0.85rem; border-radius: 999px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.65); font-size: 0.9rem; color: var(--text-dark);
-    }
-
-    /* ---------- BUILD STEPS ---------- */
-    .stepper-nav {
-      display: flex; gap: 0.5rem; justify-content: center;
-      margin-bottom: 1.5rem; flex-wrap: wrap;
-    }
-
-    .phase-btn {
-      padding: 0.6rem 1.2rem; border-radius: 999px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 700;
-      color: var(--muted-dark); cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
+    .stepper-nav { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .phase-btn { padding: 0.6rem 1.2rem; border-radius: 999px; border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 700; color: var(--muted-dark); cursor: pointer; transition: all 0.2s ease; }
     .phase-btn:hover { border-color: var(--border-strong); color: var(--text-dark); }
+    .phase-btn.active { border-color: transparent; background: linear-gradient(135deg, var(--accent), #E0B8B4); color: #fff; box-shadow: 0 4px 14px rgba(180,140,135,0.25); }
 
-    .phase-btn.active {
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      color: #fff; box-shadow: 0 4px 14px rgba(180,140,135,0.25);
-    }
-
-    .phase-content {
-      display: none;
-      padding: 2rem 2.25rem; border-radius: 22px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
-      margin-bottom: 1.5rem; text-align: left;
-      animation: phaseIn 0.35s ease both;
-    }
-
+    .phase-content { display: none; padding: 2rem 2.25rem; border-radius: 22px; border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.55); backdrop-filter: blur(8px); margin-bottom: 1.5rem; text-align: left; animation: phaseIn 0.35s ease both; }
     .phase-content.active { display: block; }
-
-    @keyframes phaseIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes phaseIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
     .phase-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
-
-    .phase-badge {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.35rem 0.85rem; border-radius: 999px;
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em;
-      text-transform: uppercase; flex-shrink: 0;
-    }
-
+    .phase-badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; flex-shrink: 0; }
     .badge-1 { background: #F5EEEC; color: #8B5E5B; border: 1px solid rgba(180,140,135,0.3); }
     .badge-2 { background: #fde8d8; color: #c05a2a; border: 1px solid rgba(233,140,106,0.3); }
     .badge-3 { background: #e8f4fd; color: #2a6fc0; border: 1px solid rgba(106,163,233,0.3); }
@@ -277,121 +101,41 @@
 
     .phase-title-wrap h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.2rem; }
     .phase-title-wrap p { font-size: 0.92rem; color: var(--muted-dark); margin: 0; }
-
     .phase-body p { font-size: 1rem; line-height: 1.8; color: var(--muted-dark); margin: 0 0 1rem; }
     .phase-body p:last-child { margin-bottom: 0; }
     .phase-body strong { color: var(--text-dark); }
 
     .phase-nav { display: flex; justify-content: space-between; margin-top: 1.25rem; gap: 1rem; }
-
-    .phase-nav-btn {
-      padding: 0.7rem 1.25rem; border-radius: 12px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 700;
-      color: var(--text-dark); cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
+    .phase-nav-btn { padding: 0.7rem 1.25rem; border-radius: 12px; border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 700; color: var(--text-dark); cursor: pointer; transition: all 0.2s ease; }
     .phase-nav-btn:hover { border-color: var(--border-strong); box-shadow: 0 6px 16px rgba(0,0,0,0.07); }
-    .phase-nav-btn.primary {
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      color: #fff; border-color: transparent;
-      box-shadow: 0 4px 14px rgba(180,140,135,0.25);
-    }
+    .phase-nav-btn.primary { background: linear-gradient(135deg, var(--accent), #E0B8B4); color: #fff; border-color: transparent; box-shadow: 0 4px 14px rgba(180,140,135,0.25); }
     .phase-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-    /* ---------- TECH STACK ---------- */
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 0.75rem; margin-bottom: 2rem;
-    }
-    @media (max-width: 700px) {
-      .tools-grid { grid-template-columns: repeat(4, 1fr); }
-    }
-    @media (max-width: 420px) {
-      .tools-grid { grid-template-columns: repeat(3, 1fr); }
-    }
+    .tools-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.75rem; margin-bottom: 2rem; }
+    @media (max-width: 700px) { .tools-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 420px) { .tools-grid { grid-template-columns: repeat(3, 1fr); } }
 
-    .tool-card {
-      padding: 1.5rem 1rem; border-radius: 18px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
-      text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
+    .tool-card { padding: 1.5rem 1rem; border-radius: 18px; border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.55); backdrop-filter: blur(8px); text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
     .tool-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(180,140,135,0.12); border-color: var(--border-strong); }
-
-    .tool-logo {
-      width: 48px; height: 48px; border-radius: 14px;
-      border: 1.5px solid var(--border-soft); background: #fff;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 0.75rem; overflow: hidden;
-    }
-
-    .tool-logo .tool-emoji { font-size: 1.5rem; }
+    .tool-logo { width: 48px; height: 48px; border-radius: 14px; border: 1.5px solid var(--border-soft); background: #fff; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem; overflow: hidden; }
     .tool-initial { font-size: 0.75rem; font-weight: 800; color: var(--muted-dark); letter-spacing: 0.02em; }
     .tool-name { font-size: 0.88rem; font-weight: 800; margin: 0 0 0.2rem; }
     .tool-desc { font-size: 0.78rem; color: var(--muted-dark); margin: 0; line-height: 1.4; }
 
-    /* ---------- TRY IT CARD ---------- */
-    .try-card {
-      padding: 2.25rem 2.5rem; border-radius: 22px;
-      border: 1.5px solid var(--border-strong);
-      background: linear-gradient(135deg, rgba(237,232,230,0.5), rgba(237,232,230,0.4));
-      backdrop-filter: blur(8px);
-      text-align: center; margin-bottom: 2rem;
-    }
-
+    .try-card { padding: 2.25rem 2.5rem; border-radius: 22px; border: 1.5px solid var(--border-strong); background: linear-gradient(135deg, rgba(237,232,230,0.5), rgba(237,232,230,0.4)); backdrop-filter: blur(8px); text-align: center; margin-bottom: 2rem; }
     .try-card h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.6rem; }
     .try-card p { font-size: 1rem; line-height: 1.75; color: var(--muted-dark); margin: 0 0 1.25rem; }
-    .try-card .live-btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.85rem 1.75rem; border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      color: #fff; text-decoration: none; font-weight: 800; font-size: 1.05rem;
-      box-shadow: 0 6px 18px rgba(180,140,135,0.25);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
+    .try-card .live-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.75rem; border-radius: 14px; background: linear-gradient(135deg, var(--accent), #E0B8B4); color: #fff; text-decoration: none; font-weight: 800; font-size: 1.05rem; box-shadow: 0 6px 18px rgba(180,140,135,0.25); transition: opacity 0.2s ease, transform 0.2s ease; }
     .try-card .live-btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
     .links { padding-bottom: 2.5rem; text-align: center; }
     .links h2 { font-size: 1.6rem; margin: 2rem 0 0.75rem; }
-    .links p { display: flex; justify-content: center; gap: 2.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
-
     footer { margin: 26px 0 34px; padding: 0 1.5rem; font-size: 0.95rem; color: rgba(26,26,26,0.6); text-align: center; }
 
-    @media (max-width: 600px) {
-      .nav-btn { flex: 1 1 100%; max-width: none; }
-      .links p { gap: 1.75rem; }
-      .intro-card, .phase-content { padding: 1.75rem 1.5rem; }
-    }
-
-    #chat-toggle {
-      position: fixed; bottom: 22px; right: 22px;
-      width: 58px; height: 58px; border-radius: 18px;
-      background: var(--surface); border: 1.5px solid var(--border-strong);
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 24px rgba(180,140,135,0.28);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      z-index: 9999; font-size: 24px;
-    }
+    #chat-toggle { position: fixed; bottom: 22px; right: 22px; width: 58px; height: 58px; border-radius: 18px; background: var(--surface); border: 1.5px solid var(--border-strong); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(180,140,135,0.28); transition: transform 0.2s ease, box-shadow 0.2s ease; z-index: 9999; font-size: 24px; }
     #chat-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(180,140,135,0.4); }
-
-    #chat-window {
-      position: fixed; bottom: 92px; right: 22px;
-      width: 360px; max-height: 530px;
-      background: var(--white-glass); backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1.5px solid var(--border-soft); border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(180,140,135,0.15), 0 4px 16px rgba(0,0,0,0.06);
-      display: flex; flex-direction: column; overflow: hidden; z-index: 9998;
-      transform: scale(0.92) translateY(14px); opacity: 0; pointer-events: none;
-      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.22s ease;
-    }
+    #chat-window { position: fixed; bottom: 92px; right: 22px; width: 360px; max-height: 530px; background: var(--white-glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1.5px solid var(--border-soft); border-radius: 24px; box-shadow: 0 20px 50px rgba(180,140,135,0.15), 0 4px 16px rgba(0,0,0,0.06); display: flex; flex-direction: column; overflow: hidden; z-index: 9998; transform: scale(0.92) translateY(14px); opacity: 0; pointer-events: none; transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.22s ease; }
     #chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
-
     .chat-header { background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%); border-bottom: 1px solid var(--border-soft); padding: 15px 16px; display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
     .chat-avatar { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #E0B8B4); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; color: #fff; flex-shrink: 0; }
     .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
@@ -409,91 +153,31 @@
     .msg.user { background: linear-gradient(135deg,var(--accent),#E0B8B4); color: #fff; border-bottom-right-radius: 5px; align-self: flex-end; }
     .typing-indicator { display: flex; gap: 4px; padding: 11px 14px; background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft); border-radius: 16px; border-bottom-left-radius: 5px; align-self: flex-start; width: fit-content; animation: msgIn 0.2s ease; }
     .typing-indicator span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: bounce 1.2s infinite; }
-    .typing-indicator span:nth-child(2){animation-delay:0.2s;}
-    .typing-indicator span:nth-child(3){animation-delay:0.4s;}
+    .typing-indicator span:nth-child(2){animation-delay:0.2s;} .typing-indicator span:nth-child(3){animation-delay:0.4s;}
     @keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:0.6;}30%{transform:translateY(-5px);opacity:1;} }
     .chat-input-area { padding: 11px 13px; border-top: 1px solid var(--border-soft); background: rgba(255,255,255,0.6); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; }
-    .chat-input-area textarea { flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px; padding: 9px 11px; font-family: 'Segoe UI',sans-serif; font-size: 0.875rem; color: var(--text-dark); background: rgba(255,255,255,0.88); resize: none; outline: none; max-height: 100px; line-height: 1.45; transition: border-color 0.2s; }
+    .chat-input-area textarea { flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px; padding: 9px 11px; font-family: 'Inter','Segoe UI',sans-serif; font-size: 0.875rem; color: var(--text-dark); background: rgba(255,255,255,0.88); resize: none; outline: none; max-height: 100px; line-height: 1.45; transition: border-color 0.2s; }
     .chat-input-area textarea:focus { border-color: var(--accent); }
     .chat-input-area textarea::placeholder { color: rgba(26,26,26,0.4); }
     .send-btn { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg,var(--accent),#E0B8B4); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.15s ease,box-shadow 0.15s ease,opacity 0.15s; box-shadow: 0 4px 12px rgba(180,140,135,0.32); }
-    .send-btn:hover{transform:scale(1.07);box-shadow:0 6px 16px rgba(180,140,135,0.42);}
-    .send-btn:active{transform:scale(0.95);}
-    .send-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
-    .send-btn svg{width:15px;height:15px;fill:white;}
+    .send-btn:hover{transform:scale(1.07);box-shadow:0 6px 16px rgba(180,140,135,0.42);} .send-btn:active{transform:scale(0.95);} .send-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;} .send-btn svg{width:15px;height:15px;fill:white;}
     @media(max-width:420px){#chat-window{width:calc(100vw - 28px);right:14px;bottom:84px;}#chat-toggle{right:14px;bottom:14px;}}
-  
-    /* ── sticky top nav ── */
-    .site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 999;
-      height: 58px;
-      display: flex;
-      align-items: center;
-      padding: 0 1.75rem;
-      background: rgba(250, 250, 248, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-soft);
-    }
-    .site-nav-brand {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      margin-right: auto;
-    }
-    .site-nav-links {
-      display: flex;
-      gap: 0.25rem;
-    }
-    .site-nav-links a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: rgba(26,26,26,0.55);
-      text-decoration: none;
-      padding: 0.35rem 0.7rem;
-      border-radius: 8px;
-      transition: color 0.15s ease;
-    }
-    .site-nav-links a:hover { color: var(--text-dark); }
-    .site-nav-links a.active {
-      color: var(--text-dark);
-      font-weight: 700;
-    }
-    @media (max-width: 540px) {
-      .site-nav-brand { display: none; }
-      .site-nav { padding: 0 1rem; justify-content: center; }
-    }
-    .connect-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 1.25rem;
-      flex-wrap: wrap;
-    }
-    .connect-links a {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: rgba(26,26,26,0.55);
-      text-decoration: none;
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.6);
-      transition: color 0.15s ease, border-color 0.15s ease;
-    }
-    .connect-links a:hover { color: var(--text-dark); border-color: var(--border-strong); }
-    .connect-links svg { flex-shrink: 0; }
+
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 58px; display: flex; align-items: center; padding: 0 1.75rem; background: rgba(250,250,248,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border-soft); }
+    .site-nav-brand { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); text-decoration: none; letter-spacing: 0.01em; margin-right: auto; }
+    .site-nav-links { display: flex; gap: 0.25rem; }
+    .site-nav-links a { font-size: 0.875rem; font-weight: 500; color: rgba(26,26,26,0.55); text-decoration: none; padding: 0.35rem 0.7rem; border-radius: 8px; transition: color 0.15s ease; }
+    .site-nav-links a:hover { color: var(--text-dark); } .site-nav-links a.active { color: var(--text-dark); font-weight: 700; }
+    @media (max-width: 540px) { .site-nav-brand { display: none; } .site-nav { padding: 0 1rem; justify-content: center; } }
+    .connect-links { display: flex; gap: 1rem; justify-content: center; margin-top: 1.25rem; flex-wrap: wrap; }
+    .connect-links a { display: flex; align-items: center; gap: 0.45rem; font-size: 0.875rem; font-weight: 600; color: rgba(26,26,26,0.55); text-decoration: none; padding: 0.45rem 0.9rem; border-radius: 999px; border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.6); transition: color 0.15s ease, border-color 0.15s ease; }
+    .connect-links a:hover { color: var(--text-dark); border-color: var(--border-strong); } .connect-links svg { flex-shrink: 0; }
   </style>
 </head>
 
 <body>
+<div class="bg-shapes"><div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div></div>
+
 <nav class="site-nav">
   <a class="site-nav-brand" href="./index.html">Madiha Khan</a>
   <div class="site-nav-links">
@@ -524,31 +208,29 @@
 
   <main class="content">
 
-    <!-- WHAT IT DOES -->
     <div class="intro-card reveal">
       <p>The pattern is always the same.</p>
       <p>A customer submits a feature request, another submits the same one two weeks later, and by the end of the quarter the same request is sitting across multiple tickets from different accounts.</p>
       <p>Someone has to manually go through every ticket, identify the pattern, and write up individual feature requests engineering can access and prioritise.</p>
-      <p>Feedback Loop is a dashboard that centralises feature requests in one place.</p>
-      <p>You can filter the queue by request type and account, then run a Claude-powered analysis that groups requests and prioritises by account tier, and export a PDF brief you can hand straight to engineering.</p>
-      <p><strong>Try it:</strong> Use the mock tickets already loaded or submit your own, then open the dashboard to analyse and export a brief.</p>
+      <p>Feedback Loop is a dashboard with two views. The <strong>Insights tab</strong> shows you the full picture at a glance. Request volume by category, tier mix, and trend over time. The <strong>Analysis tab</strong> lets you filter the queue, run a Claude-powered analysis, and export a PDF brief you can hand straight to engineering.</p>
+      <p><strong>Try it:</strong> Use the mock tickets already loaded or submit your own, then open the Insights tab to explore the data or switch to Analysis to run the full workflow.</p>
       <div class="tag-row">
         <span class="tag">Cursor</span>
         <span class="tag">Anthropic API</span>
         <span class="tag">Cloudflare Workers</span>
+        <span class="tag">Chart.js</span>
         <span class="tag">JavaScript</span>
-        <span class="tag">Feature Requests</span>
         <span class="tag">PDF Export</span>
       </div>
     </div>
 
-    <!-- HOW I BUILT IT -->
     <p class="section-label reveal">How I built it</p>
     <div class="reveal">
       <div class="stepper-nav">
         <button class="phase-btn active" onclick="showPhase(1)">Why I built it</button>
         <button class="phase-btn" onclick="showPhase(2)">Intake &amp; queue</button>
         <button class="phase-btn" onclick="showPhase(3)">Analysis &amp; export</button>
+        <button class="phase-btn" onclick="showPhase(4)">Insights &amp; import</button>
       </div>
 
       <div class="phase-content active" id="phase-1">
@@ -563,7 +245,6 @@
           <p>Feature requests come in through support tickets. I go through them manually, spot the pattern, submit individual feature requests, and build a case for engineering.</p>
           <p>Feedback Loop replaces the manual steps. The dashboard ensures nothing gets missed, and the PDF gives engineering a consistent brief every time.</p>
         </div>
-
         <div class="phase-nav">
           <button class="phase-nav-btn" disabled>Previous</button>
           <button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Intake &amp; queue →</button>
@@ -574,13 +255,14 @@
         <div class="phase-header">
           <div><span class="phase-badge badge-2">02</span></div>
           <div class="phase-title-wrap">
-            <h3>Step 1: Intake and queue</h3>
-            <p>Filter by request type and account, select your tickets, then run the analysis</p>
+            <h3>Step 1: Submit a feature request</h3>
+            <p>Structured intake captures the signal before it disappears into a backlog</p>
           </div>
         </div>
         <div class="phase-body">
-          <p>The intake form captures feature requests by request type (Authentication, API, Integrations, User Management, Billing) and account tier (Enterprise, Pro, Free). Every submission goes straight into the dashboard queue.</p>
-          <p>From there you filter by type and tier, select the tickets you want to analyse, and move to Step 2.</p>
+          <p>The Submit Feature Request page captures each request by product area (Authentication, API, Integrations, User Management, Billing), account tier (Enterprise, Pro, Free), priority, and description.</p>
+          <p>Every submission is saved locally and appears immediately in the dashboard queue.</p>
+          <p>You can also go to Settings to import your own tickets via CSV export from Zendesk, Intercom, or any support tool rather than submitting one by one.</p>
         </div>
         <div class="struggle-toggle">
           <div class="struggle-header" onclick="toggleStruggle(this)">
@@ -588,13 +270,13 @@
             <span class="struggle-chevron">▼</span>
           </div>
           <div class="struggle-body">
-            <p>The mock data went through seven versions. The first read like bug reports. Then it was too employer-specific. Then I noticed that the categories would have confused anyone who was not familiar with the product.</p>
+            <p>The mock data went through seven versions. The first read like bug reports. Then it was too employer-specific. Then the categories were confusing to anyone who was not already familiar with the product.</p>
             <p>It took longer to get twenty tickets that felt genuinely realistic and well spread across five request types than it took to build the intake form.</p>
           </div>
         </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" onclick="showPhase(1)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Themes &amp; briefs →</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Analysis &amp; export →</button>
         </div>
       </div>
 
@@ -607,8 +289,8 @@
           </div>
         </div>
         <div class="phase-body">
-          <p>Step 2 sends the selected tickets to Claude via a secured Cloudflare Worker. Claude then groups them into themes, scores each one by priority based on how frequently it appears and which account tiers are asking for it, and returns a summary with recommended actions and affected accounts.</p>
-          <p>Step 3 exports a PDF document with supporting evidence for each ticket, the document I would attach to a Jira epic or bring into a product review meeting.</p>
+          <p>Step 2 sends the selected tickets to Claude via a secured Cloudflare Worker. Claude groups them into themes, scores each one by priority based on how frequently it appears and which account tiers are asking for it, and returns a summary with recommended actions and affected accounts.</p>
+          <p>Step 3 exports a PDF document with supporting evidence for each ticket — the document I would attach to a Jira epic or bring into a product review meeting.</p>
         </div>
         <div class="struggle-toggle">
           <div class="struggle-header" onclick="toggleStruggle(this)">
@@ -618,68 +300,93 @@
           <div class="struggle-body">
             <p>The PDF export broke twice. The first version generated a blank document. The second had content but the layout was unreadable.</p>
             <p>When I deployed, the PDF library returned a 404 and the whole export silently failed until I checked the console. I used Cursor's debugger to trace and resolve the issue, then rebuilt the PDF layout from scratch.</p>
-            <p>The document includes a theme summary, the accounts affected, a recommended action for engineering, and a breakdown of each ticket with the feature request, why it matters to the customer, and the account tier and priority.</p>
           </div>
         </div>
         <div class="phase-nav">
           <button class="phase-nav-btn" onclick="showPhase(2)">← Previous</button>
+          <button class="phase-nav-btn primary" onclick="showPhase(4)">Next: Insights &amp; import →</button>
+        </div>
+      </div>
+
+      <div class="phase-content" id="phase-4">
+        <div class="phase-header">
+          <div><span class="phase-badge badge-4">04</span></div>
+          <div class="phase-title-wrap">
+            <h3>Insights tab and CSV import</h3>
+            <p>From a single workflow to a full analytics dashboard</p>
+          </div>
+        </div>
+        <div class="phase-body">
+          <p>After shipping the core Analysis workflow I added an Insights tab to give the full picture before you dive into individual tickets.</p>
+          <p>It shows total requests, top category, and tier mix. The stacked bar chart breaks down requests by category and account tier. The donut chart shows the overall tier split. The trend line shows request volume over time. Clicking any chart segment filters the Analysis view instantly.</p>
+          <p>The Settings page also supports CSV import so you can bring in your own feature request data rather than relying on the mock tickets. Upload a CSV export from Zendesk, Intercom, or any support tool, preview the data, and choose to merge with or replace the mock tickets.</p>
+          <p>Once imported you choose whether to use your data only or merge it with the mock tickets.</p>
+        </div>
+        <div class="struggle-toggle">
+          <div class="struggle-header" onclick="toggleStruggle(this)">
+            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">The struggle</span></div>
+            <span class="struggle-chevron">▼</span>
+          </div>
+          <div class="struggle-body">
+            <p>The Insights and Analysis panels were conflicting on initial render because of a hidden versus display flex issue. The panels were both trying to occupy the same space until I separated the visibility logic properly.</p>
+            <p>Getting the chart colours to match the tier system throughout the whole dashboard took more iterations than expected. The CSS variables needed wiring through Chart.js configuration rather than relying on stylesheet inheritance.</p>
+          </div>
+        </div>
+        <div class="phase-nav">
+          <button class="phase-nav-btn" onclick="showPhase(3)">← Previous</button>
           <button class="phase-nav-btn primary" onclick="document.getElementById('stack-section').scrollIntoView({behavior:'smooth'})">See the stack ↓</button>
         </div>
       </div>
     </div>
 
-    <!-- TECH STACK -->
     <p class="section-label reveal" id="stack-section">Tech stack</p>
     <div class="tools-grid reveal">
-
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">Cu</span></div>
         <p class="tool-name">Cursor</p>
         <p class="tool-desc">Built end to end in Cursor</p>
       </div>
-
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">AI</span></div>
         <p class="tool-name">Anthropic Claude</p>
         <p class="tool-desc">Groups requests and scores priority</p>
       </div>
-
+      <div class="tool-card">
+        <div class="tool-logo"><span class="tool-initial">CH</span></div>
+        <p class="tool-name">Chart.js</p>
+        <p class="tool-desc">Stacked bar, donut, and trend charts</p>
+      </div>
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">CF</span></div>
         <p class="tool-name">Cloudflare Workers</p>
         <p class="tool-desc">Secures the API key and rate limits the public demo</p>
       </div>
-
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">PG</span></div>
         <p class="tool-name">Cloudflare Pages</p>
         <p class="tool-desc">Hosts the live demo</p>
       </div>
-
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">PDF</span></div>
         <p class="tool-name">jsPDF</p>
         <p class="tool-desc">Generates the PDF document</p>
       </div>
-
       <div class="tool-card">
         <div class="tool-logo"><span class="tool-initial">JS</span></div>
         <p class="tool-name">JavaScript</p>
-        <p class="tool-desc">Dashboard, intake form, ticket storage</p>
+        <p class="tool-desc">Dashboard, intake form, import, storage</p>
       </div>
-
     </div>
 
-    <!-- TRY IT -->
     <div class="try-card reveal">
       <h3>Try it yourself</h3>
-      <p>Submit a feature request, then open the dashboard to filter tickets, run AI analysis, and export a PDF brief.</p>
+      <p>Submit a feature request first, or go to Settings to import your own tickets via CSV. Then open the Insights tab to explore the data at a glance, or switch to Analysis to filter tickets, run the AI analysis, and export a PDF brief.</p>
       <a class="live-btn" href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer">Open Feedback Loop →</a>
     </div>
 
   </main>
 
-    <section class="links reveal">
+  <section class="links reveal">
     <h2>Let's connect</h2>
     <div class="connect-links">
       <a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">
@@ -775,7 +482,7 @@ PORTFOLIO PROJECTS:
 Madiha has built and shipped multiple AI-native tools independently, all built in Cursor.
 
 Project 1: Feedback Loop (feedback-loop.pages.dev/src/dashboard.html)
-An AI-native VoC dashboard that takes a queue of feature requests, groups them by theme using Claude, scores priority by account tier, and exports a PDF product brief engineering can act on straight away. Built because Madiha was already running this process manually at Stack Overflow using Salesforce and wanted to show what it looks like as a proper system. Full write-up at madihaintech.me/feedback-loop.html.
+An AI-native VoC dashboard with two views. The Insights tab shows request volume by category, tier mix, and trend over time. The Analysis tab lets you filter the queue, run Claude-powered theme synthesis, and export a PDF product brief engineering can act on straight away. Also supports CSV import from Zendesk, Intercom, or any support tool. Full write-up at madihaintech.me/feedback-loop.html.
 
 Project 2: Support Ticket Analyser (khankmadiha.github.io/support-ticket-analyser)
 An AI-native support workflow that detects documentation gaps, drafts responses grounded in existing knowledge, and publishes KB articles directly to Notion. Built using Cursor, Claude API, Cloudflare Workers, and Notion API. Full write-up at madihaintech.me/support-dashboard.html.
@@ -787,7 +494,7 @@ Project 4: Claude-Powered Portfolio Assistant (live on this site)
 Built a production AI chatbot from scratch. Went through three full iterations starting with IBM Watson and Google Dialogflow CX before rebuilding on the Anthropic API. Secured the API key using a Cloudflare Worker proxy after GitHub secret scanning caught an exposed key. Full write-up at madihaintech.me/chatbot.html.
 
 TECHNICAL SKILLS:
-Cursor, Anthropic Claude API, REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, Rootly, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Cloudflare Workers, Prompt engineering, Python (learning)
+Cursor, Anthropic Claude API, REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, Rootly, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Cloudflare Workers, Chart.js, Prompt engineering, Python (learning)
 
 CERTIFICATIONS:
 IBM: Artificial Intelligence Fundamentals with Capstone Project, Generative AI (Prompt Engineering, Introduction and Applications), Datadog: Performance Monitoring (Zero to Hero)
@@ -807,7 +514,7 @@ TONE GUIDELINES:
 - If asked something you do not know, invite them to reach out via madihaintech.me/contact.html or linkedin.com/in/madihakhan-
 - Never invent or assume information not listed above`;
 
-    const WELCOME_MESSAGE = "Hi there! 👋🏼 I'm Madiha's portfolio assistant.\n\nMadiha is a Senior Product Support Engineer with 5+ years in enterprise SaaS support. She currently owns the entire EMEA support function at Stack Overflow across 100+ enterprise accounts.\n\nFeel free to ask me anything about her experience, skills, or projects!";
+    const WELCOME_MESSAGE = "Hi there! I am Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional with 5+ years closing the loop between what customers experience and what gets built. She owns all EMEA support at Stack Overflow across 100+ enterprise accounts and builds AI-native tools in Cursor.\n\nFeel free to ask me anything about her experience, skills, or projects!";
 
     const conversationHistory = [];
     let chatOpen = false;
@@ -857,7 +564,7 @@ TONE GUIDELINES:
           body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system: SYSTEM_PROMPT, messages: conversationHistory })
         });
         const data = await response.json();
-        const reply = data?.content?.[0]?.text || "I'm sorry, I wasn't able to get a response just now. Please try again in a moment!";
+        const reply = data?.content?.[0]?.text || "I am sorry, I was not able to get a response just now. Please try again in a moment!";
         removeTyping(); appendMessage('bot', reply);
         conversationHistory.push({ role: 'assistant', content: reply });
       } catch (err) {

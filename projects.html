@@ -97,6 +97,10 @@
     .project-card--lead h2 { font-size:2.1rem; }
     .project-card--lead p { margin-bottom:1rem; line-height:1.6; }
     .project-card--lead .tag-row { margin-bottom:1.25rem; }
+    .project-card--lead .card-github { width:auto; height:auto; border-radius:999px; padding:0.3rem 0.65rem; gap:0.35rem; font-size:0.8rem; font-weight:600; }
+    .project-card--lead .card-github--live { background:rgba(76,175,130,0.1); color:#2d7a5a; border-color:rgba(76,175,130,0.35); }
+    .project-card--lead .card-github--live:hover { color:#2d7a5a; border-color:rgba(76,175,130,0.5); }
+    .project-card--sub .card-github--live { color:#2d7a5a; border-color:rgba(76,175,130,0.35); }
     .sub-cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
     @media(max-width:768px){.sub-cards-grid{grid-template-columns:1fr;}}
     .project-card--sub { padding:1.75rem; }
@@ -134,15 +138,17 @@
   <main class="content">
 
     <div class="project-card project-card--lead reveal">
-      <p class="project-label">Product Feedback · 2026</p>
+      <p class="project-label">Product feedback</p>
       <div class="card-header">
         <h2>Feedback Loop</h2>
         <div class="card-header-right">
-          <a class="card-github" href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer" title="Open live demo" aria-label="Open live demo">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <a class="card-github card-github--live" href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer" title="Open live demo" aria-label="Open live demo">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Live demo
           </a>
           <a class="card-github" href="https://github.com/KhanKMadiha/feedback-loop" target="_blank" rel="noopener noreferrer" title="View code on GitHub" aria-label="View code on GitHub">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
           </a>
         </div>
       </div>
@@ -159,55 +165,53 @@
     <div class="sub-cards-grid">
 
       <div class="project-card project-card--sub reveal">
-        <p class="project-label">Support Operations · 2026</p>
+        <p class="project-label">Support ops</p>
         <div class="card-header">
           <h2>Support Ticket Analyser</h2>
           <div class="card-header-right">
-            <a class="card-github" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer" title="Open live demo" aria-label="Open live demo">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a class="card-github card-github--live" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer" title="Open live demo" aria-label="Open live demo">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
             </a>
             <a class="card-github" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer" title="View code on GitHub" aria-label="View code on GitHub">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             </a>
           </div>
         </div>
-        <p class="project-sub">The documentation gap is a product signal. I built the tooling to prove it.</p>
-        <p>Detects documentation gaps in incoming tickets, drafts responses grounded in the knowledge base, and publishes KB articles straight to Notion.</p>
+        <p>Catches the documentation gap before the next ticket repeats it.</p>
         <div class="tag-row">
           <span class="tag">Cursor</span>
           <span class="tag">Notion API</span>
         </div>
-        <a class="card-cta" href="./support-dashboard.html">View project →</a>
+        <a class="card-cta" href="./support-dashboard.html">View →</a>
       </div>
 
       <div class="project-card project-card--sub reveal">
-        <p class="project-label">Full-stack app · 2026</p>
+        <p class="project-label">Full stack app</p>
         <div class="card-header">
           <h2>Articulate</h2>
           <div class="card-header-right">
-            <a class="card-github" href="https://articulate-app-production.up.railway.app" target="_blank" rel="noopener noreferrer" title="Open live demo" aria-label="Open live demo">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <a class="card-github card-github--live" href="https://articulate-app-production.up.railway.app" target="_blank" rel="noopener noreferrer" title="Open live demo" aria-label="Open live demo">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
             </a>
             <a class="card-github" href="https://github.com/KhanKMadiha/articulate-app" target="_blank" rel="noopener noreferrer" title="View code on GitHub" aria-label="View code on GitHub">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             </a>
           </div>
         </div>
-        <p class="project-sub">I wanted to feel what users feel when they hit a problem. So I built the whole thing from scratch and found out.</p>
-        <p>AI-tailored speech practice passages, delivery scoring, and a complete dyslexia-friendly mode. Built with React and Node.js and deployed on Railway.</p>
+        <p>Speech coaching app built end to end, with a dyslexia friendly mode.</p>
         <div class="tag-row">
           <span class="tag">Cursor to Claude Code</span>
           <span class="tag">React + Node</span>
         </div>
-        <a class="card-cta" href="./articulate.html">View project →</a>
+        <a class="card-cta" href="./articulate.html">View →</a>
       </div>
 
       <div class="project-card project-card--sub reveal">
-        <p class="project-label">Conversational AI · 2025</p>
+        <p class="project-label">Conversational AI</p>
         <div class="card-header">
-          <h2>Claude-Powered Portfolio Assistant</h2>
+          <h2>Portfolio Assistant</h2>
           <div class="card-header-right">
-            <button class="card-github" onclick="toggleChat()" title="Open live demo" aria-label="Open live demo">
+            <button class="card-github card-github--live" onclick="toggleChat()" title="Open live demo" aria-label="Open live demo">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             </button>
             <a class="card-github" href="https://github.com/KhanKMadiha/madihaintech-site" target="_blank" rel="noopener noreferrer" title="View code on GitHub" aria-label="View code on GitHub">
@@ -215,13 +219,12 @@
             </a>
           </div>
         </div>
-        <p class="project-sub">Three full iterations. Real production problems at every stage. Each one solved.</p>
-        <p>From IBM Watson to Dialogflow CX to the Anthropic API, each version surfaced real production issues. The live version secures the key via a Cloudflare Workers proxy.</p>
+        <p>Three production rebuilds, this one secured server side.</p>
         <div class="tag-row">
           <span class="tag">Claude Code</span>
           <span class="tag">Security</span>
         </div>
-        <a class="card-cta" href="./chatbot.html">View project →</a>
+        <a class="card-cta" href="./chatbot.html">View →</a>
       </div>
 
     </div>

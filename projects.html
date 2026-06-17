@@ -93,6 +93,17 @@
     .connect-links { display:flex; gap:1rem; justify-content:center; margin-top:1.25rem; flex-wrap:wrap; }
     .connect-links a { display:flex; align-items:center; gap:0.45rem; font-size:0.875rem; font-weight:600; color:rgba(26,26,26,0.55); text-decoration:none; padding:0.45rem 0.9rem; border-radius:999px; border:1.5px solid var(--border-soft); background:rgba(255,255,255,0.6); transition:color 0.15s ease,border-color 0.15s ease; }
     .connect-links a:hover { color:var(--text-dark); border-color:var(--border-strong); } .connect-links svg { flex-shrink:0; }
+    .project-card--lead { border-left:4px solid var(--accent); padding:2.75rem; }
+    .project-card--lead h2 { font-size:2.1rem; }
+    .sub-cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+    @media(max-width:768px){.sub-cards-grid{grid-template-columns:1fr;}}
+    .project-card--sub { padding:1.75rem; }
+    .project-card--sub h2 { font-size:1.35rem; }
+    .project-card--sub p { font-size:0.9rem; line-height:1.6; }
+    .project-card--sub .project-sub { font-size:0.95rem; }
+    .outcome-box { background:rgba(212,164,160,0.1); border:1.5px solid var(--border-strong); border-radius:12px; padding:0.85rem 1.1rem; margin-bottom:1.5rem; font-size:0.9rem; line-height:1.6; }
+    .outcome-box strong { color:var(--accent); font-weight:700; }
+    button.card-github { font-family:inherit; cursor:pointer; }
   </style>
 </head>
 
@@ -120,12 +131,15 @@
 
   <main class="content">
 
-    <div class="project-card reveal">
+    <div class="project-card project-card--lead reveal">
       <p class="project-label">Product Feedback · 2026</p>
       <div class="card-header">
         <h2>Feedback Loop</h2>
         <div class="card-header-right">
-          <span class="status-badge">Live demo</span>
+          <a class="card-github" href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer" title="Open live demo">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live demo
+          </a>
           <a class="card-github" href="https://github.com/KhanKMadiha/feedback-loop" target="_blank" rel="noopener noreferrer" title="View code on GitHub">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
@@ -134,85 +148,89 @@
       </div>
       <p class="project-sub">Turning feature requests into an engineering brief in three steps.</p>
       <p>Feature requests arrive in separate tickets. The Feedback Loop dashboard brings them together, groups them by theme, and exports a PDF document you can hand straight to engineering.</p>
+      <div class="outcome-box"><strong>Outcome:</strong> ADD REAL NUMBER HERE</div>
       <div class="tag-row">
         <span class="tag">Cursor</span>
-        <span class="tag">Anthropic API</span>
-        <span class="tag">Cloudflare Workers</span>
-        <span class="tag">JavaScript</span>
+        <span class="tag">Claude API</span>
+        <span class="tag">PDF export</span>
       </div>
       <a class="card-cta" href="./feedback-loop.html">View project →</a>
     </div>
 
-    <div class="project-card reveal">
-      <p class="project-label">Support Operations · 2026</p>
-      <div class="card-header">
-        <h2>Support Ticket Analyser</h2>
-        <div class="card-header-right">
-          <span class="status-badge">Live demo</span>
-          <a class="card-github" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer" title="View code on GitHub">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-      <p class="project-sub">The documentation gap is a product signal. I built the tooling to prove it.</p>
-      <p>Paste a ticket, match it against the knowledge base, surface any documentation gaps, draft a response, and publish a KB article directly to Notion.</p>
-      <div class="tag-row">
-        <span class="tag">Cursor</span>
-        <span class="tag">Anthropic API</span>
-        <span class="tag">Cloudflare Workers</span>
-        <span class="tag">Notion API</span>
-        <span class="tag">JavaScript</span>
-      </div>
-      <a class="card-cta" href="./support-dashboard.html">View project →</a>
-    </div>
+    <div class="sub-cards-grid">
 
-    <div class="project-card reveal">
-      <p class="project-label">Full-stack app · 2026</p>
-      <div class="card-header">
-        <h2>Articulate</h2>
-        <div class="card-header-right">
-          <span class="status-badge">Live</span>
-          <a class="card-github" href="https://github.com/KhanKMadiha/articulate-app" target="_blank" rel="noopener noreferrer" title="View code on GitHub">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
+      <div class="project-card project-card--sub reveal">
+        <p class="project-label">Support Operations · 2026</p>
+        <div class="card-header">
+          <h2>Support Ticket Analyser</h2>
+          <div class="card-header-right">
+            <a class="card-github" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer" title="Open live demo">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live demo
+            </a>
+            <a class="card-github" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer" title="View code on GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
         </div>
+        <p class="project-sub">The documentation gap is a product signal. I built the tooling to prove it.</p>
+        <p>Detects documentation gaps in incoming tickets, drafts responses grounded in the knowledge base, and publishes KB articles straight to Notion.</p>
+        <div class="tag-row">
+          <span class="tag">Cursor</span>
+          <span class="tag">Notion API</span>
+        </div>
+        <a class="card-cta" href="./support-dashboard.html">View project →</a>
       </div>
-      <p class="project-sub">I wanted to feel what users feel when they hit a problem. So I built the whole thing from scratch and found out.</p>
-      <p>A speech coaching app built from scratch with React and Node.js. Generates AI-tailored practice passages based on your career goals, records your delivery, and scores you on accuracy, fluency, and pace. Includes a complete dyslexia-friendly mode. Deployed to production on Railway.</p>
-      <div class="tag-row">
-        <span class="tag">React</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">Claude API</span>
-        <span class="tag">Speech recognition</span>
-        <span class="tag">Cursor</span>
-        <span class="tag">Railway</span>
-      </div>
-      <a class="card-cta" href="./articulate.html">View project →</a>
-    </div>
 
-    <div class="project-card reveal">
-      <p class="project-label">Conversational AI · 2025</p>
-      <div class="card-header">
-        <h2>Claude-Powered Portfolio Assistant</h2>
-        <div class="card-header-right">
-          <span class="status-badge">Live · 3 iterations</span>
-          <a class="card-github" href="https://github.com/KhanKMadiha/madihaintech-site" target="_blank" rel="noopener noreferrer" title="View code on GitHub">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
+      <div class="project-card project-card--sub reveal">
+        <p class="project-label">Full-stack app · 2026</p>
+        <div class="card-header">
+          <h2>Articulate</h2>
+          <div class="card-header-right">
+            <a class="card-github" href="https://articulate-app-production.up.railway.app" target="_blank" rel="noopener noreferrer" title="Open live demo">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live demo
+            </a>
+            <a class="card-github" href="https://github.com/KhanKMadiha/articulate-app" target="_blank" rel="noopener noreferrer" title="View code on GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
         </div>
+        <p class="project-sub">I wanted to feel what users feel when they hit a problem. So I built the whole thing from scratch and found out.</p>
+        <p>AI-tailored speech practice passages, delivery scoring, and a complete dyslexia-friendly mode. Built with React and Node.js and deployed on Railway.</p>
+        <div class="tag-row">
+          <span class="tag">Cursor to Claude Code</span>
+          <span class="tag">React + Node</span>
+        </div>
+        <a class="card-cta" href="./articulate.html">View project →</a>
       </div>
-      <p class="project-sub">Three full iterations. Real production problems at every stage. Each one solved.</p>
-      <p>Started with IBM Watson, moved to Google Dialogflow CX, then rebuilt on the Anthropic API. Each version came with its own production issues: missing permissions, API key exposure, CORS failures. The live version uses a Cloudflare Workers proxy to keep the key server-side.</p>
-      <div class="tag-row">
-        <span class="tag">Anthropic API</span>
-        <span class="tag">Cloudflare Workers</span>
-        <span class="tag">Prompt engineering</span>
-        <span class="tag">Security</span>
+
+      <div class="project-card project-card--sub reveal">
+        <p class="project-label">Conversational AI · 2025</p>
+        <div class="card-header">
+          <h2>Claude-Powered Portfolio Assistant</h2>
+          <div class="card-header-right">
+            <button class="card-github" onclick="toggleChat()" title="Open live demo">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Live demo
+            </button>
+            <a class="card-github" href="https://github.com/KhanKMadiha/madihaintech-site" target="_blank" rel="noopener noreferrer" title="View code on GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+        <p class="project-sub">Three full iterations. Real production problems at every stage. Each one solved.</p>
+        <p>From IBM Watson to Dialogflow CX to the Anthropic API, each version surfaced real production issues. The live version secures the key via a Cloudflare Workers proxy.</p>
+        <div class="tag-row">
+          <span class="tag">Claude Code</span>
+          <span class="tag">Security</span>
+        </div>
+        <a class="card-cta" href="./chatbot.html">View project →</a>
       </div>
-      <a class="card-cta" href="./chatbot.html">View project →</a>
+
     </div>
 
   </main>
@@ -293,7 +311,7 @@ KEY ACHIEVEMENTS:
 - Saved 4+ hours per month by designing an internal Salesforce workflow to automate feature request triage and reporting
 
 PORTFOLIO PROJECTS:
-Madiha has built and shipped multiple AI-native tools independently, all built in Cursor.
+Madiha has built and shipped multiple AI-native tools independently. Feedback Loop and Support Ticket Analyser were built entirely in Cursor. Articulate started in Cursor before the build moved to Claude Code. The portfolio chatbot itself was built in Claude Code.
 
 Project 1: Feedback Loop (feedback-loop.pages.dev/src/dashboard.html)
 An AI-native VoC dashboard that takes a queue of feature requests, groups them by theme using Claude, scores priority by account tier, and exports a PDF product brief engineering can act on straight away. Built because Madiha was already running this process manually at Stack Overflow using Salesforce and wanted to show what it looks like as a proper system. Full write-up at madihaintech.me/feedback-loop.html.

@@ -45,6 +45,7 @@
     .tag { padding:0.4rem 0.75rem; border-radius:999px; border:1.5px solid var(--border-soft); background:rgba(255,255,255,0.65); font-size:0.85rem; color:var(--text-dark); }
     .card-cta { display:inline-flex; align-items:center; gap:0.5rem; font-size:1rem; font-weight:700; color:var(--accent); text-decoration:none; }
     .card-github { display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; border:1.5px solid var(--border-soft); background:rgba(255,255,255,0.5); color:var(--muted-dark); text-decoration:none; padding:0; transition:color 0.2s ease,border-color 0.2s ease; }
+    .card-header .project-label { margin-bottom:0; }
     .card-github:hover { color:var(--text-dark); border-color:var(--border-strong); }
     .card-header { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-bottom:0.5rem; }
     .card-header h2 { margin:0; }
@@ -137,9 +138,8 @@
   <main class="content">
 
     <div class="project-card project-card--lead reveal">
-      <p class="project-label">Product feedback</p>
       <div class="card-header">
-        <h2>Feedback Loop</h2>
+        <p class="project-label">Product feedback</p>
         <div class="card-header-right">
           <a class="card-github card-github--live" href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer" title="Open live demo" aria-label="Open live demo">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
@@ -151,6 +151,7 @@
           </a>
         </div>
       </div>
+      <h2>Feedback Loop</h2>
       <p class="project-sub">Turning feature requests into an engineering brief in three steps.</p>
       <p>Feature requests arrive in separate tickets. The Feedback Loop dashboard brings them together, groups them by theme, and exports a PDF document you can hand straight to engineering.</p>
       <div class="tag-row">
@@ -164,9 +165,8 @@
     <div class="sub-cards-grid">
 
       <div class="project-card project-card--sub reveal">
-        <p class="project-label">Support ops</p>
         <div class="card-header">
-          <h2>Support Ticket Analyser</h2>
+          <p class="project-label">Support ops</p>
           <div class="card-header-right">
             <a class="card-github card-github--live" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer" title="Open live demo" aria-label="Open live demo">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
@@ -176,6 +176,7 @@
             </a>
           </div>
         </div>
+        <h2>Support Ticket Analyser</h2>
         <p>Catches the documentation gap before the next ticket repeats it.</p>
         <div class="tag-row">
           <span class="tag">Cursor</span>
@@ -185,9 +186,8 @@
       </div>
 
       <div class="project-card project-card--sub reveal">
-        <p class="project-label">Full stack app</p>
         <div class="card-header">
-          <h2>Articulate</h2>
+          <p class="project-label">Full stack app</p>
           <div class="card-header-right">
             <a class="card-github card-github--live" href="https://articulate-app-production.up.railway.app" target="_blank" rel="noopener noreferrer" title="Open live demo" aria-label="Open live demo">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
@@ -197,6 +197,7 @@
             </a>
           </div>
         </div>
+        <h2>Articulate</h2>
         <p>Speech coaching app built end to end, with a dyslexia friendly mode.</p>
         <div class="tag-row">
           <span class="tag">Cursor to Claude Code</span>
@@ -206,9 +207,8 @@
       </div>
 
       <div class="project-card project-card--sub reveal">
-        <p class="project-label">Conversational AI</p>
         <div class="card-header">
-          <h2>Portfolio Assistant</h2>
+          <p class="project-label">Conversational AI</p>
           <div class="card-header-right">
             <button class="card-github card-github--live" onclick="toggleChat()" title="Open live demo" aria-label="Open live demo">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
@@ -218,6 +218,7 @@
             </a>
           </div>
         </div>
+        <h2>Portfolio Assistant</h2>
         <p>Three production rebuilds, this one secured server side.</p>
         <div class="tag-row">
           <span class="tag">Claude Code</span>

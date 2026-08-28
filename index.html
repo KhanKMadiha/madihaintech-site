@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <title>Madiha Khan | Senior Support Professional</title>
+  <title>Madiha Khan | Support Operations & AI Systems</title>
 
   <style>
     :root {
@@ -33,499 +33,2461 @@
       overflow-x: hidden;
     }
 
-    .bg-shapes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
-    .shape { position: absolute; border-radius: 50%; background: rgba(180, 140, 135, 0.06); animation: float linear infinite; }
-    .shape:nth-child(1) { width: 320px; height: 320px; top: 5%; left: -8%; animation-duration: 18s; }
-    .shape:nth-child(2) { width: 180px; height: 180px; top: 20%; right: -5%; animation-duration: 22s; animation-delay: -4s; }
-    .shape:nth-child(3) { width: 250px; height: 250px; top: 50%; left: 60%; animation-duration: 26s; animation-delay: -8s; }
-    .shape:nth-child(4) { width: 120px; height: 120px; top: 70%; left: 10%; animation-duration: 20s; animation-delay: -12s; }
-    .shape:nth-child(5) { width: 200px; height: 200px; top: 85%; right: 15%; animation-duration: 24s; animation-delay: -6s; }
-    .shape:nth-child(6) { width: 90px; height: 90px; top: 38%; left: 44%; animation-duration: 16s; animation-delay: -10s; }
+    .bg-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(180, 140, 135, 0.06);
+      animation: float linear infinite;
+    }
+
+    .shape:nth-child(1) {
+      width: 320px;
+      height: 320px;
+      top: 5%;
+      left: -8%;
+      animation-duration: 18s;
+    }
+
+    .shape:nth-child(2) {
+      width: 180px;
+      height: 180px;
+      top: 20%;
+      right: -5%;
+      animation-duration: 22s;
+      animation-delay: -4s;
+    }
+
+    .shape:nth-child(3) {
+      width: 250px;
+      height: 250px;
+      top: 50%;
+      left: 60%;
+      animation-duration: 26s;
+      animation-delay: -8s;
+    }
+
+    .shape:nth-child(4) {
+      width: 120px;
+      height: 120px;
+      top: 70%;
+      left: 10%;
+      animation-duration: 20s;
+      animation-delay: -12s;
+    }
+
+    .shape:nth-child(5) {
+      width: 200px;
+      height: 200px;
+      top: 85%;
+      right: 15%;
+      animation-duration: 24s;
+      animation-delay: -6s;
+    }
+
+    .shape:nth-child(6) {
+      width: 90px;
+      height: 90px;
+      top: 38%;
+      left: 44%;
+      animation-duration: 16s;
+      animation-delay: -10s;
+    }
 
     @keyframes float {
-      0%   { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.6; }
-      33%  { transform: translateY(-30px) rotate(60deg) scale(1.05); opacity: 0.9; }
-      66%  { transform: translateY(15px) rotate(120deg) scale(0.97); opacity: 0.7; }
-      100% { transform: translateY(0px) rotate(180deg) scale(1); opacity: 0.6; }
+      0% {
+        transform: translateY(0px) rotate(0deg) scale(1);
+        opacity: 0.6;
+      }
+
+      33% {
+        transform: translateY(-30px) rotate(60deg) scale(1.05);
+        opacity: 0.9;
+      }
+
+      66% {
+        transform: translateY(15px) rotate(120deg) scale(0.97);
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: translateY(0px) rotate(180deg) scale(1);
+        opacity: 0.6;
+      }
     }
 
-    .hero, .page, .links, footer { position: relative; z-index: 1; }
+    .hero,
+    .page,
+    footer,
+    .site-closing {
+      position: relative;
+      z-index: 1;
+    }
 
-    .hero { min-height: 82vh; display: flex; align-items: center; padding: 6.5rem 1.5rem 4rem; background: linear-gradient(180deg, var(--surface) 0%, transparent 100%); }
-    .hero-inner { max-width: 980px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; align-items: center; }
-    .hero-role { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.5s ease 0.05s both; white-space: nowrap; }
-    h1 { margin: 0 0 1.25rem; font-size: clamp(2.8rem, 6vw, 4.2rem); line-height: 1.06; letter-spacing: -0.03em; animation: fadeUp 0.6s ease 0.1s both; }
-    .hero-social { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; animation: fadeUp 0.6s ease 0.3s both; }
-    .hero-social a { display: flex; align-items: center; gap: 0.45rem; font-size: 0.875rem; font-weight: 600; color: rgba(26,26,26,0.55); text-decoration: none; padding: 0.45rem 0.9rem; border-radius: 999px; border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.6); transition: color 0.15s ease, border-color 0.15s ease; }
-    .hero-social a:hover { color: var(--text-dark); border-color: var(--border-strong); }
-    .hero-social svg { flex-shrink: 0; }
-    .hero-text { display: flex; flex-direction: column; flex: 1 1 0; min-width: 0; }
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      padding: 6.5rem 1.5rem 4rem;
+      background: linear-gradient(
+        180deg,
+        var(--surface) 0%,
+        transparent 100%
+      );
+    }
+
+    .hero-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .hero-role {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.05s both;
+    }
+
+    h1 {
+      margin: 0 0 1.1rem;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    .hero-description {
+      max-width: 620px;
+      margin: 0;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      line-height: 1.7;
+      color: var(--muted-dark);
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    .hero-description strong {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .hero-social {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+
+    .hero-social a {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(26,26,26,0.55);
+      text-decoration: none;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.6);
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .hero-social a:hover {
+      color: var(--text-dark);
+      border-color: var(--border-strong);
+    }
+
+    .hero-social svg {
+      flex-shrink: 0;
+    }
 
     @media (min-width: 860px) {
-      .hero-inner { flex-direction: row !important; align-items: center; text-align: left; gap: 3.5rem; }
-      .hero-role  { text-align: left; }
-      .hero-social { justify-content: flex-start; }
+      .hero-inner {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 3.5rem;
+      }
+
+      .hero-role {
+        text-align: left;
+      }
+
+      .hero-social {
+        justify-content: flex-start;
+      }
     }
 
-    .hero-terminal { display: none; flex: 0 0 340px; min-width: 0; max-width: 340px; background: #181818; border-radius: 14px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.07); animation: fadeUp 0.7s ease 0.35s both; }
-    @media (min-width: 860px) { .hero-terminal { display: block; } }
-    .t-bar { background: #242424; padding: 10px 14px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .t-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
-    .t-dot-r { background: #ff5f57; } .t-dot-y { background: #febc2e; } .t-dot-g { background: #28c840; }
-    .t-title { flex: 1; text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.32); letter-spacing: 0.03em; padding-right: 29px; }
-    .t-body { padding: 14px 16px 18px; font-family: 'Courier New', monospace; font-size: 0.72rem; line-height: 1.7; color: #b8b8b8; min-height: 200px; }
-    .t-ln { display: block; white-space: pre; }
-    .t-ln.cmd { color: #88d498; } .t-ln.dim { color: rgba(192,192,192,0.38); } .t-ln.ok { color: #79d279; } .t-ln.warn { color: #f0a070; } .t-ln.stat { color: #f0c472; }
-    .t-cursor { display: inline-block; width: 7px; height: 0.88em; background: #88d498; vertical-align: text-bottom; margin-left: 1px; animation: tblink 1s step-end infinite; }
-    @keyframes tblink { 50% { opacity: 0; } }
+    /* Terminal */
 
-    .nav-btn { flex: 1 1 220px; max-width: 320px; padding: 1.05rem 1.25rem; border-radius: 14px; font-size: 1.05rem; font-weight: 700; text-decoration: none; color: var(--text-dark); border: 1.5px solid var(--border-soft); background-color: rgba(255,255,255,0.6); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
-    .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); border-color: var(--border-strong); }
-    .nav-btn.active { background: linear-gradient(135deg, var(--accent), #E0B8B4); color: #fff; border-color: transparent; box-shadow: 0 6px 18px rgba(180,140,135,0.25); }
+    .hero-terminal {
+      display: none;
+      flex: 0 0 340px;
+      min-width: 0;
+      max-width: 340px;
+      background: #181818;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow:
+        0 16px 48px rgba(0,0,0,0.2),
+        0 0 0 1px rgba(255,255,255,0.07);
+      animation: fadeUp 0.7s ease 0.35s both;
+    }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @media (min-width: 860px) {
+      .hero-terminal {
+        display: block;
+      }
+    }
 
-    .page { max-width: 980px; margin: 0 auto 3.5rem; padding: 3rem 1.5rem; }
+    .t-bar {
+      background: #242424;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
 
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .t-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
 
-    .section-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; text-align: center; }
+    .t-dot-r { background: #ff5f57; }
+    .t-dot-y { background: #febc2e; }
+    .t-dot-g { background: #28c840; }
 
-    .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
-    .stat-card { padding: 1.75rem 1rem; border-radius: 22px; border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.65); backdrop-filter: blur(8px); transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease; }
-    .stat-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(180,140,135,0.14); border-color: var(--border-strong); }
-    .stat-number { font-size: 2.4rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
-    .stat-label { font-size: 0.86rem; color: var(--muted-dark); line-height: 1.4; }
+    .t-title {
+      flex: 1;
+      text-align: center;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.32);
+      letter-spacing: 0.03em;
+      padding-right: 29px;
+    }
 
-    .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
-    .card { padding: 1.75rem 1.5rem; border-radius: 22px; border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.55); backdrop-filter: blur(8px); text-align: center; transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease; }
-    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.07); border-color: var(--border-strong); }
-    .card h3 { font-size: 1.05rem; font-weight: 800; margin: 0 0 0.5rem; }
-    .card p { font-size: 0.93rem; line-height: 1.65; color: var(--muted-dark); margin: 0; }
+    .t-body {
+      padding: 14px 16px 18px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      line-height: 1.7;
+      color: #b8b8b8;
+      min-height: 200px;
+    }
 
-    .project-card { display: flex; flex-direction: column; justify-content: space-between; padding: 2rem; border: 1.5px solid var(--border-soft); border-radius: 22px; background: rgba(255,255,255,0.55); backdrop-filter: blur(8px); transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease; text-align: left; }
-    .project-card:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(0,0,0,0.07); border-color: var(--border-strong); }
-    .project-card-top { flex: 1; }
-    .project-type { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.5rem; }
-    .project-card h3 { font-size: 1.2rem; font-weight: 800; margin: 0 0 0.65rem; color: var(--text-dark); }
-    .project-card p { font-size: 0.97rem; line-height: 1.7; color: var(--muted-dark); margin: 0 0 1.25rem; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
-    .project-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .project-btn { font-size: 0.875rem; font-weight: 700; text-decoration: none; padding: 0.5rem 1rem; border-radius: 10px; transition: transform 0.15s ease, box-shadow 0.15s ease; }
-    .project-btn.primary { background: linear-gradient(135deg, var(--accent), #E0B8B4); color: #fff; box-shadow: 0 4px 12px rgba(180,140,135,0.28); }
-    .project-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(180,140,135,0.38); }
-    .project-btn.secondary { border: 1.5px solid var(--border-strong); color: var(--text-dark); background: transparent; }
-    .project-btn.secondary:hover { transform: translateY(-1px); border-color: var(--accent); }
-    @media(max-width: 640px) { .project-card[style*="flex-direction: row"] { flex-direction: column !important; } }
+    .t-ln {
+      display: block;
+      white-space: pre;
+    }
 
-    .tag-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; justify-content: center; }
-    .tag { padding: 0.5rem 0.85rem; border-radius: 999px; border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.55); font-size: 0.9rem; color: var(--text-dark); }
+    .t-ln.cmd { color: #88d498; }
+    .t-ln.dim { color: rgba(192,192,192,0.38); }
+    .t-ln.ok { color: #79d279; }
+    .t-ln.warn { color: #f0a070; }
+    .t-ln.stat { color: #f0c472; }
 
-    .closing-card { padding: 2.5rem 2.5rem; border-radius: 22px; border: 1.5px solid var(--border-strong); background: linear-gradient(135deg, rgba(237,232,230,0.5), rgba(237,232,230,0.4)); backdrop-filter: blur(8px); margin-bottom: 2rem; text-align: center; }
-    .closing-card h3 { font-size: 1.3rem; font-weight: 800; margin: 0 0 0.75rem; }
-    .closing-card p { font-size: 1rem; line-height: 1.8; color: var(--muted-dark); margin: 0 0 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .closing-btns { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
+    .t-cursor {
+      display: inline-block;
+      width: 7px;
+      height: 0.88em;
+      background: #88d498;
+      vertical-align: text-bottom;
+      margin-left: 1px;
+      animation: tblink 1s step-end infinite;
+    }
 
-    footer { margin: 26px 0 34px; padding: 0 1.5rem; font-size: 0.95rem; color: rgba(26,26,26,0.6); }
-    .site-closing { text-align: center; font-size: 1.05rem; line-height: 1.8; color: var(--muted-dark); font-style: italic; margin: 0 auto 3rem; max-width: 580px; padding: 0 1.5rem; position: relative; z-index: 1; }
+    @keyframes tblink {
+      50% { opacity: 0; }
+    }
 
-    @media (max-width: 760px) { .three-col { grid-template-columns: 1fr 1fr; } .hero-role { white-space: normal; } }
-    @media (max-width: 480px) { .three-col { grid-template-columns: 1fr; } }
+    /* General */
 
-    #chat-toggle { position: fixed; bottom: 22px; right: 22px; width: 58px; height: 58px; border-radius: 18px; background: var(--surface); border: 1.5px solid var(--border-strong); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(180,140,135,0.28); transition: transform 0.2s ease, box-shadow 0.2s ease; z-index: 9999; font-size: 24px; }
-    #chat-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(180,140,135,0.4); }
-    #chat-window { position: fixed; bottom: 92px; right: 22px; width: 360px; max-height: 530px; background: var(--white-glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1.5px solid var(--border-soft); border-radius: 24px; box-shadow: 0 20px 50px rgba(180,140,135,0.15), 0 4px 16px rgba(0,0,0,0.06); display: flex; flex-direction: column; overflow: hidden; z-index: 9998; transform: scale(0.92) translateY(14px); opacity: 0; pointer-events: none; transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.22s ease; }
-    #chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
-    .chat-header { background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%); border-bottom: 1px solid var(--border-soft); padding: 15px 16px; display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
-    .chat-avatar { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #E0B8B4); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; color: #fff; flex-shrink: 0; }
-    .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
-    .chat-header-info p { font-size: 0.73rem; color: var(--muted-dark); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
-    .online-dot { width: 7px; height: 7px; background: #4caf82; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-    .chat-close { margin-left: auto; background: none; border: none; cursor: pointer; color: var(--muted-dark); font-size: 17px; line-height: 1; padding: 4px; border-radius: 6px; transition: background 0.15s; }
-    .chat-close:hover { background: rgba(180,140,135,0.12); }
-    .chat-messages { flex: 1; overflow-y: auto; padding: 14px 14px 10px; display: flex; flex-direction: column; gap: 9px; scroll-behavior: smooth; }
-    .chat-messages::-webkit-scrollbar { width: 4px; } .chat-messages::-webkit-scrollbar-track { background: transparent; } .chat-messages::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 4px; }
-    .msg { max-width: 84%; padding: 10px 13px; border-radius: 16px; font-size: 0.875rem; line-height: 1.58; animation: msgIn 0.22s ease; }
-    @keyframes msgIn { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
-    .msg.bot { background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft); border-bottom-left-radius: 5px; align-self: flex-start; color: var(--text-dark); }
-    .msg.user { background: linear-gradient(135deg, var(--accent), #E0B8B4); color: #fff; border-bottom-right-radius: 5px; align-self: flex-end; }
-    .typing-indicator { display: flex; gap: 4px; padding: 11px 14px; background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft); border-radius: 16px; border-bottom-left-radius: 5px; align-self: flex-start; width: fit-content; animation: msgIn 0.2s ease; }
-    .typing-indicator span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: bounce 1.2s infinite; }
-    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; } .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes bounce { 0%,60%,100% { transform: translateY(0); opacity: 0.6; } 30% { transform: translateY(-5px); opacity: 1; } }
-    .chat-input-area { padding: 11px 13px; border-top: 1px solid var(--border-soft); background: rgba(255,255,255,0.6); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; }
-    .chat-input-area textarea { flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px; padding: 9px 11px; font-family: 'Inter', 'Segoe UI', sans-serif; font-size: 0.875rem; color: var(--text-dark); background: rgba(255,255,255,0.88); resize: none; outline: none; max-height: 100px; line-height: 1.45; transition: border-color 0.2s; }
-    .chat-input-area textarea:focus { border-color: var(--accent); }
-    .chat-input-area textarea::placeholder { color: rgba(26,26,26,0.4); }
-    .send-btn { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg, var(--accent), #E0B8B4); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s; box-shadow: 0 4px 12px rgba(180,140,135,0.32); }
-    .send-btn:hover { transform: scale(1.07); box-shadow: 0 6px 16px rgba(180,140,135,0.42); } .send-btn:active { transform: scale(0.95); } .send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; } .send-btn svg { width: 15px; height: 15px; fill: white; }
-    @media (max-width: 420px) { #chat-window { width: calc(100vw - 28px); right: 14px; bottom: 84px; } #chat-toggle { right: 14px; bottom: 14px; } }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 999; height: 58px; display: flex; align-items: center; padding: 0 1.75rem; background: rgba(250,250,248,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border-soft); }
-    .site-nav-brand { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); text-decoration: none; letter-spacing: 0.01em; margin-right: auto; }
-    .site-nav-links { display: flex; gap: 0.25rem; }
-    .site-nav-links a { font-size: 0.875rem; font-weight: 500; color: rgba(26,26,26,0.55); text-decoration: none; padding: 0.35rem 0.7rem; border-radius: 8px; transition: color 0.15s ease; }
-    .site-nav-links a:hover { color: var(--text-dark); }
-    .site-nav-links a.active { color: var(--text-dark); font-weight: 700; }
-    @media (max-width: 540px) { .site-nav-brand { display: none; } .site-nav { padding: 0 1rem; justify-content: center; } }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto 3.5rem;
+      padding: 3rem 1.5rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 0.55s ease,
+        transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    /* Stats */
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+
+    .stat-card {
+      padding: 1.75rem 1rem;
+      border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(8px);
+      transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(180,140,135,0.14);
+      border-color: var(--border-strong);
+    }
+
+    .stat-number {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.86rem;
+      color: var(--muted-dark);
+      line-height: 1.4;
+    }
+
+    /* Positioning intro */
+
+    .intro-block {
+      max-width: 720px;
+      margin: 0 auto 3.5rem;
+      text-align: center;
+    }
+
+    .intro-block h2 {
+      margin: 0 0 0.9rem;
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+      letter-spacing: -0.025em;
+    }
+
+    .intro-block p {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: var(--muted-dark);
+    }
+
+    /* What I build */
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+
+    .card {
+      padding: 1.75rem 1.5rem;
+      border-radius: 22px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(8px);
+      text-align: left;
+      transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.07);
+      border-color: var(--border-strong);
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 0 0 0.55rem;
+    }
+
+    .card p {
+      font-size: 0.93rem;
+      line-height: 1.65;
+      color: var(--muted-dark);
+      margin: 0;
+    }
+
+    /* Projects */
+
+    .projects-intro {
+      max-width: 650px;
+      margin: 0 auto 1.75rem;
+      color: var(--muted-dark);
+      line-height: 1.7;
+      font-size: 0.98rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(8px);
+      transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+      text-align: left;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.07);
+      border-color: var(--border-strong);
+    }
+
+    .project-type {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin: 0 0 0.65rem;
+      color: var(--text-dark);
+    }
+
+    .project-card p {
+      font-size: 0.97rem;
+      line-height: 1.7;
+      color: var(--muted-dark);
+      margin: 0 0 1.1rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .project-btn {
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .project-btn.primary {
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        #E0B8B4
+      );
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(180,140,135,0.28);
+    }
+
+    .project-btn.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(180,140,135,0.38);
+    }
+
+    .project-btn.secondary {
+      border: 1.5px solid var(--border-strong);
+      color: var(--text-dark);
+      background: transparent;
+    }
+
+    .project-btn.secondary:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+    }
+
+    /* Toolbox */
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 4rem;
+      justify-content: center;
+    }
+
+    .tag {
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.55);
+      font-size: 0.9rem;
+      color: var(--text-dark);
+    }
+
+    /* Closing */
+
+    .closing-card {
+      padding: 2.5rem 2.5rem;
+      border-radius: 22px;
+      border: 1.5px solid var(--border-strong);
+      background: linear-gradient(
+        135deg,
+        rgba(237,232,230,0.5),
+        rgba(237,232,230,0.4)
+      );
+      backdrop-filter: blur(8px);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .closing-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 0 0 0.75rem;
+    }
+
+    .closing-card p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--muted-dark);
+      margin: 0 auto 1.5rem;
+      max-width: 600px;
+    }
+
+    .closing-btns {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      flex: 1 1 180px;
+      max-width: 250px;
+      padding: 1.05rem 1.25rem;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text-dark);
+      border: 1.5px solid var(--border-soft);
+      background-color: rgba(255,255,255,0.6);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+      border-color: var(--border-strong);
+    }
+
+    .nav-btn.active {
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        #E0B8B4
+      );
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 6px 18px rgba(180,140,135,0.25);
+    }
+
+    .site-closing {
+      text-align: center;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted-dark);
+      font-style: italic;
+      margin: 0 auto 3rem;
+      max-width: 580px;
+      padding: 0 1.5rem;
+    }
+
+    footer {
+      margin: 26px 0 34px;
+      padding: 0 1.5rem;
+      font-size: 0.95rem;
+      color: rgba(26,26,26,0.6);
+    }
+
+    /* Navigation */
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      padding: 0 1.75rem;
+      background: rgba(250,250,248,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .site-nav-brand {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      margin-right: auto;
+    }
+
+    .site-nav-links {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .site-nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(26,26,26,0.55);
+      text-decoration: none;
+      padding: 0.35rem 0.7rem;
+      border-radius: 8px;
+      transition: color 0.15s ease;
+    }
+
+    .site-nav-links a:hover {
+      color: var(--text-dark);
+    }
+
+    .site-nav-links a.active {
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    /* Chat */
+
+    #chat-toggle {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: var(--surface);
+      border: 1.5px solid var(--border-strong);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(180,140,135,0.28);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+      z-index: 9999;
+      font-size: 24px;
+    }
+
+    #chat-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(180,140,135,0.4);
+    }
+
+    #chat-window {
+      position: fixed;
+      bottom: 92px;
+      right: 22px;
+      width: 360px;
+      max-height: 530px;
+      background: var(--white-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 24px;
+      box-shadow:
+        0 20px 50px rgba(180,140,135,0.15),
+        0 4px 16px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9998;
+      transform: scale(0.92) translateY(14px);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
+        opacity 0.22s ease;
+    }
+
+    #chat-window.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .chat-header {
+      background: linear-gradient(
+        135deg,
+        var(--surface) 0%,
+        var(--surface-soft) 100%
+      );
+      border-bottom: 1px solid var(--border-soft);
+      padding: 15px 16px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+    }
+
+    .chat-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        #E0B8B4
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .chat-header-info h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .chat-header-info p {
+      font-size: 0.73rem;
+      color: var(--muted-dark);
+      margin: 2px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .online-dot {
+      width: 7px;
+      height: 7px;
+      background: #4caf82;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .chat-close {
+      margin-left: auto;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted-dark);
+      font-size: 17px;
+      line-height: 1;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    .chat-close:hover {
+      background: rgba(180,140,135,0.12);
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      scroll-behavior: smooth;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: var(--border-soft);
+      border-radius: 4px;
+    }
+
+    .msg {
+      max-width: 84%;
+      padding: 10px 13px;
+      border-radius: 16px;
+      font-size: 0.875rem;
+      line-height: 1.58;
+      animation: msgIn 0.22s ease;
+    }
+
+    @keyframes msgIn {
+      from {
+        opacity: 0;
+        transform: translateY(7px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .msg.bot {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border-soft);
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
+      color: var(--text-dark);
+    }
+
+    .msg.user {
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        #E0B8B4
+      );
+      color: #fff;
+      border-bottom-right-radius: 5px;
+      align-self: flex-end;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 11px 14px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
+      width: fit-content;
+      animation: msgIn 0.2s ease;
+    }
+
+    .typing-indicator span {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: bounce 1.2s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes bounce {
+      0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.6;
+      }
+
+      30% {
+        transform: translateY(-5px);
+        opacity: 1;
+      }
+    }
+
+    .chat-input-area {
+      padding: 11px 13px;
+      border-top: 1px solid var(--border-soft);
+      background: rgba(255,255,255,0.6);
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .chat-input-area textarea {
+      flex: 1;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 9px 11px;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text-dark);
+      background: rgba(255,255,255,0.88);
+      resize: none;
+      outline: none;
+      max-height: 100px;
+      line-height: 1.45;
+      transition: border-color 0.2s;
+    }
+
+    .chat-input-area textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .chat-input-area textarea::placeholder {
+      color: rgba(26,26,26,0.4);
+    }
+
+    .send-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        #E0B8B4
+      );
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        opacity 0.15s;
+      box-shadow: 0 4px 12px rgba(180,140,135,0.32);
+    }
+
+    .send-btn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 16px rgba(180,140,135,0.42);
+    }
+
+    .send-btn:active {
+      transform: scale(0.95);
+    }
+
+    .send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .send-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: white;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 760px) {
+      .three-col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .site-nav-brand {
+        display: none;
+      }
+
+      .site-nav {
+        padding: 0 1rem;
+        justify-content: center;
+      }
+
+      .site-nav-links a {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.78rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .three-col {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-description {
+        font-size: 1rem;
+      }
+
+      .closing-card {
+        padding: 2rem 1.25rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      #chat-window {
+        width: calc(100vw - 28px);
+        right: 14px;
+        bottom: 84px;
+      }
+
+      #chat-toggle {
+        right: 14px;
+        bottom: 14px;
+      }
+    }
   </style>
 </head>
 
 <body>
-<nav class="site-nav">
-  <a class="site-nav-brand" href="./index.html">Madiha Khan</a>
-  <div class="site-nav-links">
-    <a class="active" href="./index.html">Home</a>
-    <a href="./about.html">About</a>
-    <a href="./skills.html">Technical depth</a>
-    <a href="./projects.html">Projects</a>
-    <a href="./contact.html">Contact</a>
-  </div>
-</nav>
+
+  <!-- Navigation -->
+
+  <nav class="site-nav">
+    <a class="site-nav-brand" href="./index.html">Madiha Khan</a>
+
+    <div class="site-nav-links">
+      <a class="active" href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./skills.html">Technical depth</a>
+      <a href="./projects.html">Projects</a>
+      <a href="./contact.html">Contact</a>
+    </div>
+  </nav>
+
+
+  <!-- Hero -->
 
   <section class="hero">
+
     <div class="hero-inner">
+
       <div class="hero-text">
-        <p class="hero-role">Senior Support Professional &nbsp;·&nbsp; Voice of the Customer</p>
+
+        <p class="hero-role">
+          Senior Support Professional &nbsp;·&nbsp; Support Operations & AI Systems
+        </p>
+
         <h1>Madiha Khan</h1>
+
+        <p class="hero-description">
+          I build the systems that turn
+          <strong>customer signals into better support,
+          better products, and scalable operations.</strong>
+        </p>
+
         <div class="hero-social">
-          <a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+
+          <a
+            href="https://github.com/KhanKMadiha"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
             GitHub
           </a>
-          <a href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+
+          <a
+            href="https://www.linkedin.com/in/madihakhan-"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1-2.063-2.065 2.064 2.064 0 0 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.432 0 22.222 0h.003z"/>
+            </svg>
             LinkedIn
           </a>
+
         </div>
+
       </div>
+
+
+      <!-- Terminal -->
+
       <div class="hero-terminal" aria-hidden="true">
+
         <div class="t-bar">
-          <span class="t-dot t-dot-r"></span><span class="t-dot t-dot-y"></span><span class="t-dot t-dot-g"></span>
+          <span class="t-dot t-dot-r"></span>
+          <span class="t-dot t-dot-y"></span>
+          <span class="t-dot t-dot-g"></span>
           <span class="t-title">support-analysis.log</span>
         </div>
+
         <div class="t-body" id="terminalBody"></div>
+
       </div>
+
     </div>
+
   </section>
 
-  <div class="page">
 
-    <p class="section-label reveal">Impact by the numbers</p>
+  <main class="page">
+
+
+    <!-- Impact -->
+
+    <p class="section-label reveal">
+      Impact by the numbers
+    </p>
+
     <div class="stat-strip reveal">
-      <div class="stat-card"><div class="stat-number" data-target="98" data-suffix="%">0%</div><div class="stat-label">CSAT across 100+ enterprise accounts</div></div>
-      <div class="stat-card"><div class="stat-number" data-target="5" data-suffix="+ yrs">0 yrs</div><div class="stat-label">Years in customer-facing and technical support</div></div>
-      <div class="stat-card"><div class="stat-number" data-target="25" data-suffix="%">0%</div><div class="stat-label">Faster P1/P2 resolution via Datadog dashboards</div></div>
-      <div class="stat-card"><div class="stat-number" data-target="15" data-suffix="+">0</div><div class="stat-label">High impact feature requests surfaced to product and engineering annually</div></div>
+
+      <div class="stat-card">
+        <div
+          class="stat-number"
+          data-target="100"
+          data-suffix="+"
+        >
+          0
+        </div>
+
+        <div class="stat-label">
+          Enterprise accounts supported across EMEA
+        </div>
+      </div>
+
+
+      <div class="stat-card">
+        <div
+          class="stat-number"
+          data-target="98"
+          data-suffix="%"
+        >
+          0%
+        </div>
+
+        <div class="stat-label">
+          CSAT maintained across enterprise support
+        </div>
+      </div>
+
+
+      <div class="stat-card">
+        <div
+          class="stat-number"
+          data-target="30"
+          data-suffix="%"
+        >
+          0%
+        </div>
+
+        <div class="stat-label">
+          Faster engineering investigation
+        </div>
+      </div>
+
+
+      <div class="stat-card">
+        <div
+          class="stat-number"
+          data-target="25"
+          data-suffix="%"
+        >
+          0%
+        </div>
+
+        <div class="stat-label">
+          Faster P1/P2 resolution
+        </div>
+      </div>
+
     </div>
 
-    <p class="section-label reveal">What I bring</p>
+
+    <!-- Positioning -->
+
+    <div class="intro-block reveal">
+
+      <p class="section-label">
+        What I do
+      </p>
+
+      <h2>
+        I sit between Support, Product, Engineering and AI.
+      </h2>
+
+      <p>
+        My work starts with customer problems and ends with systems that
+        make those problems easier to solve at scale. I investigate
+        technical issues, identify recurring patterns, improve support
+        workflows and build AI-native tooling that turns operational
+        knowledge into something the wider organisation can use.
+      </p>
+
+    </div>
+
+
+    <!-- What I build -->
+
+    <p class="section-label reveal">
+      What I bring
+    </p>
+
     <div class="three-col">
+
+
       <div class="card reveal">
-        <h3>Closing the feedback loop</h3>
-        <p>I spot recurring patterns, build the case with log evidence, and turn ticket trends into roadmap decisions.</p>
+
+        <h3>
+          Support Operations
+        </h3>
+
+        <p>
+          I design ticket routing, escalation workflows, documentation
+          systems and operational processes that make support easier to
+          scale.
+        </p>
+
       </div>
+
+
       <div class="card reveal">
-        <h3>From manual triage to pipelines</h3>
-        <p>I build the systems that make support smarter. Feedback pipelines, Jira workflows, and documentation frameworks that scale.</p>
+
+        <h3>
+          Support Operations & AI Systems
+        </h3>
+
+        <p>
+          I turn recurring customer problems and feature requests into
+          structured signals that Product and Engineering can prioritise.
+        </p>
+
       </div>
+
+
       <div class="card reveal">
-        <h3>Deep investigation</h3>
-        <p>Datadog, Elasticsearch, Postman, browser DevTools. When I escalate, engineering gets log evidence and a reproduction case.</p>
+
+        <h3>
+          AI-Native Automation
+        </h3>
+
+        <p>
+          I build practical AI workflows that replace repetitive manual
+          triage with structured, repeatable systems.
+        </p>
+
       </div>
+
+
       <div class="card reveal">
-        <h3>Ownership in ambiguous situations</h3>
-        <p>I own the full EMEA ticket lifecycle across 100+ enterprise accounts, P1/P2 on-call included.</p>
+
+        <h3>
+          Technical Investigation
+        </h3>
+
+        <p>
+          APIs, authentication, logs, Datadog, Elasticsearch and issue
+          reproduction. When I escalate, I bring evidence and a clear
+          reproduction path.
+        </p>
+
       </div>
+
+
       <div class="card reveal">
-        <h3>Building with AI</h3>
-        <p>I build with AI, not just use it. Feedback Loop dashboard, Support Ticket Analyser, Articulate, and a live portfolio chatbot. IBM AI certified.</p>
+
+        <h3>
+          Incident Management
+        </h3>
+
+        <p>
+          I work across high-priority incidents and build the monitoring,
+          workflows and documentation that help teams respond faster.
+        </p>
+
       </div>
+
+
       <div class="card reveal">
-        <h3>Technical depth</h3>
-        <p>REST APIs, SSO, SAML, OAuth every day. When something breaks I am in the headers and logs.</p>
+
+        <h3>
+          Systems Thinking
+        </h3>
+
+        <p>
+          I look beyond the individual ticket to identify the underlying
+          product, process or knowledge problem — then build a better way
+          of handling it.
+        </p>
+
       </div>
+
     </div>
 
-    <p class="section-label reveal">Projects</p>
 
-    <div class="reveal" style="margin-bottom: 1rem;">
+    <!-- Projects -->
+
+    <p class="section-label reveal">
+      Things I've built
+    </p>
+
+    <div class="projects-intro reveal">
+
+      Two examples of how I turn problems I've encountered in support
+      operations into working AI-native systems.
+
+    </div>
+
+
+    <!-- Feedback Loop -->
+
+    <div
+      class="reveal"
+      style="margin-bottom: 1rem;"
+    >
+
       <div class="project-card">
-        <span class="project-type">Product Feedback · 2026</span>
-        <h3>Feedback Loop</h3>
-        <p>An AI-native system that takes feature requests and turns them into a brief engineering can act on.</p>
-        <p style="margin-bottom: 1.25rem;">Built because when the process lives in a system, nothing falls through the gaps.</p>
+
+        <span class="project-type">
+          Voice of Customer · AI Systems · 2026
+        </span>
+
+        <h3>
+          Feedback Loop
+        </h3>
+
+        <p>
+          An AI-native Voice of Customer system that takes feature requests,
+          groups them by theme and turns them into ranked product briefs
+          Engineering can act on.
+        </p>
+
+        <p>
+          Built to demonstrate how a manual Support → Product feedback
+          process can become a scalable system.
+        </p>
+
         <div class="project-tags">
-          <span class="tag">Cursor</span>
-          <span class="tag">Anthropic API</span>
-          <span class="tag">Cloudflare Workers</span>
+
+          <span class="tag">
+            Cursor
+          </span>
+
+          <span class="tag">
+            Anthropic API
+          </span>
+
+          <span class="tag">
+            Cloudflare Workers
+          </span>
+
         </div>
+
         <div class="project-links">
-          <a href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener" class="project-btn primary">Open demo</a>
-          <a href="./feedback-loop.html" class="project-btn secondary">Read the story</a>
+
+          <a
+            href="https://feedback-loop.pages.dev/src/dashboard.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-btn primary"
+          >
+            Open demo
+          </a>
+
+          <a
+            href="./feedback-loop.html"
+            class="project-btn secondary"
+          >
+            Read the story
+          </a>
+
         </div>
+
       </div>
+
     </div>
 
-    <div class="reveal" style="margin-bottom: 1.5rem;">
+
+    <!-- Support Ticket Analyser -->
+
+    <div
+      class="reveal"
+      style="margin-bottom: 1.5rem;"
+    >
+
       <div class="project-card">
-        <span class="project-type">Support Operations · 2026</span>
-        <h3>Support Ticket Analyser</h3>
-        <p>An AI-native support workflow that detects documentation gaps, drafts responses grounded in existing knowledge, and publishes KB articles directly to Notion.</p>
-        <p style="margin-bottom: 1.25rem;">Built because this gap exists in every support team I have ever worked in.</p>
+
+        <span class="project-type">
+          Support Operations · AI Automation · 2026
+        </span>
+
+        <h3>
+          Support Ticket Analyser
+        </h3>
+
+        <p>
+          An AI-native support workflow that detects documentation gaps,
+          drafts responses grounded in existing knowledge and publishes
+          knowledge base articles directly to Notion.
+        </p>
+
+        <p>
+          Built to turn knowledge captured in individual support tickets
+          into reusable support infrastructure.
+        </p>
+
         <div class="project-tags">
-          <span class="tag">Cursor</span>
-          <span class="tag">Anthropic API</span>
-          <span class="tag">Notion API</span>
-          <span class="tag">Cloudflare Workers</span>
+
+          <span class="tag">
+            Cursor
+          </span>
+
+          <span class="tag">
+            Anthropic API
+          </span>
+
+          <span class="tag">
+            Notion API
+          </span>
+
+          <span class="tag">
+            Cloudflare Workers
+          </span>
+
         </div>
+
         <div class="project-links">
-          <a href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener" class="project-btn primary">Open demo</a>
-          <a href="./support-dashboard.html" class="project-btn secondary">Read the story</a>
+
+          <a
+            href="https://khankmadiha.github.io/support-ticket-analyser/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-btn primary"
+          >
+            Open demo
+          </a>
+
+          <a
+            href="./support-dashboard.html"
+            class="project-btn secondary"
+          >
+            Read the story
+          </a>
+
         </div>
+
       </div>
+
     </div>
 
-    <div class="reveal" style="text-align: center; margin-bottom: 2rem;">
-      <a href="./projects.html" style="font-size: 0.95rem; font-weight: 700; color: var(--accent); text-decoration: none;">See all projects →</a>
+
+    <div
+      class="reveal"
+      style="text-align: center; margin-bottom: 4rem;"
+    >
+
+      <a
+        href="./projects.html"
+        style="
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: var(--accent);
+          text-decoration: none;
+        "
+      >
+        See all projects →
+      </a>
+
     </div>
 
-    <p class="section-label reveal">Toolbox</p>
+
+    <!-- Toolbox -->
+
+    <p class="section-label reveal">
+      Core toolbox
+    </p>
+
     <div class="tag-row reveal">
-      <span class="tag">Cursor</span><span class="tag">Anthropic API</span><span class="tag">REST APIs</span><span class="tag">SSO and SAML</span><span class="tag">Datadog</span><span class="tag">Elasticsearch</span><span class="tag">PagerDuty</span><span class="tag">Rootly</span><span class="tag">Jira</span><span class="tag">Postman</span><span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">Bash</span><span class="tag">Docker</span><span class="tag">Git and GitHub</span><span class="tag">Zendesk</span><span class="tag">Salesforce</span><span class="tag">Cloudflare Workers</span><span class="tag">Prompt engineering</span><span class="tag">Python (learning)</span>
+
+      <span class="tag">Cursor</span>
+      <span class="tag">Anthropic Claude API</span>
+      <span class="tag">Cloudflare Workers</span>
+      <span class="tag">REST APIs</span>
+      <span class="tag">SSO / SAML / OAuth</span>
+      <span class="tag">Datadog</span>
+      <span class="tag">Elasticsearch</span>
+      <span class="tag">Rootly</span>
+      <span class="tag">Jira</span>
+      <span class="tag">Salesforce</span>
+      <span class="tag">Freshdesk</span>
+      <span class="tag">Postman</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">SQL</span>
+      <span class="tag">Git / GitHub</span>
+      <span class="tag">Docker</span>
+      <span class="tag">Prompt Engineering</span>
+
     </div>
+
+
+    <!-- Closing -->
 
     <div class="closing-card reveal">
-      <h3>Want to know more?</h3>
-      <p>My chatbot can answer questions about my experience and skills. Or explore the rest of the site to see my full background, the story behind my projects, or get in touch directly.</p>
+
+      <h3>
+        See how I think, build and work.
+      </h3>
+
+      <p>
+        Explore my background, technical depth and projects — or ask my
+        portfolio assistant about my experience.
+      </p>
+
       <div class="closing-btns">
-        <a class="nav-btn active" href="./about.html">Read my story</a>
-        <a class="nav-btn" href="./contact.html">Get in touch</a>
-        <a class="nav-btn" href="https://www.linkedin.com/in/madihakhan-" target="_blank">LinkedIn</a>
+
+        <a
+          class="nav-btn active"
+          href="./about.html"
+        >
+          Read my story
+        </a>
+
+        <a
+          class="nav-btn"
+          href="./projects.html"
+        >
+          Explore projects
+        </a>
+
+        <a
+          class="nav-btn"
+          href="./contact.html"
+        >
+          Get in touch
+        </a>
+
       </div>
+
     </div>
 
-  </div>
+  </main>
 
-  <p class="site-closing">Every ticket is an opportunity to capture knowledge that did not exist before.</p>
-  <footer>© <span id="year"></span> Madiha Khan · Built with care</footer>
 
-  <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">💬</button>
+  <p class="site-closing">
+    I build the systems, workflows, and AI tools that make enterprise support more scalable.
+  </p>
+
+
+  <footer>
+    © <span id="year"></span> Madiha Khan · Built with care
+  </footer>
+
+
+  <!-- Chat -->
+
+  <button
+    id="chat-toggle"
+    onclick="toggleChat()"
+    title="Chat with Madiha's assistant"
+  >
+    💬
+  </button>
+
 
   <div id="chat-window">
+
     <div class="chat-header">
-      <div class="chat-avatar">PA</div>
-      <div class="chat-header-info">
-        <h4>Madiha's Portfolio Assistant</h4>
-        <p><span class="online-dot"></span>Ask me anything</p>
+
+      <div class="chat-avatar">
+        PA
       </div>
-      <button class="chat-close" onclick="toggleChat()" aria-label="Close chat">✕</button>
-    </div>
-    <div class="chat-messages" id="chat-messages"></div>
-    <div class="chat-input-area">
-      <textarea id="chat-input" placeholder="Ask about my experience, skills..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-      <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+
+      <div class="chat-header-info">
+
+        <h4>
+          Madiha's Portfolio Assistant
+        </h4>
+
+        <p>
+          <span class="online-dot"></span>
+          Ask me anything
+        </p>
+
+      </div>
+
+      <button
+        class="chat-close"
+        onclick="toggleChat()"
+        aria-label="Close chat"
+      >
+        ✕
       </button>
+
     </div>
+
+
+    <div
+      class="chat-messages"
+      id="chat-messages"
+    ></div>
+
+
+    <div class="chat-input-area">
+
+      <textarea
+        id="chat-input"
+        placeholder="Ask about my experience, skills..."
+        rows="1"
+        onkeydown="handleKey(event)"
+        oninput="autoResize(this)"
+      ></textarea>
+
+      <button
+        class="send-btn"
+        id="send-btn"
+        onclick="sendMessage()"
+        aria-label="Send"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+        </svg>
+
+      </button>
+
+    </div>
+
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
 
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const siblings = entry.target.parentElement.querySelectorAll('.reveal');
-          let delay = 0;
-          siblings.forEach((el, idx) => { if (el === entry.target) delay = idx * 80; });
-          setTimeout(() => entry.target.classList.add('visible'), delay);
-          revealObserver.unobserve(entry.target);
+  <script>
+
+    /* --------------------------------
+       General
+    -------------------------------- */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /* --------------------------------
+       Scroll reveal
+    -------------------------------- */
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              const siblings =
+                entry.target.parentElement
+                  .querySelectorAll('.reveal');
+
+              let delay = 0;
+
+              siblings.forEach((el, idx) => {
+
+                if (el === entry.target) {
+                  delay = idx * 80;
+                }
+
+              });
+
+              setTimeout(
+                () => entry.target.classList.add('visible'),
+                delay
+              );
+
+              revealObserver.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.1
         }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+      );
+
+
+    document
+      .querySelectorAll('.reveal')
+      .forEach(el => revealObserver.observe(el));
+
+
+    /* --------------------------------
+       Number animation
+    -------------------------------- */
 
     function animateCount(el) {
-      const target = parseInt(el.dataset.target);
-      const suffix = el.dataset.suffix || '';
-      const duration = 1400; const step = 16;
-      const increment = target / (duration / step);
+
+      const target =
+        parseInt(el.dataset.target);
+
+      const suffix =
+        el.dataset.suffix || '';
+
+      const duration = 1400;
+      const step = 16;
+
+      const increment =
+        target / (duration / step);
+
       let current = 0;
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) { current = target; clearInterval(timer); }
-        el.textContent = Math.floor(current) + suffix;
-      }, step);
+
+      const timer =
+        setInterval(() => {
+
+          current += increment;
+
+          if (current >= target) {
+
+            current = target;
+            clearInterval(timer);
+
+          }
+
+          el.textContent =
+            Math.floor(current) + suffix;
+
+        }, step);
+
     }
 
-    const statObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.querySelectorAll('[data-target]').forEach(animateCount); statObserver.unobserve(entry.target); }
-      });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('.stat-strip').forEach(el => statObserver.observe(el));
 
-    const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
+    const statObserver =
+      new IntersectionObserver(
+        (entries) => {
 
-    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target
+                .querySelectorAll('[data-target]')
+                .forEach(animateCount);
+
+              statObserver.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.3
+        }
+      );
+
+
+    document
+      .querySelectorAll('.stat-strip')
+      .forEach(el => statObserver.observe(el));
+
+
+    /* --------------------------------
+       Portfolio chatbot
+    -------------------------------- */
+
+    const PROXY_URL =
+      'https://madiha-portfolio-proxy.madiha00.workers.dev/';
+
+
+    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional based in London, UK.
+
+Your role is to help recruiters and visitors understand Madiha's experience, support operations work, technical skills, AI projects and career direction.
 
 ABOUT MADIHA:
-Madiha is a Senior Support Professional with 5+ years closing the loop between what customers experience and what gets built at developer-facing SaaS platforms. She came into tech through a non-traditional route, teaching herself to code during the pandemic out of pure curiosity. She is currently Senior Support Professional at Stack Overflow (January 2025 to present), where she is the sole support engineer for the entire EMEA region, owning the full ticket lifecycle across 100+ enterprise accounts from first contact through to resolution including P1/P2 critical customer issues. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
 
-PERSONAL:
-Outside of work, Madiha raised over £50,000 through a campaign providing food bags to people in need. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction and every system she builds.
+Madiha is a Senior Support Professional with 5+ years of experience across customer-facing and technical support.
 
-KEY ACHIEVEMENTS:
-- 98% CSAT across 100+ enterprise accounts
-- Sole EMEA support engineer owning full ticket lifecycle including P1/P2 critical customer issues
-- Built Datadog dashboards cutting P1/P2 resolution time by 25%
-- 95% issue reproduction rate reducing engineering investigation time by 30%
-- Surfaced 15+ high-impact feature requests annually enabling engineering to prioritise product roadmap decisions
-- Led SSO migration for 100+ enterprise accounts delivering multi-million pound cost savings
-- Saved 4+ hours per month by designing an internal Salesforce workflow to automate feature request triage and reporting
+She currently works as a Senior Support Professional at Stack Overflow, where she is the sole EMEA support engineer across 100+ enterprise accounts. She owns the full support lifecycle, including API, integration, authentication and platform performance issues, as well as P1/P2 critical customer issues.
 
-PORTFOLIO PROJECTS:
-Madiha has built and shipped multiple AI-native tools independently. Feedback Loop and Support Ticket Analyser were built entirely in Cursor. Articulate started in Cursor before the build moved to Claude Code. The portfolio chatbot itself was built in Claude Code.
+Her work increasingly sits at the intersection of Support Operations, Voice of Customer, Product, Engineering and AI-native tooling.
 
-Project 1: Feedback Loop (feedback-loop.pages.dev/src/dashboard.html)
-An AI-native VoC dashboard that takes a queue of feature requests, groups them by theme using Claude, scores priority by account tier, and exports a PDF product brief engineering can act on straight away. Built because Madiha was already running this process manually at Stack Overflow using Salesforce and wanted to show what it looks like as a proper system. Full write-up at madihaintech.me/feedback-loop.html.
+CAREER:
 
-Project 2: Support Ticket Analyser (khankmadiha.github.io/support-ticket-analyser)
-An AI-native support workflow that detects documentation gaps, drafts responses grounded in existing knowledge, and publishes KB articles directly to Notion. Built using Cursor, Claude API, Cloudflare Workers, and Notion API. Full write-up at madihaintech.me/support-dashboard.html.
+Senior Support Professional — Stack Overflow
+January 2025 to Present.
 
-Project 3: Articulate (articulate-app-production.up.railway.app)
-A full-stack PWA speech practice app. Claude generates a personalised daily passage, the user records themselves, and AI scores accuracy, fluency, and pace. Includes a full dyslexia-friendly mode. Built with React, Node.js, and the Anthropic Claude API. Deployed on Railway. Full write-up at madihaintech.me/articulate.html.
+Technical Support Analyst — Alida
+February 2023 to November 2024.
 
-Project 4: Claude-Powered Portfolio Assistant (live on this site)
-Built a production AI chatbot from scratch. Went through three full iterations starting with IBM Watson and Google Dialogflow CX before rebuilding on the Anthropic API. Secured the API key using a Cloudflare Worker proxy after GitHub secret scanning caught an exposed key. Full write-up at madihaintech.me/chatbot.html.
+Customer Care Associate — Monica Vinader
+November 2021 to February 2023.
+
+Call Agent — 119 Helpline
+September 2021 to November 2021.
+
+STACK OVERFLOW:
+
+- Sole EMEA support engineer across 100+ enterprise accounts.
+- Maintained 98% CSAT.
+- Owns the full ticket lifecycle including P1/P2 critical customer issues.
+- Reduced engineering investigation time by 30% by reproducing complex customer issues in internal environments using Datadog and Elasticsearch and providing reproduction steps and log evidence.
+- Reduced P1/P2 resolution time by 25% by building Datadog observability dashboards across 100+ enterprise environments.
+- Designed an internal Salesforce workflow to automate feature request triage and reporting, saving 4+ hours per month.
+- Built Feedback Loop in Cursor to demonstrate how the same Support-to-Product process could become an AI-native system.
+
+ALIDA:
+
+- Maintained a 95% resolution rate across 10+ enterprise clients.
+- Owned critical API, authentication and platform performance issues.
+- Created a Jira template capturing reproduction steps, error messages and platform context, eliminating engineering follow-up across 2+ weekly bug submissions.
+- Reduced customer follow-up by 20% through troubleshooting guides and knowledge base articles.
+- Reduced team onboarding time by 30% by auditing and improving training materials.
+
+PROJECTS:
+
+Feedback Loop:
+An AI-native Voice of Customer dashboard that takes feature requests, groups them by theme and turns them into ranked product briefs that Engineering can act on.
+
+Support Ticket Analyser:
+An AI-native support workflow that detects documentation gaps, drafts responses grounded in existing knowledge and publishes knowledge base articles directly to Notion.
+
+Articulate:
+A full-stack speech practice application built using React, Node.js and the Anthropic Claude API.
+
+Claude-Powered Portfolio Assistant:
+The AI assistant on this website, built using the Anthropic Claude API and a Cloudflare Worker proxy.
 
 TECHNICAL SKILLS:
-Cursor, Anthropic Claude API, REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, Rootly, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Cloudflare Workers, Prompt engineering, Python (learning)
 
-CERTIFICATIONS:
-IBM: Artificial Intelligence Fundamentals with Capstone Project, Generative AI (Prompt Engineering, Introduction and Applications), Datadog: Performance Monitoring (Zero to Hero)
+Support Operations, Escalation Management, Technical Support, API Debugging, Root Cause Analysis, Issue Reproduction, Incident Management, Technical Documentation, AI Enablement, Cursor, Anthropic Claude API, REST APIs, SSO/SAML/OAuth, Postman, Browser DevTools, JavaScript, SQL, Git/GitHub, Docker, Datadog, Elasticsearch, Kibana, Rootly, Jira, Zendesk, Salesforce, Freshdesk, Cloudflare Workers and Prompt Engineering.
 
-LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
+POSITIONING:
 
-CONTACT AND LINKS:
+Madiha is particularly interested in roles at AI-native and developer-platform companies involving Support Operations, Technical Support Engineering, Supportability, Product Quality, Voice of Customer and AI-enabled support systems.
+
+She is interested in work that combines technical investigation with improving the systems, processes and tooling around support.
+
+TONE:
+
+- Warm and professional.
+- Concise and conversational.
+- Speak about Madiha in the third person.
+- Usually answer in 2 to 4 sentences unless the visitor asks for more detail.
+- Do not exaggerate her experience.
+- Never invent achievements, metrics, employers, technologies or responsibilities.
+- If something is not listed here, say that the information is not available and direct visitors to Madiha's contact page or LinkedIn.
+
+CONTACT:
+
 Portfolio: madihaintech.me
 GitHub: github.com/KhanKMadiha
 LinkedIn: linkedin.com/in/madihakhan-
-Contact page: madihaintech.me/contact.html
+Email: madihaintech@gmail.com`;
 
-TONE GUIDELINES:
-- Be warm, friendly, and approachable but also professional
-- Keep responses concise, 2 to 4 sentences unless the visitor asks for more detail
-- Speak about Madiha in the third person
-- If asked something you do not know, invite them to reach out via madihaintech.me/contact.html or linkedin.com/in/madihakhan-
-- Never invent or assume information not listed above`;
 
-    const WELCOME_MESSAGE = "Hi there! I am Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional with 5+ years in enterprise SaaS support. She works autonomously across EMEA, owns the full ticket lifecycle, and builds the systems that make support smarter.\n\nFeel free to ask me anything about her experience, skills, or projects!";
+    const WELCOME_MESSAGE =
+      "Hi there! I am Madiha's portfolio assistant.\\n\\nMadiha works at the intersection of support operations, technical investigation, Voice of Customer and AI-native tooling. She builds systems that turn customer signals into better support and product decisions.\\n\\nFeel free to ask me about her experience, skills or projects!";
+
 
     const conversationHistory = [];
+
     let chatOpen = false;
     let isLoading = false;
 
+
     function toggleChat() {
+
       chatOpen = !chatOpen;
-      document.getElementById('chat-window').classList.toggle('open', chatOpen);
-      if (chatOpen && conversationHistory.length === 0) appendMessage('bot', WELCOME_MESSAGE);
-      if (chatOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
+
+      document
+        .getElementById('chat-window')
+        .classList.toggle('open', chatOpen);
+
+
+      if (
+        chatOpen &&
+        conversationHistory.length === 0
+      ) {
+
+        appendMessage(
+          'bot',
+          WELCOME_MESSAGE
+        );
+
+      }
+
+
+      if (chatOpen) {
+
+        setTimeout(
+          () =>
+            document
+              .getElementById('chat-input')
+              .focus(),
+          300
+        );
+
+      }
+
     }
+
 
     function appendMessage(role, text) {
-      const container = document.getElementById('chat-messages');
-      const div = document.createElement('div');
-      div.className = `msg ${role}`;
-      text.split('\n').forEach((line, i, arr) => {
-        div.appendChild(document.createTextNode(line));
-        if (i < arr.length - 1) div.appendChild(document.createElement('br'));
-      });
+
+      const container =
+        document.getElementById('chat-messages');
+
+      const div =
+        document.createElement('div');
+
+      div.className =
+        `msg ${role}`;
+
+
+      text
+        .split('\n')
+        .forEach((line, i, arr) => {
+
+          div.appendChild(
+            document.createTextNode(line)
+          );
+
+          if (i < arr.length - 1) {
+
+            div.appendChild(
+              document.createElement('br')
+            );
+
+          }
+
+        });
+
+
       container.appendChild(div);
-      container.scrollTop = container.scrollHeight;
+
+      container.scrollTop =
+        container.scrollHeight;
+
     }
+
 
     function showTyping() {
-      const container = document.getElementById('chat-messages');
-      const div = document.createElement('div');
-      div.className = 'typing-indicator'; div.id = 'typing-indicator';
-      div.innerHTML = '<span></span><span></span><span></span>';
-      container.appendChild(div); container.scrollTop = container.scrollHeight;
+
+      const container =
+        document.getElementById('chat-messages');
+
+      const div =
+        document.createElement('div');
+
+      div.className =
+        'typing-indicator';
+
+      div.id =
+        'typing-indicator';
+
+      div.innerHTML =
+        '<span></span><span></span><span></span>';
+
+      container.appendChild(div);
+
+      container.scrollTop =
+        container.scrollHeight;
+
     }
 
-    function removeTyping() { const el = document.getElementById('typing-indicator'); if (el) el.remove(); }
+
+    function removeTyping() {
+
+      const el =
+        document.getElementById(
+          'typing-indicator'
+        );
+
+      if (el) {
+        el.remove();
+      }
+
+    }
+
 
     async function sendMessage() {
+
       if (isLoading) return;
-      const input = document.getElementById('chat-input');
-      const text = input.value.trim();
+
+
+      const input =
+        document.getElementById('chat-input');
+
+      const text =
+        input.value.trim();
+
+
       if (!text) return;
-      appendMessage('user', text);
-      conversationHistory.push({ role: 'user', content: text });
-      input.value = ''; input.style.height = 'auto';
-      setLoading(true); showTyping();
+
+
+      appendMessage(
+        'user',
+        text
+      );
+
+
+      conversationHistory.push({
+        role: 'user',
+        content: text
+      });
+
+
+      input.value = '';
+      input.style.height = 'auto';
+
+      setLoading(true);
+      showTyping();
+
+
       try {
-        const response = await fetch(PROXY_URL, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, system: SYSTEM_PROMPT, messages: conversationHistory })
+
+        const response =
+          await fetch(
+            PROXY_URL,
+            {
+              method: 'POST',
+
+              headers: {
+                'Content-Type':
+                  'application/json'
+              },
+
+              body: JSON.stringify({
+                model: 'claude-sonnet-4-6',
+                max_tokens: 1000,
+                system: SYSTEM_PROMPT,
+                messages: conversationHistory
+              })
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        const reply =
+          data?.content?.[0]?.text ||
+          "I am sorry, I was not able to get a response just now. Please try again in a moment!";
+
+
+        removeTyping();
+
+        appendMessage(
+          'bot',
+          reply
+        );
+
+
+        conversationHistory.push({
+          role: 'assistant',
+          content: reply
         });
-        const data = await response.json();
-        const reply = data?.content?.[0]?.text || "I am sorry, I was not able to get a response just now. Please try again in a moment!";
-        removeTyping(); appendMessage('bot', reply);
-        conversationHistory.push({ role: 'assistant', content: reply });
+
+
       } catch (err) {
-        removeTyping(); appendMessage('bot', "Something went wrong. Please try again shortly!");
+
+        removeTyping();
+
+        appendMessage(
+          'bot',
+          "Something went wrong. Please try again shortly!"
+        );
+
       }
+
+
       setLoading(false);
+
     }
 
-    function setLoading(state) { isLoading = state; document.getElementById('send-btn').disabled = state; }
-    function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
-    function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 100) + 'px'; }
 
-    setTimeout(() => { if (!chatOpen) toggleChat(); }, 2000);
+    function setLoading(state) {
+
+      isLoading = state;
+
+      document
+        .getElementById('send-btn')
+        .disabled = state;
+
+    }
+
+
+    function handleKey(e) {
+
+      if (
+        e.key === 'Enter' &&
+        !e.shiftKey
+      ) {
+
+        e.preventDefault();
+
+        sendMessage();
+
+      }
+
+    }
+
+
+    function autoResize(el) {
+
+      el.style.height = 'auto';
+
+      el.style.height =
+        Math.min(
+          el.scrollHeight,
+          100
+        ) + 'px';
+
+    }
+
+
+    /*
+      Keep the chatbot available without
+      forcing it open immediately.
+    */
+
+    setTimeout(() => {
+
+      if (!chatOpen) {
+        // Deliberately do not auto-open.
+        // Recruiters should see the page first.
+      }
+
+    }, 2000);
+
   </script>
 
+
+  <!-- Terminal animation -->
+
   <script>
+
     (function () {
+
       const LINES = [
-        { text: '$ support-analysis · Cursor',            cls: 'cmd' },
-        { text: '  Scanning 1,240 tickets · last 30 days', cls: 'dim' },
-        { text: '',                                         cls: '' },
-        { text: '  Pattern detected: tab key not accepting suggestions', cls: 'warn' },
-        { text: '  Affected users: 47 across Pro and Business', cls: '' },
-        { text: '  First reported: 14 days ago',           cls: '' },
-        { text: '',                                         cls: '' },
-        { text: '  Root cause identified...',              cls: 'dim' },
-        { text: '  → Keybinding conflict with VS Code extension', cls: '' },
-        { text: '  → Not a user error. Product gap.',      cls: '' },
-        { text: '',                                         cls: '' },
-        { text: '  Building case for engineering...',      cls: 'dim' },
-        { text: '  → Log evidence attached',               cls: 'ok' },
-        { text: '  → Reproduction steps documented',       cls: 'ok' },
-        { text: '  → Feature request raised ✓',            cls: 'ok' },
-        { text: '',                                         cls: '' },
-        { text: '  Ticket trend → roadmap decision',       cls: 'stat' },
+
+        {
+          text: '$ support-analysis · Cursor',
+          cls: 'cmd'
+        },
+
+        {
+          text: '  Analysing support signals...',
+          cls: 'dim'
+        },
+
+        {
+          text: '',
+          cls: ''
+        },
+
+        {
+          text: '  Pattern detected: recurring issue',
+          cls: 'warn'
+        },
+
+        {
+          text: '  Customer impact identified',
+          cls: ''
+        },
+
+        {
+          text: '  Log evidence collected',
+          cls: ''
+        },
+
+        {
+          text: '',
+          cls: ''
+        },
+
+        {
+          text: '  Reproducing issue...',
+          cls: 'dim'
+        },
+
+        {
+          text: '  → Reproduction steps documented',
+          cls: 'ok'
+        },
+
+        {
+          text: '  → Root cause narrowed',
+          cls: 'ok'
+        },
+
+        {
+          text: '  → Product signal captured',
+          cls: 'ok'
+        },
+
+        {
+          text: '',
+          cls: ''
+        },
+
+        {
+          text: '  Building case for engineering...',
+          cls: 'dim'
+        },
+
+        {
+          text: '  → Evidence attached',
+          cls: 'ok'
+        },
+
+        {
+          text: '  → Feature request raised ✓',
+          cls: 'ok'
+        },
+
+        {
+          text: '',
+          cls: ''
+        },
+
+        {
+          text: '  Customer signal → system improvement',
+          cls: 'stat'
+        }
+
       ];
-      const CHAR_DELAY = 38; const LINE_PAUSE = 320; const END_PAUSE = 3200;
-      const body = document.getElementById('terminalBody');
+
+
+      const CHAR_DELAY = 38;
+      const LINE_PAUSE = 320;
+      const END_PAUSE = 3200;
+
+      const body =
+        document.getElementById(
+          'terminalBody'
+        );
+
+
       if (!body) return;
-      let li = 0, ci = 0, el = null;
-      function cursor() { const c = document.createElement('span'); c.className = 't-cursor'; return c; }
-      function tick() {
-        if (li >= LINES.length) { setTimeout(reset, END_PAUSE); return; }
-        const { text, cls } = LINES[li];
-        if (!el) { el = document.createElement('span'); el.className = 't-ln' + (cls ? ' ' + cls : ''); body.appendChild(el); }
-        if (text === '') { el.innerHTML = '&nbsp;'; el = null; li++; ci = 0; setTimeout(tick, LINE_PAUSE / 2); return; }
-        if (ci <= text.length) { el.textContent = text.slice(0, ci); if (ci < text.length) el.appendChild(cursor()); ci++; setTimeout(tick, ci === 1 ? LINE_PAUSE : CHAR_DELAY); }
-        if (ci > text.length) { el = null; li++; ci = 0; setTimeout(tick, LINE_PAUSE); }
+
+
+      let li = 0;
+      let ci = 0;
+      let el = null;
+
+
+      function cursor() {
+
+        const c =
+          document.createElement('span');
+
+        c.className =
+          't-cursor';
+
+        return c;
+
       }
-      function reset() { body.innerHTML = ''; li = 0; ci = 0; el = null; setTimeout(tick, 600); }
-      setTimeout(tick, 900);
+
+
+      function tick() {
+
+        if (li >= LINES.length) {
+
+          setTimeout(
+            reset,
+            END_PAUSE
+          );
+
+          return;
+
+        }
+
+
+        const {
+          text,
+          cls
+        } = LINES[li];
+
+
+        if (!el) {
+
+          el =
+            document.createElement('span');
+
+          el.className =
+            't-ln' +
+            (cls ? ' ' + cls : '');
+
+          body.appendChild(el);
+
+        }
+
+
+        if (text === '') {
+
+          el.innerHTML = '&nbsp;';
+
+          el = null;
+
+          li++;
+          ci = 0;
+
+          setTimeout(
+            tick,
+            LINE_PAUSE / 2
+          );
+
+          return;
+
+        }
+
+
+        if (ci <= text.length) {
+
+          el.textContent =
+            text.slice(0, ci);
+
+
+          if (ci < text.length) {
+            el.appendChild(cursor());
+          }
+
+
+          ci++;
+
+
+          setTimeout(
+            tick,
+            ci === 1
+              ? LINE_PAUSE
+              : CHAR_DELAY
+          );
+
+        }
+
+
+        if (ci > text.length) {
+
+          el = null;
+
+          li++;
+          ci = 0;
+
+          setTimeout(
+            tick,
+            LINE_PAUSE
+          );
+
+        }
+
+      }
+
+
+      function reset() {
+
+        body.innerHTML = '';
+
+        li = 0;
+        ci = 0;
+        el = null;
+
+        setTimeout(
+          tick,
+          600
+        );
+
+      }
+
+
+      setTimeout(
+        tick,
+        900
+      );
+
     })();
+
   </script>
 
 </body>
+</html>
 </html>

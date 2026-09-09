@@ -10,941 +10,386 @@
 
   <style>
     :root {
-      --bg-base: #FAFAF8;
-      --surface: #F5EEEC;
-      --accent: #D4A4A0;
-      --surface-soft: #EDE8E6;
-      --text-dark: #1A1A1A;
-      --muted-dark: rgba(26, 26, 26, 0.6);
-      --border-soft: rgba(180, 140, 135, 0.2);
-      --border-strong: rgba(180, 140, 135, 0.38);
-      --white-glass: rgba(255, 255, 255, 0.75);
+      --bg-base:#FAFAF8;
+      --surface:#F5EEEC;
+      --accent:#D4A4A0;
+      --surface-soft:#EDE8E6;
+      --text-dark:#1A1A1A;
+      --muted-dark:rgba(26,26,26,.62);
+      --border-soft:rgba(180,140,135,.2);
+      --border-strong:rgba(180,140,135,.38);
+      --white-glass:rgba(255,255,255,.78);
     }
 
-    * { box-sizing: border-box; }
-
-    body {
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      background-color: var(--bg-base);
-      color: var(--text-dark);
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      overflow-x: hidden;
-    }
-
-    .bg-shapes {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none; z-index: 0; overflow: hidden;
-    }
-
-    .shape {
-      position: absolute; border-radius: 50%;
-      background: rgba(180, 140, 135, 0.06);
-      animation: float linear infinite;
-    }
-
-    .shape:nth-child(1){width:300px;height:300px;top:5%;left:-8%;animation-duration:18s;}
-    .shape:nth-child(2){width:180px;height:180px;top:20%;right:-5%;animation-duration:22s;animation-delay:-4s;}
-    .shape:nth-child(3){width:240px;height:240px;top:50%;left:60%;animation-duration:26s;animation-delay:-8s;}
-    .shape:nth-child(4){width:120px;height:120px;top:70%;left:10%;animation-duration:20s;animation-delay:-12s;}
-    .shape:nth-child(5){width:200px;height:200px;top:85%;right:15%;animation-duration:24s;animation-delay:-6s;}
-    .shape:nth-child(6){width:80px;height:80px;top:35%;left:45%;animation-duration:16s;animation-delay:-10s;}
-
-    @keyframes float {
-      0%{transform:translateY(0px) rotate(0deg) scale(1);opacity:0.6;}
-      33%{transform:translateY(-30px) rotate(60deg) scale(1.05);opacity:0.9;}
-      66%{transform:translateY(15px) rotate(120deg) scale(0.97);opacity:0.7;}
-      100%{transform:translateY(0px) rotate(180deg) scale(1);opacity:0.6;}
-    }
-
-    .hero, .nav-cta, .content, .links, footer { position: relative; z-index: 1; }
-
-    .hero {
-      min-height: 65vh;
-      display: flex; align-items: center;
-      padding: 6.5rem 1.5rem 2.5rem;
-      background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
-    }
-
-    .hero-inner {
-      max-width: 980px; margin: 0 auto;
-      width: 100%; display: flex; flex-direction: column; align-items: center;
-    }
-
-    .project-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 0.75rem;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    h1 {
-      margin: 0 0 1rem;
-      font-size: clamp(2.6rem, 5vw, 3.6rem);
-      line-height: 1.08; letter-spacing: -0.02em;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .hero-highlight {
-      margin: 0.9rem auto 0; max-width: 860px;
-      font-size: 1.15rem; line-height: 1.7; color: var(--muted-dark);
-      animation: fadeUp 0.6s ease 0.15s both;
-    }
-
-    @keyframes fadeUp {
-      from{opacity:0;transform:translateY(20px);}
-      to{opacity:1;transform:translateY(0);}
-    }
-
-    .nav-cta {
-      max-width: 980px; margin: -1.25rem auto 2.25rem;
-      padding: 0 1.5rem; position: relative; z-index: 1;
-      animation: fadeUp 0.6s ease 0.25s both;
-    }
-
-    .nav-cta-inner { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-
-    .nav-btn {
-      flex: 1 1 220px; max-width: 320px;
-      padding: 1.05rem 1.25rem; border-radius: 14px;
-      font-size: 1.05rem; font-weight: 700; text-decoration: none;
-      color: var(--text-dark); border: 1.5px solid var(--border-soft);
-      background-color: rgba(255,255,255,0.6);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,0.08); border-color: var(--border-strong); }
-
-    .nav-btn.active {
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      color: #fff; border-color: transparent;
-      box-shadow: 0 6px 18px rgba(180,140,135,0.25);
-    }
-
-    .content {
-      max-width: 980px; margin: 0 auto 3.5rem;
-      padding: 0 1.5rem; text-align: left;
-    }
-
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    .section-label {
-      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent);
-      margin: 0 0 1rem; text-align: center;
-    }
-
-    /* ---------- INTRO CARD ---------- */
-    .intro-card {
-      padding: 2.25rem 2.5rem; border-radius: 22px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
-      margin-bottom: 2rem; text-align: left;
-      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .intro-card:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(0,0,0,0.06); border-color: var(--border-strong); }
-
-    .intro-card p { font-size: 1.05rem; line-height: 1.8; color: var(--muted-dark); margin: 0 0 1rem; }
-    .intro-card p:last-child { margin-bottom: 0; }
-    .intro-card strong { color: var(--text-dark); font-weight: 700; }
-
-    .tag-row { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.25rem; }
-
-    .tag {
-      padding: 0.45rem 0.85rem; border-radius: 999px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.65); font-size: 0.9rem; color: var(--text-dark);
-    }
-
-    /* ---------- PHASE STEPPER ---------- */
-    .stepper-nav {
-      display: flex; gap: 0.5rem; justify-content: center;
-      margin-bottom: 1.5rem; flex-wrap: wrap;
-    }
-
-    .phase-btn {
-      padding: 0.6rem 1.2rem; border-radius: 999px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 700;
-      color: var(--muted-dark); cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .phase-btn:hover { border-color: var(--border-strong); color: var(--text-dark); }
-
-    .phase-btn.active {
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      color: #fff; box-shadow: 0 4px 14px rgba(180,140,135,0.25);
-    }
-
-    .phase-content {
-      display: none;
-      padding: 2rem 2.25rem; border-radius: 22px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
-      margin-bottom: 1.5rem; text-align: left;
-      animation: phaseIn 0.35s ease both;
-    }
-
-    .phase-content.active { display: block; }
-
-    @keyframes phaseIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .phase-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
-
-    .phase-badge {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.35rem 0.85rem; border-radius: 999px;
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em;
-      text-transform: uppercase; flex-shrink: 0;
-    }
-
-    .badge-1 { background: #F5EEEC; color: #8B5E5B; border: 1px solid rgba(180,140,135,0.3); }
-    .badge-2 { background: #fde8d8; color: #c05a2a; border: 1px solid rgba(233,140,106,0.3); }
-    .badge-3 { background: #e8f4fd; color: #2a6fc0; border: 1px solid rgba(106,163,233,0.3); }
-    .badge-4 { background: #e8fdf0; color: #2ac06a; border: 1px solid rgba(106,233,163,0.3); }
-
-    .phase-title-wrap h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.2rem; }
-    .phase-title-wrap p { font-size: 0.92rem; color: var(--muted-dark); margin: 0; }
-
-    .phase-body p { font-size: 1rem; line-height: 1.8; color: var(--muted-dark); margin: 0 0 1rem; }
-    .phase-body p:last-child { margin-bottom: 0; }
-    .phase-body strong { color: var(--text-dark); }
-    .phase-body code {
-      background: rgba(180,140,135,0.1); border: 1px solid rgba(180,140,135,0.2);
-      padding: 0.15rem 0.45rem; border-radius: 6px; font-size: 0.9rem; font-family: monospace;
-    }
-
-    /* ---------- STRUGGLE TOGGLE ---------- */
-    .struggle-toggle {
-      margin-top: 1.25rem;
-      border-radius: 14px;
-      border: 1.5px solid var(--border-soft);
-      overflow: hidden;
-    }
-
-    .struggle-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.9rem 1.1rem; cursor: pointer;
-      background: rgba(180,140,135,0.06);
-      transition: background 0.2s;
-    }
-
-    .struggle-header:hover { background: rgba(180,140,135,0.1); }
-
-    .struggle-header-left { display: flex; align-items: center; gap: 0.6rem; }
-    .struggle-icon { font-size: 1rem; }
-    .struggle-label { font-size: 0.88rem; font-weight: 700; color: var(--accent); }
-    .struggle-chevron { font-size: 0.75rem; color: var(--accent); transition: transform 0.25s; }
-
-    .struggle-body {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.25s ease;
-      padding: 0 1.1rem;
-      border-top: 1px solid transparent;
-    }
-
-    .struggle-body.open {
-      max-height: 300px;
-      padding: 1rem 1.1rem;
-      border-top-color: var(--border-soft);
-    }
-
-    .struggle-body p { font-size: 0.93rem; line-height: 1.7; color: var(--muted-dark); margin: 0 0 0.75rem; }
-    .struggle-body p:last-child { margin-bottom: 0; }
-
-    /* ---------- PHASE NAV BUTTONS ---------- */
-    .phase-nav { display: flex; justify-content: space-between; margin-top: 1.25rem; gap: 1rem; }
-
-    .phase-nav-btn {
-      padding: 0.7rem 1.25rem; border-radius: 12px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 700;
-      color: var(--text-dark); cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .phase-nav-btn:hover { border-color: var(--border-strong); box-shadow: 0 6px 16px rgba(0,0,0,0.07); }
-    .phase-nav-btn.primary {
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      color: #fff; border-color: transparent;
-      box-shadow: 0 4px 14px rgba(180,140,135,0.25);
-    }
-    .phase-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-
-    /* ---------- TOOLS SECTION ---------- */
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1rem; margin-bottom: 2rem;
-    }
-
-    .tool-card {
-      padding: 1.5rem 1rem; border-radius: 18px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
-      text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .tool-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(180,140,135,0.12); border-color: var(--border-strong); }
-
-    .tool-logo {
-      width: 48px; height: 48px; border-radius: 14px;
-      border: 1.5px solid var(--border-soft); background: #fff;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 0.75rem; overflow: hidden;
-    }
-
-    .tool-logo img { width: 32px; height: 32px; object-fit: contain; }
-    .tool-logo .tool-emoji { font-size: 1.5rem; }
-    .tool-initial { font-size: 0.75rem; font-weight: 800; color: var(--muted-dark); letter-spacing: 0.02em; }
-
-    .tool-name { font-size: 0.88rem; font-weight: 800; margin: 0 0 0.2rem; }
-    .tool-desc { font-size: 0.78rem; color: var(--muted-dark); margin: 0; line-height: 1.4; }
-
-    /* ---------- LEARNINGS SECTION ---------- */
-    .learnings-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1rem; margin-bottom: 2rem;
-    }
-
-    .learning-card {
-      padding: 1.75rem 1.5rem; border-radius: 22px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
-      text-align: left;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .learning-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.07); border-color: var(--border-strong); }
-
-    .learning-icon { font-size: 1.6rem; margin-bottom: 0.6rem; display: block; }
-    .learning-card h3 { font-size: 0.98rem; font-weight: 800; margin: 0 0 0.4rem; }
-    .learning-card p { font-size: 0.88rem; line-height: 1.65; color: var(--muted-dark); margin: 0; }
-
-    /* ---------- TRY IT CARD ---------- */
-    .try-card {
-      padding: 2.25rem 2.5rem; border-radius: 22px;
-      border: 1.5px solid var(--border-strong);
-      background: linear-gradient(135deg, rgba(237,232,230,0.5), rgba(237,232,230,0.4));
-      backdrop-filter: blur(8px);
-      text-align: center; margin-bottom: 2rem;
-    }
-
-    .try-card h3 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.6rem; }
-    .try-card p { font-size: 1rem; line-height: 1.75; color: var(--muted-dark); margin: 0 0 0.5rem; }
-    .try-card .powered { font-size: 0.88rem; color: var(--muted-dark); }
-
-    /* ---------- LINKS ---------- */
-    .links { padding-bottom: 2.5rem; text-align: center; }
-    .links h2 { font-size: 1.6rem; margin: 2rem 0 0.75rem; }
-    .links p { display: flex; justify-content: center; gap: 2.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
-
-    footer { margin: 26px 0 34px; padding: 0 1.5rem; font-size: 0.95rem; color: rgba(26,26,26,0.6); text-align: center; }
-
-    @media (max-width: 600px) {
-      .learnings-grid { grid-template-columns: 1fr; }
-      .intro-card, .phase-content { padding: 1.75rem 1.5rem; }
-    }
-
-    /* ---------- CHATBOT ---------- */
-    #chat-toggle {
-      position: fixed; bottom: 22px; right: 22px;
-      width: 58px; height: 58px; border-radius: 18px;
-      background: var(--surface); border: 1.5px solid var(--border-strong);
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 24px rgba(180,140,135,0.28);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      z-index: 9999; font-size: 24px;
-    }
-    #chat-toggle:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(180,140,135,0.4); }
-
-    #chat-window {
-      position: fixed; bottom: 92px; right: 22px;
-      width: 360px; max-height: 530px;
-      background: var(--white-glass); backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1.5px solid var(--border-soft); border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(180,140,135,0.15), 0 4px 16px rgba(0,0,0,0.06);
-      display: flex; flex-direction: column; overflow: hidden; z-index: 9998;
-      transform: scale(0.92) translateY(14px); opacity: 0; pointer-events: none;
-      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), opacity 0.22s ease;
-    }
-    #chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
-
-    .chat-header {
-      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-soft) 100%);
-      border-bottom: 1px solid var(--border-soft); padding: 15px 16px;
-      display: flex; align-items: center; gap: 11px; flex-shrink: 0;
-    }
-    .chat-avatar {
-      width: 38px; height: 38px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; letter-spacing: 0.05em; color: #fff; flex-shrink: 0;
-    }
-    .chat-header-info h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-dark); line-height: 1.2; }
-    .chat-header-info p { font-size: 0.73rem; color: var(--muted-dark); margin-top: 2px; display: flex; align-items: center; gap: 4px; }
-    .online-dot { width: 7px; height: 7px; background: #4caf82; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-    .chat-close { margin-left: auto; background: none; border: none; cursor: pointer; color: var(--muted-dark); font-size: 17px; line-height: 1; padding: 4px; border-radius: 6px; transition: background 0.15s; }
-    .chat-close:hover { background: rgba(180,140,135,0.12); }
-    .chat-messages { flex: 1; overflow-y: auto; padding: 14px 14px 10px; display: flex; flex-direction: column; gap: 9px; scroll-behavior: smooth; }
-    .chat-messages::-webkit-scrollbar { width: 4px; }
-    .chat-messages::-webkit-scrollbar-track { background: transparent; }
-    .chat-messages::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 4px; }
-    .msg { max-width: 84%; padding: 10px 13px; border-radius: 16px; font-size: 0.875rem; line-height: 1.58; animation: msgIn 0.22s ease; }
-    @keyframes msgIn { from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:translateY(0);} }
-    .msg.bot { background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft); border-bottom-left-radius: 5px; align-self: flex-start; color: var(--text-dark); }
-    .msg.user { background: linear-gradient(135deg,var(--accent),#E0B8B4); color: #fff; border-bottom-right-radius: 5px; align-self: flex-end; }
-    .typing-indicator { display: flex; gap: 4px; padding: 11px 14px; background: rgba(255,255,255,0.92); border: 1px solid var(--border-soft); border-radius: 16px; border-bottom-left-radius: 5px; align-self: flex-start; width: fit-content; animation: msgIn 0.2s ease; }
-    .typing-indicator span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: bounce 1.2s infinite; }
-    .typing-indicator span:nth-child(2){animation-delay:0.2s;}
-    .typing-indicator span:nth-child(3){animation-delay:0.4s;}
-    @keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:0.6;}30%{transform:translateY(-5px);opacity:1;} }
-    .chat-input-area { padding: 11px 13px; border-top: 1px solid var(--border-soft); background: rgba(255,255,255,0.6); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; }
-    .chat-input-area textarea { flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px; padding: 9px 11px; font-family: 'Segoe UI',sans-serif; font-size: 0.875rem; color: var(--text-dark); background: rgba(255,255,255,0.88); resize: none; outline: none; max-height: 100px; line-height: 1.45; transition: border-color 0.2s; }
-    .chat-input-area textarea:focus { border-color: var(--accent); }
-    .chat-input-area textarea::placeholder { color: rgba(26,26,26,0.4); }
-    .send-btn { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg,var(--accent),#E0B8B4); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.15s ease,box-shadow 0.15s ease,opacity 0.15s; box-shadow: 0 4px 12px rgba(180,140,135,0.32); }
-    .send-btn:hover{transform:scale(1.07);box-shadow:0 6px 16px rgba(180,140,135,0.42);}
-    .send-btn:active{transform:scale(0.95);}
-    .send-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
-    .send-btn svg{width:15px;height:15px;fill:white;}
-    @media(max-width:420px){#chat-window{width:calc(100vw - 28px);right:14px;bottom:84px;}#chat-toggle{right:14px;bottom:14px;}}
-  
-    /* ── sticky top nav ── */
-    .site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 999;
-      height: 58px;
-      display: flex;
-      align-items: center;
-      padding: 0 1.75rem;
-      background: rgba(250, 250, 248, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-soft);
-    }
-    .site-nav-brand {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      text-decoration: none;
-      letter-spacing: 0.01em;
-      margin-right: auto;
-    }
-    .site-nav-links {
-      display: flex;
-      gap: 0.25rem;
-    }
-    .site-nav-links a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: rgba(26,26,26,0.55);
-      text-decoration: none;
-      padding: 0.35rem 0.7rem;
-      border-radius: 8px;
-      transition: color 0.15s ease;
-    }
-    .site-nav-links a:hover { color: var(--text-dark); }
-    .site-nav-links a.active {
-      color: var(--text-dark);
-      font-weight: 700;
-    }
-    @media (max-width: 540px) {
-      .site-nav-brand { display: none; }
-      .site-nav { padding: 0 1rem; justify-content: center; }
-    }
-    .connect-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 1.25rem;
-      flex-wrap: wrap;
-    }
-    .connect-links a {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: rgba(26,26,26,0.55);
-      text-decoration: none;
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.6);
-      transition: color 0.15s ease, border-color 0.15s ease;
-    }
-    .connect-links a:hover { color: var(--text-dark); border-color: var(--border-strong); }
-    .connect-links svg { flex-shrink: 0; }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter','Segoe UI',sans-serif;background:var(--bg-base);color:var(--text-dark);margin:0;overflow-x:hidden}
+
+    .site-nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;align-items:center;padding:0 1.75rem;background:rgba(250,250,248,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border-soft)}
+    .site-nav-brand{font-size:.95rem;font-weight:700;color:var(--text-dark);text-decoration:none;margin-right:auto}
+    .site-nav-links{display:flex;gap:.25rem}
+    .site-nav-links a{font-size:.875rem;font-weight:500;color:rgba(26,26,26,.55);text-decoration:none;padding:.35rem .7rem;border-radius:8px}
+    .site-nav-links a:hover,.site-nav-links a.active{color:var(--text-dark)}
+    .site-nav-links a.active{font-weight:700}
+
+    .hero{min-height:65vh;display:flex;align-items:center;padding:7rem 1.5rem 3rem;background:linear-gradient(180deg,var(--surface) 0%,transparent 100%)}
+    .hero-inner{max-width:980px;margin:0 auto;width:100%;text-align:center}
+    .project-label,.section-label{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+    .project-label{margin:0 0 1rem}
+    .section-label{margin:0 0 1rem;text-align:center}
+    h1{margin:0 0 1rem;font-size:clamp(2.7rem,6vw,4rem);line-height:1.06;letter-spacing:-.03em}
+    .hero-highlight{margin:.9rem auto 0;max-width:800px;font-size:1.15rem;line-height:1.75;color:var(--muted-dark)}
+    .hero-actions{display:flex;justify-content:center;gap:1rem;margin-top:1.75rem;flex-wrap:wrap}
+    .hero-action-primary,.hero-action-secondary,.nav-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:700;transition:.2s ease}
+    .hero-action-primary{padding:.65rem 1.4rem;border-radius:999px;background:var(--accent);color:#fff}
+    .hero-action-secondary{padding:.65rem 1.25rem;border-radius:999px;border:1.5px solid var(--border-strong);background:rgba(255,255,255,.65);color:var(--text-dark)}
+    .hero-action-primary:hover{opacity:.88;transform:translateY(-1px)}
+    .hero-action-secondary:hover{border-color:var(--accent)}
+
+    .content{max-width:980px;margin:0 auto 3.5rem;padding:0 1.5rem}
+    .case-section{margin-bottom:2.5rem}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    .intro-card,.phase-content,.tool-card,.try-card,.learning-card{border:1.5px solid var(--border-soft);background:rgba(255,255,255,.58);backdrop-filter:blur(8px)}
+    .intro-card{padding:2.25rem 2.5rem;border-radius:22px;margin-bottom:2rem}
+    .intro-card p,.phase-body p,.learning-card p,.try-card p{color:var(--muted-dark);line-height:1.8}
+    .intro-card p{font-size:1.04rem;margin:0 0 1rem}
+    .intro-card p:last-child{margin-bottom:0}
+    .intro-card strong,.phase-body strong{color:var(--text-dark)}
+
+    .tag-row{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.25rem}
+    .tag{padding:.45rem .85rem;border-radius:999px;border:1.5px solid var(--border-soft);background:rgba(255,255,255,.72);font-size:.88rem}
+
+    .stepper-nav{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap}
+    .phase-btn{padding:.6rem 1.15rem;border-radius:999px;border:1.5px solid var(--border-soft);background:rgba(255,255,255,.65);font-family:inherit;font-size:.9rem;font-weight:700;color:var(--muted-dark);cursor:pointer}
+    .phase-btn.active{border-color:transparent;background:linear-gradient(135deg,var(--accent),#E0B8B4);color:#fff}
+    .phase-content{display:none;padding:2rem 2.25rem;border-radius:22px;margin-bottom:1.5rem}
+    .phase-content.active{display:block}
+    .phase-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.25rem}
+    .phase-badge{display:inline-flex;padding:.35rem .8rem;border-radius:999px;font-size:.78rem;font-weight:700;background:var(--surface);color:#8B5E5B;border:1px solid var(--border-soft)}
+    .phase-title-wrap h3{font-size:1.25rem;margin:0 0 .25rem}
+    .phase-title-wrap p{margin:0;color:var(--muted-dark);font-size:.92rem}
+    .phase-body p{font-size:1rem;margin:0 0 1rem}
+    .phase-body p:last-child{margin-bottom:0}
+
+    .struggle-toggle{margin-top:1.25rem;border-radius:14px;border:1.5px solid var(--border-soft);overflow:hidden}
+    .struggle-header{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;cursor:pointer;background:rgba(180,140,135,.06)}
+    .struggle-label{font-size:.88rem;font-weight:700;color:var(--accent)}
+    .struggle-chevron{color:var(--accent);transition:transform .2s}
+    .struggle-body{display:none;padding:1rem 1.1rem;border-top:1px solid var(--border-soft)}
+    .struggle-body.open{display:block}
+    .struggle-body p{margin:0 0 .75rem;color:var(--muted-dark);line-height:1.7}
+    .struggle-body p:last-child{margin-bottom:0}
+
+    .phase-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:1.25rem}
+    .phase-nav-btn{padding:.7rem 1.1rem;border-radius:12px;border:1.5px solid var(--border-soft);background:rgba(255,255,255,.7);font-family:inherit;font-weight:700;cursor:pointer}
+    .phase-nav-btn.primary{background:linear-gradient(135deg,var(--accent),#E0B8B4);color:#fff;border-color:transparent}
+    .phase-nav-btn:disabled{opacity:.35;cursor:not-allowed}
+
+    .tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin-bottom:2rem}
+    .tool-card{padding:1.35rem 1rem;border-radius:18px;text-align:center}
+    .tool-logo{width:46px;height:46px;border-radius:14px;border:1.5px solid var(--border-soft);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;font-size:.75rem;font-weight:800;color:var(--muted-dark)}
+    .tool-name{margin:0 0 .25rem;font-size:.9rem;font-weight:800}
+    .tool-desc{margin:0;font-size:.78rem;line-height:1.45;color:var(--muted-dark)}
+
+    .learnings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+    .learning-card{padding:1.5rem;border-radius:20px}
+    .learning-card h3{margin:0 0 .5rem;font-size:1rem}
+    .learning-card p{margin:0;font-size:.9rem}
+
+    .try-card{padding:2.25rem 2.5rem;border-radius:22px;text-align:center;border-color:var(--border-strong)}
+    .try-card h3{margin:0 0 .6rem;font-size:1.25rem}
+    .try-card p{margin:0 0 1.25rem}
+    .try-actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
+    .nav-btn{padding:.8rem 1.2rem;border-radius:12px;border:1.5px solid var(--border-soft);background:rgba(255,255,255,.75);color:var(--text-dark)}
+    .nav-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+
+    .links{text-align:center;padding:0 1.5rem 2.5rem}
+    .links h2{font-size:1.6rem;margin:0 0 .9rem}
+    .connect-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .connect-links a{color:rgba(26,26,26,.6);text-decoration:none;font-size:.88rem;font-weight:600;padding:.45rem .9rem;border-radius:999px;border:1.5px solid var(--border-soft);background:rgba(255,255,255,.6)}
+    footer{text-align:center;margin:0 0 34px;padding:0 1.5rem;font-size:.95rem;color:rgba(26,26,26,.6)}
+
+    #chat-toggle{position:fixed;bottom:22px;right:22px;width:58px;height:58px;border-radius:18px;background:var(--surface);border:1.5px solid var(--border-strong);cursor:pointer;z-index:9999;font-size:24px;box-shadow:0 8px 24px rgba(180,140,135,.28)}
+    #chat-window{position:fixed;bottom:92px;right:22px;width:360px;max-height:530px;background:var(--white-glass);backdrop-filter:blur(14px);border:1.5px solid var(--border-soft);border-radius:24px;box-shadow:0 20px 50px rgba(180,140,135,.15),0 4px 16px rgba(0,0,0,.06);display:none;flex-direction:column;overflow:hidden;z-index:9998}
+    #chat-window.open{display:flex}
+    .chat-header{padding:14px 16px;background:var(--surface);border-bottom:1px solid var(--border-soft);display:flex;align-items:center;gap:10px}
+    .chat-avatar{width:38px;height:38px;border-radius:12px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+    .chat-header-info h4{margin:0;font-size:.92rem}
+    .chat-header-info p{margin:2px 0 0;font-size:.73rem;color:var(--muted-dark)}
+    .chat-close{margin-left:auto;background:none;border:0;cursor:pointer;font-size:17px}
+    .chat-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px}
+    .msg{max-width:84%;padding:10px 13px;border-radius:16px;font-size:.875rem;line-height:1.58}
+    .msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--border-soft)}
+    .msg.user{align-self:flex-end;background:var(--accent);color:#fff}
+    .chat-input-area{padding:11px 13px;border-top:1px solid var(--border-soft);display:flex;gap:8px}
+    .chat-input-area textarea{flex:1;border:1.5px solid var(--border-soft);border-radius:12px;padding:9px 11px;font:inherit;resize:none}
+    .send-btn{width:36px;border:0;border-radius:11px;background:var(--accent);color:#fff;cursor:pointer}
+
+    @media(max-width:760px){.tools-grid,.learnings-grid{grid-template-columns:1fr}.intro-card,.phase-content,.try-card{padding:1.6rem}.phase-header{flex-direction:column;gap:.65rem}}
+    @media(max-width:540px){.site-nav-brand{display:none}.site-nav{padding:0 .7rem;justify-content:center}.site-nav-links a{padding:.35rem .45rem;font-size:.8rem}#chat-window{width:calc(100vw - 28px);right:14px}#chat-toggle{right:14px}}
   </style>
 </head>
 
 <body>
-<nav class="site-nav">
-  <a class="site-nav-brand" href="./index.html">Madiha Khan</a>
-  <div class="site-nav-links">
-    <a href="./index.html">Home</a>
-    <a href="./about.html">About</a>
-    <a href="./skills.html">Skills</a>
-    <a class="active" href="./projects.html">Projects</a>
-    <a href="./contact.html">Contact</a>
-  </div>
-</nav>
+  <nav class="site-nav">
+    <a class="site-nav-brand" href="./index.html">Madiha Khan</a>
+    <div class="site-nav-links">
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./skills.html">Technical depth</a>
+      <a class="active" href="./projects.html">Projects</a>
+      <a href="./contact.html">Contact</a>
+    </div>
+  </nav>
 
   <section class="hero">
     <div class="hero-inner">
-      <p class="project-label">SUPPORT OPERATIONS · 2026</p>
+      <p class="project-label">Support Operations · 2026</p>
       <h1>Support Ticket Analyser</h1>
-      <p class="hero-highlight">
-        An AI-native support workflow that closes the loop from ticket to knowledge base: Documentation matching, gap detection, response drafting, and KB publish to Notion.
-      </p>
-      <p class="hero-highlight">
-        Built from scratch because this gap exists in every support team I have ever worked in.
-      </p>
+      <p class="hero-highlight">An AI-assisted support workflow that turns resolved tickets into reusable knowledge by finding existing documentation, flagging gaps, drafting responses, and creating reviewable KB content.</p>
+      <div class="hero-actions">
+        <a class="hero-action-primary" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer">Open demo →</a>
+        <a class="hero-action-secondary" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer">View code</a>
+      </div>
     </div>
   </section>
 
   <main class="content">
-
-    <!-- INTRO -->
-    <div class="intro-card reveal">
-      <p>
-        Most support teams resolve the same issues repeatedly because the knowledge never gets captured. A support engineer fixes the problem, sends the response, and moves on. No article gets written. The next support engineer starts from scratch.
-      </p>
-      <p><strong>This tool changes that.</strong></p>
-      <p>
-        Built to reduce repeat ticket volume by automatically detecting documentation gaps, drafting responses grounded in existing knowledge, and publishing KB articles directly to Notion without leaving the workflow.
-      </p>
-      <p>
-        I have worked autonomously throughout my career in support, often as the only person covering a region or a function. That taught me early that good documentation is the difference between a team that scales and one that depends on a single person knowing everything.
-      </p>
-      <p>
-        Every ticket is an opportunity to capture knowledge that did not exist before. This tool makes that automatic.
-      </p>
-      <div class="tag-row">
-        <span class="tag">Voice of the Customer</span>
-        <span class="tag">Documentation gaps</span>
-        <span class="tag">Quality operations</span>
-        <span class="tag">Cursor</span>
-        <span class="tag">Anthropic API</span>
-        <span class="tag">Notion API</span>
+    <section class="case-section reveal">
+      <p class="section-label">The problem</p>
+      <div class="intro-card">
+        <p>Support teams solve valuable problems every day, but the knowledge created during those investigations is easy to lose.</p>
+        <p>An engineer resolves a difficult ticket, writes a strong customer response, and moves on. If the resolution is not captured in the knowledge base, the next person who sees the same issue has to rediscover it.</p>
+        <p>The operational problem is therefore bigger than response speed. It is <strong>how to turn solved tickets into reusable organisational knowledge before that context disappears.</strong></p>
+        <p>I built Support Ticket Analyser to explore a repeatable loop from ticket resolution to documentation rather than treating knowledge creation as a separate task someone has to remember later.</p>
       </div>
-    </div>
+    </section>
 
-    <!-- PHASE STEPPER -->
-    <p class="section-label reveal">The workflow</p>
-    <div class="reveal">
+    <section class="case-section reveal">
+      <p class="section-label">The user</p>
+      <div class="intro-card">
+        <p>The workflow is designed around two users who need different things from the same support case.</p>
+        <p><strong>Support engineers</strong> need fast access to trustworthy existing knowledge so they do not repeat investigation work unnecessarily.</p>
+        <p><strong>Support Operations and Knowledge teams</strong> need visibility into where documentation is missing, outdated, or repeatedly recreated inside tickets.</p>
+        <p>The system therefore had to do two jobs at once: help the person handling the ticket now, while capturing a signal that improves the support system for the next person.</p>
+      </div>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="section-label">What I learned from the workflow</p>
+      <div class="intro-card">
+        <p>This project came from patterns I had seen repeatedly in technical support rather than from a hypothetical product exercise.</p>
+        <p><strong>A solved ticket is not automatically reusable knowledge.</strong> The resolution often lives inside one conversation unless someone deliberately turns it into documentation.</p>
+        <p><strong>Documentation gaps are operational signals.</strong> If engineers repeatedly cannot find a strong knowledge match, that tells the team where the knowledge base is failing to support the work.</p>
+        <p><strong>Trust matters more than automation.</strong> Support engineers need to understand why a document matched, and generated content should remain reviewable before it becomes shared knowledge.</p>
+      </div>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="section-label">The process</p>
       <div class="stepper-nav">
-        <button class="phase-btn active" onclick="showPhase(1)">Why I built it</button>
+        <button class="phase-btn active" onclick="showPhase(1)">Designing the loop</button>
         <button class="phase-btn" onclick="showPhase(2)">Match &amp; gaps</button>
         <button class="phase-btn" onclick="showPhase(3)">Response &amp; KB</button>
         <button class="phase-btn" onclick="showPhase(4)">Architecture</button>
       </div>
 
-      <!-- PHASE 1 -->
       <div class="phase-content active" id="phase-1">
-        <div class="phase-header">
-          <div><span class="phase-badge badge-1">Step 1</span></div>
-          <div class="phase-title-wrap">
-            <h3>From reactive triage to a closed loop</h3>
-            <p>The gap most support teams never close</p>
-          </div>
-        </div>
+        <div class="phase-header"><span class="phase-badge">01</span><div class="phase-title-wrap"><h3>Designing the closed loop</h3><p>Make knowledge capture part of the support workflow</p></div></div>
         <div class="phase-body">
-          <p>Every week I see the same pattern: A customer hits an SSO or integration edge case, support writes a great one-off reply, and the knowledge never gets documented. Six weeks later, another enterprise opens the same ticket.</p>
-          <p>I built this workflow to model how senior quality operations should feel:</p>
-          <p><strong>Ticket in → Evidence of existing docs → Explicit gap flagged → Response drafted → KB article reviewed → Published.</strong></p>
-          <p>That is the same loop I run manually with Datadog, Jira, and our internal knowledge base. Here it is interactive and repeatable.</p>
+          <p>I mapped the workflow around a simple question: <strong>what should happen to what Support learns after the customer issue is resolved?</strong></p>
+          <p>The resulting flow is: ticket in → check existing knowledge → show evidence of a match or flag a gap → draft the customer response → generate documentation when needed → human review → publish.</p>
+          <p>The important design choice was making knowledge capture part of the same workflow instead of a separate backlog that depends on someone returning to it later.</p>
         </div>
-        <div class="struggle-toggle">
-          <div class="struggle-header" onclick="toggleStruggle(this)">
-            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">Design choice</span></div>
-            <span class="struggle-chevron">▼</span>
-          </div>
-          <div class="struggle-body">
-            <p>Step 2 uses a keyword relevance scorer so every match is explainable. You can see exactly which keywords fired, why a match was found, and what counts as a gap.</p>
-            <p>When you are telling an engineering team a documentation gap exists, you need to show your working. A black-box answer does not cut it.</p>
-          </div>
-        </div>
-        <div class="phase-nav">
-          <button class="phase-nav-btn" disabled>Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Match &amp; gaps →</button>
-        </div>
+        <div class="phase-nav"><button class="phase-nav-btn" disabled>Previous</button><button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Match &amp; gaps →</button></div>
       </div>
 
-      <!-- PHASE 2 -->
       <div class="phase-content" id="phase-2">
-        <div class="phase-header">
-          <div><span class="phase-badge badge-2">Step 2</span></div>
-          <div class="phase-title-wrap">
-            <h3>Documentation match and gap detection</h3>
-            <p>Strong match at 80%+, related articles at 30–79%</p>
-          </div>
-        </div>
+        <div class="phase-header"><span class="phase-badge">02</span><div class="phase-title-wrap"><h3>Documentation match and gap detection</h3><p>Keep the matching logic visible and explainable</p></div></div>
         <div class="phase-body">
-          <p>Load the <strong>Sample: Strong Match</strong> or <strong>Sample: Documentation Gap</strong> ticket and the tool scans it, scores every article in the knowledge base, and classifies the result:</p>
-          <p><strong>Strong match (80%+):</strong> Finds the closest matching article, shows matched keywords, and pre-fills a suggested response from documented resolution steps.<br>
-          <strong>Documentation gap (below 80%):</strong> Labels the gap explicitly and shows related articles in the 30–79% band so the support engineer still has troubleshooting context while product knows the knowledge base is missing something.</p>
-          <p>That gap state is a signal that documentation needs to be created, not just that a ticket needs closing.</p>
-          <p>This tool makes sure it does not get forgotten.</p>
+          <p>The tool scans the ticket against the knowledge base, scores available articles, and separates strong matches from related content and documentation gaps.</p>
+          <p>Matched keywords remain visible so the engineer can understand why the system surfaced a particular article rather than being asked to trust a black-box answer.</p>
+          <p>If no strong match exists, the gap is explicitly captured instead of disappearing when the ticket closes.</p>
         </div>
-        <div class="struggle-toggle">
-          <div class="struggle-header" onclick="toggleStruggle(this)">
-            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">The struggle</span></div>
-            <span class="struggle-chevron">▼</span>
-          </div>
-          <div class="struggle-body">
-            <p>Getting the thresholds right mattered. Too low and everything looks like a match. Too high and you flag gaps that are not real gaps.</p>
-            <p>I landed on 80% and 30% after testing against realistic enterprise support scenarios.</p>
-          </div>
-        </div>
-        <div class="phase-nav">
-          <button class="phase-nav-btn" onclick="showPhase(1)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Response &amp; KB →</button>
-        </div>
+        <div class="struggle-toggle"><div class="struggle-header" onclick="toggleStruggle(this)"><span class="struggle-label">What I had to work through</span><span class="struggle-chevron">▼</span></div><div class="struggle-body"><p>Thresholds were one of the harder parts of the prototype. Too low and unrelated content looks useful. Too high and the system creates false gaps. I tested the matching behaviour against realistic support scenarios and kept the threshold logic explicit so it could be challenged and refined.</p></div></div>
+        <div class="phase-nav"><button class="phase-nav-btn" onclick="showPhase(1)">← Previous</button><button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Response &amp; KB →</button></div>
       </div>
 
-      <!-- PHASE 3 -->
       <div class="phase-content" id="phase-3">
-        <div class="phase-header">
-          <div><span class="phase-badge badge-3">Step 3</span></div>
-          <div class="phase-title-wrap">
-            <h3>Draft, review, and publish</h3>
-            <p>Human in the loop before anything ships</p>
-          </div>
-        </div>
+        <div class="phase-header"><span class="phase-badge">03</span><div class="phase-title-wrap"><h3>Draft, review, and capture knowledge</h3><p>Use AI for drafting, not decision authority</p></div></div>
         <div class="phase-body">
-          <p>Step 3 lets you edit the suggested response with the original ticket visible for context.</p>
-          <p><strong>On a strong match</strong>, the workflow ends here. Documentation already exists, so no new KB article is created.</p>
-          <p><strong>On a documentation gap</strong>, the workflow continues to Step 4 where Claude generates a structured KB draft with title, category, summary, troubleshooting steps, and tags. Approve it and it publishes directly to a live Notion database. Every article that goes through this workflow becomes part of the knowledge base the next support engineer can search.</p>
-          <p>In <strong>portfolio demo mode</strong> the full flow is still interactive. The publish step is simulated so visitors can experience it without needing API keys.</p>
+          <p>When a strong document match exists, the workflow can suggest a response grounded in that knowledge and stop there.</p>
+          <p>When a gap exists, Claude generates a structured KB draft with a title, category, summary, troubleshooting steps, and tags. The draft remains editable before publication.</p>
+          <p>This keeps the human support engineer responsible for correctness while using AI to reduce the repetitive work involved in turning investigation context into structured documentation.</p>
         </div>
-        <div class="struggle-toggle">
-          <div class="struggle-header" onclick="toggleStruggle(this)">
-            <div class="struggle-header-left"><span class="struggle-icon">⚡</span><span class="struggle-label">The struggle</span></div>
-            <span class="struggle-chevron">▼</span>
-          </div>
-          <div class="struggle-body">
-            <p>Public demos and production secrets do not mix. The tool automatically runs in safe demo mode when opened from GitHub Pages so visitors can explore the full workflow without any risk of exposing API keys or real customer data.</p>
-          </div>
-        </div>
-        <div class="phase-nav">
-          <button class="phase-nav-btn" onclick="showPhase(2)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(4)">Next: Architecture →</button>
-        </div>
+        <div class="struggle-toggle"><div class="struggle-header" onclick="toggleStruggle(this)"><span class="struggle-label">What I had to work through</span><span class="struggle-chevron">▼</span></div><div class="struggle-body"><p>The live project can publish to Notion, but the public portfolio demo cannot expose real API credentials or customer data. I separated demo behaviour from live behaviour so visitors can explore the full workflow safely.</p></div></div>
+        <div class="phase-nav"><button class="phase-nav-btn" onclick="showPhase(2)">← Previous</button><button class="phase-nav-btn primary" onclick="showPhase(4)">Next: Architecture →</button></div>
       </div>
 
-      <!-- PHASE 4 -->
       <div class="phase-content" id="phase-4">
-        <div class="phase-header">
-          <div><span class="phase-badge badge-4">Step 4</span></div>
-          <div class="phase-title-wrap">
-            <h3>Built to be trusted</h3>
-            <p>Secure by default, open source, and deployable by anyone</p>
-          </div>
-        </div>
+        <div class="phase-header"><span class="phase-badge">04</span><div class="phase-title-wrap"><h3>Architecture and trust</h3><p>Keep secrets out of the browser and make the workflow deployable</p></div></div>
         <div class="phase-body">
-          <p>The front end is hosted on GitHub Pages. API keys never touch the browser. A Cloudflare Worker handles all requests to Anthropic and Notion, with keys stored as encrypted environment variables.</p>
-          <p>Open source on GitHub with a README covering demo and live mode, deployment steps, and privacy expectations.</p>
-          <p>Quality tooling only scales if other people can run and trust it.</p>
+          <p>The front end is hosted on GitHub Pages. API keys never live in the browser. A Cloudflare Worker handles requests to Anthropic and Notion, with secrets stored outside the client.</p>
+          <p>The project is open source with documentation covering demo mode, live mode, deployment, and privacy expectations.</p>
+          <p>The technical architecture supports the same product principle as the workflow itself: automation is useful only when the people relying on it can understand and trust how it works.</p>
         </div>
-        <div class="phase-nav">
-          <button class="phase-nav-btn" onclick="showPhase(3)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="document.getElementById('tools-section').scrollIntoView({behavior:'smooth'})">See tools used ↓</button>
+        <div class="phase-nav"><button class="phase-nav-btn" onclick="showPhase(3)">← Previous</button><button class="phase-nav-btn primary" onclick="document.getElementById('decisions').scrollIntoView({behavior:'smooth'})">See key decisions ↓</button></div>
+      </div>
+    </section>
+
+    <section class="case-section reveal" id="decisions">
+      <p class="section-label">Key decisions</p>
+      <div class="intro-card">
+        <p><strong>Why detect gaps instead of just generating an answer?</strong><br>If AI always produces a response, a missing-documentation problem can remain invisible. I wanted the system to distinguish between "we know this" and "we solved this once but have not captured it yet."</p>
+        <p><strong>Why keep matching deterministic?</strong><br>The support engineer needs to see why an article was considered relevant. Explainable matching makes it easier to challenge false positives and tune the workflow over time.</p>
+        <p><strong>Why use AI only for drafting?</strong><br>Drafting structured support content is repetitive and well suited to AI assistance. Deciding whether the content is accurate enough to become shared knowledge still requires human judgment.</p>
+        <p><strong>Why publish into an existing knowledge tool?</strong><br>The workflow should reduce friction, not introduce another repository. Publishing to Notion demonstrates how the output can move into a system a team already uses.</p>
+      </div>
+    </section>
+
+    <section class="case-section reveal">
+      <p class="section-label">The outcome</p>
+      <div class="intro-card">
+        <p>The finished prototype connects ticket handling and knowledge operations in one workflow.</p>
+        <p>A support engineer can check existing documentation, understand the evidence behind a match, identify a real gap, draft a response, create a KB article, review it, and move the new knowledge into the shared repository.</p>
+        <p>The outcome I care about is not simply a faster AI-generated reply. It is a support system where useful investigation work is less likely to disappear after a ticket closes.</p>
+        <p><strong>If this were deployed in a real support environment, I would measure:</strong></p>
+        <div class="tag-row">
+          <span class="tag">Repeat issue volume</span>
+          <span class="tag">Knowledge reuse rate</span>
+          <span class="tag">Documentation gaps identified</span>
+          <span class="tag">Time to find relevant knowledge</span>
+          <span class="tag">Time from resolution to KB update</span>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- TOOLS USED -->
-    <p class="section-label reveal" id="tools-section">Tools used</p>
-    <div class="tools-grid reveal">
-
-      <div class="tool-card">
-        <div class="tool-logo"><span class="tool-initial">JS</span></div>
-        <p class="tool-name">Vanilla JavaScript</p>
-        <p class="tool-desc">Workflow logic, matching engine, and demo mode</p>
+    <section class="case-section reveal">
+      <p class="section-label">Reflection</p>
+      <div class="intro-card">
+        <p>I originally thought about this as a way to improve documentation creation.</p>
+        <p>Building it made the broader systems problem clearer: <strong>support organisations generate knowledge continuously, but most workflows are optimised for closing tickets rather than retaining what was learned.</strong></p>
+        <p>If I continued the project, the next step would be testing the matching and review workflow with real support users. I would want to understand which gap signals are genuinely useful, when engineers trust suggested documentation, and where the workflow creates additional friction.</p>
+        <p>The goal would be to improve the feedback loop before adding more automation.</p>
       </div>
+    </section>
 
-      <div class="tool-card">
-        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=cursor.com&sz=64" alt="Cursor"></div>
-        <p class="tool-name">Cursor</p>
-        <p class="tool-desc">Built the entire project using Cursor as the primary development environment</p>
+    <section class="case-section reveal">
+      <p class="section-label">What I learned</p>
+      <div class="learnings-grid">
+        <div class="learning-card"><h3>Quality is a systems problem</h3><p>The strongest workflow does not only improve the current response. It makes the next similar case easier to solve.</p></div>
+        <div class="learning-card"><h3>Gaps are signals</h3><p>A failed knowledge match can tell Support Operations exactly where the knowledge base needs investment.</p></div>
+        <div class="learning-card"><h3>AI should amplify judgment</h3><p>Automation is most useful when it removes repetitive work without hiding evidence or replacing human review.</p></div>
       </div>
+    </section>
 
-      <div class="tool-card">
-        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=64" alt="Anthropic"></div>
-        <p class="tool-name">Claude</p>
-        <p class="tool-desc">KB article drafting and structured content generation</p>
+    <section class="case-section reveal" id="tools-section">
+      <p class="section-label">Tech stack</p>
+      <div class="tools-grid">
+        <div class="tool-card"><div class="tool-logo">JS</div><p class="tool-name">JavaScript</p><p class="tool-desc">Workflow logic, matching engine, and demo behaviour</p></div>
+        <div class="tool-card"><div class="tool-logo">AI</div><p class="tool-name">Anthropic Claude</p><p class="tool-desc">Structured KB drafting and content generation</p></div>
+        <div class="tool-card"><div class="tool-logo">CF</div><p class="tool-name">Cloudflare Workers</p><p class="tool-desc">Secure API proxy and secret isolation</p></div>
+        <div class="tool-card"><div class="tool-logo">N</div><p class="tool-name">Notion API</p><p class="tool-desc">Knowledge base publishing target</p></div>
+        <div class="tool-card"><div class="tool-logo">GH</div><p class="tool-name">GitHub Pages</p><p class="tool-desc">Public portfolio demo hosting</p></div>
+        <div class="tool-card"><div class="tool-logo">Cu</div><p class="tool-name">Cursor</p><p class="tool-desc">AI-assisted development environment</p></div>
       </div>
+    </section>
 
-      <div class="tool-card">
-        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=cloudflare.com&sz=64" alt="Cloudflare"></div>
-        <p class="tool-name">Cloudflare Workers</p>
-        <p class="tool-desc">Secure proxy for all API requests</p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=notion.so&sz=64" alt="Notion"></div>
-        <p class="tool-name">Notion API</p>
-        <p class="tool-desc">Live knowledge base publish target</p>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-logo"><img src="https://www.google.com/s2/favicons?domain=github.com&sz=64" alt="GitHub"></div>
-        <p class="tool-name">GitHub Pages</p>
-        <p class="tool-desc">Demo and portfolio hosting</p>
-      </div>
-
-    </div>
-
-    <!-- WHAT I LEARNED -->
-    <p class="section-label reveal">What I learned</p>
-    <div class="learnings-grid reveal">
-
-      <div class="learning-card">
-        <span class="learning-icon">🔄</span>
-        <h3>Quality is a systems problem</h3>
-        <p>The goal is not a faster reply. It is a repeatable loop that turns a resolved ticket into documented knowledge that benefits the whole team.</p>
-      </div>
-
-      <div class="learning-card">
-        <span class="learning-icon">📊</span>
-        <h3>Gaps are signals, not failures</h3>
-        <p>When match scores fall below threshold that is not a problem. It is information. It tells you exactly what needs documenting next.</p>
-      </div>
-
-      <div class="learning-card">
-        <span class="learning-icon">🤝</span>
-        <h3>AI amplifies judgment</h3>
-        <p>Matching and gap detection stay deterministic and explainable. Claude handles drafting, humans review before anything publishes, because that review step is non-negotiable.</p>
-      </div>
-
-    </div>
-
-    <!-- TRY IT -->
     <div class="try-card reveal">
       <h3>Try it yourself</h3>
-      <p>Run the <strong>live demo</strong> on GitHub Pages.</p>
-      <p>Click <strong>Sample: Strong Match</strong> to see documentation found and a response suggested. Click <strong>Sample: Documentation Gap</strong> to see the gap detection flow → response drafting → KB publish. The gap sample rotates across four scenarios on each click.</p>
-      <p style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
-        <a class="nav-btn" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer" style="display:inline-block;max-width:none;flex:0 1 auto;">Open interactive demo →</a>
-        <a class="nav-btn" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer" style="display:inline-block;max-width:none;flex:0 1 auto;">View source on GitHub →</a>
-      </p>
-
+      <p>Use the strong-match sample to see existing knowledge surfaced, then try the documentation-gap sample to follow the workflow from gap detection through response drafting and KB creation.</p>
+      <div class="try-actions">
+        <a class="nav-btn" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer">Open interactive demo →</a>
+        <a class="nav-btn" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer">View source on GitHub →</a>
+      </div>
     </div>
-
   </main>
 
-    <section class="links reveal">
+  <section class="links reveal">
     <h2>Let's connect</h2>
     <div class="connect-links">
-      <a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
-      <a href="./contact.html">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-        Get in touch
-      </a>
+      <a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="./contact.html">Get in touch</a>
     </div>
   </section>
 
   <footer>© <span id="year"></span> Madiha Khan · Built with care</footer>
 
   <button id="chat-toggle" onclick="toggleChat()" title="Chat with Madiha's assistant">💬</button>
-
   <div id="chat-window">
     <div class="chat-header">
       <div class="chat-avatar">PA</div>
-      <div class="chat-header-info">
-        <h4>Madiha's Portfolio Assistant</h4>
-        <p><span class="online-dot"></span>Ask me anything</p>
-      </div>
+      <div class="chat-header-info"><h4>Madiha's Portfolio Assistant</h4><p>Ask about my experience, skills, and projects</p></div>
       <button class="chat-close" onclick="toggleChat()" aria-label="Close chat">✕</button>
     </div>
     <div class="chat-messages" id="chat-messages"></div>
     <div class="chat-input-area">
-      <textarea id="chat-input" placeholder="Ask about my experience, skills..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-      <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
-      </button>
+      <textarea id="chat-input" placeholder="Ask me anything..." rows="1" onkeydown="handleKey(event)"></textarea>
+      <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send">➤</button>
     </div>
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent=new Date().getFullYear();
 
-    // SCROLL REVEAL
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const siblings = entry.target.parentElement.querySelectorAll('.reveal');
-          let delay = 0;
-          siblings.forEach((el, idx) => { if (el === entry.target) delay = idx * 100; });
-          setTimeout(() => entry.target.classList.add('visible'), delay);
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}})},{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
 
-    // PHASE STEPPER
-    let currentPhase = 1;
-    function showPhase(n) {
-      document.querySelectorAll('.phase-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.phase-btn').forEach(el => el.classList.remove('active'));
-      document.getElementById('phase-' + n).classList.add('active');
-      document.querySelectorAll('.phase-btn')[n - 1].classList.add('active');
-      currentPhase = n;
+    function showPhase(n){
+      document.querySelectorAll('.phase-content').forEach(el=>el.classList.remove('active'));
+      document.querySelectorAll('.phase-btn').forEach(el=>el.classList.remove('active'));
+      document.getElementById('phase-'+n).classList.add('active');
+      document.querySelectorAll('.phase-btn')[n-1].classList.add('active');
     }
 
-    // STRUGGLE TOGGLE
-    function toggleStruggle(header) {
-      const body = header.nextElementSibling;
-      const chevron = header.querySelector('.struggle-chevron');
-      const isOpen = body.classList.contains('open');
-      body.classList.toggle('open', !isOpen);
-      chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+    function toggleStruggle(header){
+      const body=header.nextElementSibling;
+      const chevron=header.querySelector('.struggle-chevron');
+      const open=body.classList.contains('open');
+      body.classList.toggle('open',!open);
+      chevron.style.transform=open?'rotate(0deg)':'rotate(180deg)';
     }
 
-    // CHATBOT
-    const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
+    const PROXY_URL='https://madiha-portfolio-proxy.madiha00.workers.dev/';
+    const SYSTEM_PROMPT=`You are Madiha Khan's portfolio assistant. Madiha is a Senior Support Professional based in London with 5+ years of customer-facing support experience and 3+ years in technical SaaS support. She works at Stack Overflow supporting enterprise customers across EMEA. Her work sits at the intersection of Support, AI, Product, Engineering, and Knowledge Operations. Her portfolio includes Support Ticket Analyser, an AI-assisted workflow that finds existing documentation, flags knowledge gaps, drafts responses, and creates reviewable KB content, and Feedback Loop, an AI-native system that turns support feature requests into structured product signals. Answer questions clearly and professionally. If you do not know something, say so rather than inventing it.`;
 
-    const SYSTEM_PROMPT = `You are a warm and professional portfolio assistant for Madiha Khan, a Senior Support Professional based in London, UK. Your role is to help recruiters and visitors learn about Madiha's background, skills, and experience in a friendly and conversational way.
-
-ABOUT MADIHA:
-Madiha is a Senior Support Professional with 5+ years closing the loop between what customers experience and what gets built at developer-facing SaaS platforms. She came into tech through a non-traditional route, teaching herself to code during the pandemic out of pure curiosity. She is currently Senior Support Professional at Stack Overflow (January 2025 to present), where she is the sole support engineer for the entire EMEA region, owning the full ticket lifecycle across 100+ enterprise accounts from first contact through to resolution including P1/P2 critical customer issues. She was previously a Technical Support Analyst at Alida (February 2023 to November 2024), and before that a Customer Care Associate at Monica Vinader and a Call Agent at the 119 COVID Helpline.
-
-PERSONAL:
-Outside of work, Madiha raised over £50,000 through a campaign providing food bags to people in need. That same motivation, genuinely wanting to make things better for people, is what she brings into every customer interaction and every system she builds.
-
-KEY ACHIEVEMENTS:
-- 98% CSAT across 100+ enterprise accounts
-- Sole EMEA support engineer owning full ticket lifecycle including P1/P2 critical customer issues
-- Built Datadog dashboards cutting P1/P2 resolution time by 25%
-- 95% issue reproduction rate reducing engineering investigation time by 30%
-- Surfaced 15+ high-impact feature requests annually enabling engineering to prioritise product roadmap decisions
-- Led SSO migration for 100+ enterprise accounts delivering multi-million pound cost savings
-- Saved 4+ hours per month by designing an internal Salesforce workflow to automate feature request triage and reporting
-
-PORTFOLIO PROJECTS:
-Madiha has built and shipped multiple AI-native tools independently. Feedback Loop and Support Ticket Analyser were built entirely in Cursor. Articulate started in Cursor before the build moved to Claude Code. The portfolio chatbot itself was built in Claude Code.
-
-Project 1: Feedback Loop (feedback-loop.pages.dev/src/dashboard.html)
-An AI-native VoC dashboard that takes a queue of feature requests, groups them by theme using Claude, scores priority by account tier, and exports a PDF product brief engineering can act on straight away. Built because Madiha was already running this process manually at Stack Overflow using Salesforce and wanted to show what it looks like as a proper system. Full write-up at madihaintech.me/feedback-loop.html.
-
-Project 2: Support Ticket Analyser (khankmadiha.github.io/support-ticket-analyser)
-An AI-native support workflow that detects documentation gaps, drafts responses grounded in existing knowledge, and publishes KB articles directly to Notion. Built using Cursor, Claude API, Cloudflare Workers, and Notion API. Full write-up at madihaintech.me/support-dashboard.html.
-
-Project 3: Articulate (articulate-app-production.up.railway.app)
-A full-stack PWA speech practice app. Claude generates a personalised daily passage, the user records themselves, and AI scores accuracy, fluency, and pace. Includes a full dyslexia-friendly mode. Built with React, Node.js, and the Anthropic Claude API. Deployed on Railway. Full write-up at madihaintech.me/articulate.html.
-
-Project 4: Claude-Powered Portfolio Assistant (live on this site)
-Built a production AI chatbot from scratch. Went through three full iterations starting with IBM Watson and Google Dialogflow CX before rebuilding on the Anthropic API. Secured the API key using a Cloudflare Worker proxy after GitHub secret scanning caught an exposed key. Full write-up at madihaintech.me/chatbot.html.
-
-TECHNICAL SKILLS:
-Cursor, Anthropic Claude API, REST APIs, JavaScript, SSO/SAML/OAuth, Postman, Docker, SQL, Git/GitHub, Browser DevTools, Datadog, Elasticsearch, Kibana, Rootly, Jira, Zendesk, Salesforce, Freshdesk, Intercom, Cloudflare Workers, Prompt engineering, Python (learning)
-
-CERTIFICATIONS:
-IBM: Artificial Intelligence Fundamentals with Capstone Project, Generative AI (Prompt Engineering, Introduction and Applications), Datadog: Performance Monitoring (Zero to Hero)
-
-LANGUAGES: English (fluent), Urdu (fluent), Hindi (fluent), Punjabi (intermediate)
-
-CONTACT AND LINKS:
-Portfolio: madihaintech.me
-GitHub: github.com/KhanKMadiha
-LinkedIn: linkedin.com/in/madihakhan-
-Contact page: madihaintech.me/contact.html
-
-TONE GUIDELINES:
-- Be warm, friendly, and approachable but also professional
-- Keep responses concise, 2 to 4 sentences unless the visitor asks for more detail
-- Speak about Madiha in the third person
-- If asked something you do not know, invite them to reach out via madihaintech.me/contact.html or linkedin.com/in/madihakhan-
-- Never invent or assume information not listed above`;
-
-    const WELCOME_MESSAGE = "Hi there! I am Madiha's portfolio assistant.\n\nMadiha is a Senior Support Professional with 5+ years in enterprise SaaS support. She works autonomously across EMEA, owns the full ticket lifecycle, and builds the systems that make support smarter.\n\nFeel free to ask me anything about her experience, skills, or projects!";
-
-    const conversationHistory = [];
-    let chatOpen = false;
-    let isLoading = false;
-
-    function toggleChat() {
-      chatOpen = !chatOpen;
-      document.getElementById('chat-window').classList.toggle('open', chatOpen);
-      if (chatOpen && conversationHistory.length === 0) appendMessage('bot', WELCOME_MESSAGE);
-      if (chatOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
+    function toggleChat(){
+      const chat=document.getElementById('chat-window');
+      chat.classList.toggle('open');
+      if(chat.classList.contains('open')&&!chat.dataset.started){addMessage('Hi, I am Madiha\'s portfolio assistant. Ask me about her experience, technical skills, or projects.','bot');chat.dataset.started='true'}
     }
 
-    function appendMessage(role, text) {
-      const container = document.getElementById('chat-messages');
-      const div = document.createElement('div');
-      div.className = `msg ${role}`;
-      text.split('\n').forEach((line, i, arr) => {
-        div.appendChild(document.createTextNode(line));
-        if (i < arr.length - 1) div.appendChild(document.createElement('br'));
-      });
-      container.appendChild(div);
-      container.scrollTop = container.scrollHeight;
+    function addMessage(text,type){
+      const messages=document.getElementById('chat-messages');
+      const div=document.createElement('div');
+      div.className='msg '+type;
+      div.textContent=text;
+      messages.appendChild(div);
+      messages.scrollTop=messages.scrollHeight;
     }
 
-    function showTyping() {
-      const container = document.getElementById('chat-messages');
-      const div = document.createElement('div');
-      div.className = 'typing-indicator'; div.id = 'typing-indicator';
-      div.innerHTML = '<span></span><span></span><span></span>';
-      container.appendChild(div); container.scrollTop = container.scrollHeight;
+    async function sendMessage(){
+      const input=document.getElementById('chat-input');
+      const button=document.getElementById('send-btn');
+      const text=input.value.trim();
+      if(!text)return;
+      addMessage(text,'user');
+      input.value='';
+      button.disabled=true;
+      try{
+        const response=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-3-5-haiku-latest',max_tokens:500,system:SYSTEM_PROMPT,messages:[{role:'user',content:text}]})});
+        if(!response.ok)throw new Error('Request failed');
+        const data=await response.json();
+        const reply=data.content?.[0]?.text||data.reply||'I could not generate a response just now.';
+        addMessage(reply,'bot');
+      }catch(error){addMessage('I am having trouble connecting right now. Please try again in a moment.','bot')}
+      finally{button.disabled=false}
     }
 
-    function removeTyping() { const el = document.getElementById('typing-indicator'); if (el) el.remove(); }
-
-    async function sendMessage() {
-      if (isLoading) return;
-      const input = document.getElementById('chat-input');
-      const text = input.value.trim();
-      if (!text) return;
-      appendMessage('user', text);
-      conversationHistory.push({ role: 'user', content: text });
-      input.value = ''; input.style.height = 'auto';
-      setLoading(true); showTyping();
-      try {
-        const response = await fetch(PROXY_URL, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, system: SYSTEM_PROMPT, messages: conversationHistory })
-        });
-        const data = await response.json();
-        const reply = data?.content?.[0]?.text || "I'm sorry, I wasn't able to get a response just now. Please try again in a moment!";
-        removeTyping(); appendMessage('bot', reply);
-        conversationHistory.push({ role: 'assistant', content: reply });
-      } catch (err) {
-        removeTyping(); appendMessage('bot', "Something went wrong. Please try again shortly!");
-      }
-      setLoading(false);
-    }
-
-    function setLoading(state) { isLoading = state; document.getElementById('send-btn').disabled = state; }
-    function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
-    function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 100) + 'px'; }
+    function handleKey(event){if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}}
   </script>
-
 </body>
 </html>
-

@@ -1,1 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Engineering Escalation Engine | Madiha Khan</title>
 
+  <style>
+    :root {
+      --bg-base: #FAFAF8;
+      --surface: #F5EEEC;
+      --accent: #D4A4A0;
+      --surface-soft: #EDE8E6;
+      --text-dark: #1A1A1A;
+      --muted-dark: rgba(26, 26, 26, 0.62);
+      --border-soft: rgba(180, 140, 135, 0.2);
+      --border-strong: rgba(180, 140, 135, 0.38);
+      --white-glass: rgba(255, 255, 255, 0.78);
+      --green: #2f8f69;
+      --amber: #a26b12;
+      --purple: #7256b8;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: var(--bg-base);
+      color: var(--text-dark);
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      padding: 0 1.75rem;
+      background: rgba(250,250,248,0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .site-nav-brand {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-decoration: none;
+      margin-right: auto;
+    }
+
+    .site-nav-links { display: flex; gap: 0.25rem; }
+    .site-nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(26,26,26,0.55);
+      text-decoration: none;
+      padding: 0.35rem 0.7rem;
+      border-radius: 8px;
+    }
+
+    .site-nav-links a:hover,
+    .site-nav-links a.active { color: var(--text-dark); }
+
+    .site-nav-links a.active { font-weight: 700; }
+
+    .hero {
+      min-height: 66vh;
+      display: flex;
+      align-items: center;
+      padding: 7rem 1.5rem 3rem;
+      background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
+    }
+
+    .hero-inner {
+      max-width: 1020px;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+    }
+
+    .hero-label,
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .hero-label { margin: 0 0 1rem; }
+    .section-label { margin: 0 0 1rem; text-align: center; }
+
+    h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.65rem, 6vw, 4rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-highlight {
+      margin: 0.9rem auto 0;
+      max-width: 820px;
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--muted-dark);
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.8rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-action-primary,
+    .hero-action-secondary,
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .hero-action-primary {
+      padding: 0.68rem 1.4rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .hero-action-secondary {
+      padding: 0.68rem 1.3rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-strong);
+      background: rgba(255,255,255,0.65);
+      color: var(--text-dark);
+    }
+
+    .hero-action-primary:hover,
+    .cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .hero-action-secondary:hover { border-color: var(--accent); }
+
+    .content {
+      max-width: 1020px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    .case-section { margin-bottom: 3rem; }
+
+    .intro-card,
+    .principle-card,
+    .metric-card,
+    .tool-card,
+    .story-card,
+    .cta-card {
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.58);
+      backdrop-filter: blur(8px);
+    }
+
+    .intro-card {
+      padding: 2.25rem 2.5rem;
+      border-radius: 22px;
+    }
+
+    .intro-card p {
+      color: var(--muted-dark);
+      line-height: 1.8;
+      font-size: 1.03rem;
+      margin: 0 0 1rem;
+    }
+
+    .intro-card p:last-child { margin-bottom: 0; }
+    .intro-card strong { color: var(--text-dark); }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .workflow-step {
+      min-height: 108px;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.65);
+      border-radius: 18px;
+      padding: 1rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .workflow-step span {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .workflow-step strong {
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .principles-grid,
+    .outcomes-grid,
+    .tools-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .principles-grid { grid-template-columns: repeat(3, 1fr); }
+    .outcomes-grid { grid-template-columns: repeat(3, 1fr); }
+    .tools-grid { grid-template-columns: repeat(4, 1fr); }
+
+    .principle-card,
+    .metric-card,
+    .tool-card {
+      border-radius: 18px;
+      padding: 1.4rem;
+    }
+
+    .principle-card h3,
+    .metric-card h3,
+    .tool-card h3 {
+      margin: 0 0 0.55rem;
+      font-size: 1rem;
+    }
+
+    .principle-card p,
+    .metric-card p,
+    .tool-card p {
+      margin: 0;
+      color: var(--muted-dark);
+      line-height: 1.65;
+      font-size: 0.92rem;
+    }
+
+    .metric-score {
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.7rem;
+    }
+
+    .metric-card.escalate .metric-score { color: var(--green); }
+    .metric-card.continue .metric-score { color: var(--amber); }
+    .metric-card.insufficient .metric-score { color: var(--purple); }
+
+    .story-card {
+      border-radius: 22px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .story-copy {
+      padding: 1.8rem 2rem 1.55rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem 2rem;
+      align-items: start;
+    }
+
+    .story-copy h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .story-copy p {
+      margin: 0;
+      color: var(--muted-dark);
+      line-height: 1.72;
+    }
+
+    .story-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      display: grid;
+      place-items: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #8B5E5B;
+    }
+
+    .shot-frame {
+      position: relative;
+      background: #f6f7f8;
+      border-top: 1px solid var(--border-soft);
+      min-height: 360px;
+      overflow: hidden;
+    }
+
+    .shot-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .shot-placeholder {
+      padding: 3rem 1.5rem;
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted-dark);
+      font-size: 0.9rem;
+    }
+
+    .shot-placeholder code {
+      display: block;
+      margin-top: 0.5rem;
+      color: var(--text-dark);
+      font-size: 0.82rem;
+    }
+
+    .shot-frame.loaded .shot-placeholder { display: none; }
+
+    .shot-caption {
+      padding: 0.8rem 1rem 0.95rem;
+      border-top: 1px solid var(--border-soft);
+      color: var(--muted-dark);
+      font-size: 0.82rem;
+      background: rgba(255,255,255,0.72);
+    }
+
+    .decision-strip {
+      border-radius: 20px;
+      padding: 1.6rem 1.8rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(212,164,160,0.16), rgba(255,255,255,0.7));
+      border: 1.5px solid var(--border-soft);
+    }
+
+    .decision-strip p {
+      margin: 0.35rem 0 0;
+      color: var(--muted-dark);
+      line-height: 1.7;
+    }
+
+    .decision-strip strong {
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .tool-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--surface);
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      border: 1px solid var(--border-soft);
+      color: #8B5E5B;
+    }
+
+    .cta-card {
+      border-radius: 22px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .cta-card h3 {
+      font-size: 1.35rem;
+      margin: 0 0 0.7rem;
+    }
+
+    .cta-card p {
+      color: var(--muted-dark);
+      line-height: 1.7;
+      max-width: 720px;
+      margin: 0 auto 1.25rem;
+    }
+
+    .cta-btn {
+      padding: 0.7rem 1.35rem;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .links {
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      background: var(--surface);
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .links h2 {
+      font-size: 1.6rem;
+      margin: 0 0 1rem;
+    }
+
+    .connect-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.1rem;
+      flex-wrap: wrap;
+    }
+
+    .connect-links a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .connect-links a:hover { color: #8B5E5B; }
+
+    footer {
+      text-align: center;
+      padding: 1.3rem;
+      font-size: 0.78rem;
+      color: var(--muted-dark);
+      background: var(--surface);
+    }
+
+    @media (max-width: 900px) {
+      .workflow { grid-template-columns: repeat(3, 1fr); }
+      .principles-grid,
+      .outcomes-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .site-nav-brand { display: none; }
+      .site-nav { padding: 0 0.7rem; justify-content: center; }
+      .site-nav-links a { padding: 0.35rem 0.45rem; font-size: 0.8rem; }
+      .hero { min-height: auto; padding-top: 6.8rem; }
+      .intro-card { padding: 1.6rem; }
+      .workflow { grid-template-columns: 1fr 1fr; }
+      .story-copy { grid-template-columns: 1fr; }
+      .story-number { order: -1; }
+      .shot-frame,
+      .shot-placeholder { min-height: 220px; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="site-nav">
+    <a class="site-nav-brand" href="./index.html">Madiha Khan</a>
+    <div class="site-nav-links">
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./skills.html">Technical depth</a>
+      <a class="active" href="./projects.html">Projects</a>
+      <a href="./contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">Support Operations · 2026</p>
+      <h1>Engineering Escalation Engine</h1>
+      <p class="hero-highlight">
+        An evidence-driven escalation workflow for enterprise support teams. AI helps interpret case evidence, deterministic rules assess escalation readiness, and an authorised human retains the final decision.
+      </p>
+      <div class="hero-actions">
+        <a class="hero-action-primary" href="#case-study">View case study ↓</a>
+        <a class="hero-action-secondary" href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">View GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="content" id="case-study">
+    <section class="case-section">
+      <p class="section-label">The problem</p>
+      <div class="intro-card">
+        <p>Complex support cases often reach Engineering with very different levels of evidence. One escalation may include reproducible steps, logs, affected customers, and a clear product signal. Another may still have unresolved configuration questions or missing technical data.</p>
+        <p>That creates friction on both sides. <strong>Support needs a consistent way to decide when a case is actually ready to escalate, while Engineering needs a handoff that contains enough evidence to act on.</strong></p>
+        <p>I built the Engineering Escalation Engine to explore a more structured path from support investigation to engineering handoff, without allowing AI to make the final escalation decision.</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="section-label">What I built</p>
+      <div class="intro-card">
+        <p>The system takes a case through structured intake, investigation, AI-assisted analysis, a deterministic escalation assessment, human review, and an engineering-ready handoff when approved.</p>
+        <p>The goal was not to automate escalation away from Support. It was to <strong>make escalation quality more consistent, preserve evidence provenance, and reduce the ambiguity between “this is serious” and “this is ready for Engineering.”</strong></p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="section-label">How it works</p>
+      <div class="workflow" aria-label="Engineering escalation workflow">
+        <div class="workflow-step"><span>01</span><strong>Case intake</strong></div>
+        <div class="workflow-step"><span>02</span><strong>Investigation</strong></div>
+        <div class="workflow-step"><span>03</span><strong>AI analysis</strong></div>
+        <div class="workflow-step"><span>04</span><strong>Rules-based assessment</strong></div>
+        <div class="workflow-step"><span>05</span><strong>Human decision</strong></div>
+        <div class="workflow-step"><span>06</span><strong>Engineering handoff</strong></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="section-label">Decision model</p>
+      <div class="decision-strip">
+        <strong>AI analyses. Rules recommend. Humans decide.</strong>
+        <p>AI output is advisory. The escalation score is calculated by predefined rules and validated signals, and an authorised reviewer makes the final escalation decision.</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="section-label">Three outcomes, one workflow</p>
+      <div class="outcomes-grid">
+        <div class="metric-card insufficient">
+          <div class="metric-score">20</div>
+          <h3>Insufficient evidence</h3>
+          <p>Meridian Systems · SSO. The case remains below the investigation threshold because the evidence is incomplete and the issue has not been reproduced.</p>
+        </div>
+        <div class="metric-card continue">
+          <div class="metric-score">58</div>
+          <h3>Continue investigation</h3>
+          <p>Apex Digital · MS Teams Integration. Production impact is real, but intermittent reproduction and unresolved configuration questions make escalation premature.</p>
+        </div>
+        <div class="metric-card escalate">
+          <div class="metric-score">98</div>
+          <h3>Escalate</h3>
+          <p>Northstar Financial · API v3. Strong validated evidence, confirmed reproduction, multiple affected customers, and a suspected product defect push the case above the escalation threshold.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="section-label">The product story</p>
+
+      <article class="story-card">
+        <div class="story-copy">
+          <div>
+            <h3>One queue, different outcomes</h3>
+            <p>The dashboard shows cases at different stages of the escalation lifecycle. The important part is not the severity badge alone. Each case carries its own evidence state, recommendation, and workflow status.</p>
+          </div>
+          <div class="story-number">01</div>
+        </div>
+        <div class="shot-frame">
+          <img src="./assets/engineering-escalation-dashboard.png" alt="Engineering Escalation Engine cases dashboard showing Apex Digital, Meridian Systems and Northstar Financial" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="shot-placeholder">Add the final dashboard screenshot as<code>assets/engineering-escalation-dashboard.png</code></div>
+        </div>
+        <div class="shot-caption">Three fictional cases demonstrate three different support outcomes: insufficient evidence, continue investigation, and escalate.</div>
+      </article>
+
+      <article class="story-card">
+        <div class="story-copy">
+          <div>
+            <h3>Evidence before escalation</h3>
+            <p>Investigation data stays grounded in the case. Customer and support-provided evidence remains distinguishable from AI-inferred fields, and the AI badge explains that the analysis is advisory rather than authoritative.</p>
+          </div>
+          <div class="story-number">02</div>
+        </div>
+        <div class="shot-frame">
+          <img src="./assets/engineering-escalation-investigation.png" alt="Northstar Financial investigation view with AI-assessed reproducibility tooltip and technical evidence" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="shot-placeholder">Add the investigation screenshot as<code>assets/engineering-escalation-investigation.png</code></div>
+        </div>
+        <div class="shot-caption">AI provenance is explicit: inferred values are labelled, while the underlying customer and support evidence remains inspectable.</div>
+      </article>
+
+      <article class="story-card">
+        <div class="story-copy">
+          <div>
+            <h3>Deterministic escalation assessment</h3>
+            <p>Northstar reaches 98/100 against a 70-point escalation threshold. The rules engine evaluates validated case signals such as production impact, confirmed reproduction, affected customers, severity, troubleshooting, and suspected product defect.</p>
+          </div>
+          <div class="story-number">03</div>
+        </div>
+        <div class="shot-frame">
+          <img src="./assets/engineering-escalation-assessment-escalate.png" alt="Northstar Financial escalation assessment showing a 98 out of 100 score and Escalate recommendation" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="shot-placeholder">Add the Northstar assessment screenshot as<code>assets/engineering-escalation-assessment-escalate.png</code></div>
+        </div>
+        <div class="shot-caption">The AI analysis is visible alongside, but the final score and recommendation come from deterministic rules.</div>
+      </article>
+
+      <article class="story-card">
+        <div class="story-copy">
+          <div>
+            <h3>Knowing when not to escalate</h3>
+            <p>Apex Digital is deliberately just as important as the escalated case. The case is high severity and production-impacting, but unresolved permissions and configuration questions remain. A score of 58/100 keeps the case in investigation instead of creating a premature engineering handoff.</p>
+          </div>
+          <div class="story-number">04</div>
+        </div>
+        <div class="shot-frame">
+          <img src="./assets/engineering-escalation-assessment-continue.png" alt="Apex Digital escalation assessment showing a 58 out of 100 score and Continue Investigation recommendation" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="shot-placeholder">Add the Apex assessment screenshot as<code>assets/engineering-escalation-assessment-continue.png</code></div>
+        </div>
+        <div class="shot-caption">High severity does not automatically mean escalation. Evidence quality and reproducibility matter.</div>
+      </article>
+
+      <article class="story-card">
+        <div class="story-copy">
+          <div>
+            <h3>From Support to Engineering</h3>
+            <p>When a human reviewer approves the escalation, the system creates an engineering-ready handoff and surfaces simulated downstream actions for Jira or Rootly. The demo stops short of contacting external systems, but the workflow shows how the decision can move into existing operational tooling.</p>
+          </div>
+          <div class="story-number">05</div>
+        </div>
+        <div class="shot-frame">
+          <img src="./assets/engineering-escalation-handoff.png" alt="Northstar Financial engineering handoff showing approved decision and simulated Jira and Rootly actions" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="shot-placeholder">Add the handoff screenshot as<code>assets/engineering-escalation-handoff.png</code></div>
+        </div>
+        <div class="shot-caption">Approved cases produce a structured handoff and can move towards engineering work or incident coordination.</div>
+      </article>
+    </section>
+
+    <section class="case-section">
+      <p class="section-label">Design principles</p>
+      <div class="principles-grid">
+        <div class="principle-card">
+          <h3>Evidence provenance</h3>
+          <p>Customer and support-provided information is preserved as source evidence. AI-inferred values are labelled rather than silently blended into the case.</p>
+        </div>
+        <div class="principle-card">
+          <h3>Deterministic scoring</h3>
+          <p>The escalation recommendation comes from predefined signals, weights, and thresholds rather than a language model making the decision.</p>
+        </div>
+        <div class="principle-card">
+          <h3>Human authority</h3>
+          <p>An authorised reviewer retains the final escalation decision. AI cannot approve an escalation or create an engineering handoff on its own.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="section-label">Technical build</p>
+      <div class="tools-grid">
+        <div class="tool-card"><div class="tool-logo">NX</div><h3>Next.js 16</h3><p>App Router interface and versioned REST API.</p></div>
+        <div class="tool-card"><div class="tool-logo">TS</div><h3>TypeScript</h3><p>Typed domain models, services, and UI components.</p></div>
+        <div class="tool-card"><div class="tool-logo">PG</div><h3>Supabase / Postgres</h3><p>Persistent cases, analyses, decisions, handoffs, and audit events.</p></div>
+        <div class="tool-card"><div class="tool-logo">ZD</div><h3>Zod</h3><p>Validation at intake and API trust boundaries.</p></div>
+        <div class="tool-card"><div class="tool-logo">AI</div><h3>OpenAI Responses API</h3><p>Server-side structured analysis with advisory output only.</p></div>
+        <div class="tool-card"><div class="tool-logo">VT</div><h3>Vitest</h3><p>Regression coverage for scoring, workflow, and hardening scenarios.</p></div>
+        <div class="tool-card"><div class="tool-logo">API</div><h3>OpenAPI</h3><p>Versioned API routes with generated documentation.</p></div>
+        <div class="tool-card"><div class="tool-logo">SEC</div><h3>Trust boundaries</h3><p>Request locks, safe logging, prompt rules, and evidence validation.</p></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <p class="section-label">What this project demonstrates</p>
+      <div class="intro-card">
+        <p>This project sits at the point I am most interested in professionally: <strong>the systems behind support, not just the ticket queue itself.</strong></p>
+        <p>It brings together technical troubleshooting, support workflow design, evidence quality, responsible AI use, deterministic decisioning, and the handoff between Support and Engineering.</p>
+        <p>If I continued developing it, I would next test the scoring model and workflow with real support and engineering users, compare recommendations against historical escalation outcomes, and measure whether the system reduces avoidable engineering back-and-forth without slowing down genuinely urgent incidents.</p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="cta-card">
+        <h3>Explore the rest of my work</h3>
+        <p>See more projects focused on support operations, AI-assisted workflows, product feedback, and the systems that help Support work more effectively with Product and Engineering.</p>
+        <a class="cta-btn" href="./projects.html">View all projects →</a>
+      </div>
+    </section>
+  </main>
+
+  <section class="links">
+    <h2>Let's connect</h2>
+    <div class="connect-links">
+      <a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="./contact.html">Get in touch</a>
+    </div>
+  </section>
+
+  <footer>© <span id="year"></span> Madiha Khan · Built with care</footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

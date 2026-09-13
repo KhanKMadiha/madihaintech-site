@@ -493,5 +493,15 @@
 
     function handleKey(event){if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}}
   </script>
+
+  <script>
+    document.querySelectorAll('.nav-projects').forEach((menu) => {
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        menu.addEventListener('mouseenter', () => { menu.open = true; });
+        menu.addEventListener('mouseleave', () => { menu.open = false; });
+      }
+    });
+  </script>
+
 </body>
 </html>

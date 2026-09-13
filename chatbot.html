@@ -112,6 +112,425 @@
       }
     }
 
+    .shot-frame {
+      position: relative;
+      background: #f6f7f8;
+      overflow: hidden;
+    }
+
+    .shot-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .shot-caption {
+      padding: 0.8rem 1rem 0.95rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.82rem;
+      background: rgba(255,255,255,0.72);
+    }
+
+    .walkthrough-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+    }
+
+    .walkthrough-tab,
+    .walkthrough-mobile-trigger {
+      font: inherit;
+      border: 1.5px solid var(--border);
+      background: rgba(255,255,255,0.65);
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .walkthrough-tab {
+      min-height: 48px;
+      padding: 0.65rem 0.7rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .walkthrough-tab:hover,
+    .walkthrough-tab.active {
+      color: var(--text);
+      border-color: var(--border2);
+      background: var(--surface);
+    }
+
+    .walkthrough-item { display: none; }
+
+    .walkthrough-item.active { display: block; }
+
+    .walkthrough-mobile-trigger { display: none; }
+
+    .walkthrough-panel {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.55fr);
+      border: 1.5px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.58);
+    }
+
+    .walkthrough-copy {
+      padding: 2rem;
+      align-self: center;
+    }
+
+    .walkthrough-number {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+      display: grid;
+      place-items: center;
+      color: #8B5E5B;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .walkthrough-copy h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+    }
+
+    .walkthrough-copy p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.72;
+    }
+
+    .walkthrough-visual {
+      min-width: 0;
+      border-left: 1px solid var(--border);
+      background: #f6f7f8;
+    }
+
+    .walkthrough-visual .shot-frame {
+      min-height: 0;
+      border-top: 0;
+    }
+
+    .walkthrough-visual .shot-caption {
+      background: rgba(255,255,255,0.9);
+    }
+
+    .shot-link {
+      display: block;
+      padding: 0 1rem 0.95rem;
+      background: rgba(255,255,255,0.9);
+      color: #8B5E5B;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      .walkthrough-tabs { display: none; }
+
+      .walkthrough-item {
+        display: block;
+        margin-bottom: 0.65rem;
+      }
+
+      .walkthrough-mobile-trigger {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+        text-align: left;
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      .walkthrough-mobile-trigger span {
+        color: #8B5E5B;
+        font-size: 0.75rem;
+      }
+
+      .walkthrough-item:not(.active) .walkthrough-panel { display: none; }
+
+      .walkthrough-item.active .walkthrough-mobile-trigger {
+        color: var(--text);
+        border-color: var(--border2);
+        background: var(--surface);
+        border-radius: 12px 12px 0 0;
+      }
+
+      .walkthrough-panel {
+        grid-template-columns: 1fr;
+        border-radius: 0 0 16px 16px;
+      }
+
+      .walkthrough-copy { padding: 1.35rem; }
+
+      .walkthrough-number { display: none; }
+
+      .walkthrough-visual { border-left: 0; border-top: 1px solid var(--border); }
+    }
+
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    .tool-card {
+      padding: 1.35rem 1rem;
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .tool-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .tool-name { margin: 0 0 0.25rem; font-size: 0.9rem; font-weight: 800; }
+    .tool-desc { margin: 0; font-size: 0.78rem; line-height: 1.45; color: var(--muted); }
+
+    .try-card {
+      padding: 2.25rem 2.5rem;
+      border-radius: 22px;
+      text-align: center;
+      border-color: var(--border2);
+    }
+
+    .try-card h3 { margin: 0 0 0.6rem; font-size: 1.25rem; }
+    .try-card p { margin: 0 0 1.25rem; }
+
+    .live-btn {
+      padding: 0.85rem 1.7rem;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), #E0B8B4);
+      color: #fff;
+    }
+
+    .links { text-align: center; padding: 0 1.5rem 2.5rem; }
+    .links h2 { font-size: 1.6rem; margin: 0 0 0.9rem; }
+    .connect-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .connect-links a {
+      color: rgba(26,26,26,0.6);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border);
+      background: rgba(255,255,255,0.6);
+    }
+
+    footer {
+      text-align: center;
+      margin: 0 0 34px;
+      padding: 0 1.5rem;
+      font-size: 0.95rem;
+      color: rgba(26,26,26,0.6);
+    }
+
+    #chat-toggle {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: var(--surface);
+      border: 1.5px solid var(--border2);
+      cursor: pointer;
+      z-index: 9999;
+      font-size: 24px;
+      box-shadow: 0 8px 24px rgba(180,140,135,0.28);
+    }
+
+    #chat-window {
+      position: fixed;
+      bottom: 92px;
+      right: 22px;
+      width: 360px;
+      max-height: 530px;
+      background: var(--white-glass);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(180,140,135,0.15), 0 4px 16px rgba(0,0,0,0.06);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9998;
+    }
+
+    #chat-window.open { display: flex; }
+    .chat-header { padding: 14px 16px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+    .chat-avatar { width: 38px; height: 38px; border-radius: 12px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
+    .chat-header-info h4 { margin: 0; font-size: 0.92rem; }
+    .chat-header-info p { margin: 2px 0 0; font-size: 0.73rem; color: var(--muted); }
+    .chat-close { margin-left: auto; background: none; border: 0; cursor: pointer; font-size: 17px; }
+    .chat-messages { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 9px; }
+    .msg { max-width: 84%; padding: 10px 13px; border-radius: 16px; font-size: 0.875rem; line-height: 1.58; }
+    .msg.bot { align-self: flex-start; background: #fff; border: 1px solid var(--border); }
+    .msg.user { align-self: flex-end; background: var(--accent); color: #fff; }
+    .chat-input-area { padding: 11px 13px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
+    .chat-input-area textarea { flex: 1; border: 1.5px solid var(--border); border-radius: 12px; padding: 9px 11px; font: inherit; resize: none; }
+    .send-btn { width: 36px; border: 0; border-radius: 11px; background: var(--accent); color: #fff; cursor: pointer; }
+
+    @media (max-width: 760px) {
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .intro-card, .try-card { padding: 1.6rem; }
+    }
+
+    @media (max-width: 540px) {
+      .site-nav-brand { display: none; }
+      .site-nav { padding: 0 0.7rem; justify-content: center; }
+      .site-nav-links a { padding: 0.35rem 0.45rem; font-size: 0.8rem; }
+      #chat-window { width: calc(100vw - 28px); right: 14px; }
+      #chat-toggle { right: 14px; }
+    }
+  
+    /* Projects navigation dropdown */
+    .site-nav-links { align-items: center; }
+    .nav-projects { position: relative; }
+    .nav-projects summary {
+      display: flex;
+      align-items: center;
+      gap: 0.28rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 8px;
+      color: rgba(26,26,26,0.55);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      white-space: nowrap;
+    }
+    .nav-projects summary::-webkit-details-marker { display: none; }
+    .nav-projects summary::after {
+      content: "▾";
+      font-size: 0.68rem;
+      transition: transform 0.18s ease;
+    }
+    .nav-projects[open] summary::after { transform: rotate(180deg); }
+    .nav-projects:hover summary,
+    .nav-projects[open] summary,
+    .nav-projects.active summary {
+      color: #1A1A1A;
+    }
+    .nav-projects.active summary { font-weight: 700; }
+    .nav-projects-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 1200;
+      width: 250px;
+      padding: 0.55rem;
+      border: 1px solid rgba(180,140,135,0.25);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.98);
+      box-shadow: 0 14px 35px rgba(26,26,26,0.12);
+    }
+    .nav-projects:hover .nav-projects-menu,
+    .nav-projects[open] .nav-projects-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .site-nav-links .nav-projects-menu a {
+      display: block;
+      padding: 0.62rem 0.72rem;
+      border-radius: 9px;
+      color: rgba(26,26,26,0.68);
+      font-size: 0.82rem;
+      font-weight: 500;
+      line-height: 1.3;
+      text-align: left;
+      text-decoration: none;
+    }
+    .site-nav-links .nav-projects-menu a:hover {
+      color: #1A1A1A;
+      background: rgba(212,164,160,0.14);
+    }
+    .site-nav-links .nav-projects-menu a:first-child {
+      margin-bottom: 0.18rem;
+      border-bottom: 1px solid rgba(180,140,135,0.18);
+      border-radius: 9px 9px 4px 4px;
+      font-weight: 700;
+    }
+    @media (max-width: 640px) {
+      .nav-projects summary {
+        padding: 0.35rem 0.38rem;
+        font-size: 0.8rem;
+      }
+      .nav-projects-menu {
+        position: fixed;
+        top: 54px;
+        right: 0.5rem;
+        width: min(250px, calc(100vw - 1rem));
+      }
+    }
+    .assistant-preview {
+      min-height: 360px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #f7f8fa, #eef1f5);
+    }
+    .preview-window {
+      width: min(100%, 520px);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 12px 30px rgba(26,26,26,.08);
+    }
+    .preview-header {
+      padding: .85rem 1rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      font-size: .82rem;
+      font-weight: 800;
+    }
+    .preview-messages { padding: 1rem; display: flex; flex-direction: column; gap: .75rem; }
+    .preview-bubble { max-width: 88%; padding: .75rem .9rem; border-radius: 14px; font-size: .82rem; line-height: 1.55; }
+    .preview-bubble.user { margin-left: auto; background: var(--accent); color: #fff; }
+    .preview-bubble.bot { background: #f7f7f7; border: 1px solid var(--border); color: var(--text); }
+    .evolution-flow,
+    .request-flow { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: .65rem; align-items: center; }
+    .flow-node { min-height: 92px; padding: .85rem; display: grid; place-items: center; text-align: center; border: 1px solid var(--border); border-radius: 14px; background: #fff; font-size: .82rem; font-weight: 800; line-height: 1.4; }
+    .flow-note { display: block; margin-top: .3rem; color: var(--muted); font-size: .72rem; font-weight: 500; }
+    @media(max-width:720px){
+      .assistant-preview { min-height: 300px; padding: 1rem; }
+      .evolution-flow,.request-flow { grid-template-columns: 1fr; }
+      .flow-node { min-height: 72px; }
+    }
+
+
   </style>
 </head>
 <body>
@@ -173,45 +592,105 @@
     </section>
 
     <section class="case-section reveal">
-      <p class="section-label">The process</p>
-      <div class="stepper-nav"><button class="phase-btn active" onclick="showPhase(1)">Prototype</button><button class="phase-btn" onclick="showPhase(2)">Claude</button><button class="phase-btn" onclick="showPhase(3)">Security</button><button class="phase-btn" onclick="showPhase(4)">Production</button></div>
+      <p class="section-label">Assistant in practice</p>
 
-      <div class="phase-content active" id="phase-1">
-        <div class="phase-header"><span class="phase-badge">01</span><div class="phase-title-wrap"><h3>Learn conversational AI through IBM Watson and Dialogflow CX</h3><p>Start with intents, entities, dialogue flows, and routing</p></div></div>
-        <div class="phase-body">
-          <p>I started with IBM Watson after completing IBM AI Fundamentals, then moved to Dialogflow CX to get more hands-on with multi-turn flows and intent routing.</p>
-          <p>I embedded the Dialogflow version into the portfolio, but recurring permission and integration issues made the experience fragile. That became the signal to reconsider whether an intent-based architecture was the right fit for the problem.</p>
+      <div class="walkthrough">
+        <div class="walkthrough-tabs" role="tablist" aria-label="Portfolio Assistant walkthrough">
+          <button class="walkthrough-tab active" type="button" role="tab" aria-selected="true" data-step="0">Evolution</button>
+          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="1">Grounded answers</button>
+          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="2">Secure routing</button>
+          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="3">Bounded fallback</button>
         </div>
-        <div class="phase-nav"><button class="phase-nav-btn" disabled>Previous</button><button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Claude →</button></div>
-      </div>
 
-      <div class="phase-content" id="phase-2">
-        <div class="phase-header"><span class="phase-badge">02</span><div class="phase-title-wrap"><h3>Replace intent mapping with the Anthropic API</h3><p>Use one grounded system prompt instead of maintaining many predefined intents</p></div></div>
-        <div class="phase-body">
-          <p>I moved to Claude via the Anthropic API and wrote a detailed system prompt containing the portfolio facts, expected tone, response length, and fallback behaviour.</p>
-          <p>This simplified the conversational model. Instead of predicting which intent a visitor meant, the assistant could answer natural-language questions directly while staying within a bounded information set.</p>
-        </div>
-        <div class="phase-nav"><button class="phase-nav-btn" onclick="showPhase(1)">← Previous</button><button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Security →</button></div>
-      </div>
+        <div class="walkthrough-items">
+          <article class="walkthrough-item active" data-panel="0">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="true" data-step="0"><span>01</span> Evolution</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">01</div>
+                <h3>Move from intent trees to grounded conversation</h3>
+                <p>The project began with Watson and Dialogflow CX, then moved to Claude when predefined intent routing became too fragile for open-ended recruiter questions.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="assistant-preview">
+                  <div class="evolution-flow">
+                    <div class="flow-node">IBM Watson<span class="flow-note">Intents and entities</span></div>
+                    <div class="flow-node">Dialogflow CX<span class="flow-note">Multi-turn routing</span></div>
+                    <div class="flow-node">Claude API<span class="flow-note">Grounded natural language</span></div>
+                  </div>
+                </div>
+                <div class="shot-caption">The architecture changed when the interaction model no longer matched the user need.</div>
+              </div>
+            </div>
+          </article>
 
-      <div class="phase-content" id="phase-3">
-        <div class="phase-header"><span class="phase-badge">03</span><div class="phase-title-wrap"><h3>Fix the API security model</h3><p>Move the secret out of client-side code</p></div></div>
-        <div class="phase-body">
-          <p>The first Anthropic version exposed the API key in front-end JavaScript. GitHub secret scanning flagged it during push.</p>
-          <p>I rebuilt the request path using a Cloudflare Worker. The front end sends the request to the Worker, the Worker adds the Anthropic key server-side, and the browser never receives the secret.</p>
-          <p>I also restricted requests with CORS and stored the key as an encrypted Cloudflare environment secret.</p>
-        </div>
-        <div class="phase-nav"><button class="phase-nav-btn" onclick="showPhase(2)">← Previous</button><button class="phase-nav-btn primary" onclick="showPhase(4)">Next: Production →</button></div>
-      </div>
+          <article class="walkthrough-item" data-panel="1">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="1"><span>02</span> Grounded answers</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">02</div>
+                <h3>Answer recruiter questions from portfolio facts</h3>
+                <p>A bounded system prompt gives the assistant Madiha’s experience, skills and project context. Visitors can ask naturally without the response drifting beyond the documented portfolio.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="assistant-preview">
+                  <div class="preview-window">
+                    <div class="preview-header">Madiha’s Portfolio Assistant · Example</div>
+                    <div class="preview-messages">
+                      <div class="preview-bubble user">What support systems has Madiha built?</div>
+                      <div class="preview-bubble bot">Madiha has built the Engineering Escalation Engine, Feedback Loop and Support Ticket Analyser. Together they cover evidence-led escalation, product feedback synthesis and reusable knowledge capture.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="shot-caption">Illustrative conversation using facts already documented in the portfolio.</div>
+              </div>
+            </div>
+          </article>
 
-      <div class="phase-content" id="phase-4">
-        <div class="phase-header"><span class="phase-badge">04</span><div class="phase-title-wrap"><h3>Deploy the assistant across the portfolio</h3><p>Turn the prototype into a reusable site feature</p></div></div>
-        <div class="phase-body">
-          <p>The chatbot is now used across the portfolio with a consistent interface, system prompt, Cloudflare proxy, and session conversation history.</p>
-          <p>The prompt tells the assistant to stay concise, speak about me in the third person, use only supplied facts, and direct the visitor to contact links when the answer is outside its knowledge.</p>
-          <p>That final version is less about showing that I can call an AI API and more about showing how I think about reliability, security, scope, and user trust around an AI feature.</p>
+          <article class="walkthrough-item" data-panel="2">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="2"><span>03</span> Secure routing</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">03</div>
+                <h3>Keep the Anthropic key out of the browser</h3>
+                <p>The front end sends each question to a Cloudflare Worker. The Worker applies the server-side credential and CORS restrictions before forwarding the request to Anthropic.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="assistant-preview">
+                  <div class="request-flow">
+                    <div class="flow-node">Portfolio browser<span class="flow-note">Question and session context</span></div>
+                    <div class="flow-node">Cloudflare Worker<span class="flow-note">Secret and origin controls</span></div>
+                    <div class="flow-node">Anthropic API<span class="flow-note">Grounded response</span></div>
+                  </div>
+                </div>
+                <div class="shot-caption">The browser never receives the API credential.</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="walkthrough-item" data-panel="3">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="3"><span>04</span> Bounded fallback</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">04</div>
+                <h3>Say when the answer is not available</h3>
+                <p>The prompt instructs the assistant to avoid inventing personal or professional details and to direct visitors to Madiha when the requested information is outside its knowledge.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="assistant-preview">
+                  <div class="preview-window">
+                    <div class="preview-header">Madiha’s Portfolio Assistant · Example</div>
+                    <div class="preview-messages">
+                      <div class="preview-bubble user">What salary is Madiha looking for?</div>
+                      <div class="preview-bubble bot">That information is not included in the portfolio. Please contact Madiha directly if you would like to discuss the role.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="shot-caption">Illustrative fallback showing the assistant’s deliberately limited scope.</div>
+              </div>
+            </div>
+          </article>
         </div>
-        <div class="phase-nav"><button class="phase-nav-btn" onclick="showPhase(3)">← Previous</button><button class="phase-nav-btn primary" onclick="document.getElementById('decisions').scrollIntoView({behavior:'smooth'})">See key decisions ↓</button></div>
       </div>
     </section>
 
@@ -302,6 +781,31 @@
     function addMessage(text,type){const m=document.getElementById('chat-messages');const d=document.createElement('div');d.className='msg '+type;d.textContent=text;m.appendChild(d);m.scrollTop=m.scrollHeight}
     async function sendMessage(){const input=document.getElementById('chat-input');const button=document.getElementById('send-btn');const text=input.value.trim();if(!text)return;addMessage(text,'user');input.value='';button.disabled=true;try{const response=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-3-5-haiku-latest',max_tokens:500,system:SYSTEM_PROMPT,messages:[{role:'user',content:text}]})});if(!response.ok)throw new Error('Request failed');const data=await response.json();addMessage(data.content?.[0]?.text||data.reply||'I could not generate a response just now.','bot')}catch(e){addMessage('I am having trouble connecting right now. Please try again in a moment.','bot')}finally{button.disabled=false}}
     function handleKey(event){if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}}
+  </script>
+
+  <script>
+    (() => {
+      const tabs = Array.from(document.querySelectorAll('.walkthrough-tab'));
+      const items = Array.from(document.querySelectorAll('.walkthrough-item'));
+      const mobileTriggers = Array.from(document.querySelectorAll('.walkthrough-mobile-trigger'));
+
+      const showStep = (step) => {
+        tabs.forEach((tab, index) => {
+          const active = index === step;
+          tab.classList.toggle('active', active);
+          tab.setAttribute('aria-selected', String(active));
+        });
+        items.forEach((item, index) => {
+          const active = index === step;
+          item.classList.toggle('active', active);
+          const trigger = item.querySelector('.walkthrough-mobile-trigger');
+          if (trigger) trigger.setAttribute('aria-expanded', String(active));
+        });
+      };
+
+      tabs.forEach((tab) => tab.addEventListener('click', () => showStep(Number(tab.dataset.step))));
+      mobileTriggers.forEach((trigger) => trigger.addEventListener('click', () => showStep(Number(trigger.dataset.step))));
+    })();
   </script>
 
   <script>

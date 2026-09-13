@@ -541,6 +541,157 @@
       }
     }
 
+  
+    .walkthrough-tabs {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+    }
+
+    .walkthrough-tab,
+    .walkthrough-mobile-trigger {
+      font: inherit;
+      border: 1.5px solid var(--border-soft);
+      background: rgba(255,255,255,0.65);
+      color: var(--muted-dark);
+      cursor: pointer;
+    }
+
+    .walkthrough-tab {
+      min-height: 48px;
+      padding: 0.65rem 0.7rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .walkthrough-tab:hover,
+    .walkthrough-tab.active {
+      color: var(--text-dark);
+      border-color: var(--border-strong);
+      background: var(--surface);
+    }
+
+    .walkthrough-item { display: none; }
+
+    .walkthrough-item.active { display: block; }
+
+    .walkthrough-mobile-trigger { display: none; }
+
+    .walkthrough-panel {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.55fr);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.58);
+    }
+
+    .walkthrough-copy {
+      padding: 2rem;
+      align-self: center;
+    }
+
+    .walkthrough-number {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      background: var(--surface);
+      display: grid;
+      place-items: center;
+      color: #8B5E5B;
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .walkthrough-copy h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+    }
+
+    .walkthrough-copy p {
+      margin: 0;
+      color: var(--muted-dark);
+      font-size: 0.92rem;
+      line-height: 1.72;
+    }
+
+    .walkthrough-visual {
+      min-width: 0;
+      border-left: 1px solid var(--border-soft);
+      background: #f6f7f8;
+    }
+
+    .walkthrough-visual .shot-frame {
+      min-height: 0;
+      border-top: 0;
+    }
+
+    .walkthrough-visual .shot-caption {
+      background: rgba(255,255,255,0.9);
+    }
+
+    .shot-link {
+      display: block;
+      padding: 0 1rem 0.95rem;
+      background: rgba(255,255,255,0.9);
+      color: #8B5E5B;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      .walkthrough-tabs { display: none; }
+
+      .walkthrough-item {
+        display: block;
+        margin-bottom: 0.65rem;
+      }
+
+      .walkthrough-mobile-trigger {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+        text-align: left;
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      .walkthrough-mobile-trigger span {
+        color: #8B5E5B;
+        font-size: 0.75rem;
+      }
+
+      .walkthrough-item:not(.active) .walkthrough-panel { display: none; }
+
+      .walkthrough-item.active .walkthrough-mobile-trigger {
+        color: var(--text-dark);
+        border-color: var(--border-strong);
+        background: var(--surface);
+        border-radius: 12px 12px 0 0;
+      }
+
+      .walkthrough-panel {
+        grid-template-columns: 1fr;
+        border-radius: 0 0 16px 16px;
+      }
+
+      .walkthrough-copy { padding: 1.35rem; }
+
+      .walkthrough-number { display: none; }
+
+      .walkthrough-visual { border-left: 0; border-top: 1px solid var(--border-soft); }
+    }
+
   </style>
 </head>
 
@@ -627,17 +778,17 @@
         <div class="metric-card insufficient">
           <div class="metric-score">20</div>
           <h3>Insufficient evidence</h3>
-          <p>Meridian Systems · SSO. The case remains below the investigation threshold because the evidence is incomplete and the issue has not been reproduced.</p>
+          <p>Missing reproduction and incomplete technical evidence keep the case below the investigation threshold.</p>
         </div>
         <div class="metric-card continue">
           <div class="metric-score">58</div>
           <h3>Continue investigation</h3>
-          <p>Apex Digital · MS Teams Integration. Production impact is real, but intermittent reproduction and unresolved configuration questions make escalation premature.</p>
+          <p>Production impact is confirmed, but unresolved configuration questions make escalation premature.</p>
         </div>
         <div class="metric-card escalate">
           <div class="metric-score">98</div>
           <h3>Escalate</h3>
-          <p>Northstar Financial · API v3. Strong validated evidence, confirmed reproduction, multiple affected customers, and a suspected product defect push the case above the escalation threshold.</p>
+          <p>Validated reproduction, multi-customer impact and a suspected product defect make the case ready for Engineering.</p>
         </div>
       </div>
     </section>
@@ -645,80 +796,107 @@
     <section class="case-section">
       <p class="section-label">Workflow in practice</p>
 
-      <article class="story-card">
-        <div class="story-copy">
-          <div>
-            <h3>One queue, different outcomes</h3>
-            <p>The dashboard shows that severity alone does not determine escalation. Each case carries its own evidence state, recommendation and workflow status, allowing support teams to distinguish between cases that need more investigation and cases that are genuinely ready for Engineering.</p>
-          </div>
-          <div class="story-number">01</div>
+      <div class="walkthrough">
+        <div class="walkthrough-tabs" role="tablist" aria-label="Engineering Escalation Engine walkthrough">
+          <button class="walkthrough-tab active" type="button" role="tab" aria-selected="true" data-step="0">Queue</button>
+          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="1">Evidence</button>
+          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="2">Assessment</button>
+          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="3">Continue Investigation</button>
+          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="4">Handoff</button>
         </div>
-        <div class="shot-frame">
-          <img src="./assets/engineering-escalation-dashboard.png" alt="Engineering Escalation Engine cases dashboard showing Apex Digital, Meridian Systems and Northstar Financial" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'">
-          <div class="shot-placeholder">Add the final dashboard screenshot as<code>assets/engineering-escalation-dashboard.png</code></div>
-        </div>
-        <div class="shot-caption">Three fictional cases demonstrate three different support outcomes: insufficient evidence, continue investigation, and escalate.</div>
-      </article>
 
-      <article class="story-card">
-        <div class="story-copy">
-          <div>
-            <h3>Evidence before escalation</h3>
-            <p>Investigation data stays grounded in the case. Customer and support-provided evidence remains distinguishable from AI-inferred fields, and the AI badge explains that the analysis is advisory rather than authoritative.</p>
-          </div>
-          <div class="story-number">02</div>
-        </div>
-        <div class="shot-frame">
-          <img src="./assets/engineering-escalation-investigation.png" alt="Northstar Financial investigation view with AI-assessed reproducibility tooltip and technical evidence" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'">
-          <div class="shot-placeholder">Add the investigation screenshot as<code>assets/engineering-escalation-investigation.png</code></div>
-        </div>
-        <div class="shot-caption">AI provenance is explicit: inferred values are labelled, while the underlying customer and support evidence remains inspectable.</div>
-      </article>
+        <div class="walkthrough-items">
+          <article class="walkthrough-item active" data-panel="0">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="true" data-step="0"><span>01</span> Queue</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">01</div>
+                <h3>One queue, different outcomes</h3>
+                <p>The dashboard shows that severity alone does not determine escalation. Each case carries its own evidence state, recommendation and workflow status, distinguishing cases that need more investigation from cases ready for Engineering.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="shot-frame">
+                  <img src="./assets/engineering-escalation-dashboard.png" alt="Engineering Escalation Engine dashboard showing three fictional cases with different workflow outcomes">
+                </div>
+                <div class="shot-caption">Three fictional cases demonstrate insufficient evidence, continued investigation and escalation.</div>
+                <a class="shot-link" href="./assets/engineering-escalation-dashboard.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
+              </div>
+            </div>
+          </article>
 
-      <article class="story-card">
-        <div class="story-copy">
-          <div>
-            <h3>Deterministic escalation assessment</h3>
-            <p>Northstar reaches 98/100 against a 70-point escalation threshold. The rules engine evaluates validated case signals such as production impact, confirmed reproduction, affected customers, severity, troubleshooting, and suspected product defect.</p>
-          </div>
-          <div class="story-number">03</div>
-        </div>
-        <div class="shot-frame">
-          <img src="./assets/engineering-escalation-assessment-escalate.png" alt="Northstar Financial escalation assessment showing a 98 out of 100 score and Escalate recommendation" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'">
-          <div class="shot-placeholder">Add the Northstar assessment screenshot as<code>assets/engineering-escalation-assessment-escalate.png</code></div>
-        </div>
-        <div class="shot-caption">The AI analysis is visible alongside, but the final score and recommendation come from deterministic rules.</div>
-      </article>
+          <article class="walkthrough-item" data-panel="1">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="1"><span>02</span> Evidence</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">02</div>
+                <h3>Evidence before escalation</h3>
+                <p>Customer and support-provided evidence remains distinguishable from AI-inferred fields. The AI badge makes clear that analysis is advisory rather than authoritative.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="shot-frame">
+                  <img src="./assets/engineering-escalation-investigation.png" alt="Investigation view showing technical evidence and labelled AI-assessed reproducibility">
+                </div>
+                <div class="shot-caption">Inferred values are labelled while the underlying customer and support evidence remains inspectable.</div>
+                <a class="shot-link" href="./assets/engineering-escalation-investigation.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
+              </div>
+            </div>
+          </article>
 
-      <article class="story-card">
-        <div class="story-copy">
-          <div>
-            <h3>Knowing when not to escalate</h3>
-            <p>Apex Digital is deliberately just as important as the escalated case. The case is high severity and production-impacting, but unresolved permissions and configuration questions remain. A score of 58/100 keeps the case in investigation instead of creating a premature engineering handoff.</p>
-          </div>
-          <div class="story-number">04</div>
-        </div>
-        <div class="shot-frame">
-          <img src="./assets/engineering-escalation-assessment-continue.png" alt="Apex Digital escalation assessment showing a 58 out of 100 score and Continue Investigation recommendation" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'">
-          <div class="shot-placeholder">Add the Apex assessment screenshot as<code>assets/engineering-escalation-assessment-continue.png</code></div>
-        </div>
-        <div class="shot-caption">High severity does not automatically mean escalation. Evidence quality and reproducibility matter.</div>
-      </article>
+          <article class="walkthrough-item" data-panel="2">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="2"><span>03</span> Assessment</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">03</div>
+                <h3>Deterministic escalation assessment</h3>
+                <p>Northstar reaches 98/100 against a 70-point threshold. The rules engine evaluates validated signals including production impact, confirmed reproduction, affected customers and suspected product defects.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="shot-frame">
+                  <img src="./assets/engineering-escalation-assessment-escalate.png" alt="Escalation assessment showing a 98 out of 100 score and Escalate recommendation">
+                </div>
+                <div class="shot-caption">AI analysis remains visible, but deterministic rules produce the score and recommendation.</div>
+                <a class="shot-link" href="./assets/engineering-escalation-assessment-escalate.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
+              </div>
+            </div>
+          </article>
 
-      <article class="story-card">
-        <div class="story-copy">
-          <div>
-            <h3>From Support to Engineering</h3>
-            <p>When a human reviewer approves the escalation, the system creates an engineering-ready handoff and surfaces simulated downstream actions for Jira or Rootly. The demo stops short of contacting external systems, but the workflow shows how the decision can move into existing operational tooling.</p>
-          </div>
-          <div class="story-number">05</div>
+          <article class="walkthrough-item" data-panel="3">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="3"><span>04</span> Continue Investigation</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">04</div>
+                <h3>Knowing when not to escalate</h3>
+                <p>Apex is high severity and production-impacting, but unresolved permissions and configuration questions remain. Its 58/100 score keeps the case in investigation rather than creating a premature handoff.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="shot-frame">
+                  <img src="./assets/engineering-escalation-assessment-continue.png" alt="Escalation assessment showing a 58 out of 100 score and Continue Investigation recommendation">
+                </div>
+                <div class="shot-caption">High severity does not automatically mean escalation. Evidence quality and reproducibility still matter.</div>
+                <a class="shot-link" href="./assets/engineering-escalation-assessment-continue.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="walkthrough-item" data-panel="4">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="4"><span>05</span> Handoff</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">05</div>
+                <h3>From Support to Engineering</h3>
+                <p>Human approval creates an engineering-ready handoff and surfaces simulated Jira or Rootly actions. The demo stops short of contacting external systems while showing how the decision fits existing operational tooling.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="shot-frame">
+                  <img src="./assets/engineering-escalation-handoff.png" alt="Approved engineering handoff with simulated Jira and Rootly actions">
+                </div>
+                <div class="shot-caption">Approved cases produce a structured handoff ready for engineering work or incident coordination.</div>
+                <a class="shot-link" href="./assets/engineering-escalation-handoff.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
+              </div>
+            </div>
+          </article>
         </div>
-        <div class="shot-frame">
-          <img src="./assets/engineering-escalation-handoff.png" alt="Northstar Financial engineering handoff showing approved decision and simulated Jira and Rootly actions" onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'">
-          <div class="shot-placeholder">Add the handoff screenshot as<code>assets/engineering-escalation-handoff.png</code></div>
-        </div>
-        <div class="shot-caption">Approved cases produce a structured handoff and can move towards engineering work or incident coordination.</div>
-      </article>
+      </div>
     </section>
 
     <section class="case-section">
@@ -796,6 +974,38 @@
         menu.addEventListener('mouseleave', () => { menu.open = false; });
       }
     });
+  </script>
+
+
+  <script>
+    (() => {
+      const tabs = Array.from(document.querySelectorAll('.walkthrough-tab'));
+      const items = Array.from(document.querySelectorAll('.walkthrough-item'));
+      const mobileTriggers = Array.from(document.querySelectorAll('.walkthrough-mobile-trigger'));
+
+      const showStep = (step) => {
+        tabs.forEach((tab, index) => {
+          const active = index === step;
+          tab.classList.toggle('active', active);
+          tab.setAttribute('aria-selected', String(active));
+        });
+
+        items.forEach((item, index) => {
+          const active = index === step;
+          item.classList.toggle('active', active);
+          const trigger = item.querySelector('.walkthrough-mobile-trigger');
+          if (trigger) trigger.setAttribute('aria-expanded', String(active));
+        });
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => showStep(Number(tab.dataset.step)));
+      });
+
+      mobileTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => showStep(Number(trigger.dataset.step)));
+      });
+    })();
   </script>
 
 </body>

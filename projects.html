@@ -528,5 +528,15 @@ TONE GUIDELINES:
     function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 100) + 'px'; }
   </script>
 
+
+  <script>
+    document.querySelectorAll('.nav-projects').forEach((menu) => {
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        menu.addEventListener('mouseenter', () => { menu.open = true; });
+        menu.addEventListener('mouseleave', () => { menu.open = false; });
+      }
+    });
+  </script>
+
 </body>
 </html>

@@ -45,6 +45,7 @@
         <p>A portfolio can show projects and experience, but it still asks the visitor to navigate everything themselves.</p>
         <p>I wanted to explore whether conversational AI could make that experience more useful by letting a recruiter ask direct questions about my background, projects, and technical skills without turning the site into a generic chatbot demo.</p>
         <p>The challenge became: <strong>how do you build an assistant that is useful, accurate, secure, and grounded in a limited set of facts about one person?</strong></p>
+        <p>I built and iterated the assistant across three architectures, then implemented the current Claude-powered version with a bounded system prompt, session context and a Cloudflare Worker protecting the API credential.</p>
       </div>
     </section>
 
@@ -163,8 +164,20 @@
 
     <div class="try-card reveal">
       <h3>Try it yourself</h3>
-      <p>The assistant in the bottom-right corner is the live version described in this case study. Ask about my experience, projects, or technical skills.</p>
+      <p>Try the live assistant using the chat button in the bottom-right corner. Ask about my enterprise support experience, technical skills or any project in this portfolio.</p>
+      <div class="connect-links">
+        <a href="#" onclick="toggleChat(); return false;">Open the assistant</a>
+        <a href="https://github.com/KhanKMadiha/madihaintech-site" target="_blank" rel="noopener noreferrer">View source on GitHub</a>
+      </div>
       <p>Powered by Claude · Secured by Cloudflare · Built as part of this portfolio</p>
+    </div>
+    <div class="try-card reveal">
+      <h3>From user problem to working AI product</h3>
+      <p>This project demonstrates how I approach AI product development: start with a real user problem, build the complete workflow and strengthen it through accessibility, security and trust.</p>
+      <div class="connect-links">
+        <a href="./contact.html">Discuss a role</a>
+        <a href="./projects.html">View all case studies</a>
+      </div>
     </div>
   </main>
 

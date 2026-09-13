@@ -129,6 +129,88 @@
 
     @media(max-width:760px){.tools-grid,.learnings-grid{grid-template-columns:1fr}.intro-card,.phase-content,.try-card{padding:1.6rem}.phase-header{flex-direction:column;gap:.65rem}}
     @media(max-width:540px){.site-nav-brand{display:none}.site-nav{padding:0 .7rem;justify-content:center}.site-nav-links a{padding:.35rem .45rem;font-size:.8rem}#chat-window{width:calc(100vw - 28px);right:14px}#chat-toggle{right:14px}}
+  
+    /* Projects navigation dropdown */
+    .site-nav-links { align-items: center; }
+    .nav-projects { position: relative; }
+    .nav-projects summary {
+      display: flex;
+      align-items: center;
+      gap: 0.28rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 8px;
+      color: rgba(26,26,26,0.55);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      white-space: nowrap;
+    }
+    .nav-projects summary::-webkit-details-marker { display: none; }
+    .nav-projects summary::after {
+      content: "▾";
+      font-size: 0.68rem;
+      transition: transform 0.18s ease;
+    }
+    .nav-projects[open] summary::after { transform: rotate(180deg); }
+    .nav-projects:hover summary,
+    .nav-projects[open] summary,
+    .nav-projects.active summary {
+      color: #1A1A1A;
+    }
+    .nav-projects.active summary { font-weight: 700; }
+    .nav-projects-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 1200;
+      width: 250px;
+      padding: 0.55rem;
+      border: 1px solid rgba(180,140,135,0.25);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.98);
+      box-shadow: 0 14px 35px rgba(26,26,26,0.12);
+    }
+    .nav-projects:hover .nav-projects-menu,
+    .nav-projects[open] .nav-projects-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .site-nav-links .nav-projects-menu a {
+      display: block;
+      padding: 0.62rem 0.72rem;
+      border-radius: 9px;
+      color: rgba(26,26,26,0.68);
+      font-size: 0.82rem;
+      font-weight: 500;
+      line-height: 1.3;
+      text-decoration: none;
+    }
+    .site-nav-links .nav-projects-menu a:hover {
+      color: #1A1A1A;
+      background: rgba(212,164,160,0.14);
+    }
+    .site-nav-links .nav-projects-menu a:first-child {
+      margin-bottom: 0.18rem;
+      border-bottom: 1px solid rgba(180,140,135,0.18);
+      border-radius: 9px 9px 4px 4px;
+      font-weight: 700;
+    }
+    @media (max-width: 640px) {
+      .nav-projects summary {
+        padding: 0.35rem 0.38rem;
+        font-size: 0.8rem;
+      }
+      .nav-projects-menu {
+        position: fixed;
+        top: 54px;
+        right: 0.5rem;
+        width: min(250px, calc(100vw - 1rem));
+      }
+    }
+
   </style>
 </head>
 
@@ -139,7 +221,17 @@
       <a href="./index.html">Home</a>
       <a href="./about.html">About</a>
       <a href="./skills.html">Technical depth</a>
-      <a class="active" href="./projects.html">Projects</a>
+      <details class="nav-projects active">
+        <summary>Projects</summary>
+        <div class="nav-projects-menu">
+          <a href="./projects.html">All projects</a>
+          <a href="./engineering-escalation-engine.html">Engineering Escalation Engine</a>
+          <a href="./feedback-loop.html">Feedback Loop</a>
+          <a href="./support-dashboard.html">Support Ticket Analyser</a>
+          <a href="./articulate.html">Articulate</a>
+          <a href="./chatbot.html">Portfolio Assistant</a>
+        </div>
+      </details>
       <a href="./contact.html">Contact</a>
     </div>
   </nav>

@@ -157,7 +157,6 @@
     .case-section { margin-bottom: 2.5rem; }
 
     .intro-card,
-    .phase-content,
     .tool-card,
     .try-card {
       border: 1.5px solid var(--border-soft);
@@ -172,7 +171,6 @@
     }
 
     .intro-card p,
-    .phase-body p,
     .try-card p {
       color: var(--muted-dark);
       line-height: 1.8;
@@ -184,8 +182,7 @@
     }
 
     .intro-card p:last-child { margin-bottom: 0; }
-    .intro-card strong,
-    .phase-body strong { color: var(--text-dark); }
+    .intro-card strong { color: var(--text-dark); }
 
     .tag-row {
       display: flex;
@@ -202,124 +199,156 @@
       font-size: 0.88rem;
     }
 
-    .stepper-nav {
-      display: flex;
-      gap: 0.5rem;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
+    .walkthrough-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin-bottom: 1rem;
     }
 
-    .phase-btn {
-      padding: 0.6rem 1.15rem;
-      border-radius: 999px;
+    .walkthrough-tab,
+    .walkthrough-mobile-trigger {
+      font: inherit;
       border: 1.5px solid var(--border-soft);
       background: rgba(255,255,255,0.65);
-      font-family: inherit;
-      font-size: 0.9rem;
-      font-weight: 700;
       color: var(--muted-dark);
       cursor: pointer;
     }
 
-    .phase-btn.active {
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      color: #fff;
-    }
-
-    .phase-content {
-      display: none;
-      padding: 2rem 2.25rem;
-      border-radius: 22px;
-      margin-bottom: 1.5rem;
-    }
-
-    .phase-content.active { display: block; }
-
-    .phase-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .phase-badge {
-      display: inline-flex;
-      padding: 0.35rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
+    .walkthrough-tab {
+      min-height: 48px;
+      padding: 0.65rem 0.7rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
       font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .walkthrough-tab:hover,
+    .walkthrough-tab.active {
+      color: var(--text-dark);
+      border-color: var(--border-strong);
       background: var(--surface);
-      color: #8B5E5B;
+    }
+
+    .walkthrough-item { display: none; }
+
+    .walkthrough-item.active { display: block; }
+
+    .walkthrough-mobile-trigger { display: none; }
+
+    .walkthrough-panel {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.55fr);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.58);
+    }
+
+    .walkthrough-copy {
+      padding: 2rem;
+      align-self: center;
+    }
+
+    .walkthrough-number {
+      width: 42px;
+      height: 42px;
+      margin-bottom: 1rem;
       border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      background: var(--surface);
+      display: grid;
+      place-items: center;
+      color: #8B5E5B;
+      font-size: 0.82rem;
+      font-weight: 800;
     }
 
-    .phase-title-wrap h3 {
-      font-size: 1.25rem;
-      margin: 0 0 0.25rem;
+    .walkthrough-copy h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
     }
 
-    .phase-title-wrap p {
+    .walkthrough-copy p {
       margin: 0;
       color: var(--muted-dark);
       font-size: 0.92rem;
+      line-height: 1.72;
     }
 
-    .phase-body p {
-      font-size: 1rem;
-      margin: 0 0 1rem;
+    .walkthrough-visual {
+      min-width: 0;
+      border-left: 1px solid var(--border-soft);
+      background: #f6f7f8;
     }
 
-    .phase-body p:last-child { margin-bottom: 0; }
-
-    .struggle-toggle {
-      margin-top: 1.25rem;
-      border-radius: 14px;
-      border: 1.5px solid var(--border-soft);
-      overflow: hidden;
+    .walkthrough-visual .shot-frame {
+      min-height: 0;
+      border-top: 0;
     }
 
-    .struggle-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.9rem 1.1rem;
-      cursor: pointer;
-      background: rgba(180,140,135,0.06);
+    .walkthrough-visual .shot-caption {
+      background: rgba(255,255,255,0.9);
     }
 
-    .struggle-label { font-size: 0.88rem; font-weight: 700; color: var(--accent); }
-    .struggle-chevron { color: var(--accent); transition: transform 0.2s; }
-    .struggle-body { display: none; padding: 1rem 1.1rem; border-top: 1px solid var(--border-soft); }
-    .struggle-body.open { display: block; }
-    .struggle-body p { margin: 0 0 0.75rem; color: var(--muted-dark); line-height: 1.7; }
-    .struggle-body p:last-child { margin-bottom: 0; }
-
-    .phase-nav {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-top: 1.25rem;
-    }
-
-    .phase-nav-btn {
-      padding: 0.7rem 1.1rem;
-      border-radius: 12px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.7);
-      font-family: inherit;
+    .shot-link {
+      display: block;
+      padding: 0 1rem 0.95rem;
+      background: rgba(255,255,255,0.9);
+      color: #8B5E5B;
+      font-size: 0.8rem;
       font-weight: 700;
-      cursor: pointer;
+      text-decoration: none;
     }
 
-    .phase-nav-btn.primary {
-      background: linear-gradient(135deg, var(--accent), #E0B8B4);
-      color: #fff;
-      border-color: transparent;
+    @media (max-width: 720px) {
+      .walkthrough-tabs { display: none; }
+
+      .walkthrough-item {
+        display: block;
+        margin-bottom: 0.65rem;
+      }
+
+      .walkthrough-mobile-trigger {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+        text-align: left;
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      .walkthrough-mobile-trigger span {
+        color: #8B5E5B;
+        font-size: 0.75rem;
+      }
+
+      .walkthrough-item:not(.active) .walkthrough-panel { display: none; }
+
+      .walkthrough-item.active .walkthrough-mobile-trigger {
+        color: var(--text-dark);
+        border-color: var(--border-strong);
+        background: var(--surface);
+        border-radius: 12px 12px 0 0;
+      }
+
+      .walkthrough-panel {
+        grid-template-columns: 1fr;
+        border-radius: 0 0 16px 16px;
+      }
+
+      .walkthrough-copy { padding: 1.35rem; }
+
+      .walkthrough-number { display: none; }
+
+      .walkthrough-visual { border-left: 0; border-top: 1px solid var(--border-soft); }
     }
 
-    .phase-nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
     .tools-grid {
       display: grid;
@@ -439,8 +468,7 @@
 
     @media (max-width: 760px) {
       .tools-grid { grid-template-columns: repeat(2, 1fr); }
-      .intro-card, .phase-content, .try-card { padding: 1.6rem; }
-      .phase-header { flex-direction: column; gap: 0.65rem; }
+      .intro-card, .try-card { padding: 1.6rem; }
     }
 
     @media (max-width: 540px) {
@@ -566,13 +594,14 @@
         An AI-assisted Voice of Customer system that turns scattered support requests into structured product signals and an evidence-backed brief for Product and Engineering.
       </p>
       <div class="hero-actions">
-        <a class="hero-action-primary" href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer">Open demo →</a>
-        <a class="hero-action-secondary" href="https://github.com/KhanKMadiha/feedback-loop" target="_blank" rel="noopener noreferrer">View code</a>
+        <a class="hero-action-primary" href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer">Open live demo ↗</a>
+        <a class="hero-action-secondary" href="#case-study">Explore the case study ↓</a>
+        <a class="hero-action-secondary" href="https://github.com/KhanKMadiha/feedback-loop" target="_blank" rel="noopener noreferrer">View source on GitHub</a>
       </div>
     </div>
   </section>
 
-  <main class="content">
+  <main class="content" id="case-study">
     <section class="case-section">
       <p class="section-label">The problem</p>
       <div class="intro-card">
@@ -606,103 +635,88 @@
     </section>
 
     <section class="case-section">
-      <p class="section-label">The process</p>
-      <div class="stepper-nav">
-        <button class="phase-btn active" onclick="showPhase(1)">Designing the workflow</button>
-        <button class="phase-btn" onclick="showPhase(2)">Intake &amp; queue</button>
-        <button class="phase-btn" onclick="showPhase(3)">Analysis &amp; export</button>
-        <button class="phase-btn" onclick="showPhase(4)">Insights &amp; import</button>
-      </div>
+      <p class="section-label">Workflow in practice</p>
 
-      <div class="phase-content active" id="phase-1">
-        <div class="phase-header">
-          <span class="phase-badge">01</span>
-          <div class="phase-title-wrap">
-            <h3>Designing the workflow</h3>
-            <p>From individual support tickets to a repeatable product feedback system</p>
-          </div>
+      <div class="walkthrough">
+        <div class="walkthrough-tabs" role="tablist" aria-label="Feedback Loop walkthrough">
+          <button class="walkthrough-tab active" type="button" role="tab" aria-selected="true" data-step="0">See patterns</button>
+          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="1">Review evidence</button>
+          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="2">Import tickets</button>
+          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="3">Export brief</button>
         </div>
-        <div class="phase-body">
-          <p>I started by mapping the manual workflow I already knew: capture the request, identify whether it matches an existing pattern, understand who is affected, build the case, and hand the evidence to Product or Engineering.</p>
-          <p>The system mirrors that flow rather than asking teams to adopt a completely different process.</p>
-        </div>
-        <div class="phase-nav">
-          <button class="phase-nav-btn" disabled>Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(2)">Next: Intake &amp; queue →</button>
-        </div>
-      </div>
 
-      <div class="phase-content" id="phase-2">
-        <div class="phase-header">
-          <span class="phase-badge">02</span>
-          <div class="phase-title-wrap">
-            <h3>Structured intake and queue</h3>
-            <p>Capture the signal before it disappears into a backlog</p>
-          </div>
-        </div>
-        <div class="phase-body">
-          <p>The Submit Feature Request page captures each request by product area, account tier, priority, and description. Every submission appears immediately in the dashboard queue.</p>
-          <p>The Settings page also supports CSV import from Zendesk, Intercom, or another support tool so the workflow can start from existing data rather than requiring manual entry.</p>
-        </div>
-        <div class="struggle-toggle">
-          <div class="struggle-header" onclick="toggleStruggle(this)">
-            <span class="struggle-label">What I had to work through</span>
-            <span class="struggle-chevron">▼</span>
-          </div>
-          <div class="struggle-body">
-            <p>The mock data went through several versions before it felt realistic. Early versions read too much like bug reports or were too specific to one employer.</p>
-            <p>I refined the examples until the request types, categories, and customer context made sense to someone seeing the product for the first time.</p>
-          </div>
-        </div>
-        <div class="phase-nav">
-          <button class="phase-nav-btn" onclick="showPhase(1)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(3)">Next: Analysis &amp; export →</button>
-        </div>
-      </div>
+        <div class="walkthrough-items">
+          <article class="walkthrough-item active" data-panel="0">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="true" data-step="0"><span>01</span> See patterns</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">01</div>
+                <h3>See the signal before opening tickets</h3>
+                <p>The Insights view turns individual requests into an operational picture of volume, product area and account tier. Chart interactions lead back to the underlying evidence in Analysis.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="shot-frame">
+                  <img src="https://feedback-loop.pages.dev/screenshots/01-insights.png" alt="Feedback Loop Insights dashboard showing request volume by category and account tier">
+                </div>
+                <div class="shot-caption">Twenty fictional requests surface recurring demand across five product areas.</div>
+                <a class="shot-link" href="https://feedback-loop.pages.dev/screenshots/01-insights.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
+              </div>
+            </div>
+          </article>
 
-      <div class="phase-content" id="phase-3">
-        <div class="phase-header">
-          <span class="phase-badge">03</span>
-          <div class="phase-title-wrap">
-            <h3>AI-assisted analysis and export</h3>
-            <p>Turn a queue of requests into themes and supporting evidence</p>
-          </div>
-        </div>
-        <div class="phase-body">
-          <p>Selected tickets are sent to Claude through a secured Cloudflare Worker. Claude groups related requests into themes and returns the pattern, affected accounts, supporting evidence, and a recommended action.</p>
-          <p>The final step exports a PDF brief that can be attached to a Jira epic or brought into a product review meeting.</p>
-        </div>
-        <div class="struggle-toggle">
-          <div class="struggle-header" onclick="toggleStruggle(this)">
-            <span class="struggle-label">What I had to work through</span>
-            <span class="struggle-chevron">▼</span>
-          </div>
-          <div class="struggle-body">
-            <p>The PDF export broke more than once. One version generated a blank document and another produced an unreadable layout.</p>
-            <p>I traced the deployed failure through the browser console, fixed the library issue, and rebuilt the document layout so the exported brief was actually usable.</p>
-          </div>
-        </div>
-        <div class="phase-nav">
-          <button class="phase-nav-btn" onclick="showPhase(2)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="showPhase(4)">Next: Insights &amp; import →</button>
-        </div>
-      </div>
+          <article class="walkthrough-item" data-panel="1">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="1"><span>02</span> Review evidence</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">02</div>
+                <h3>Filter and select the customer evidence</h3>
+                <p>Support or Product can narrow the queue by date, category, account tier and priority, then choose the requests that should be grouped into themes. The source tickets remain visible throughout.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="shot-frame">
+                  <img src="https://feedback-loop.pages.dev/screenshots/02-analysis.png" alt="Feedback Loop Analysis view with a filterable ticket queue and ranked themes panel">
+                </div>
+                <div class="shot-caption">The analysis starts with inspectable customer requests rather than an untraceable summary.</div>
+                <a class="shot-link" href="https://feedback-loop.pages.dev/screenshots/02-analysis.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
+              </div>
+            </div>
+          </article>
 
-      <div class="phase-content" id="phase-4">
-        <div class="phase-header">
-          <span class="phase-badge">04</span>
-          <div class="phase-title-wrap">
-            <h3>Insights and import</h3>
-            <p>Make the pattern visible before opening individual tickets</p>
-          </div>
-        </div>
-        <div class="phase-body">
-          <p>After the core analysis workflow was working, I added an Insights view to show total requests, top category, account tier mix, and request trends over time.</p>
-          <p>Chart interactions feed directly back into the Analysis view, so a Product or Support user can move from a pattern to the underlying tickets without losing context.</p>
-        </div>
-        <div class="phase-nav">
-          <button class="phase-nav-btn" onclick="showPhase(3)">← Previous</button>
-          <button class="phase-nav-btn primary" onclick="document.getElementById('decisions').scrollIntoView({behavior:'smooth'})">See key decisions ↓</button>
+          <article class="walkthrough-item" data-panel="2">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="2"><span>03</span> Import tickets</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">03</div>
+                <h3>Start from the tools Support already uses</h3>
+                <p>CSV import accepts exports from Zendesk, Intercom or another support platform. Teams can use the fictional demo data, their own imported data, or both without rebuilding the intake workflow.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="shot-frame">
+                  <img src="https://feedback-loop.pages.dev/screenshots/03-settings.png" alt="Feedback Loop settings showing CSV ticket import and model usage controls">
+                </div>
+                <div class="shot-caption">A downloadable template makes the expected ticket structure explicit.</div>
+                <a class="shot-link" href="https://feedback-loop.pages.dev/screenshots/03-settings.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="walkthrough-item" data-panel="3">
+            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="3"><span>04</span> Export brief</button>
+            <div class="walkthrough-panel">
+              <div class="walkthrough-copy">
+                <div class="walkthrough-number">04</div>
+                <h3>Turn themes into a portable product brief</h3>
+                <p>The final PDF packages the recurring need, affected accounts and supporting evidence into a format that can move into Jira or a product review without requiring another team to adopt the prototype.</p>
+              </div>
+              <div class="walkthrough-visual">
+                <div class="shot-frame">
+                  <img src="https://feedback-loop.pages.dev/screenshots/04-pdf-export.png" alt="Exported Feedback Loop product brief for an identity provider group sync theme">
+                </div>
+                <div class="shot-caption">The output keeps the customer impact and requesting accounts visible for Product and Engineering.</div>
+                <a class="shot-link" href="https://feedback-loop.pages.dev/screenshots/04-pdf-export.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -803,21 +817,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    function showPhase(n) {
-      document.querySelectorAll('.phase-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.phase-btn').forEach(el => el.classList.remove('active'));
-      document.getElementById('phase-' + n).classList.add('active');
-      document.querySelectorAll('.phase-btn')[n - 1].classList.add('active');
-    }
-
-    function toggleStruggle(header) {
-      const body = header.nextElementSibling;
-      const chevron = header.querySelector('.struggle-chevron');
-      const isOpen = body.classList.contains('open');
-      body.classList.toggle('open', !isOpen);
-      chevron.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-    }
-
     const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
     const SYSTEM_PROMPT = `You are Madiha Khan's portfolio assistant. Madiha is a Senior Support Professional based in London with 5+ years of customer-facing support experience and 3+ years in technical SaaS support. She works at Stack Overflow supporting enterprise customers across EMEA. Her work sits at the intersection of Support, AI, Product, and Engineering. Her portfolio includes Feedback Loop, an AI-native system that turns support feature requests into structured product signals and an engineering-ready brief, and Support Ticket Analyser, an AI-assisted workflow for support knowledge and documentation. Answer questions about her experience and projects clearly and professionally. If you do not know something, say so rather than inventing it.`;
 
@@ -878,6 +877,37 @@
         sendMessage();
       }
     }
+  </script>
+
+  <script>
+    (() => {
+      const tabs = Array.from(document.querySelectorAll('.walkthrough-tab'));
+      const items = Array.from(document.querySelectorAll('.walkthrough-item'));
+      const mobileTriggers = Array.from(document.querySelectorAll('.walkthrough-mobile-trigger'));
+
+      const showStep = (step) => {
+        tabs.forEach((tab, index) => {
+          const active = index === step;
+          tab.classList.toggle('active', active);
+          tab.setAttribute('aria-selected', String(active));
+        });
+
+        items.forEach((item, index) => {
+          const active = index === step;
+          item.classList.toggle('active', active);
+          const trigger = item.querySelector('.walkthrough-mobile-trigger');
+          if (trigger) trigger.setAttribute('aria-expanded', String(active));
+        });
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => showStep(Number(tab.dataset.step)));
+      });
+
+      mobileTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => showStep(Number(trigger.dataset.step)));
+      });
+    })();
   </script>
 
   <script>

@@ -478,10 +478,10 @@
       <p class="hero-label">Support Operations · Escalation Systems · 2026</p>
       <h1>Engineering Escalation Engine</h1>
       <p class="hero-highlight">
-        A support operations system that turns complex investigations into consistent, engineering-ready decisions using AI-assisted analysis, deterministic scoring and human approval.
+        A working Support Operations prototype that standardises how complex cases move from investigation to Engineering. It combines AI-assisted evidence analysis, deterministic escalation scoring, human approval and structured engineering handoffs.
       </p>
       <div class="hero-actions">
-        <a class="hero-action-primary" href="https://engineering-escalation-engine-92aqxiya0-madiha-khan.vercel.app" target="_blank" rel="noopener noreferrer">Open live demo ↗</a>
+        <a class="hero-action-primary" href="https://engineering-escalation-engine.vercel.app/" target="_blank" rel="noopener noreferrer">Open live demo ↗</a>
         <a class="hero-action-secondary" href="#case-study">Explore the case study ↓</a>
         <a class="hero-action-secondary" href="https://github.com/KhanKMadiha/engineering-escalation-engine" target="_blank" rel="noopener noreferrer">View source on GitHub</a>
       </div>
@@ -502,7 +502,8 @@
     <section class="case-section">
       <p class="section-label">What I built</p>
       <div class="intro-card">
-        <p>The system takes a case through structured intake, investigation, AI-assisted analysis, deterministic escalation assessment, human review and, when approved, an engineering-ready handoff.</p>
+        <p>I designed and built the prototype end to end, translating patterns from my experience handling enterprise P1 and P2 escalations into a structured workflow. I defined the case lifecycle, escalation signals, scoring rules, human decision boundary, API and persistence model, then implemented the application in Next.js, TypeScript and Supabase/Postgres.</p>
+        <p>The system moves each case through structured intake, investigation, AI-assisted analysis, deterministic assessment and human review. Approved cases generate an engineering-ready handoff with an audit trail, while incomplete cases remain in investigation.</p>
         <p>The goal is not to automate judgement away from Support. It is to <strong>make escalation quality more consistent, preserve evidence provenance and make the distinction between “this is serious” and “this is ready for Engineering” explicit.</strong></p>
       </div>
     </section>
@@ -528,7 +529,7 @@
     </section>
 
     <section class="case-section">
-      <p class="section-label">Three outcomes, one workflow</p>
+      <p class="section-label">Three fictional cases, three workflow outcomes</p>
       <div class="outcomes-grid">
         <div class="metric-card insufficient">
           <div class="metric-score">20</div>
@@ -663,16 +664,19 @@
       <p class="section-label">What this demonstrates</p>
       <div class="intro-card">
         <p>This project reflects the work I am most interested in: <strong>building the systems behind Support, not just handling the ticket queue itself.</strong></p>
-        <p>It brings together technical investigation, workflow design, evidence quality, responsible AI use, deterministic decisioning and the handoff between Support and Engineering.</p>
-        <p>The next step would be to validate the scoring model with real Support and Engineering users, compare recommendations against historical escalation outcomes and measure whether the workflow reduces avoidable engineering back-and-forth without slowing genuinely urgent incidents.</p>
+        <p>It brings together technical investigation, workflow design, evidence quality, responsible AI use, rules-based decision support and the handoff between Support and Engineering.</p>
+        <p>Before production use, I would validate the scoring model with Support and Engineering teams, compare its recommendations with historical escalation outcomes and measure changes in avoidable back-and-forth and time to engineering action.</p>
       </div>
     </section>
 
     <section class="case-section">
       <div class="cta-card">
-        <h3>Explore more support systems</h3>
-        <p>See more projects focused on support operations, product feedback, knowledge automation and the systems that help Support work more effectively with Product and Engineering.</p>
-        <a class="cta-btn" href="./projects.html">View all case studies →</a>
+        <h3>Building the systems behind Support</h3>
+        <p>I am interested in Support Operations and Product Operations roles where I can improve how customer evidence, recurring issues and product signals move between Support, Product and Engineering.</p>
+        <div class="hero-actions">
+          <a class="cta-btn" href="./contact.html">Discuss a role</a>
+          <a class="hero-action-secondary" href="./projects.html">View all case studies</a>
+        </div>
       </div>
     </section>
   </main>

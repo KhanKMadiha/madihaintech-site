@@ -65,7 +65,7 @@ I build portfolio projects to stay close to the tools and systems I work with pr
 
 ## Contact
 
-- **Email:** madihaintech@gmail.com
+- **Contact:** [madihaintech.me/contact.html](https://madihaintech.me/contact.html)
 - **LinkedIn:** [linkedin.com/in/madihakhan-](https://linkedin.com/in/madihakhan-)
 - **Portfolio:** [madihaintech.me](https://madihaintech.me)
 - **GitHub:** [github.com/KhanKMadiha](https://github.com/KhanKMadiha)

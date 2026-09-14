@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <title>Feedback Loop | Madiha Khan</title>
+  <script src="./portfolio-assistant-config.js"></script>
 
   <style>
     :root {
@@ -837,14 +838,14 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const PROXY_URL = 'https://madiha-portfolio-proxy.madiha00.workers.dev/';
-    const SYSTEM_PROMPT = `You are Madiha Khan's portfolio assistant. Madiha is a Senior Support Professional based in London with 5+ years of customer-facing support experience and 3+ years in technical SaaS support. She works at Stack Overflow supporting enterprise customers across EMEA. Her work sits at the intersection of Support, AI, Product, and Engineering. Her portfolio includes Feedback Loop, an AI-native system that turns support feature requests into structured product signals and an engineering-ready brief, and Support Ticket Analyser, an AI-assisted workflow for support knowledge and documentation. Answer questions about her experience and projects clearly and professionally. If you do not know something, say so rather than inventing it.`;
+    const PROXY_URL = window.PORTFOLIO_ASSISTANT.proxyUrl;
+    const SYSTEM_PROMPT = window.PORTFOLIO_ASSISTANT.systemPrompt;
 
     function toggleChat() {
       const chat = document.getElementById('chat-window');
       chat.classList.toggle('open');
       if (chat.classList.contains('open') && !chat.dataset.started) {
-        addMessage('Hi, I am Madiha\'s portfolio assistant. Ask me about her experience, technical skills, or projects.', 'bot');
+        addMessage(window.PORTFOLIO_ASSISTANT.welcomeMessage, 'bot');
         chat.dataset.started = 'true';
       }
     }
@@ -873,8 +874,8 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            model: 'claude-3-5-haiku-latest',
-            max_tokens: 500,
+            model: window.PORTFOLIO_ASSISTANT.model,
+            max_tokens: window.PORTFOLIO_ASSISTANT.maxTokens,
             system: SYSTEM_PROMPT,
             messages: [{ role: 'user', content: text }]
           })

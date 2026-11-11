@@ -729,6 +729,44 @@
     }
 
   </style>
+  <style>
+    /* Work navigation: grouped dropdown */
+    .nav-projects-menu .nav-menu-label {
+      margin: 0.55rem 0.72rem 0.2rem;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #B48C87;
+      text-align: left;
+    }
+    .nav-projects-menu .nav-menu-group { display: flex; flex-direction: column; gap: 0.1rem; }
+    .nav-projects-menu .nav-menu-group + .nav-menu-label {
+      margin-top: 0.45rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(180,140,135,0.18);
+    }
+    .site-nav-links .nav-projects-menu .nav-menu-group a:first-child {
+      margin-bottom: 0;
+      border-bottom: 0;
+      border-radius: 9px;
+      font-weight: 500;
+    }
+    .site-nav-links .nav-projects-menu .nav-menu-group a[aria-current="page"] {
+      color: #1A1A1A;
+      font-weight: 600;
+      background: rgba(212,164,160,0.12);
+    }
+    .site-nav-links .nav-projects-menu a:focus-visible,
+    .nav-projects summary:focus-visible {
+      outline: 2px solid #8B5E5B;
+      outline-offset: 1px;
+    }
+    .nav-projects-menu { width: 270px; max-height: calc(100vh - 80px); overflow-y: auto; }
+    @media (max-width: 640px) {
+      .nav-projects-menu { width: min(270px, calc(100vw - 1rem)); }
+    }
+  </style>
 </head>
 
 <body>
@@ -739,14 +777,21 @@
       <a href="./about.html">About</a>
       <a href="./skills.html">Technical depth</a>
       <details class="nav-projects active">
-        <summary>Projects</summary>
+        <summary>Work</summary>
         <div class="nav-projects-menu">
-          <a href="./projects.html">All Projects</a>
-          <a href="./engineering-escalation-engine.html">Engineering Escalation Engine</a>
-          <a href="./feedback-loop.html">Feedback Loop</a>
-          <a href="./support-dashboard.html">Support Ticket Analyser</a>
-          <a href="./articulate.html">Articulate</a>
-          <a href="./chatbot.html">Portfolio Assistant</a>
+          <a href="./projects.html">View all work</a>
+          <p class="nav-menu-label" id="nav-label-experience">Professional experience</p>
+          <div class="nav-menu-group" role="group" aria-labelledby="nav-label-experience">
+            <a href="./incident-escalation-management.html">Enterprise Incident &amp; Escalation Management</a>
+          </div>
+          <p class="nav-menu-label" id="nav-label-systems">Systems &amp; tools</p>
+          <div class="nav-menu-group" role="group" aria-labelledby="nav-label-systems">
+            <a href="./engineering-escalation-engine.html" aria-current="page">Engineering Escalation Engine</a>
+            <a href="./feedback-loop.html">Feedback Loop</a>
+            <a href="./support-dashboard.html">Support Ticket Analyser</a>
+            <a href="./articulate.html">Articulate</a>
+            <a href="./chatbot.html">Portfolio Assistant</a>
+          </div>
         </div>
       </details>
       <a href="./contact.html">Contact</a>
@@ -783,6 +828,7 @@
       <p class="section-label">What I built</p>
       <div class="intro-card">
         <p>I designed and built the prototype end to end, translating patterns from my experience handling enterprise P1 and P2 escalations into a structured workflow. I defined the case lifecycle, escalation signals, scoring rules, human decision boundary, API and persistence model, then implemented the application in Next.js, TypeScript and Supabase/Postgres.</p>
+        <p>The real-world incident and escalation work behind this project is covered in my <a href="./incident-escalation-management.html" style="color:#8B5E5B; font-weight:700;">Enterprise Incident &amp; Escalation Management</a> case study.</p>
         <p>The system moves each case through structured intake, investigation, AI-assisted analysis, deterministic assessment and human review. Approved cases generate an engineering-ready handoff with an audit trail, while incomplete cases remain in investigation.</p>
         <p>The goal is not to automate judgement away from Support. It is to <strong>make escalation quality more consistent, preserve evidence provenance and make the distinction between “this is serious” and “this is ready for Engineering” explicit.</strong></p>
       </div>

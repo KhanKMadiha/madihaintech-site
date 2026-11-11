@@ -1192,6 +1192,44 @@
     }
 
   </style>
+  <style>
+    /* Work navigation: grouped dropdown */
+    .nav-projects-menu .nav-menu-label {
+      margin: 0.55rem 0.72rem 0.2rem;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #B48C87;
+      text-align: left;
+    }
+    .nav-projects-menu .nav-menu-group { display: flex; flex-direction: column; gap: 0.1rem; }
+    .nav-projects-menu .nav-menu-group + .nav-menu-label {
+      margin-top: 0.45rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(180,140,135,0.18);
+    }
+    .site-nav-links .nav-projects-menu .nav-menu-group a:first-child {
+      margin-bottom: 0;
+      border-bottom: 0;
+      border-radius: 9px;
+      font-weight: 500;
+    }
+    .site-nav-links .nav-projects-menu .nav-menu-group a[aria-current="page"] {
+      color: #1A1A1A;
+      font-weight: 600;
+      background: rgba(212,164,160,0.12);
+    }
+    .site-nav-links .nav-projects-menu a:focus-visible,
+    .nav-projects summary:focus-visible {
+      outline: 2px solid #8B5E5B;
+      outline-offset: 1px;
+    }
+    .nav-projects-menu { width: 270px; max-height: calc(100vh - 80px); overflow-y: auto; }
+    @media (max-width: 640px) {
+      .nav-projects-menu { width: min(270px, calc(100vw - 1rem)); }
+    }
+  </style>
 </head>
 
 <body>
@@ -1206,14 +1244,21 @@
       <a href="./about.html">About</a>
       <a href="./skills.html">Technical depth</a>
       <details class="nav-projects">
-        <summary>Projects</summary>
+        <summary>Work</summary>
         <div class="nav-projects-menu">
-          <a href="./projects.html">All Projects</a>
-          <a href="./engineering-escalation-engine.html">Engineering Escalation Engine</a>
-          <a href="./feedback-loop.html">Feedback Loop</a>
-          <a href="./support-dashboard.html">Support Ticket Analyser</a>
-          <a href="./articulate.html">Articulate</a>
-          <a href="./chatbot.html">Portfolio Assistant</a>
+          <a href="./projects.html">View all work</a>
+          <p class="nav-menu-label" id="nav-label-experience">Professional experience</p>
+          <div class="nav-menu-group" role="group" aria-labelledby="nav-label-experience">
+            <a href="./incident-escalation-management.html">Enterprise Incident &amp; Escalation Management</a>
+          </div>
+          <p class="nav-menu-label" id="nav-label-systems">Systems &amp; tools</p>
+          <div class="nav-menu-group" role="group" aria-labelledby="nav-label-systems">
+            <a href="./engineering-escalation-engine.html">Engineering Escalation Engine</a>
+            <a href="./feedback-loop.html">Feedback Loop</a>
+            <a href="./support-dashboard.html">Support Ticket Analyser</a>
+            <a href="./articulate.html">Articulate</a>
+            <a href="./chatbot.html">Portfolio Assistant</a>
+          </div>
         </div>
       </details>
       <a href="./contact.html">Contact</a>
@@ -1499,7 +1544,7 @@
     <!-- Projects -->
 
     <p class="section-label reveal">
-      Support systems I've built
+      Selected work
     </p>
 
     <div class="projects-intro reveal">
@@ -1575,6 +1620,64 @@
             class="project-btn secondary"
           >
             Open live demo
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Enterprise Incident & Escalation Management -->
+
+    <div
+      class="reveal"
+      style="margin-bottom: 1rem;"
+    >
+
+      <div class="project-card">
+
+        <span class="project-type">
+          Operational Leadership · Incident &amp; Escalation Management
+        </span>
+
+        <h3>
+          Enterprise Incident &amp; Escalation Management
+        </h3>
+
+        <p>
+          How I've coordinated enterprise incidents, served as Incident Commander
+          and improved escalation processes at Stack Overflow.
+        </p>
+
+        <div class="project-tags">
+
+          <span class="tag">
+            Incident Management
+          </span>
+
+          <span class="tag">
+            Escalation Leadership
+          </span>
+
+          <span class="tag">
+            Cross-functional Coordination
+          </span>
+
+          <span class="tag">
+            Process Improvement
+          </span>
+
+        </div>
+
+        <div class="project-links">
+
+          <a
+            href="./incident-escalation-management.html"
+            class="project-btn primary"
+          >
+            View case study
           </a>
 
         </div>
@@ -1739,7 +1842,7 @@
           text-decoration: none;
         "
       >
-        See all projects →
+        See all work →
       </a>
 
     </div>

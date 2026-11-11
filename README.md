@@ -1,6 +1,6 @@
 # Madiha in Tech — Portfolio Site
 
-Personal portfolio built by a Senior Support Professional with 5+ years in customer-facing and technical support roles, specialising in developer-facing platforms across EMEA. The site documents my technical background, projects, and approach to AI-native support operations.
+Personal portfolio built by a Senior Support Professional with 5+ years in technical SaaS support, specialising in developer-facing platforms across EMEA. The site documents my technical background, projects, and approach to AI-native support operations.
 
 **Live site:** [madihaintech.me](https://madihaintech.me)
 
@@ -9,7 +9,7 @@ Personal portfolio built by a Senior Support Professional with 5+ years in custo
 ## What is on the site
 
 - Professional summary and positioning
-- Key achievements and impact metrics (98% CSAT, 25% faster P1/P2 resolution, 20% fewer repeat tickets)
+- Key achievements and impact metrics (98% CSAT, 25% faster P1/P2 resolution)
 - Technical skills and tooling
 - Project showcase including a live AI chatbot
 - Contact information

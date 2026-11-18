@@ -178,15 +178,21 @@
     .hero-description {
       max-width: 560px;
       margin: 0 0 0.85rem;
-      font-size: clamp(1.02rem, 1.8vw, 1.15rem);
-      line-height: 1.65;
+      font-size: 1.0625rem;
+      line-height: 1.5;
       color: var(--muted-dark);
       animation: fadeUp 0.6s ease 0.2s both;
     }
 
     .hero-description strong {
       color: var(--text-dark);
-      font-weight: 700;
+      font-weight: 600;
+    }
+
+    @media (max-width: 540px) {
+      .hero-description {
+        font-size: 1rem;
+      }
     }
 
     .hero-actions {
@@ -251,9 +257,13 @@
     @media (min-width: 860px) {
       .hero-inner {
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
         text-align: left;
         gap: 3rem;
+      }
+
+      .hero-description {
+        font-size: 1.125rem;
       }
 
       .hero-text {
@@ -285,6 +295,9 @@
       .hero-terminal {
         flex: 0 0 410px;
         width: 410px;
+        /* Line the terminal's top edge up with the cap height of the heading,
+           not the top of its line box: Inter's caps start ~0.166em lower. */
+        margin-top: calc(clamp(2.4rem, 5.4vw, 3.7rem) * 0.166);
       }
     }
 

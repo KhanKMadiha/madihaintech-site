@@ -1,0 +1,58 @@
+/*
+  Shared interior page layout.
+  Matches the homepage: 980px max content width with a 24px gutter on desktop
+  and a 16px gutter on phones. Loaded after each page's own styles so these
+  outer-container rules win; inner prose and component widths stay page-specific.
+*/
+
+:root {
+  --content-max: 980px;
+  --gutter: 1.5rem;
+}
+
+@media (max-width: 540px) {
+  :root {
+    --gutter: 1rem;
+  }
+}
+
+/* Hero: the section is full-bleed; the inner container carries the gutter. */
+.hero {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.hero-inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* Body and closing containers share the same outer edges as the hero. */
+.content,
+.page,
+.links {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+footer {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* Case studies: compact opening that follows the content height. */
+body.case-study .hero {
+  min-height: 0;
+  padding-top: 6.5rem;
+  padding-bottom: 2.25rem;
+}

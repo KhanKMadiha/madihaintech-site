@@ -617,10 +617,10 @@
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         padding-bottom: 0.3rem;
-        margin-left: -1.5rem;
-        margin-right: -1.5rem;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+        margin-left: calc(-1 * var(--gutter, 1.5rem));
+        margin-right: calc(-1 * var(--gutter, 1.5rem));
+        padding-left: var(--gutter, 1.5rem);
+        padding-right: var(--gutter, 1.5rem);
         scrollbar-width: thin;
       }
       .stage-tab {
@@ -828,9 +828,10 @@
       .nav-projects-menu { width: min(270px, calc(100vw - 1rem)); }
     }
   </style>
+  <link rel="stylesheet" href="./assets/site-layout.css">
 </head>
 
-<body>
+<body class="case-study">
   <nav class="site-nav" aria-label="Main">
     <a class="site-nav-brand" href="./index.html">Madiha Khan</a>
     <div class="site-nav-links">

@@ -257,6 +257,9 @@
     }
 
     .contact-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.25rem; }
+    /* Keep the form column narrower inside the shared 980px container. */
+    .page > .card { max-width: 812px; margin-left: auto; margin-right: auto; }
+
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
     .contact-form label {
@@ -621,6 +624,7 @@
       .nav-projects-menu { width: min(270px, calc(100vw - 1rem)); }
     }
   </style>
+  <link rel="stylesheet" href="./assets/site-layout.css">
 </head>
 
 <body>

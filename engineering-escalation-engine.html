@@ -448,7 +448,8 @@
       .workflow { grid-template-columns: repeat(3, 1fr); }
       .principles-grid,
       .outcomes-grid { grid-template-columns: 1fr; }
-      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .tools-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .tool-card h3 { overflow-wrap: anywhere; }
     }
 
     @media (max-width: 640px) {
@@ -767,9 +768,10 @@
       .nav-projects-menu { width: min(270px, calc(100vw - 1rem)); }
     }
   </style>
+  <link rel="stylesheet" href="./assets/site-layout.css">
 </head>
 
-<body>
+<body class="case-study">
   <nav class="site-nav">
     <a class="site-nav-brand" href="./index.html">Madiha Khan</a>
     <div class="site-nav-links">

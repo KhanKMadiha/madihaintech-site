@@ -10,9 +10,11 @@
   --gutter: 1.5rem;
 }
 
+/* Phones: 28px gutters leave a clear lane on the right for the
+   24px "Ask AI" edge tab (see chat-launcher.css). */
 @media (max-width: 540px) {
   :root {
-    --gutter: 1rem;
+    --gutter: 1.75rem;
   }
 }
 

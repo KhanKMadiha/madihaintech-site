@@ -136,10 +136,9 @@
     }
 
     .hero {
-      min-height: 82vh;
       display: flex;
       align-items: center;
-      padding: 6.5rem 1.5rem 4rem;
+      padding: 6.5rem 1.5rem 2.25rem;
       background: linear-gradient(
         180deg,
         var(--surface) 0%,
@@ -153,40 +152,31 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: stretch;
+      gap: 2.25rem;
     }
 
     .hero-text {
       display: flex;
       flex-direction: column;
+      align-items: center;
       flex: 1 1 0;
       min-width: 0;
     }
 
-    .hero-role {
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadeUp 0.5s ease 0.05s both;
-    }
-
     h1 {
-      margin: 0 0 1.1rem;
-      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      margin: 0 0 1.25rem;
+      font-size: clamp(2.4rem, 5.4vw, 3.7rem);
       line-height: 1.06;
       letter-spacing: -0.03em;
       animation: fadeUp 0.6s ease 0.1s both;
     }
 
     .hero-description {
-      max-width: 620px;
-      margin: 0;
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      line-height: 1.7;
+      max-width: 560px;
+      margin: 0 0 0.85rem;
+      font-size: clamp(1.02rem, 1.8vw, 1.15rem);
+      line-height: 1.65;
       color: var(--muted-dark);
       animation: fadeUp 0.6s ease 0.2s both;
     }
@@ -196,12 +186,39 @@
       font-weight: 700;
     }
 
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 0.9rem;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.7rem 1.35rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #B9817C, var(--accent));
+      box-shadow: 0 6px 18px rgba(180,140,135,0.32);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(180,140,135,0.42);
+    }
+
     .hero-social {
       display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 1.5rem;
-      animation: fadeUp 0.6s ease 0.3s both;
+      gap: 0.6rem;
     }
 
     .hero-social a {
@@ -210,9 +227,9 @@
       gap: 0.45rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: rgba(26,26,26,0.55);
+      color: rgba(26,26,26,0.62);
       text-decoration: none;
-      padding: 0.45rem 0.9rem;
+      padding: 0.6rem 0.95rem;
       border-radius: 999px;
       border: 1.5px solid var(--border-soft);
       background: rgba(255,255,255,0.6);
@@ -228,19 +245,27 @@
       flex-shrink: 0;
     }
 
+    .hero-cta:focus-visible,
+    .hero-social a:focus-visible,
+    .view-all-link:focus-visible,
+    .project-btn:focus-visible {
+      outline: 2px solid #8B5E5B;
+      outline-offset: 3px;
+    }
+
     @media (min-width: 860px) {
       .hero-inner {
         flex-direction: row;
         align-items: center;
         text-align: left;
-        gap: 3.5rem;
+        gap: 3rem;
       }
 
-      .hero-role {
-        text-align: left;
+      .hero-text {
+        align-items: flex-start;
       }
 
-      .hero-social {
+      .hero-actions {
         justify-content: flex-start;
       }
     }
@@ -248,13 +273,14 @@
     /* Terminal */
 
     .hero-terminal {
-      display: none;
-      flex: 0 0 340px;
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
       min-width: 0;
-      max-width: 340px;
       background: #181818;
       border-radius: 14px;
       overflow: hidden;
+      text-align: left;
       box-shadow:
         0 16px 48px rgba(0,0,0,0.2),
         0 0 0 1px rgba(255,255,255,0.07);
@@ -263,7 +289,9 @@
 
     @media (min-width: 860px) {
       .hero-terminal {
-        display: block;
+        flex: 0 0 410px;
+        max-width: 410px;
+        margin: 0;
       }
     }
 
@@ -291,44 +319,104 @@
       flex: 1;
       text-align: center;
       font-size: 0.7rem;
-      color: rgba(255,255,255,0.32);
+      color: rgba(255,255,255,0.4);
       letter-spacing: 0.03em;
       padding-right: 29px;
     }
 
-    .t-body {
-      padding: 14px 16px 18px;
+    .t-tabs {
+      display: flex;
+      background: #1e1e1e;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .t-tabs::-webkit-scrollbar { display: none; }
+
+    .t-tab {
+      flex: 0 0 auto;
+      appearance: none;
+      background: transparent;
+      border: 0;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      border-top: 2px solid transparent;
+      color: rgba(255,255,255,0.5);
       font-family: 'Courier New', monospace;
-      font-size: 0.72rem;
-      line-height: 1.7;
-      color: #b8b8b8;
-      min-height: 200px;
+      font-size: 0.76rem;
+      padding: 0.6rem 0.85rem 0.6rem;
+      cursor: pointer;
+      transition: color 0.15s ease, background 0.15s ease;
     }
 
-    .t-ln {
-      display: block;
-      white-space: pre;
+    .t-tab:hover {
+      color: rgba(255,255,255,0.82);
     }
 
-    .t-ln.cmd { color: #88d498; }
-    .t-ln.dim { color: rgba(192,192,192,0.38); }
-    .t-ln.ok { color: #79d279; }
-    .t-ln.warn { color: #f0a070; }
-    .t-ln.stat { color: #f0c472; }
-
-    .t-cursor {
-      display: inline-block;
-      width: 7px;
-      height: 0.88em;
-      background: #88d498;
-      vertical-align: text-bottom;
-      margin-left: 1px;
-      animation: tblink 1s step-end infinite;
+    .t-tab[aria-selected="true"] {
+      background: #181818;
+      color: #f2f2f2;
+      font-weight: 700;
+      border-top-color: var(--accent);
     }
 
-    @keyframes tblink {
-      50% { opacity: 0; }
+    @media (max-width: 480px) {
+      .t-tab {
+        flex: 1 1 auto;
+        font-size: 0.72rem;
+        padding: 0.55rem 0.45rem;
+      }
+
+      .t-body {
+        padding: 14px 14px 18px;
+      }
     }
+
+    .t-tab:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -3px;
+    }
+
+    .t-body {
+      padding: 16px 18px 20px;
+      min-height: 196px;
+    }
+
+    .t-body:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -3px;
+    }
+
+    .t-body pre {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: #d6d6d6;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .t-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #d6d6d6;
+    }
+
+    .t-list li {
+      display: grid;
+      grid-template-columns: 2.3em 1fr;
+      padding: 0.18rem 0;
+    }
+
+    .t-num { color: var(--accent); }
+    .t-key { color: #f0c472; }
+    .t-str { color: #88d498; }
+    .t-punc { color: rgba(214,214,214,0.55); }
 
     /* General */
 
@@ -350,6 +438,13 @@
       padding: 3rem 1.5rem;
     }
 
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
     .reveal {
       opacity: 0;
       transform: translateY(28px);
@@ -369,121 +464,123 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin: 0 0 1rem;
       text-align: center;
     }
 
     /* Stats */
 
+    .impact {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
     .stat-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-      margin-bottom: 4rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
 
     .stat-card {
-      padding: 1.75rem 1rem;
-      border-radius: 22px;
+      padding: 1.1rem 1rem;
+      border-radius: 18px;
       border: 1.5px solid var(--border-soft);
       background: rgba(255,255,255,0.65);
       backdrop-filter: blur(8px);
-      transition:
-        box-shadow 0.2s ease,
-        transform 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(180,140,135,0.14);
-      border-color: var(--border-strong);
     }
 
     .stat-number {
-      font-size: 2.4rem;
+      font-size: 1.95rem;
       font-weight: 800;
-      color: var(--accent);
+      color: #B9817C;
       line-height: 1;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
+      font-variant-numeric: tabular-nums;
     }
 
     .stat-label {
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       color: var(--muted-dark);
       line-height: 1.4;
     }
 
-    /* Positioning intro */
-
-    .intro-block {
-      max-width: 720px;
-      margin: 0 auto 3.5rem;
-      text-align: center;
-    }
-
-    .intro-block h2 {
-      margin: 0 0 0.9rem;
-      font-size: clamp(1.7rem, 4vw, 2.3rem);
-      letter-spacing: -0.025em;
-    }
-
-    .intro-block p {
-      margin: 0;
-      font-size: 1.02rem;
-      line-height: 1.8;
-      color: var(--muted-dark);
-    }
-
-    /* What I build */
-
-    .three-col {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 4rem;
-    }
-
-    .card {
-      padding: 1.75rem 1.5rem;
-      border-radius: 22px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(8px);
-      text-align: left;
-      transition:
-        box-shadow 0.2s ease,
-        transform 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.07);
-      border-color: var(--border-strong);
-    }
-
-    .card h3 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      margin: 0 0 0.55rem;
-    }
-
-    .card p {
-      font-size: 0.93rem;
-      line-height: 1.65;
-      color: var(--muted-dark);
-      margin: 0;
+    @media (max-width: 760px) {
+      .stat-strip {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     /* Projects */
 
-    .projects-intro {
-      max-width: 650px;
-      margin: 0 auto 1.75rem;
-      color: var(--muted-dark);
-      line-height: 1.7;
-      font-size: 0.98rem;
+    #selected-work {
+      scroll-margin-top: 78px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .work-grid .project-card {
+      padding: 1.5rem 1.25rem;
+    }
+
+    .work-grid .project-card p {
+      font-size: 0.94rem;
+    }
+
+    .work-grid .project-tags {
+      gap: 0.4rem;
+    }
+
+    .work-grid .tag {
+      font-size: 0.78rem;
+      padding: 0.3rem 0.65rem;
+    }
+
+    .work-grid .project-links {
+      gap: 0.5rem;
+    }
+
+    .work-grid .project-btn {
+      font-size: 0.82rem;
+      padding: 0.48rem 0.65rem;
+    }
+
+    .project-card-body {
+      flex: 1 1 auto;
+    }
+
+    @media (max-width: 1000px) {
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .view-all {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .view-all-link {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #8B5E5B;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .view-all-link:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
 
     .project-card {
@@ -1060,12 +1157,6 @@
 
     /* Responsive */
 
-    @media (max-width: 760px) {
-      .three-col {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
     @media (max-width: 540px) {
       .site-nav-brand {
         display: none;
@@ -1083,10 +1174,6 @@
     }
 
     @media (max-width: 480px) {
-      .three-col {
-        grid-template-columns: 1fr;
-      }
-
       .hero-description {
         font-size: 1rem;
       }
@@ -1268,59 +1355,48 @@
 
   <!-- Hero -->
 
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-title">
 
     <div class="hero-inner">
 
       <div class="hero-text">
 
-        <p class="hero-role">
-          Senior Support Professional &nbsp;·&nbsp; Support Operations & AI Systems
-        </p>
-
-        <h1>Madiha Khan</h1>
+        <h1 id="hero-title">Hi, I’m Madiha!</h1>
 
         <p class="hero-description">
-          I build the systems that turn
-          <strong>customer signals into better support,
-          better products, and scalable operations.</strong>
+          I’m a <strong>Senior Product Support Specialist at Stack Overflow</strong>,
+          where I own enterprise escalations across EMEA.
         </p>
 
-        <div class="hero-social">
+        <p class="hero-description">
+          I taught myself to build systems by starting with the problems I kept
+          running into in Support.
+        </p>
 
-          <a
-            href="https://github.com/KhanKMadiha"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
-            GitHub
+        <div class="hero-actions">
+
+          <a class="hero-cta" href="#selected-work">
+            See my work
+            <span aria-hidden="true">↓</span>
           </a>
 
-          <a
-            href="https://www.linkedin.com/in/madihakhan-"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1-2.063-2.065 2.064 2.064 0 0 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.432 0 22.222 0h.003z"/>
-            </svg>
-            LinkedIn
-          </a>
+          <div class="hero-social">
+
+            <a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>
+
+            <a href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1-2.063-2.065 2.064 2.064 0 0 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.432 0 22.222 0h.003z"/>
+              </svg>
+              LinkedIn
+            </a>
+
+          </div>
 
         </div>
 
@@ -1329,16 +1405,47 @@
 
       <!-- Terminal -->
 
-      <div class="hero-terminal" aria-hidden="true">
+      <div class="hero-terminal">
 
-        <div class="t-bar">
+        <div class="t-bar" aria-hidden="true">
           <span class="t-dot t-dot-r"></span>
           <span class="t-dot t-dot-y"></span>
           <span class="t-dot t-dot-g"></span>
-          <span class="t-title">support-analysis.log</span>
+          <span class="t-title">~/madiha</span>
         </div>
 
-        <div class="t-body" id="terminalBody"></div>
+        <div class="t-tabs" role="tablist" aria-label="About Madiha">
+          <button class="t-tab" type="button" role="tab" id="tab-profile" aria-controls="panel-profile" aria-selected="true">profile.json</button>
+          <button class="t-tab" type="button" role="tab" id="tab-what" aria-controls="panel-what" aria-selected="false" tabindex="-1">what_i_do.list</button>
+          <button class="t-tab" type="button" role="tab" id="tab-principles" aria-controls="panel-principles" aria-selected="false" tabindex="-1">principles.md</button>
+        </div>
+
+        <div class="t-body" role="tabpanel" id="panel-profile" aria-labelledby="tab-profile" tabindex="0">
+<pre><span class="t-punc">{</span>
+  <span class="t-key">"name"</span><span class="t-punc">:</span> <span class="t-str">"Madiha Khan"</span><span class="t-punc">,</span>
+  <span class="t-key">"role"</span><span class="t-punc">:</span> <span class="t-str">"Senior Product Support Specialist at Stack Overflow"</span><span class="t-punc">,</span>
+  <span class="t-key">"based_in"</span><span class="t-punc">:</span> <span class="t-str">"London, UK"</span>
+<span class="t-punc">}</span></pre>
+        </div>
+
+        <div class="t-body" role="tabpanel" id="panel-what" aria-labelledby="tab-what" tabindex="0" hidden>
+          <ol class="t-list">
+            <li><span class="t-num" aria-hidden="true">01</span><span>Support operations &amp; workflow design</span></li>
+            <li><span class="t-num" aria-hidden="true">02</span><span>AI-assisted support systems</span></li>
+            <li><span class="t-num" aria-hidden="true">03</span><span>Enterprise incidents &amp; escalations</span></li>
+            <li><span class="t-num" aria-hidden="true">04</span><span>Customer feedback &amp; product prioritisation</span></li>
+            <li><span class="t-num" aria-hidden="true">05</span><span>Technical investigation &amp; observability</span></li>
+          </ol>
+        </div>
+
+        <div class="t-body" role="tabpanel" id="panel-principles" aria-labelledby="tab-principles" tabindex="0" hidden>
+          <ol class="t-list">
+            <li><span class="t-num" aria-hidden="true">01</span><span>Lead escalations with evidence, clear ownership and next steps.</span></li>
+            <li><span class="t-num" aria-hidden="true">02</span><span>Create AI tools that expand what Support teams can do.</span></li>
+            <li><span class="t-num" aria-hidden="true">03</span><span>Make knowledge easy to find and use.</span></li>
+            <li><span class="t-num" aria-hidden="true">04</span><span>Turn customer insights into actionable product feedback.</span></li>
+          </ol>
+        </div>
 
       </div>
 
@@ -1347,505 +1454,114 @@
   </section>
 
 
+  <!-- Impact -->
+
+  <section class="impact" aria-label="Impact">
+
+    <ul class="stat-strip">
+
+      <li class="stat-card">
+        <div class="stat-number" data-target="100" data-suffix="+">100+</div>
+        <div class="stat-label">Enterprise accounts supported across EMEA</div>
+      </li>
+
+      <li class="stat-card">
+        <div class="stat-number" data-target="25" data-suffix="%">25%</div>
+        <div class="stat-label">Faster P1/P2 resolution</div>
+      </li>
+
+      <li class="stat-card">
+        <div class="stat-number" data-target="30" data-suffix="%">30%</div>
+        <div class="stat-label">Faster Engineering investigation</div>
+      </li>
+
+      <li class="stat-card">
+        <div class="stat-number" data-target="98" data-suffix="%">98%</div>
+        <div class="stat-label">CSAT across enterprise support</div>
+      </li>
+
+    </ul>
+
+  </section>
+
+
   <main class="page">
 
 
-    <!-- Impact -->
+    <!-- Selected work -->
 
-    <p class="section-label reveal">
-      Impact by the numbers
-    </p>
+    <section id="selected-work" aria-labelledby="selected-work-title">
 
-    <div class="stat-strip reveal">
+      <h2 class="section-label" id="selected-work-title">Selected work</h2>
 
-      <div class="stat-card">
-        <div
-          class="stat-number"
-          data-target="100"
-          data-suffix="+"
-        >
-          0
-        </div>
+      <div class="work-grid">
 
-        <div class="stat-label">
-          Enterprise accounts supported across EMEA
-        </div>
+        <article class="project-card reveal">
+          <div class="project-card-body">
+            <span class="project-type">Professional experience · Stack Overflow</span>
+            <h3>Enterprise Incident &amp; Escalation Management</h3>
+            <p>
+              As Incident Commander on relevant incidents at Stack Overflow, I coordinate
+              enterprise incident response and have improved how our incidents and
+              escalations are run.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Incident Command</span>
+              <span class="tag">Escalations</span>
+              <span class="tag">Process Improvement</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="./incident-escalation-management.html" class="project-btn primary">View case study</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-card-body">
+            <span class="project-type">Escalation Systems · 2026</span>
+            <h3>Engineering Escalation Engine</h3>
+            <p>
+              Turns complex support cases into evidence-backed Engineering handoffs.
+              A human reviewer approves every escalation before a handoff is generated.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Next.js</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">OpenAI API</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="./engineering-escalation-engine.html" class="project-btn primary">View case study</a>
+            <a href="https://engineering-escalation-engine.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn secondary">Open live demo</a>
+          </div>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-card-body">
+            <span class="project-type">Voice of Customer · 2026</span>
+            <h3>Feedback Loop</h3>
+            <p>
+              Turns recurring customer issues into prioritised, evidence-backed briefs
+              Product can act on, grouped by theme and weighted by account tier.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Anthropic API</span>
+              <span class="tag">Cloudflare Workers</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="./feedback-loop.html" class="project-btn primary">View case study</a>
+            <a href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer" class="project-btn secondary">Open live demo</a>
+          </div>
+        </article>
+
       </div>
 
-
-      <div class="stat-card">
-        <div
-          class="stat-number"
-          data-target="98"
-          data-suffix="%"
-        >
-          0%
-        </div>
-
-        <div class="stat-label">
-          CSAT maintained across enterprise support
-        </div>
-      </div>
-
-
-      <div class="stat-card">
-        <div
-          class="stat-number"
-          data-target="30"
-          data-suffix="%"
-        >
-          0%
-        </div>
-
-        <div class="stat-label">
-          Faster engineering investigation
-        </div>
-      </div>
-
-
-      <div class="stat-card">
-        <div
-          class="stat-number"
-          data-target="25"
-          data-suffix="%"
-        >
-          0%
-        </div>
-
-        <div class="stat-label">
-          Faster P1/P2 resolution
-        </div>
-      </div>
-
-    </div>
-
-
-    <!-- Positioning -->
-
-    <div class="intro-block reveal">
-
-      <p class="section-label">
-        What I do
+      <p class="view-all">
+        <a class="view-all-link" href="./projects.html">View all work →</a>
       </p>
 
-      <h2>
-        I sit between Support, Product, Engineering and AI.
-      </h2>
-
-      <p>
-        My work starts with customer problems and ends with systems that
-        make those problems easier to solve at scale. I investigate
-        technical issues, identify recurring patterns, improve support
-        workflows and build AI-assisted operational tools that turn operational
-        knowledge into something the wider organisation can use.
-      </p>
-
-    </div>
-
-
-    <!-- What I build -->
-
-    <p class="section-label reveal">
-      What I bring
-    </p>
-
-    <div class="three-col">
-
-
-      <div class="card reveal">
-
-        <h3>
-          Support Operations
-        </h3>
-
-        <p>
-          I design ticket routing, escalation workflows, documentation
-          systems and operational processes that make support easier to
-          scale.
-        </p>
-
-      </div>
-
-
-      <div class="card reveal">
-
-        <h3>
-          Product Operations & Customer Signals
-        </h3>
-
-        <p>
-          I turn recurring customer problems and feature requests into
-          structured signals that Product and Engineering can prioritise.
-        </p>
-
-      </div>
-
-
-      <div class="card reveal">
-
-        <h3>
-          AI-Assisted Operations
-        </h3>
-
-        <p>
-          I build practical AI workflows that replace repetitive manual
-          triage with structured, repeatable systems.
-        </p>
-
-      </div>
-
-
-      <div class="card reveal">
-
-        <h3>
-          Technical Investigation
-        </h3>
-
-        <p>
-          APIs, authentication, logs, Datadog, Elasticsearch and issue
-          reproduction. When I escalate, I bring evidence and a clear
-          reproduction path.
-        </p>
-
-      </div>
-
-
-      <div class="card reveal">
-
-        <h3>
-          Incident Management
-        </h3>
-
-        <p>
-          I work across high-priority incidents and build the monitoring,
-          workflows and documentation that help teams respond faster.
-        </p>
-
-      </div>
-
-
-      <div class="card reveal">
-
-        <h3>
-          Systems Thinking
-        </h3>
-
-        <p>
-          I look beyond the individual ticket to identify the underlying
-          product, process or knowledge problem, then build a better way
-          of handling it.
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <!-- Projects -->
-
-    <p class="section-label reveal">
-      Selected work
-    </p>
-
-    <div class="projects-intro reveal">
-
-      I turn recurring problems in support operations into working systems
-      that improve escalation quality, product feedback and reusable support knowledge.
-
-    </div>
-
-
-    <!-- Engineering Escalation Engine -->
-
-    <div
-      class="reveal"
-      style="margin-bottom: 1rem;"
-    >
-
-      <div class="project-card">
-
-        <span class="project-type">
-          Support Operations · Escalation Systems · 2026
-        </span>
-
-        <h3>
-          Engineering Escalation Engine
-        </h3>
-
-        <p>
-          An evidence-driven escalation workflow that turns complex support cases
-          into consistent, engineering-ready decisions using AI-assisted analysis,
-          deterministic scoring and human approval.
-        </p>
-
-        <p>
-          Designed to prevent premature escalations by checking evidence quality and
-          reproducibility before a human reviewer decides whether the case is
-          ready for Engineering.
-        </p>
-
-        <div class="project-tags">
-
-          <span class="tag">
-            Next.js
-          </span>
-
-          <span class="tag">
-            TypeScript
-          </span>
-
-          <span class="tag">
-            Supabase / Postgres
-          </span>
-
-          <span class="tag">
-            OpenAI API
-          </span>
-
-        </div>
-
-        <div class="project-links">
-
-          <a
-            href="./engineering-escalation-engine.html"
-            class="project-btn primary"
-          >
-            View case study
-          </a>
-
-          <a
-            href="https://engineering-escalation-engine.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="project-btn secondary"
-          >
-            Open live demo
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- Enterprise Incident & Escalation Management -->
-
-    <div
-      class="reveal"
-      style="margin-bottom: 1rem;"
-    >
-
-      <div class="project-card">
-
-        <span class="project-type">
-          Operational Leadership · Incident &amp; Escalation Management
-        </span>
-
-        <h3>
-          Enterprise Incident &amp; Escalation Management
-        </h3>
-
-        <p>
-          How I've coordinated enterprise incidents, served as Incident Commander
-          and improved escalation processes at Stack Overflow.
-        </p>
-
-        <div class="project-tags">
-
-          <span class="tag">
-            Incident Management
-          </span>
-
-          <span class="tag">
-            Escalation Leadership
-          </span>
-
-          <span class="tag">
-            Cross-functional Coordination
-          </span>
-
-          <span class="tag">
-            Process Improvement
-          </span>
-
-        </div>
-
-        <div class="project-links">
-
-          <a
-            href="./incident-escalation-management.html"
-            class="project-btn primary"
-          >
-            View case study
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- Feedback Loop -->
-
-    <div
-      class="reveal"
-      style="margin-bottom: 1rem;"
-    >
-
-      <div class="project-card">
-
-        <span class="project-type">
-          Voice of Customer · Product Operations · 2026
-        </span>
-
-        <h3>
-          Feedback Loop
-        </h3>
-
-        <p>
-          A Voice of Customer system that turns individual feature requests into
-          structured, prioritised product insight.
-        </p>
-
-        <p>
-          Groups recurring feedback by theme and generates ranked product briefs,
-          turning a manual Support → Product feedback process into a scalable workflow.
-        </p>
-
-        <div class="project-tags">
-
-          <span class="tag">
-            Cursor
-          </span>
-
-          <span class="tag">
-            Anthropic API
-          </span>
-
-          <span class="tag">
-            Cloudflare Workers
-          </span>
-
-        </div>
-
-        <div class="project-links">
-
-          <a
-            href="./feedback-loop.html"
-            class="project-btn primary"
-          >
-            View case study
-          </a>
-
-          <a
-            href="https://feedback-loop.pages.dev/src/dashboard.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="project-btn secondary"
-          >
-            Open live demo
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- Support Ticket Analyser -->
-
-    <div
-      class="reveal"
-      style="margin-bottom: 1.5rem;"
-    >
-
-      <div class="project-card">
-
-        <span class="project-type">
-          Support Operations · Knowledge Automation · 2026
-        </span>
-
-        <h3>
-          Support Ticket Analyser
-        </h3>
-
-        <p>
-          An AI-assisted support workflow that identifies documentation gaps,
-          drafts grounded responses and turns knowledge captured in individual
-          tickets into reusable support documentation.
-        </p>
-
-        <p>
-          Built to demonstrate how everyday support interactions can continuously
-          improve the knowledge systems behind Support.
-        </p>
-
-        <div class="project-tags">
-
-          <span class="tag">
-            Cursor
-          </span>
-
-          <span class="tag">
-            Anthropic API
-          </span>
-
-          <span class="tag">
-            Notion API
-          </span>
-
-          <span class="tag">
-            Cloudflare Workers
-          </span>
-
-        </div>
-
-        <div class="project-links">
-
-          <a
-            href="./support-dashboard.html"
-            class="project-btn primary"
-          >
-            View case study
-          </a>
-
-          <a
-            href="https://khankmadiha.github.io/support-ticket-analyser/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="project-btn secondary"
-          >
-            Open live demo
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div
-      class="reveal"
-      style="text-align: center; margin-bottom: 4rem;"
-    >
-
-      <a
-        href="./projects.html"
-        style="
-          font-size: 0.95rem;
-          font-weight: 700;
-          color: var(--accent);
-          text-decoration: none;
-        "
-      >
-        See all work →
-      </a>
-
-    </div>
+    </section>
 
 
     <!-- Toolbox -->
@@ -2134,9 +1850,11 @@
       );
 
 
-    document
-      .querySelectorAll('.stat-strip')
-      .forEach(el => statObserver.observe(el));
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document
+        .querySelectorAll('.stat-strip')
+        .forEach(el => statObserver.observe(el));
+    }
 
 
     /* --------------------------------
@@ -2427,179 +2145,38 @@
   </script>
 
 
-  <!-- Terminal animation -->
+  <!-- Terminal tabs -->
 
   <script>
 
     (function () {
 
-      const LINES = [
-  { text: '$ support-ops.pipeline · Cursor',           cls: 'cmd' },
-  { text: '  Processing enterprise support signals...', cls: 'dim' },
-  { text: '  100+ enterprise accounts · EMEA',         cls: '' },
-  { text: '',                                          cls: '' },
+      const tabs = Array.from(document.querySelectorAll('.t-tab'));
 
-  { text: '  Pattern detected: recurring support theme', cls: 'warn' },
-  { text: '  → Tickets grouped by issue type',          cls: '' },
-  { text: '  → Documentation gap identified',           cls: '' },
-  { text: '  → Product feedback captured',              cls: '' },
-  { text: '',                                           cls: '' },
-
-  { text: '  Building resolution path...',              cls: 'dim' },
-  { text: '  → Knowledge workflow triggered',           cls: 'ok' },
-  { text: '  → Engineering evidence attached',          cls: 'ok' },
-  { text: '  → Product brief generated ✓',              cls: 'ok' },
-  { text: '',                                           cls: '' },
-
-  { text: '  Manual support signal → scalable system',  cls: 'stat' },
-];
-
-
-      const CHAR_DELAY = 38;
-      const LINE_PAUSE = 320;
-      const END_PAUSE = 3200;
-
-      const body =
-        document.getElementById(
-          'terminalBody'
-        );
-
-
-      if (!body) return;
-
-
-      let li = 0;
-      let ci = 0;
-      let el = null;
-
-
-      function cursor() {
-
-        const c =
-          document.createElement('span');
-
-        c.className =
-          't-cursor';
-
-        return c;
-
+      function select(tab, focus) {
+        tabs.forEach(t => {
+          const on = t === tab;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        });
+        if (focus) tab.focus();
       }
 
-
-      function tick() {
-
-        if (li >= LINES.length) {
-
-          setTimeout(
-            reset,
-            END_PAUSE
-          );
-
-          return;
-
-        }
-
-
-        const {
-          text,
-          cls
-        } = LINES[li];
-
-
-        if (!el) {
-
-          el =
-            document.createElement('span');
-
-          el.className =
-            't-ln' +
-            (cls ? ' ' + cls : '');
-
-          body.appendChild(el);
-
-        }
-
-
-        if (text === '') {
-
-          el.innerHTML = '&nbsp;';
-
-          el = null;
-
-          li++;
-          ci = 0;
-
-          setTimeout(
-            tick,
-            LINE_PAUSE / 2
-          );
-
-          return;
-
-        }
-
-
-        if (ci <= text.length) {
-
-          el.textContent =
-            text.slice(0, ci);
-
-
-          if (ci < text.length) {
-            el.appendChild(cursor());
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => select(tab, false));
+        tab.addEventListener('keydown', (e) => {
+          let next = null;
+          if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+          else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+          else if (e.key === 'Home') next = tabs[0];
+          else if (e.key === 'End') next = tabs[tabs.length - 1];
+          if (next) {
+            e.preventDefault();
+            select(next, true);
           }
-
-
-          ci++;
-
-
-          setTimeout(
-            tick,
-            ci === 1
-              ? LINE_PAUSE
-              : CHAR_DELAY
-          );
-
-        }
-
-
-        if (ci > text.length) {
-
-          el = null;
-
-          li++;
-          ci = 0;
-
-          setTimeout(
-            tick,
-            LINE_PAUSE
-          );
-
-        }
-
-      }
-
-
-      function reset() {
-
-        body.innerHTML = '';
-
-        li = 0;
-        ci = 0;
-        el = null;
-
-        setTimeout(
-          tick,
-          600
-        );
-
-      }
-
-
-      setTimeout(
-        tick,
-        900
-      );
+        });
+      });
 
     })();
 
@@ -2616,5 +2193,4 @@
   </script>
 
 </body>
-</html>
 </html>

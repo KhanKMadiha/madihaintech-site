@@ -24,6 +24,9 @@
 
     * { box-sizing: border-box; }
 
+    /* Form controls don't inherit the page font by default; keep Inter everywhere. */
+    button, input, textarea, select { font-family: inherit; }
+
     body {
       font-family: 'Inter', 'Segoe UI', sans-serif;
       background-color: var(--bg-base);
@@ -256,32 +259,100 @@
       line-height: 1.6;
     }
 
-    .contact-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.25rem; }
-    /* Keep the form column narrower inside the shared 980px container. */
-    .page > .card { max-width: 812px; margin-left: auto; margin-right: auto; }
+    .contact-form { display: flex; flex-direction: column; gap: 1.15rem; margin-top: 0.25rem; }
+    /* Two-column contact layout: intro and direct links left, form right. */
+    .hero { min-height: 0; padding-bottom: 3.5rem; }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 3rem;
+      align-items: start;
+      text-align: left;
+    }
+    .contact-intro h1 { margin: 0 0 1.25rem; }
+    .contact-intro .hero-sub { font-size: 1.125rem; line-height: 1.6; max-width: 34rem; }
+    .contact-intro .hero-sub + .hero-sub { margin-top: 1rem; }
+    .contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; margin-top: 2rem; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.1rem; border-radius: 999px;
+      border: 1.5px solid var(--border-strong); background: rgba(255,255,255,0.7);
+      color: var(--text-dark); font-size: 0.95rem; font-weight: 700; text-decoration: none;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .contact-link:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .email-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem; }
+    .email-row[hidden] { display: none; }
+    .copy-email {
+      font: inherit; font-size: 0.82rem; font-weight: 600; color: #8B5E5B;
+      background: none; border: 0; padding: 0.35rem 0.2rem; cursor: pointer;
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+    .copy-status { font-size: 0.82rem; font-weight: 600; color: #2d7a5a; }
+    .contact-link:focus-visible, .copy-email:focus-visible, .form-submit:focus-visible {
+      outline: 2px solid #8B5E5B; outline-offset: 3px;
+    }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    .form-card { margin: 0; padding: 1.75rem; text-align: left; animation: fadeUp 0.6s ease 0.2s both; }
+    .form-card:hover { transform: none; }
+    .form-card h2 { margin: 0 0 0.35rem; }
+    .form-card .form-note { font-size: 0.95rem; margin: 0 0 1.25rem; }
+
+    /* Optional topic: native radios styled as outlined pills. */
+    .topic-group { border: 0; margin: 0; padding: 0; min-width: 0; }
+    .topic-group legend {
+      padding: 0; margin-bottom: 0.6rem;
+      font-size: 0.95rem; font-weight: 600; color: rgba(26, 26, 26, 0.78);
+    }
+    .topic-group .optional { font-weight: 400; color: var(--muted-dark); }
+    .topic-options { display: flex; flex-wrap: wrap; gap: 0.6rem 0.65rem; }
+    .contact-form label.topic-option {
+      display: inline-flex; flex-direction: row; gap: 0;
+      position: relative; text-transform: none; letter-spacing: 0; color: inherit;
+    }
+    .topic-option input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+    .topic-option span {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.55rem 0.95rem; border-radius: 999px;
+      border: 1.5px solid var(--border-strong); background: rgba(255,255,255,0.7);
+      font-family: 'Inter', 'Segoe UI', sans-serif; font-size: 0.9rem; font-weight: 500;
+      letter-spacing: 0; text-transform: none; color: var(--text-dark);
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .topic-option input:hover + span { border-color: var(--accent); }
+    .topic-option input:checked + span { background: var(--text-dark); border-color: var(--text-dark); color: #fff; }
+    .topic-option input:checked + span::before { content: "✓"; font-size: 0.8rem; }
+    .topic-option input:focus-visible + span { outline: 2px solid #8B5E5B; outline-offset: 2px; }
+
+    @media (max-width: 859px) {
+      .contact-layout { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+    }
+    @media (max-width: 540px) {
+      .contact-intro .hero-sub { font-size: 1rem; }
+      .form-card { padding: 1.35rem; }
+    }
 
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
     .contact-form label {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
-      font-size: 0.82rem;
+      gap: 0.45rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--muted-dark);
+      color: rgba(26, 26, 26, 0.78);
       text-align: left;
     }
     .contact-form input,
     .contact-form textarea {
       font-family: 'Inter', 'Segoe UI', sans-serif;
-      font-size: 0.95rem;
+      font-size: 1rem;
       color: var(--text-dark);
       background: rgba(255,255,255,0.8);
       border: 1.5px solid var(--border-soft);
       border-radius: 12px;
-      padding: 0.75rem 1rem;
+      padding: 0.8rem 1rem;
       width: 100%;
       outline: none;
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -500,7 +571,8 @@
     .site-nav-links a.active { color: var(--text-dark); font-weight: 700; }
     @media (max-width: 540px) {
       .site-nav-brand { display: none; }
-      .site-nav { padding: 0 1rem; justify-content: center; }
+      .site-nav { padding: 0 .7rem; justify-content: center; }
+      .site-nav-links a { font-size: .8rem; padding: .35rem .45rem; }
     }
   
     /* Projects navigation dropdown */
@@ -657,58 +729,65 @@
 </nav>
 
   <section class="hero">
-    <div class="hero-inner">
-      <p class="project-label">GET IN TOUCH</p>
-      <h1>Open to the right opportunity</h1>
-      <p class="hero-sub">
-        If you are hiring for a senior support or AI-adjacent role, I would love to hear from you. Use the form below or reach out on LinkedIn directly.
-      </p>
+    <div class="hero-inner contact-layout">
+
+      <div class="contact-intro">
+        <h1>Get in touch</h1>
+        <p class="hero-sub">If you’re hiring in Support Operations, Product Operations or AI support systems, I’d love to hear from you.</p>
+        <p class="hero-sub">I’m always up for a coffee chat about what you’re building.</p>
+
+        <div class="contact-links">
+          <a class="contact-link" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn<span class="sr-only"> (opens in a new tab)</span>
+          </a>
+
+          <!-- Shown only when CONTACT_EMAIL is set in the script below. -->
+          <div class="email-row" id="emailRow" hidden>
+            <a class="contact-link" id="emailLink" href="#">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              Email me
+            </a>
+            <button type="button" class="copy-email" id="copyEmail">Copy email</button>
+            <span class="copy-status" id="copyStatus" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card form-card">
+        <h2>Send a message</h2>
+        <p class="form-note">I typically reply within one to two business days.</p>
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/mykvkzlv" method="POST">
+          <fieldset class="topic-group">
+            <legend>I’m reaching out about <span class="optional">(optional)</span></legend>
+            <div class="topic-options">
+              <label class="topic-option"><input type="radio" name="topic" value="Job opportunity"><span>Job opportunity</span></label>
+              <label class="topic-option"><input type="radio" name="topic" value="Collaboration"><span>Collaboration</span></label>
+              <label class="topic-option"><input type="radio" name="topic" value="Coffee chat"><span>Coffee chat</span></label>
+              <label class="topic-option"><input type="radio" name="topic" value="Just saying hi"><span>Just saying hi</span></label>
+            </div>
+          </fieldset>
+          <div class="form-row">
+            <label>
+              Your name
+              <input type="text" name="name" placeholder="Jane Smith" autocomplete="name" required>
+            </label>
+            <label>
+              Your email
+              <input type="email" name="email" placeholder="jane@company.com" autocomplete="email" required>
+            </label>
+          </div>
+          <label>
+            Message
+            <textarea name="message" placeholder="Tell me about the role or just say hello..." required></textarea>
+          </label>
+          <button type="submit" class="form-submit">Send message</button>
+          <div class="form-success" id="formSuccess">Message sent. I will be in touch soon.</div>
+        </form>
+      </div>
+
     </div>
   </section>
-
-  <div class="page">
-
-    <div class="card reveal">
-      <h2>Send a message</h2>
-      <p style="margin-bottom:1.5rem;">I typically reply within one to two business days.</p>
-      <form class="contact-form" id="contactForm" action="https://formspree.io/f/mykvkzlv" method="POST">
-        <div class="form-row">
-          <label>
-            Your name
-            <input type="text" name="name" placeholder="Jane Smith" required>
-          </label>
-          <label>
-            Your email
-            <input type="email" name="email" placeholder="jane@company.com" required>
-          </label>
-        </div>
-        <label>
-          Company and role (optional)
-          <input type="text" name="company" placeholder="e.g. Anthropic · Recruiting">
-        </label>
-        <label>
-          Message
-          <textarea name="message" placeholder="Tell me about the role or just say hello..." required></textarea>
-        </label>
-        <button type="submit" class="form-submit">Send message</button>
-        <div class="form-success" id="formSuccess">Message sent. I will be in touch soon.</div>
-      </form>
-    </div>
-
-    <div class="card reveal">
-      <h2>Or reach out directly</h2>
-      <div class="contact-list">
-        <a class="contact-pill" href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">
-          <div class="pill-left">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right:0.6rem;flex-shrink:0"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </div>
-          <span class="pill-meta">Fastest response</span>
-        </a>
-      </div>
-    </div>
-
-  </div>
 
   <footer>
     © <span id="year"></span> Madiha Khan · Built with care
@@ -845,6 +924,42 @@
       el.style.height = 'auto';
       el.style.height = Math.min(el.scrollHeight, 100) + 'px';
     }
+
+    /* Topic pills: clicking the selected choice again clears it (the field is optional). */
+    document.querySelectorAll('.topic-option input').forEach((radio) => {
+      let wasChecked = false;
+      radio.addEventListener('pointerdown', () => { wasChecked = radio.checked; });
+      radio.addEventListener('click', () => { if (wasChecked) { radio.checked = false; wasChecked = false; } });
+    });
+
+    /*
+      Public contact address. Leave empty to hide the "Email me" row.
+      Set it only to an address that is confirmed for public use.
+    */
+    const CONTACT_EMAIL = '';
+    (function setupEmail(address) {
+      const row = document.getElementById('emailRow');
+      if (!row || !address) return;
+      document.getElementById('emailLink').href = 'mailto:' + address;
+      row.hidden = false;
+      const btn = document.getElementById('copyEmail');
+      const status = document.getElementById('copyStatus');
+      let timer;
+      btn.addEventListener('click', async () => {
+        let ok = false;
+        try { await navigator.clipboard.writeText(address); ok = true; }
+        catch {
+          const t = document.createElement('textarea');
+          t.value = address; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+          document.body.appendChild(t); t.select();
+          try { ok = document.execCommand('copy'); } catch { ok = false; }
+          t.remove();
+        }
+        status.textContent = ok ? 'Email copied' : 'Couldn’t copy. Use Email me instead.';
+        clearTimeout(timer);
+        timer = setTimeout(() => { status.textContent = ''; }, 2500);
+      });
+    })(CONTACT_EMAIL);
 
     const form = document.getElementById('contactForm');
     if (form) {

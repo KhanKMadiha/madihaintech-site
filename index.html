@@ -11,6 +11,8 @@
 
   <style>
     :root {
+      --content-max: 980px;
+      --gutter: 1.5rem;
       --bg-base: #FAFAF8;
       --surface: #F5EEEC;
       --accent: #D4A4A0;
@@ -138,7 +140,7 @@
     .hero {
       display: flex;
       align-items: center;
-      padding: 6.5rem 1.5rem 2.25rem;
+      padding: 6.5rem 0 2.25rem;
       background: linear-gradient(
         180deg,
         var(--surface) 0%,
@@ -147,8 +149,9 @@
     }
 
     .hero-inner {
-      max-width: 980px;
+      max-width: var(--content-max);
       margin: 0 auto;
+      padding: 0 var(--gutter);
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -266,8 +269,7 @@
 
     .hero-terminal {
       width: 100%;
-      max-width: 560px;
-      margin: 0 auto;
+      margin: 0;
       min-width: 0;
       background: #181818;
       border-radius: 14px;
@@ -282,8 +284,7 @@
     @media (min-width: 860px) {
       .hero-terminal {
         flex: 0 0 410px;
-        max-width: 410px;
-        margin: 0;
+        width: 410px;
       }
     }
 
@@ -425,9 +426,9 @@
     }
 
     .page {
-      max-width: 980px;
+      max-width: var(--content-max);
       margin: 0 auto 3.5rem;
-      padding: 3rem 1.5rem;
+      padding: 3rem var(--gutter);
     }
 
     html { scroll-behavior: smooth; }
@@ -465,9 +466,9 @@
     .impact {
       position: relative;
       z-index: 1;
-      max-width: 980px;
+      max-width: var(--content-max);
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 var(--gutter);
     }
 
     .stat-strip {
@@ -516,39 +517,68 @@
 
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
       margin-bottom: 1.5rem;
     }
 
     .work-grid .project-card {
-      padding: 1.5rem 1.25rem;
+      padding: 1.5rem;
+    }
+
+    .work-grid .project-card h3 {
+      font-size: 1.12rem;
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
     }
 
     .work-grid .project-card p {
       font-size: 0.94rem;
-    }
-
-    .work-grid .project-tags {
-      gap: 0.4rem;
-    }
-
-    .work-grid .tag {
-      font-size: 0.78rem;
-      padding: 0.3rem 0.65rem;
-    }
-
-    .work-grid .project-links {
-      gap: 0.5rem;
-    }
-
-    .work-grid .project-btn {
-      font-size: 0.82rem;
-      padding: 0.48rem 0.65rem;
+      margin-bottom: 1.5rem;
     }
 
     .project-card-body {
       flex: 1 1 auto;
+    }
+
+    .work-grid .project-links {
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .work-grid .project-btn {
+      font-size: 0.86rem;
+      padding: 0.55rem 1rem;
+    }
+
+    .demo-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #8B5E5B;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .demo-link:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .demo-link:focus-visible {
+      outline: 2px solid #8B5E5B;
+      outline-offset: 3px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     @media (max-width: 1000px) {
@@ -769,12 +799,12 @@
       font-style: italic;
       margin: 0 auto 3rem;
       max-width: 580px;
-      padding: 0 1.5rem;
+      padding: 0 var(--gutter);
     }
 
     footer {
       margin: 26px 0 34px;
-      padding: 0 1.5rem;
+      padding: 0 var(--gutter);
       font-size: 0.95rem;
       color: rgba(26,26,26,0.6);
     }
@@ -799,6 +829,10 @@
     }
 
     @media (max-width: 540px) {
+      :root {
+        --gutter: 1rem;
+      }
+
       footer {
         margin-bottom: 92px;
       }
@@ -1499,60 +1533,34 @@
 
         <article class="project-card reveal">
           <div class="project-card-body">
-            <span class="project-type">Professional experience · Stack Overflow</span>
+            <span class="project-type">Stack Overflow</span>
             <h3>Enterprise Incident &amp; Escalation Management</h3>
-            <p>
-              As Incident Commander on relevant incidents at Stack Overflow, I coordinate
-              enterprise incident response and have improved how our incidents and
-              escalations are run.
-            </p>
-            <div class="project-tags">
-              <span class="tag">Incident Command</span>
-              <span class="tag">Escalations</span>
-              <span class="tag">Process Improvement</span>
-            </div>
+            <p>I lead P1/P2 incidents across EMEA at Stack Overflow and built playbooks for incident response and escalations.</p>
           </div>
           <div class="project-links">
             <a href="./incident-escalation-management.html" class="project-btn primary">View case study</a>
           </div>
         </article>
-
         <article class="project-card reveal">
           <div class="project-card-body">
-            <span class="project-type">Escalation Systems · 2026</span>
+            <span class="project-type">Escalation Systems</span>
             <h3>Engineering Escalation Engine</h3>
-            <p>
-              Turns complex support cases into evidence-backed Engineering handoffs.
-              A human reviewer approves every escalation before a handoff is generated.
-            </p>
-            <div class="project-tags">
-              <span class="tag">Next.js</span>
-              <span class="tag">Supabase</span>
-              <span class="tag">OpenAI API</span>
-            </div>
+            <p>Generates evidence-backed Engineering handoffs once a person approves the escalation.</p>
           </div>
           <div class="project-links">
             <a href="./engineering-escalation-engine.html" class="project-btn primary">View case study</a>
-            <a href="https://engineering-escalation-engine.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-btn secondary">Open live demo</a>
+            <a href="https://engineering-escalation-engine.vercel.app/" target="_blank" rel="noopener noreferrer" class="demo-link">Live demo <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </article>
-
         <article class="project-card reveal">
           <div class="project-card-body">
-            <span class="project-type">Voice of Customer · 2026</span>
+            <span class="project-type">Voice of Customer</span>
             <h3>Feedback Loop</h3>
-            <p>
-              Turns recurring customer issues into prioritised, evidence-backed briefs
-              Product can act on, grouped by theme and weighted by account tier.
-            </p>
-            <div class="project-tags">
-              <span class="tag">Anthropic API</span>
-              <span class="tag">Cloudflare Workers</span>
-            </div>
+            <p>Turns recurring customer issues and feature requests into prioritised briefs for Product.</p>
           </div>
           <div class="project-links">
             <a href="./feedback-loop.html" class="project-btn primary">View case study</a>
-            <a href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer" class="project-btn secondary">Open live demo</a>
+            <a href="https://feedback-loop.pages.dev/src/dashboard.html" target="_blank" rel="noopener noreferrer" class="demo-link">Live demo <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </article>
 

@@ -22,7 +22,7 @@
       --muted: #5E5650;         /* secondary text (7:1 on --bg) */
       --taupe: #786A5F;         /* eyebrows (4.9:1 on --bg) */
       --sage: #768174;          /* used sparingly */
-      --highlight: #D5D0B6;     /* muted beige-olive behind "Support." */
+      --highlight: #D9D0C5;     /* warm neutral taupe behind highlighted hero words */
       --line: rgba(56, 51, 47, 0.12);
       --line-strong: rgba(56, 51, 47, 0.22);
       --shadow: 0 1px 2px rgba(46, 41, 37, 0.04), 0 8px 24px rgba(46, 41, 37, 0.05);
@@ -35,6 +35,16 @@
       /* Shared hero rhythm (homepage and About): space below the nav, eyebrow-to-headline gap */
       --hero-top: 1.375rem;
       --eyebrow-gap: 1.35rem;
+      /* Shared primary hero heading (Technical depth is the reference) */
+      --hero-h1-size: clamp(2.2rem, 3.6vw, 2.85rem);
+      --hero-h1-leading: 1.08;
+      /* Shared hero description (Technical depth is the reference) */
+      --hero-lede-size: 1.02rem;
+      --hero-lede-leading: 1.6;
+      --hero-lede-gap: 0.9rem;
+      /* Shared hero frame (desktop): one bottom boundary and one gap to the next section */
+      --hero-frame-h: clamp(27rem, 33vw, 36rem);
+      --hero-after: 2.25rem;
     }
 
     @media (max-width: 860px) { :root { --gutter: 1.5rem; } }
@@ -719,6 +729,68 @@
       .pacc__panel { padding-left: calc(0.45rem + 2.6em + 0.25rem); padding-right: 0.45rem; }
     }
 
+    /* ---------- Shared hero heading: same size, weight and leading on every page ---------- */
+    .hero h1, .about-hero h1, .td-hero h1 { font-size: var(--hero-h1-size); font-weight: 800; line-height: var(--hero-h1-leading); letter-spacing: -0.035em; }
+
+    /* ---------- What I do: four outlined cards in one row ---------- */
+    .skills { gap: 1rem; margin-top: 1.5rem; align-items: stretch; }
+    .skill { padding: 1.35rem 1.4rem 1.45rem; border: 1px solid #E2D9CE; border-radius: var(--radius); background: var(--card); }
+    .skill h3 { margin-top: 0.9rem; font-size: 1.2rem; }
+    .skill p { margin-top: 0.4rem; font-size: 0.96rem; }
+    @media (max-width: 640px) { .skills { gap: 0.85rem; } .skill { padding: 1.2rem 1.25rem; } }
+    /* Homepage metrics bar on the content edges, matching the cards below */
+    .hero + .container .metrics { margin-left: 0; margin-right: 0; }
+    /* Closer section: no eyebrow, heading starts the section */
+    .closer__text h2 { margin-top: 0; }
+
+    /* ---------- Shared hero description: same size, weight, leading and spacing on every page ---------- */
+    .hero__lede, .about-hero__lede, .td-hero__lede { margin-top: 1.1rem; font-size: var(--hero-lede-size); font-weight: 400; line-height: var(--hero-lede-leading); }
+    .hero__lede + .hero__lede, .about-hero__lede + .about-hero__lede, .td-hero__lede + .td-hero__lede { margin-top: var(--hero-lede-gap); }
+    .hero__lede { max-width: 33rem; }
+
+    /* ---------- Homepage metrics: four equal columns, labels wrap inside the bar ---------- */
+    @media (min-width: 961px) {
+      .hero + .container .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); justify-content: stretch; padding: 1.35rem 1.25rem; }
+      .hero + .container .metrics .metric { min-width: 0; gap: 0.9rem; padding: 0.3rem 1.25rem; }
+      .hero + .container .metrics .metric__icon { flex: 0 0 1.85rem; justify-content: center; }
+      .hero + .container .metrics .metric__text { min-width: 0; }
+      .hero + .container .metrics .metric__text span { white-space: normal; text-wrap: pretty; }
+      .hero + .container .metrics { align-items: stretch; }
+      .hero + .container .metrics .metric { align-items: flex-start; }
+      .hero + .container .metrics .metric__icon { margin-top: 0.1rem; }
+    }
+
+    /* ---------- Shared hero frame: Home, About and Technical depth line up on desktop ---------- */
+    body .hero + .container .metrics, body .td-hero + .container .metrics, body .about-hero + .section { margin-top: var(--hero-after); }
+    @media (min-width: 1200px) {
+      /* Text stays top-aligned so eyebrows and headings start at the same point; visuals sit centred in the frame */
+      .hero__media img { max-height: var(--hero-frame-h); }
+      body .about-hero__grid, body .td-hero__grid { min-height: var(--hero-frame-h); align-items: center; }
+      body .about-hero__grid > div:first-child, body .td-hero__text { align-self: start; }
+    }
+
+    /* ---------- Shared hero visual area: same footprint as the homepage desk image (desktop) ---------- */
+    .hero-stage { min-width: 0; }
+    @media (min-width: 1200px) {
+      :root {
+        --hero-bleed: calc((100vw - min(100vw, var(--content-max))) / 2 + var(--gutter));
+        /* the desk image's own height: its width at the 626:454 ratio, capped by the shared frame */
+        --hero-visual-h: min(calc((50vw - 2px) * 0.7252), var(--hero-frame-h));
+      }
+      body .about-hero__grid, body .td-hero__grid { grid-template-columns: minmax(0, 540px) minmax(0, 1fr); gap: 1.25rem; align-items: start; min-height: 0; }
+      .hero-stage {
+        display: flex; align-items: center; justify-content: center;
+        min-height: var(--hero-visual-h);
+        margin-right: calc(-1 * var(--hero-bleed));
+        padding: 2rem calc(var(--hero-bleed) + 2rem) 2rem 2.5rem;
+        border-radius: 28px 0 0 28px;
+        background: linear-gradient(155deg, #EFE8DE 0%, #E7DED2 100%);
+      }
+      .hero-stage > .pcode { width: 100%; max-width: 30rem; }
+      .hero-stage > .td-visual { width: 100%; max-width: 31rem; }
+      .hero-stage > .td-visual::before { display: none; }
+    }
+
     /* ================= About page (builds on the homepage tokens above) ================= */
 
     main .eyebrow { letter-spacing: 0.12em; }
@@ -730,9 +802,9 @@
        Driven by the container's own width, so it also holds in print and odd window sizes. */
     .about-hero__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 25rem), 1fr)); gap: 2.5rem 3.5rem; align-items: center; }
     .about-hero__grid > * { min-width: 0; }
-    .about-hero h1 { margin-top: var(--eyebrow-gap); max-width: 14ch; font-size: clamp(2.5rem, 4.6vw, 3.75rem); font-weight: 800; line-height: 1.04; letter-spacing: -0.035em; text-wrap: balance; }
-    .about-hero__lede { margin-top: 1.6rem; max-width: 32rem; font-size: 1.1rem; line-height: 1.7; color: var(--text); text-wrap: pretty; }
-    .about-hero__lede + .about-hero__lede { margin-top: 1.15rem; }
+    .about-hero h1 { margin-top: var(--eyebrow-gap); max-width: 14ch; text-wrap: balance; }
+    .about-hero__lede { max-width: 32rem; color: var(--text); text-wrap: pretty; }
+    
 
     /* ---------- Principles terminal (same frame as the homepage terminal) ---------- */
     .pcode { background: #2B2622; border-radius: var(--radius); overflow: hidden; box-shadow: 0 18px 44px rgba(46, 41, 37, 0.18); }
@@ -834,8 +906,8 @@
       .own { grid-template-columns: minmax(0, 1fr); }
     }
     @media (max-width: 640px) {
-      .about-hero h1 { font-size: clamp(2.1rem, 9.6vw, 2.75rem); max-width: none; }
-      .about-hero__lede { font-size: 1.02rem; }
+      .about-hero h1 { max-width: none; }
+      
       .pcode__body { padding: 12px 8px 16px; }
       .sec { padding-top: 2rem; }
       .story p { font-size: 1.02rem; }
@@ -856,6 +928,77 @@
     }
 
     @media print { .pcode, .hero-terminal { box-shadow: none; } }
+
+    /* ---------- Career journey: snapshot, fine timeline, focus tags ---------- */
+    .snap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 1.5rem; padding: 1.15rem 0.5rem; border-radius: var(--radius-lg); background: var(--panel); list-style: none; }
+    .snap__item { display: flex; align-items: flex-start; gap: 0.8rem; min-width: 0; padding: 0.2rem 1.25rem; }
+    .snap__item + .snap__item { border-left: 1px solid var(--line-strong); }
+    .snap__icon { flex: 0 0 1.5rem; display: inline-flex; justify-content: center; margin-top: 0.15rem; color: var(--taupe); font-size: 1.4rem; }
+    .snap__icon .i { width: 1.4rem; height: 1.4rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .snap__text { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+    .snap__text strong { font-size: 1.3rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; color: var(--ink); }
+    .snap__text span { font-size: 0.9rem; line-height: 1.35; color: var(--text); text-wrap: pretty; }
+
+    .timeline { --tl-x: 0.3rem; --tl-mk: calc(1.35rem + 0.42rem + 4px); position: relative; margin-top: 1.25rem; padding-left: 2rem; }
+    .timeline > li { position: relative; }
+    .timeline > li:first-child { border-top: 0; }
+    .timeline > li:last-child { border-bottom: 0; }
+    /* marker on the company line, and a fine line down to the next marker */
+    .timeline > li::after { content: ""; position: absolute; left: calc(-2rem + var(--tl-x) - 4px); top: calc(var(--tl-mk) - 4px); width: 9px; height: 9px; border-radius: 50%; background: var(--neutral); box-shadow: 0 0 0 4px var(--bg); }
+    .timeline > li.is-current::after { background: var(--taupe); }
+    .timeline > li::before { content: ""; position: absolute; left: calc(-2rem + var(--tl-x) - 0.5px); top: var(--tl-mk); bottom: calc(-1 * var(--tl-mk)); width: 1px; background: #D9D0C5; }
+    .timeline > li:last-child::before { display: none; }
+    .timeline > li.is-current .tl-date::before { display: none; }
+
+    .timeline > li { grid-template-areas: "org role" "org sum" "org tags" "org toggle" "org details"; }
+    .tl-tags { grid-area: tags; display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.75rem; list-style: none; }
+    .tl-tags li { padding: 0.3rem 0.7rem; border-radius: 999px; background: var(--bg-2); font-size: 0.84rem; font-weight: 500; line-height: 1.3; color: var(--text); }
+
+    @media (max-width: 960px) {
+      .snap { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0.5rem 0.75rem; }
+      .snap__item { padding: 0.85rem 0.75rem; }
+      .snap__item + .snap__item { border-left: 0; }
+      .snap__item:nth-child(even) { border-left: 1px solid var(--line-strong); }
+      .snap__item:nth-child(n+3) { border-top: 1px solid var(--line-strong); }
+    }
+    @media (max-width: 640px) {
+      .timeline { --tl-mk: calc(1.15rem + 0.42rem + 4px); padding-left: 1.5rem; }
+      .timeline > li::after { left: calc(-1.5rem + var(--tl-x) - 4px); }
+      .timeline > li::before { left: calc(-1.5rem + var(--tl-x) - 0.5px); }
+      .timeline > li { grid-template-areas: "org" "role" "sum" "tags" "toggle" "details"; }
+      .snap__item { flex-direction: column; gap: 0.45rem; padding: 0.85rem 0.85rem; }
+      .snap__icon { justify-content: flex-start; margin-top: 0; }
+      .snap__icon { flex-basis: 1.25rem; }
+      .snap__icon .i { width: 1.2rem; height: 1.2rem; }
+      .snap__text strong { font-size: 1.15rem; }
+      .snap__text span { font-size: 0.84rem; }
+    }
+    @media (max-width: 374px) {
+      .snap { grid-template-columns: minmax(0, 1fr); }
+      .snap__item:nth-child(even) { border-left: 0; }
+      .snap__item + .snap__item { border-top: 1px solid var(--line-strong); }
+    }
+
+    /* ---------- Career journey: View details on the role-title row ---------- */
+    .timeline > li { grid-template-columns: 16.5rem minmax(0, 1fr) auto; grid-template-areas: "org role toggle" "org sum sum" "org tags tags" "org details details"; }
+    .tl-toggle { justify-self: end; align-self: center; margin: 0 -0.55rem 0 1rem; white-space: nowrap; }
+    .tl-sum, .tl-details { max-width: none; }
+    .tl-sum { max-width: 50rem; }
+    @media (max-width: 960px) {
+      .timeline > li { grid-template-columns: 11rem minmax(0, 1fr) auto; }
+    }
+    @media (max-width: 640px) {
+      .timeline > li { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "org org" "role toggle" "sum sum" "tags tags" "details details"; }
+    }
+    @media (max-width: 480px) {
+      /* narrow phones: the control moves beneath the title rather than squeezing it */
+      .timeline > li { grid-template-columns: minmax(0, 1fr); grid-template-areas: "org" "role" "toggle" "sum" "tags" "details"; }
+      .tl-toggle { justify-self: start; margin: 0.2rem 0 0 -0.55rem; }
+    }
+    @media (max-width: 960px) and (min-width: 481px) {
+      /* keep the right-aligned control clear of the assistant's edge tab */
+      .tl-toggle { margin-right: 0; }
+    }
 
   </style>
   <link rel="stylesheet" href="./assets/cta.css">
@@ -909,9 +1052,10 @@
         <div>
           <p class="eyebrow">About me</p>
           <h1 id="about-title"><span class="hl">Curiosity</span> took me beyond solving tickets.</h1>
-          <p class="about-hero__lede">I started in customer support, where my curiosity about the technical side of solving problems led me into enterprise technical support. I now own EMEA escalations at Stack Overflow, working closely with Engineering and Product.</p>
+          <p class="about-hero__lede">I started in customer support, where my curiosity about the technical side of solving problems led me into enterprise technical support. I own EMEA escalations at Stack Overflow, working closely with Engineering and Product.</p>
           <p class="about-hero__lede">I also taught myself to code and became interested in using AI to build tools inspired by challenges I’d encountered in Support. What began as solving problems in my own workflow grew into finding ways to help other teams work better.</p>
         </div>
+        <div class="hero-stage">
         <div class="pcode">
           <div class="t-bar" aria-hidden="true"><span class="t-dot t-dot-r"></span><span class="t-dot t-dot-y"></span><span class="t-dot t-dot-g"></span><span class="t-title">principles.md</span></div>
           <div class="pcode__body">
@@ -942,6 +1086,7 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
     </section>
 
@@ -951,11 +1096,18 @@
         <div class="sec__head">
           <h2 id="career-title">Career journey</h2>
         </div>
+        <ul class="snap" aria-label="Career snapshot">
+          <li class="snap__item"><span class="snap__icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></svg></span><span class="snap__text"><strong>5+ years</strong><span>Technical Support experience</span></span></li>
+          <li class="snap__item"><span class="snap__icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.8" r="2.3"/></svg></span><span class="snap__text"><strong>EMEA</strong><span>Technical Support ownership</span></span></li>
+          <li class="snap__item"><span class="snap__icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5M3 16.5l9 5 9-5"/></svg></span><span class="snap__text"><strong>100+</strong><span>Enterprise accounts supported</span></span></li>
+          <li class="snap__item"><span class="snap__icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 2.5 4.5 13.5H12l-1 8 8.5-11H12l1-8Z"/></svg></span><span class="snap__text"><strong>P1/P2</strong><span>Incident coordination</span></span></li>
+        </ul>
         <ol class="timeline">
           <li class="is-current">
             <div class="tl-org"><p class="tl-co">Stack Overflow</p><p class="tl-date">January 2025 – Present</p></div>
             <h3 class="tl-role">Senior Product Support Specialist</h3>
             <p class="tl-sum">Own EMEA technical support across 100+ enterprise accounts, including critical incidents, Engineering escalations and operational improvements.</p>
+            <ul class="tl-tags" aria-label="Focus areas"><li>Incident management</li><li>Engineering escalations</li><li>Support Operations</li></ul>
             <button class="tl-toggle" type="button" aria-expanded="false" aria-controls="tl-details-1"><span class="tl-toggle__label">View details</span><span class="sr-only"> for Senior Product Support Specialist at Stack Overflow</span> <svg class="tl-chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>
             <div class="tl-details" id="tl-details-1" hidden><ul><li>Independently own EMEA technical support and high-priority escalations across 100+ enterprise accounts, coordinating P1/P2 incidents and cross-functional responses.</li><li>Reduced P1/P2 resolution times by 25% and Engineering investigation time by 30% through escalation process improvements, incident tooling and observability.</li><li>Maintained 98% CSAT while troubleshooting complex REST API, SSO/SAML, OAuth, DNS and integration issues.</li><li>Partner with Engineering to reproduce technical issues, analyse Datadog and Elasticsearch evidence and deliver actionable escalation handoffs.</li><li>Work closely with Customer Success Managers on high-priority enterprise calls, critical customer issues and white-glove support.</li><li>Led the PagerDuty-to-Rootly migration, introduced Datadog observability across 100+ enterprise environments and created incident playbooks.</li><li>Built <a href="./feedback-loop.html">Feedback Loop</a>, an AI-assisted customer feedback system used in my workflow, reducing my Product brief preparation time by 50%.</li></ul></div>
           </li>
@@ -963,6 +1115,7 @@
             <div class="tl-org"><p class="tl-co">Alida</p><p class="tl-date">February 2023 – November 2024</p></div>
             <h3 class="tl-role">Technical Support Analyst</h3>
             <p class="tl-sum">Provided white-glove technical support to high-priority enterprise clients, investigating complex API, SSO, SAML and OAuth issues, collaborating with Engineering on escalations and improving technical documentation.</p>
+            <ul class="tl-tags" aria-label="Focus areas"><li>APIs</li><li>SSO / SAML</li><li>White-glove support</li></ul>
             <button class="tl-toggle" type="button" aria-expanded="false" aria-controls="tl-details-2"><span class="tl-toggle__label">View details</span><span class="sr-only"> for Technical Support Analyst at Alida</span> <svg class="tl-chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></button>
             <div class="tl-details" id="tl-details-2" hidden><ul><li>Investigated enterprise SaaS issues for high-priority clients as part of a white-glove support service, covering APIs, SSO, SAML, OAuth and integrations.</li><li>Worked with Engineering on complex investigations, providing reproduction steps, supporting evidence and bug reports.</li><li>Improved technical documentation, issue reporting and customer feedback workflows.</li></ul></div>
           </li>
@@ -1064,15 +1217,12 @@
         <a class="site-cta__btn site-cta__btn--primary" href="./projects.html">Explore my projects <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a class="site-cta__btn site-cta__btn--secondary" href="./contact.html">Get in touch</a>
       </div>
+      <ul class="site-cta__social" aria-label="Elsewhere"><li><a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" stroke="none" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>GitHub<span class="sr-only"> (opens in a new tab)</span></a></li><li><a href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" stroke="none" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1-2.063-2.065 2.064 2.064 0 0 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li></ul>
     </div>
   </section>
 
 
   <footer class="site-footer">
-    <p class="footer-links">
-      <a href="https://github.com/KhanKMadiha" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
-      <a href="https://www.linkedin.com/in/madihakhan-" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
-    </p>
     <p>© <span id="year"></span> Madiha Khan · Built with care</p>
   </footer>
 

@@ -152,3 +152,20 @@ body .project-btn.primary {
 body .hero-action-primary:hover,
 body .nav-btn.active:hover,
 body .project-btn.primary:hover { background: #1F1B18; }
+
+/* ---------- Shared primary hero heading (matches homepage, About and Technical depth) ---------- */
+body .hero h1 {
+  font-size: clamp(2.2rem, 3.6vw, 2.85rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+/* ---------- Shared hero description (matches homepage, About and Technical depth) ---------- */
+body .hero .hero-highlight,
+body .contact-intro .hero-sub {
+  font-size: 1.02rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+body .contact-intro .hero-sub + .hero-sub { margin-top: 0.9rem; }

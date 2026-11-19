@@ -1,0 +1,10 @@
+{
+  "_note": "Single source for the five principles. Run `python3 scripts/sync_principles.py` after editing; it updates index.html (principles.md tab) and about.html (accordion).",
+  "principles": [
+    { "title": "Lead with evidence", "text": "Investigate thoroughly, provide clear reproduction steps and customer impact, and make sure every escalation has an owner and next steps." },
+    { "title": "Expand what Support can do with AI", "text": "Build practical tools that reduce repetitive work while keeping human judgement where it matters." },
+    { "title": "Make knowledge accessible", "text": "Create useful, findable knowledge so customers and internal teams can get answers without unnecessary effort." },
+    { "title": "Turn insights into action", "text": "Identify patterns in customer feedback and translate them into improvements Product and Engineering can act on." },
+    { "title": "Under-promise, over-deliver", "text": "Set realistic expectations and earlier internal deadlines. If I promise an update tomorrow, I aim to deliver it today." }
+  ]
+}

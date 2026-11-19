@@ -1,0 +1,79 @@
+/*
+  Shared Work dropdown (all 11 pages).
+  The open state is driven only by [open], which nav-menu.js manages, so hover,
+  click, tap and keyboard all agree. Selectors start with "body" to override the
+  older per-page rules without touching them.
+*/
+
+body .nav-projects { position: relative; }
+
+/* One position and width everywhere: centred under Work, a small visual gap */
+body .nav-projects-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  right: auto;
+  transform: translateX(calc(-50% + var(--nav-menu-shift, 0px)));
+  width: 280px;
+  max-width: calc(100vw - 1rem);
+  max-height: calc(100vh - var(--nav-h, 72px) - 1.5rem);
+  margin-top: 8px;
+  padding: 0.55rem;
+  overflow-y: auto;
+  border: 1px solid rgba(56, 51, 47, 0.12);
+  border-radius: 14px;
+  background: #FDFCFA;
+  box-shadow: 0 16px 36px rgba(46, 41, 37, 0.12);
+  z-index: 1200;
+}
+
+/* Hover alone no longer shows the menu: only the managed [open] state does */
+body .nav-projects:not([open]) .nav-projects-menu { display: none; }
+body .nav-projects[open] .nav-projects-menu { display: flex; flex-direction: column; gap: 0.1rem; }
+
+/*
+  Hover bridge: an invisible strip that fills the 8px gap and widens towards the
+  menu, so a slow diagonal path from Work never leaves the dropdown's hover area.
+*/
+body .nav-projects[open]::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 280px;
+  max-width: calc(100vw - 1rem);
+  height: 10px;
+  transform: translateX(calc(-50% + var(--nav-menu-shift, 0px)));
+}
+
+/* Links: same rhythm and states on every page */
+body .site-nav-links .nav-projects-menu a,
+body .nav-projects-menu a {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  border-radius: 9px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: normal;
+}
+body .nav-projects-menu > a:first-child { font-weight: 700; }
+body .site-nav-links .nav-projects-menu a:hover,
+body .site-nav-links .nav-projects-menu a:focus-visible { background: #EFE9E1; color: #2E2925; }
+body .nav-projects-menu a:focus-visible { outline: 2px solid #2E2925; outline-offset: -2px; }
+body .nav-projects summary:focus-visible { outline: 2px solid #2E2925; outline-offset: 2px; }
+
+/* Phones: pinned under the bar, inside the viewport */
+@media (max-width: 640px) {
+  body .nav-projects-menu {
+    position: fixed;
+    top: calc(var(--nav-h, 60px) - 6px);
+    left: auto;
+    right: 0.5rem;
+    transform: none;
+    width: min(280px, calc(100vw - 1rem));
+    margin-top: 0;
+  }
+  body .nav-projects[open]::after { display: none; }
+}

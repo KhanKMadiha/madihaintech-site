@@ -531,6 +531,7 @@
   <link rel="stylesheet" href="./assets/theme.css">
   <link rel="stylesheet" href="./assets/cta.css">
   <link rel="stylesheet" href="./assets/chat-launcher.css">
+  <link rel="stylesheet" href="./assets/nav-menu.css">
   <script src="./assets/chat-launcher.js" defer></script>
 </head>
 <body class="case-study">
@@ -819,14 +820,7 @@
     })();
   </script>
 
-  <script>
-    document.querySelectorAll('.nav-projects').forEach((menu) => {
-      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        menu.addEventListener('mouseenter', () => { menu.open = true; });
-        menu.addEventListener('mouseleave', () => { menu.open = false; });
-      }
-    });
-  </script>
+  <script src="./assets/nav-menu.js"></script>
 
 </body>
 </html>

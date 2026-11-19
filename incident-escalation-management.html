@@ -837,6 +837,7 @@
   <link rel="stylesheet" href="./assets/theme.css">
   <link rel="stylesheet" href="./assets/cta.css">
   <link rel="stylesheet" href="./assets/chat-launcher.css">
+  <link rel="stylesheet" href="./assets/nav-menu.css">
   <script src="./assets/chat-launcher.js" defer></script>
 </head>
 
@@ -1135,14 +1136,8 @@
     }
   </script>
 
+  <script src="./assets/nav-menu.js"></script>
   <script>
-    document.querySelectorAll('.nav-projects').forEach((menu) => {
-      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        menu.addEventListener('mouseenter', () => { menu.open = true; });
-        menu.addEventListener('mouseleave', () => { menu.open = false; });
-      }
-    });
-
     // Incident lifecycle tabs. Without JavaScript, every stage panel stays visible.
     (() => {
       const tablist = document.querySelector('.stage-tabs');

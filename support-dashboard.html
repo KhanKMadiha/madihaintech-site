@@ -3,456 +3,357 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support Ticket Analyser | Madiha Khan</title>
+  <meta name="description" content="Case study: an AI-assisted workflow that finds existing documentation, identifies knowledge gaps and helps Support create reviewable KB content from resolved tickets." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <title>Support Ticket Analyser | Madiha Khan</title>
   <script src="./portfolio-assistant-config.js"></script>
-
   <style>
+    /* ---------- Design tokens: warm ivory, espresso, beige and taupe ---------- */
     :root {
-      --bg-base:#F8F6F2;
-      --surface:#EFE9E1;
-      --accent:#786A5F;
-      --surface-soft:#EAE4DC;
-      --text-dark:#2E2925;
-      --muted-dark:rgba(56,51,47,0.77);
-      --border-soft:rgba(140,124,112,.2);
-      --border-strong:rgba(140,124,112,.38);
-      --white-glass:rgba(255,255,255,.78);
+      --bg: #F8F6F2;            /* primary background */
+      --bg-2: #EAE4DC;          /* secondary background */
+      --panel: #EFE9E1;         /* achievements bar, tags */
+      --card: #FBF9F6;          /* project cards */
+      --neutral: #B2A397;       /* neutral accent */
+      --ink: #2E2925;           /* headings, primary buttons */
+      --text: #38332F;          /* primary text */
+      --muted: #5E5650;         /* secondary text (7:1 on --bg) */
+      --taupe: #786A5F;         /* eyebrows (4.9:1 on --bg) */
+      --sage: #768174;          /* used sparingly */
+      --highlight: #D9D0C5;     /* warm neutral taupe behind highlighted hero words */
+      --line: rgba(56, 51, 47, 0.12);
+      --line-strong: rgba(56, 51, 47, 0.22);
+      --shadow: 0 1px 2px rgba(46, 41, 37, 0.04), 0 8px 24px rgba(46, 41, 37, 0.05);
+      --radius-sm: 10px;
+      --radius: 18px;
+      --radius-lg: 22px;
+      --content-max: 1180px;
+      --gutter: 2rem;
+      --nav-h: 72px;
+      /* Shared hero rhythm (homepage and About): space below the nav, eyebrow-to-headline gap */
+      --hero-top: 1.375rem;
+      --eyebrow-gap: 1.35rem;
+      /* Shared primary hero heading (Technical depth is the reference) */
+      --hero-h1-size: clamp(2.2rem, 3.6vw, 2.85rem);
+      --hero-h1-leading: 1.08;
+      /* Shared hero description (Technical depth is the reference) */
+      --hero-lede-size: 1.02rem;
+      --hero-lede-leading: 1.6;
+      --hero-lede-gap: 0.9rem;
+      /* Shared hero frame (desktop): one bottom boundary and one gap to the next section */
+      --hero-frame-h: clamp(27rem, 33vw, 36rem);
+      --hero-after: 2.25rem;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{font-family:'Inter','Segoe UI',sans-serif;background:var(--bg-base);color:var(--text-dark);margin:0;overflow-x:hidden}
+    @media (max-width: 860px) { :root { --gutter: 1.5rem; } }
+    @media (max-width: 960px) { :root { --hero-top: 2.5rem; } }
+    @media (max-width: 640px) { :root { --eyebrow-gap: 1rem; } }
+    /* Phones: 28px gutters leave a clear lane for the "Ask AI" edge tab. */
+    @media (max-width: 540px) { :root { --gutter: 1.75rem; } }
 
-    .site-nav{position:fixed;top:0;left:0;right:0;z-index:999;height:58px;display:flex;align-items:center;padding:0 1.75rem;background:rgba(248,246,242,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border-soft)}
-    .site-nav-brand{font-size:.95rem;font-weight:700;color:var(--text-dark);text-decoration:none;margin-right:auto}
-    .site-nav-links{display:flex;gap:.25rem}
-    .site-nav-links a{font-size:.875rem;font-weight:500;color:rgba(56,51,47,0.7);text-decoration:none;padding:.35rem .7rem;border-radius:8px}
-    .site-nav-links a:hover,.site-nav-links a.active{color:var(--text-dark)}
-    .site-nav-links a.active{font-weight:700}
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
 
-    .hero{min-height:66vh;display:flex;align-items:center;padding:7rem 1.5rem 3rem;background:linear-gradient(180deg,var(--surface) 0%,transparent 100%)}
-    .hero-inner{max-width:1020px;margin:0 auto;width:100%;text-align:center}
-    .hero-label,.section-label{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-    .hero-label{margin:0 0 1rem}
-    .section-label{margin:0 0 1rem;text-align:center}
-    h1{margin:0 0 1rem;font-size:clamp(2.65rem,6vw,4rem);line-height:1.06;letter-spacing:-.03em}
-    .hero-highlight{margin:.9rem auto 0;max-width:820px;font-size:1.15rem;line-height:1.75;color:var(--muted-dark)}
-    .hero-actions{display:flex;justify-content:center;gap:1rem;margin-top:1.8rem;flex-wrap:wrap}
-    .hero-action-primary,.hero-action-secondary,.nav-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:700;transition:.2s ease}
-    .hero-action-primary{padding:.68rem 1.4rem;border-radius:999px;background:var(--accent);color:#fff}
-    .hero-action-secondary{padding:.68rem 1.3rem;border-radius:999px;border:1.5px solid var(--border-strong);background:rgba(255,255,255,.65);color:var(--text-dark)}
-    .hero-action-primary:hover{opacity:.88;transform:translateY(-1px)}
-    .hero-action-secondary:hover{border-color:var(--accent)}
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, textarea, select { font-family: inherit; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 { color: var(--ink); margin: 0; }
+    p { margin: 0; }
+    ul, ol { margin: 0; padding: 0; list-style: none; }
+    a { color: inherit; }
+    .i { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 
-    .content{max-width:980px;margin:0 auto 3.5rem;padding:0 1.5rem}
-    .case-section{margin-bottom:2.5rem}
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
-    .reveal.visible{opacity:1;transform:translateY(0)}
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .skip-link { position: absolute; left: 1rem; top: -3rem; z-index: 10000; padding: 0.6rem 1rem; border-radius: var(--radius-sm); background: var(--ink); color: #fff; font-weight: 600; text-decoration: none; }
+    .skip-link:focus { top: 0.75rem; }
+    :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
-    .intro-card,.phase-content,.tool-card,.try-card,.learning-card{border:1.5px solid var(--border-soft);background:rgba(255,255,255,.58);backdrop-filter:blur(8px)}
-    .intro-card{padding:2.25rem 2.5rem;border-radius:22px;margin-bottom:2rem}
-    .intro-card p,.phase-body p,.learning-card p,.try-card p{color:var(--muted-dark);line-height:1.8}
-    .intro-card p{font-size:1.04rem;margin:0 0 1rem}
-    .intro-card p:last-child{margin-bottom:0}
-    .intro-card strong,.phase-body strong{color:var(--text-dark)}
+    .container { width: 100%; max-width: var(--content-max); margin: 0 auto; padding: 0 var(--gutter); }
+    .section { margin-top: 4rem; }
 
-    .tag-row{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.25rem}
-    .tag{padding:.45rem .85rem;border-radius:999px;border:1.5px solid var(--border-soft);background:rgba(255,255,255,.72);font-size:.88rem}
+    /* ---------- Navigation ---------- */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(248, 246, 242, 0.92);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    }
+    .site-nav {
+      max-width: var(--content-max); margin: 0 auto; padding: 0 var(--gutter);
+      height: var(--nav-h);
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1.5rem;
+    }
+    .site-nav-brand {
+      justify-self: start; display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); text-decoration: none;
+    }
+    .brand-mark { width: 26px; height: 22px; background:
+        linear-gradient(115deg, transparent 38%, var(--neutral) 38%, var(--neutral) 58%, transparent 58%) 0 0 / 13px 22px no-repeat,
+        linear-gradient(115deg, transparent 38%, var(--neutral) 38%, var(--neutral) 58%, transparent 58%) 12px 0 / 13px 22px no-repeat; }
+    .site-nav-links { display: flex; align-items: center; gap: 0.6rem; }
+    .site-nav-links > a, .nav-projects summary {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.5rem 1rem; border-radius: var(--radius-sm);
+      font-size: 0.95rem; font-weight: 500; color: var(--text); text-decoration: none; white-space: nowrap;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .site-nav-links > a:hover, .nav-projects summary:hover { background: rgba(234, 228, 220, 0.6); }
+    .site-nav-links > a.active { background: var(--bg-2); color: var(--ink); font-weight: 600; }
+    .nav-cta {
+      justify-self: end; display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.15rem; border-radius: var(--radius-sm);
+      background: var(--ink); color: #fff; font-size: 0.95rem; font-weight: 600; text-decoration: none;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
+    .nav-cta:hover { background: #1F1B18; transform: translateY(-1px); }
 
-    .stepper-nav{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap}
-    .phase-btn{padding:.6rem 1.15rem;border-radius:999px;border:1.5px solid var(--border-soft);background:rgba(255,255,255,.65);font-family:inherit;font-size:.9rem;font-weight:700;color:var(--muted-dark);cursor:pointer}
-    .phase-btn.active{border-color:transparent;background:linear-gradient(135deg,var(--accent),#4A433D);color:#fff}
-    .phase-content{display:none;padding:2rem 2.25rem;border-radius:22px;margin-bottom:1.5rem}
-    .phase-content.active{display:block}
-    .phase-header{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.25rem}
-    .phase-badge{display:inline-flex;padding:.35rem .8rem;border-radius:999px;font-size:.78rem;font-weight:700;background:var(--surface);color:#4A423C;border:1px solid var(--border-soft)}
-    .phase-title-wrap h3{font-size:1.25rem;margin:0 0 .25rem}
-    .phase-title-wrap p{margin:0;color:var(--muted-dark);font-size:.92rem}
-    .phase-body p{font-size:1rem;margin:0 0 1rem}
-    .phase-body p:last-child{margin-bottom:0}
-
-    .struggle-toggle{margin-top:1.25rem;border-radius:14px;border:1.5px solid var(--border-soft);overflow:hidden}
-    .struggle-header{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem;cursor:pointer;background:rgba(140,124,112,.06)}
-    .struggle-label{font-size:.88rem;font-weight:700;color:var(--accent)}
-    .struggle-chevron{color:var(--accent);transition:transform .2s}
-    .struggle-body{display:none;padding:1rem 1.1rem;border-top:1px solid var(--border-soft)}
-    .struggle-body.open{display:block}
-    .struggle-body p{margin:0 0 .75rem;color:var(--muted-dark);line-height:1.7}
-    .struggle-body p:last-child{margin-bottom:0}
-
-    .phase-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:1.25rem}
-    .phase-nav-btn{padding:.7rem 1.1rem;border-radius:12px;border:1.5px solid var(--border-soft);background:rgba(255,255,255,.7);font-family:inherit;font-weight:700;cursor:pointer}
-    .phase-nav-btn.primary{background:linear-gradient(135deg,var(--accent),#4A433D);color:#fff;border-color:transparent}
-    .phase-nav-btn:disabled{opacity:.35;cursor:not-allowed}
-
-    .tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin-bottom:2rem}
-    .tool-card{padding:1.35rem 1rem;border-radius:18px;text-align:center}
-    .tool-logo{width:46px;height:46px;border-radius:14px;border:1.5px solid var(--border-soft);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;font-size:.75rem;font-weight:800;color:var(--muted-dark)}
-    .tool-name{margin:0 0 .25rem;font-size:.9rem;font-weight:800}
-    .tool-desc{margin:0;font-size:.78rem;line-height:1.45;color:var(--muted-dark)}
-
-    .learnings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
-    .learning-card{padding:1.5rem;border-radius:20px}
-    .learning-card h3{margin:0 0 .5rem;font-size:1rem}
-    .learning-card p{margin:0;font-size:.9rem}
-
-    .try-card{padding:2.25rem 2.5rem;border-radius:22px;text-align:center;border-color:var(--border-strong)}
-    .try-card h3{margin:0 0 .6rem;font-size:1.25rem}
-    .try-card p{margin:0 0 1.25rem}
-    .try-actions{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
-    .nav-btn{padding:.8rem 1.2rem;border-radius:12px;border:1.5px solid var(--border-soft);background:rgba(255,255,255,.75);color:var(--text-dark)}
-    .nav-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
-
-    .links{text-align:center;padding:0 1.5rem 2.5rem}
-    .links h2{font-size:1.6rem;margin:0 0 .9rem}
-    .connect-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-    .connect-links a{color:rgba(56,51,47,0.75);text-decoration:none;font-size:.88rem;font-weight:600;padding:.45rem .9rem;border-radius:999px;border:1.5px solid var(--border-soft);background:rgba(255,255,255,.6)}
-    footer{text-align:center;margin:0 0 34px;padding:0 1.5rem;font-size:.95rem;color:rgba(56,51,47,0.75)}
-
-    #chat-toggle{position:fixed;bottom:22px;right:22px;width:58px;height:58px;border-radius:18px;background:var(--surface);border:1.5px solid var(--border-strong);cursor:pointer;z-index:9999;font-size:24px;box-shadow:0 8px 24px rgba(140,124,112,.28)}
-    #chat-window{position:fixed;bottom:92px;right:22px;width:360px;max-height:530px;background:var(--white-glass);backdrop-filter:blur(14px);border:1.5px solid var(--border-soft);border-radius:24px;box-shadow:0 20px 50px rgba(140,124,112,.15),0 4px 16px rgba(0,0,0,.06);display:none;flex-direction:column;overflow:hidden;z-index:9998}
-    #chat-window.open{display:flex}
-    .chat-header{padding:14px 16px;background:var(--surface);border-bottom:1px solid var(--border-soft);display:flex;align-items:center;gap:10px}
-    .chat-avatar{width:38px;height:38px;border-radius:12px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
-    .chat-header-info h4{margin:0;font-size:.92rem}
-    .chat-header-info p{margin:2px 0 0;font-size:.73rem;color:var(--muted-dark)}
-    .chat-close{margin-left:auto;background:none;border:0;cursor:pointer;font-size:17px}
-    .chat-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px}
-    .msg{max-width:84%;padding:10px 13px;border-radius:16px;font-size:.875rem;line-height:1.58}
-    .msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--border-soft)}
-    .msg.user{align-self:flex-end;background:var(--accent);color:#fff}
-    .chat-input-area{padding:11px 13px;border-top:1px solid var(--border-soft);display:flex;gap:8px}
-    .chat-input-area textarea{flex:1;border:1.5px solid var(--border-soft);border-radius:12px;padding:9px 11px;font:inherit;resize:none}
-    .send-btn{width:36px;border:0;border-radius:11px;background:var(--accent);color:#fff;cursor:pointer}
-
-    @media(max-width:760px){.tools-grid,.learnings-grid{grid-template-columns:1fr}.intro-card,.phase-content,.try-card{padding:1.6rem}.phase-header{flex-direction:column;gap:.65rem}}
-    @media(max-width:540px){.site-nav-brand{display:none}.site-nav{padding:0 .7rem;justify-content:center}.site-nav-links a{padding:.35rem .45rem;font-size:.8rem}#chat-window{width:calc(100vw - 28px);right:14px}#chat-toggle{right:14px}}
-  
-    /* Projects navigation dropdown */
-    .site-nav-links { align-items: center; }
+    /* Work dropdown (existing behaviour) */
     .nav-projects { position: relative; }
-    .nav-projects summary {
-      display: flex;
-      align-items: center;
-      gap: 0.28rem;
-      padding: 0.35rem 0.7rem;
-      border-radius: 8px;
-      color: rgba(56,51,47,0.7);
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-      list-style: none;
-      white-space: nowrap;
-    }
+    .nav-projects summary { cursor: pointer; list-style: none; }
     .nav-projects summary::-webkit-details-marker { display: none; }
-    .nav-projects summary::after {
-      content: "▾";
-      font-size: 0.68rem;
-      transition: transform 0.18s ease;
-    }
+    .nav-projects summary::after { content: "▾"; font-size: 0.7rem; color: var(--muted); transition: transform 0.18s ease; }
     .nav-projects[open] summary::after { transform: rotate(180deg); }
-    .nav-projects:hover summary,
-    .nav-projects[open] summary,
-    .nav-projects.active summary {
-      color: #2E2925;
-    }
-    .nav-projects.active summary { font-weight: 700; }
+    .nav-projects[open] summary { background: rgba(234, 228, 220, 0.6); }
     .nav-projects-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      z-index: 1200;
-      width: 250px;
-      padding: 0.55rem;
-      border: 1px solid rgba(140,124,112,0.25);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.98);
-      box-shadow: 0 14px 35px rgba(56,51,47,0.12);
+      display: none; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); z-index: 1200;
+      width: 280px; max-height: calc(100vh - 90px); overflow-y: auto; padding: 0.55rem;
+      border: 1px solid var(--line); border-radius: 14px; background: #FDFCFA; box-shadow: 0 16px 36px rgba(46, 41, 37, 0.12);
     }
-    .nav-projects:hover .nav-projects-menu,
-    .nav-projects[open] .nav-projects-menu {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
+    .nav-projects:hover .nav-projects-menu, .nav-projects[open] .nav-projects-menu { display: flex; flex-direction: column; gap: 0.1rem; }
+    .nav-projects-menu a { display: block; padding: 0.6rem 0.75rem; border-radius: 9px; color: var(--text); font-size: 0.86rem; line-height: 1.3; text-decoration: none; }
+    .nav-projects-menu a:hover { background: var(--panel); }
+    .nav-projects-menu > a:first-child { font-weight: 700; border-bottom: 1px solid var(--line); border-radius: 9px 9px 4px 4px; margin-bottom: 0.2rem; }
+    .nav-projects-menu .nav-menu-label { margin: 0.55rem 0.75rem 0.2rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); }
+    .nav-projects-menu .nav-menu-group { display: flex; flex-direction: column; gap: 0.1rem; }
+    .nav-projects-menu .nav-menu-group + .nav-menu-label { margin-top: 0.45rem; padding-top: 0.6rem; border-top: 1px solid var(--line); }
+
+    @media (max-width: 1100px) {
+      .site-nav { grid-template-columns: auto 1fr auto; }
+      .site-nav-links { justify-self: center; gap: 0.2rem; }
+      .site-nav-links > a, .nav-projects summary { padding: 0.45rem 0.7rem; }
     }
-    .site-nav-links .nav-projects-menu a {
-      display: block;
-      padding: 0.62rem 0.72rem;
-      border-radius: 9px;
-      color: rgba(56,51,47,0.83);
-      font-size: 0.82rem;
-      font-weight: 500;
-      line-height: 1.3;
-      text-align: left;
-      text-decoration: none;
-    }
-    .site-nav-links .nav-projects-menu a:hover {
-      color: #2E2925;
-      background: rgba(178,163,151,0.14);
-    }
-    .site-nav-links .nav-projects-menu a:first-child {
-      margin-bottom: 0.18rem;
-      border-bottom: 1px solid rgba(140,124,112,0.18);
-      border-radius: 9px 9px 4px 4px;
-      font-weight: 700;
+    @media (max-width: 860px) {
+      .nav-cta { display: none; }
+      .site-nav { grid-template-columns: auto 1fr; }
+      .site-nav-links { justify-self: end; }
     }
     @media (max-width: 640px) {
-      .nav-projects summary {
-        padding: 0.35rem 0.38rem;
-        font-size: 0.8rem;
-      }
-      .nav-projects-menu {
-        position: fixed;
-        top: 54px;
-        right: 0.5rem;
-        width: min(250px, calc(100vw - 1rem));
-      }
+      :root { --nav-h: 60px; }
+      .site-nav-brand { display: none; }
+      .site-nav { grid-template-columns: 1fr; padding: 0 0.6rem; }
+      .site-nav-links { justify-self: center; gap: 0; }
+      .site-nav-links > a, .nav-projects summary { padding: 0.4rem 0.5rem; font-size: 0.82rem; }
+      .nav-projects-menu { position: fixed; top: 54px; left: auto; right: 0.5rem; transform: none; width: min(280px, calc(100vw - 1rem)); }
     }
 
-    .shot-frame {
-      position: relative;
-      background: #F3EFE9;
-      overflow: hidden;
+    /* ---------- Buttons and links ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      min-height: 44px; padding: 0.7rem 1.6rem; border-radius: var(--radius-sm);
+      font-size: 0.95rem; font-weight: 600; text-decoration: none;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+    .btn .i { font-size: 1.1rem; }
+    .btn--primary { background: var(--ink); color: #fff; border: 1.5px solid var(--ink); }
+    .btn--primary:hover { background: #1F1B18; transform: translateY(-1px); }
+    .btn--secondary { background: transparent; color: var(--ink); border: 1.5px solid rgba(46, 41, 37, 0.55); }
+    .btn--secondary:hover { border-color: var(--ink); background: rgba(234, 228, 220, 0.45); }
+    .text-link { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--ink); font-weight: 600; font-size: 0.98rem; text-decoration: underline; text-decoration-color: var(--neutral); text-underline-offset: 5px; }
+    .text-link:hover { text-decoration-color: var(--ink); }
+    .eyebrow { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--taupe); }
+
+    /* ---------- Hero ---------- */
+    .hero { padding-top: calc(var(--nav-h) + var(--hero-top)); overflow-x: clip; }
+    .hero__grid { display: grid; grid-template-columns: minmax(0, 540px) minmax(0, 1fr); gap: 1.25rem; align-items: center; }
+    /* Keep the reference's deliberate three-line break on wide screens. */
+    @media (min-width: 961px) { .hero h1 { white-space: nowrap; } }
+    .hero__text { padding: 0; align-self: start; }
+    .hero h1 {
+      margin-top: var(--eyebrow-gap); font-size: clamp(2.6rem, 4.75vw, 3.75rem); font-weight: 800;
+      line-height: 1.02; letter-spacing: -0.035em;
+    }
+    .hl { position: relative; z-index: 0; white-space: nowrap; }
+    .hl::before {
+      content: ""; position: absolute; z-index: -1; left: -0.14em; right: -0.08em; bottom: 0.02em; height: 0.6em;
+      background: var(--highlight); border-radius: 3px; transform: skewX(-14deg) rotate(-1.2deg);
+    }
+    .hero__lede { margin-top: 1.4rem; max-width: 32rem; font-size: 1.05rem; line-height: 1.5; color: var(--text); }
+    /* Scope line: quieter than the lede, set off by a thin neutral rule. */
+    .hero__scope { margin-top: 1rem; max-width: 32rem; padding-left: 0.85rem; border-left: 2px solid var(--neutral); font-size: 0.95rem; line-height: 1.5; font-weight: 500; color: var(--muted); }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: 1.1rem; margin-top: 1.75rem; }
+
+    /* Desk image: slanted, rounded frame that bleeds off the right edge, as in the reference. */
+    .hero__media { position: relative; margin-right: calc(-1 * ((100vw - min(100vw, var(--content-max))) / 2 + var(--gutter))); }
+    .hero__media picture { display: block; }
+    .hero__media img {
+      width: 100%; height: auto; aspect-ratio: 626 / 454; object-fit: cover;
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 626 454' preserveAspectRatio='none'%3E%3Cpath d='M104 2H626V452H38Q5 452 4 418L68 32Q72 2 104 2Z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 626 454' preserveAspectRatio='none'%3E%3Cpath d='M104 2H626V452H38Q5 452 4 418L68 32Q72 2 104 2Z'/%3E%3C/svg%3E");
+      -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
     }
 
-    .shot-frame img {
-      display: block;
-      width: 100%;
-      height: auto;
+    /* ---------- Achievements bar ---------- */
+    .metrics {
+      margin: 1.75rem -1.5rem 0; padding: 1.4rem 2.25rem;
+      display: grid; grid-template-columns: repeat(4, auto); justify-content: space-between;
+      background: var(--panel); border-radius: var(--radius-lg);
+    }
+    .metric { display: flex; align-items: center; gap: 1.1rem; padding: 0.35rem 0 0.35rem 2.25rem; }
+    .metric:first-child { padding-left: 0.75rem; }
+    .metric + .metric { border-left: 1px solid var(--line-strong); padding-right: 0; }
+    .metric:not(:last-child) { padding-right: 2.25rem; }
+    .metric__icon { font-size: 1.85rem; color: var(--text); display: inline-flex; }
+    .metric__icon .i { stroke-width: 1.6; }
+    .metric__text { display: flex; flex-direction: column; gap: 0.25rem; }
+    .metric__text strong { font-size: 1.55rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); }
+    .metric__text span { font-size: 0.92rem; line-height: 1.35; color: var(--text); white-space: nowrap; }
+
+    /* ---------- Section headings ---------- */
+    .section__head h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+    .section__head--split { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 2.5rem; align-items: center; }
+    .section__head--split p { font-size: 0.97rem; line-height: 1.6; color: var(--text); max-width: 50rem; }
+    .section__head--row { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+
+    /* ---------- What I do ---------- */
+    .skills { margin-top: 2.25rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.75rem; }
+    .skill__icon { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 42px; border-radius: var(--radius-sm); background: var(--bg-2); color: var(--ink); font-size: 1.9rem; }
+    .skill h3 { margin-top: 0.9rem; font-size: 1.3rem; font-weight: 800; letter-spacing: -0.015em; }
+    .skill p { margin-top: 0.45rem; font-size: 0.97rem; line-height: 1.5; color: var(--muted); }
+
+    /* ---------- Featured projects ---------- */
+    .projects { margin-top: 1.75rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; }
+    .project {
+      position: relative; display: flex; flex-direction: column;
+      padding: 1.25rem 1.6rem 1.4rem; border: 1px solid #E2D9CE; border-radius: var(--radius);
+      background: var(--card); box-shadow: var(--shadow);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+    }
+    .project:hover { border-color: var(--neutral); transform: translateY(-2px); box-shadow: 0 2px 4px rgba(46,41,37,0.04), 0 14px 30px rgba(46,41,37,0.08); }
+    .project:focus-within { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .project__top { display: flex; justify-content: space-between; align-items: center; color: var(--text); }
+    .project__icon { font-size: 1.85rem; display: inline-flex; }
+    .project__arrow { font-size: 1.55rem; display: inline-flex; }
+    .project h3 { margin-top: 0.7rem; font-size: 1.28rem; font-weight: 800; letter-spacing: -0.015em; line-height: 1.25; }
+    .project h3 a { text-decoration: none; }
+    .project h3 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }   /* whole card is the link */
+    .project h3 a:focus-visible { outline: none; }
+    .project p { margin-top: 0.6rem; font-size: 0.98rem; line-height: 1.55; color: var(--text); flex: 1; }
+    .project__tags { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .project__tags li { padding: 0.3rem 0.7rem; border-radius: 8px; background: var(--panel); font-size: 0.82rem; color: var(--text); }
+
+    /* ---------- Closer look (existing interactive terminal) ---------- */
+    .closer { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 3.5rem; align-items: center; }
+    .closer__text h2 { margin-top: 0.9rem; font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+    .closer__text p { margin: 1rem 0 1.5rem; font-size: 1.05rem; line-height: 1.6; color: var(--text); max-width: 30rem; }
+
+    .hero-terminal { background: #2B2622; border-radius: var(--radius); overflow: hidden; box-shadow: 0 18px 44px rgba(46, 41, 37, 0.18); }
+    .t-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #36302B; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .t-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .t-dot-r { background: #D97B6C; } .t-dot-y { background: #D9B56C; } .t-dot-g { background: #8FA683; }
+    .t-title { flex: 1; text-align: center; padding-right: 29px; font-size: 0.72rem; color: rgba(255,255,255,0.5); }
+    .t-tabs { display: flex; background: #312B27; border-bottom: 1px solid rgba(255,255,255,0.08); overflow-x: auto; scrollbar-width: none; }
+    .t-tabs::-webkit-scrollbar { display: none; }
+    .t-tab {
+      flex: 0 0 auto; appearance: none; background: transparent; border: 0;
+      border-right: 1px solid rgba(255,255,255,0.06); border-top: 2px solid transparent;
+      padding: 0.6rem 0.9rem; color: rgba(255,255,255,0.6); cursor: pointer;
+      font-family: 'Courier New', monospace; font-size: 0.78rem;
+    }
+    .t-tab:hover { color: rgba(255,255,255,0.88); }
+    .t-tab[aria-selected="true"] { background: #2B2622; color: #FBF8F3; font-weight: 700; border-top-color: var(--neutral); }
+    .t-tab:focus-visible, .t-body:focus-visible { outline: 2px solid var(--neutral); outline-offset: -3px; }
+    .t-body { padding: 18px 20px 22px; min-height: 210px; }
+    .t-body pre, .t-list { margin: 0; font-family: 'Courier New', monospace; font-size: 0.86rem; line-height: 1.75; color: #E9E2D8; overflow-wrap: anywhere; }
+    .t-body pre { white-space: pre-wrap; }   /* only the JSON block keeps its line breaks */
+    .t-list li { display: grid; grid-template-columns: 2.4em 1fr; padding: 0.15rem 0; }
+    .t-num { color: var(--neutral); } .t-key { color: #E2C08D; } .t-str { color: #B5C7A8; } .t-punc { color: rgba(233,226,216,0.55); }
+
+    /* ---------- Toolbox ---------- */
+    .toolbox { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .toolbox li { padding: 0.5rem 0.9rem; border: 1px solid #E2D9CE; border-radius: 999px; background: var(--card); font-size: 0.92rem; color: var(--text); }
+
+    /* ---------- Closing ---------- */
+    .closing { padding: 2.75rem 2.5rem; border-radius: var(--radius-lg); background: var(--panel); text-align: center; }
+    .closing h2 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); font-weight: 800; letter-spacing: -0.02em; }
+    .closing p { margin: 0.75rem auto 1.75rem; max-width: 36rem; color: var(--text); font-size: 1.02rem; line-height: 1.6; }
+    .closing__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; }
+    .tagline { margin: 3.5rem auto 0; max-width: 36rem; text-align: center; font-size: 1.05rem; line-height: 1.7; font-style: italic; color: var(--muted); }
+
+    /* ---------- Footer ---------- */
+    .site-footer { margin: 3rem 0 2.5rem; padding: 0 var(--gutter); text-align: center; font-size: 0.92rem; color: var(--muted); }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 0.6rem; }
+    .footer-links a { color: var(--ink); font-weight: 600; text-decoration: none; }
+    .footer-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1240px) {
+      .metrics { padding: 1.3rem 1.75rem; }
+      .metric { gap: 0.75rem; padding-left: 1.4rem; }
+      .metric:not(:last-child) { padding-right: 1.4rem; }
+    }
+    @media (max-width: 1100px) {
+      .metrics { margin-left: 0; margin-right: 0; padding: 1.3rem 1.5rem; }
+      .metric__text span { white-space: normal; }
+      .metric__text strong { font-size: 1.4rem; }
+      .metric__text span { font-size: 0.88rem; }
+    }
+    @media (max-width: 960px) {
+      .hero__grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+      .hero__text { padding: 0; }
+      .hero__media { margin-right: 0; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: stretch; padding: 0.75rem; }
+      .metric, .metric:first-child, .metric:not(:last-child) { padding: 1rem 1.25rem; }
+      .metric + .metric { border-left: 0; }
+      .metric:nth-child(even) { border-left: 1px solid var(--line-strong); }
+      .metric:nth-child(n+3) { border-top: 1px solid var(--line-strong); }
+      .section__head--split { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+      .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 2rem; }
+      .projects { grid-template-columns: minmax(0, 1fr); }
+      .closer { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+    }
+    @media (max-width: 640px) {
+      .br-wide { display: none; }
+      .section { margin-top: 4rem; }
+      .hero h1 { font-size: clamp(2rem, 10vw, 2.9rem); }
+      .hero__lede { font-size: 1.02rem; }
+      .hero__actions .btn { flex: 1 1 auto; }
+      .metrics { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .metric { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 1rem; }
+      .metric__icon { font-size: 1.5rem; }
+      .metric__text strong { font-size: 1.3rem; }
+      .metric__text span { font-size: 0.86rem; }
+      .skills { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+      .closing { padding: 2rem 1.25rem; }
+      .closing__actions .btn { flex: 1 1 100%; }
+    }
+    /* Narrow phones: let the three terminal file tabs wrap instead of being cut off. */
+    @media (max-width: 374px) {
+      .t-tabs { flex-wrap: wrap; overflow-x: visible; }
+      .t-tab { flex: 1 1 auto; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.72rem; padding: 0.55rem 0.45rem; }
+    }
+    @media (max-width: 540px) {
+      .t-tab { flex: 1 1 auto; font-size: 0.72rem; padding: 0.55rem 0.45rem; }
+      .t-body { padding: 14px 14px 18px; }
+      .site-footer { margin-bottom: 6rem; }
     }
 
-    .shot-caption {
-      padding: 0.8rem 1rem 0.95rem;
-      border-top: 1px solid var(--border-soft);
-      color: var(--muted-dark);
-      font-size: 0.82rem;
-      background: rgba(255,255,255,0.72);
-    }
-
-    .walkthrough-tabs {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 0.55rem;
-      margin-bottom: 1rem;
-    }
-
-    .walkthrough-tab,
-    .walkthrough-mobile-trigger {
-      font: inherit;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.65);
-      color: var(--muted-dark);
-      cursor: pointer;
-    }
-
-    .walkthrough-tab {
-      min-height: 48px;
-      padding: 0.65rem 0.7rem;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      line-height: 1.25;
-    }
-
-    .walkthrough-tab:hover,
-    .walkthrough-tab.active {
-      color: var(--text-dark);
-      border-color: var(--border-strong);
-      background: var(--surface);
-    }
-
-    .walkthrough-item { display: none; }
-
-    .walkthrough-item.active { display: block; }
-
-    .walkthrough-mobile-trigger { display: none; }
-
-    .walkthrough-panel {
-      display: grid;
-      grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.55fr);
-      border: 1.5px solid var(--border-soft);
-      border-radius: 22px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.58);
-    }
-
-    .walkthrough-copy {
-      padding: 2rem;
-      align-self: center;
-    }
-
-    .walkthrough-number {
-      width: 42px;
-      height: 42px;
-      margin-bottom: 1rem;
-      border: 1px solid var(--border-soft);
-      border-radius: 999px;
-      background: var(--surface);
-      display: grid;
-      place-items: center;
-      color: #4A423C;
-      font-size: 0.82rem;
-      font-weight: 800;
-    }
-
-    .walkthrough-copy h3 {
-      margin: 0 0 0.65rem;
-      font-size: 1.3rem;
-      letter-spacing: -0.02em;
-    }
-
-    .walkthrough-copy p {
-      margin: 0;
-      color: var(--muted-dark);
-      font-size: 0.92rem;
-      line-height: 1.72;
-    }
-
-    .walkthrough-visual {
-      min-width: 0;
-      border-left: 1px solid var(--border-soft);
-      background: #F3EFE9;
-    }
-
-    .walkthrough-visual .shot-frame {
-      min-height: 0;
-      border-top: 0;
-    }
-
-    .walkthrough-visual .shot-caption {
-      background: rgba(255,255,255,0.9);
-    }
-
-    .shot-link {
-      display: block;
-      padding: 0 1rem 0.95rem;
-      background: rgba(255,255,255,0.9);
-      color: #4A423C;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    @media (max-width: 720px) {
-      .walkthrough-tabs { display: none; }
-
-      .walkthrough-item {
-        display: block;
-        margin-bottom: 0.65rem;
-      }
-
-      .walkthrough-mobile-trigger {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.85rem 1rem;
-        border-radius: 12px;
-        text-align: left;
-        font-size: 0.88rem;
-        font-weight: 700;
-      }
-
-      .walkthrough-mobile-trigger span {
-        color: #4A423C;
-        font-size: 0.75rem;
-      }
-
-      .walkthrough-item:not(.active) .walkthrough-panel { display: none; }
-
-      .walkthrough-item.active .walkthrough-mobile-trigger {
-        color: var(--text-dark);
-        border-color: var(--border-strong);
-        background: var(--surface);
-        border-radius: 12px 12px 0 0;
-      }
-
-      .walkthrough-panel {
-        grid-template-columns: 1fr;
-        border-radius: 0 0 16px 16px;
-      }
-
-      .walkthrough-copy { padding: 1.35rem; }
-
-      .walkthrough-number { display: none; }
-
-      .walkthrough-visual { border-left: 0; border-top: 1px solid var(--border-soft); }
-    }
-
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.85rem;
-      margin-bottom: 2rem;
-    }
-
-    .tool-card {
-      padding: 1.35rem 1rem;
-      border-radius: 18px;
-      text-align: center;
-    }
-
-    .tool-logo {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      border: 1.5px solid var(--border-soft);
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 0.75rem;
-      font-size: 0.75rem;
-      font-weight: 800;
-      color: var(--muted-dark);
-    }
-
-    .tool-name { margin: 0 0 0.25rem; font-size: 0.9rem; font-weight: 800; }
-    .tool-desc { margin: 0; font-size: 0.78rem; line-height: 1.45; color: var(--muted-dark); }
-
-    .try-card {
-      padding: 2.25rem 2.5rem;
-      border-radius: 22px;
-      text-align: center;
-      border-color: var(--border-strong);
-    }
-
-    .try-card h3 { margin: 0 0 0.6rem; font-size: 1.25rem; }
-    .try-card p { margin: 0 0 1.25rem; }
-
-    .live-btn {
-      padding: 0.85rem 1.7rem;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), #4A433D);
-      color: #fff;
-    }
-
-    .links { text-align: center; padding: 0 1.5rem 2.5rem; }
-    .links h2 { font-size: 1.6rem; margin: 0 0 0.9rem; }
-    .connect-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .connect-links a {
-      color: rgba(56,51,47,0.75);
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 600;
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.6);
-    }
-
-    footer {
-      text-align: center;
-      margin: 0 0 34px;
-      padding: 0 1.5rem;
-      font-size: 0.95rem;
-      color: rgba(56,51,47,0.75);
-    }
+    /* ---------- Chat panel layout (carried over unchanged; colours themed in chat-launcher.css) ---------- */
+    /* Chat */
 
     #chat-toggle {
       position: fixed;
@@ -464,9 +365,20 @@
       background: var(--surface);
       border: 1.5px solid var(--border-strong);
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(180,140,135,0.28);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
       z-index: 9999;
       font-size: 24px;
-      box-shadow: 0 8px 24px rgba(140,124,112,0.28);
+    }
+
+    #chat-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(180,140,135,0.4);
     }
 
     #chat-window {
@@ -477,178 +389,697 @@
       max-height: 530px;
       background: var(--white-glass);
       backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border: 1.5px solid var(--border-soft);
       border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(140,124,112,0.15), 0 4px 16px rgba(0,0,0,0.06);
-      display: none;
+      box-shadow:
+        0 20px 50px rgba(180,140,135,0.15),
+        0 4px 16px rgba(0,0,0,0.06);
+      display: flex;
       flex-direction: column;
       overflow: hidden;
       z-index: 9998;
+      transform: scale(0.92) translateY(14px);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
+        opacity 0.22s ease;
     }
 
-    #chat-window.open { display: flex; }
-    .chat-header { padding: 14px 16px; background: var(--surface); border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; gap: 10px; }
-    .chat-avatar { width: 38px; height: 38px; border-radius: 12px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
-    .chat-header-info h4 { margin: 0; font-size: 0.92rem; }
-    .chat-header-info p { margin: 2px 0 0; font-size: 0.73rem; color: var(--muted-dark); }
-    .chat-close { margin-left: auto; background: none; border: 0; cursor: pointer; font-size: 17px; }
-    .chat-messages { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 9px; }
-    .msg { max-width: 84%; padding: 10px 13px; border-radius: 16px; font-size: 0.875rem; line-height: 1.58; }
-    .msg.bot { align-self: flex-start; background: #fff; border: 1px solid var(--border-soft); }
-    .msg.user { align-self: flex-end; background: var(--accent); color: #fff; }
-    .chat-input-area { padding: 11px 13px; border-top: 1px solid var(--border-soft); display: flex; gap: 8px; }
-    .chat-input-area textarea { flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px; padding: 9px 11px; font: inherit; resize: none; }
-    .send-btn { width: 36px; border: 0; border-radius: 11px; background: var(--accent); color: #fff; cursor: pointer; }
-
-    @media (max-width: 760px) {
-      .tools-grid { grid-template-columns: repeat(2, 1fr); }
-      .intro-card, .try-card { padding: 1.6rem; }
+    #chat-window.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
     }
 
-    @media (max-width: 540px) {
-      .site-nav-brand { display: none; }
-      .site-nav { padding: 0 0.7rem; justify-content: center; }
-      .site-nav-links a { padding: 0.35rem 0.45rem; font-size: 0.8rem; }
-      #chat-window { width: calc(100vw - 28px); right: 14px; }
-      #chat-toggle { right: 14px; }
-    }
-  
-    /* Projects navigation dropdown */
-    .site-nav-links { align-items: center; }
-    .nav-projects { position: relative; }
-    .nav-projects summary {
+    .chat-header {
+      background: linear-gradient(
+        135deg,
+        var(--surface) 0%,
+        var(--surface-soft) 100%
+      );
+      border-bottom: 1px solid var(--border-soft);
+      padding: 15px 16px;
       display: flex;
       align-items: center;
-      gap: 0.28rem;
-      padding: 0.35rem 0.7rem;
-      border-radius: 8px;
-      color: rgba(56,51,47,0.7);
-      font-size: 0.875rem;
-      font-weight: 500;
+      gap: 11px;
+      flex-shrink: 0;
+    }
+
+    .chat-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        #E0B8B4
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .chat-header-info h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .chat-header-info p {
+      font-size: 0.73rem;
+      color: var(--muted-dark);
+      margin: 2px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .online-dot {
+      width: 7px;
+      height: 7px;
+      background: #4caf82;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .chat-close {
+      margin-left: auto;
+      background: none;
+      border: none;
       cursor: pointer;
-      list-style: none;
-      white-space: nowrap;
+      color: var(--muted-dark);
+      font-size: 17px;
+      line-height: 1;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.15s;
     }
-    .nav-projects summary::-webkit-details-marker { display: none; }
-    .nav-projects summary::after {
-      content: "▾";
-      font-size: 0.68rem;
-      transition: transform 0.18s ease;
+
+    .chat-close:hover {
+      background: rgba(180,140,135,0.12);
     }
-    .nav-projects[open] summary::after { transform: rotate(180deg); }
-    .nav-projects:hover summary,
-    .nav-projects[open] summary,
-    .nav-projects.active summary {
-      color: #2E2925;
-    }
-    .nav-projects.active summary { font-weight: 700; }
-    .nav-projects-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      z-index: 1200;
-      width: 250px;
-      padding: 0.55rem;
-      border: 1px solid rgba(140,124,112,0.25);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.98);
-      box-shadow: 0 14px 35px rgba(56,51,47,0.12);
-    }
-    .nav-projects:hover .nav-projects-menu,
-    .nav-projects[open] .nav-projects-menu {
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 14px 10px;
       display: flex;
       flex-direction: column;
-      gap: 0.15rem;
+      gap: 9px;
+      scroll-behavior: smooth;
     }
-    .site-nav-links .nav-projects-menu a {
-      display: block;
-      padding: 0.62rem 0.72rem;
-      border-radius: 9px;
-      color: rgba(56,51,47,0.83);
-      font-size: 0.82rem;
-      font-weight: 500;
-      line-height: 1.3;
-      text-align: left;
-      text-decoration: none;
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
     }
-    .site-nav-links .nav-projects-menu a:hover {
-      color: #2E2925;
-      background: rgba(178,163,151,0.14);
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: transparent;
     }
-    .site-nav-links .nav-projects-menu a:first-child {
-      margin-bottom: 0.18rem;
-      border-bottom: 1px solid rgba(140,124,112,0.18);
-      border-radius: 9px 9px 4px 4px;
-      font-weight: 700;
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: var(--border-soft);
+      border-radius: 4px;
     }
-    @media (max-width: 640px) {
-      .nav-projects summary {
-        padding: 0.35rem 0.38rem;
-        font-size: 0.8rem;
+
+    .msg {
+      max-width: 84%;
+      padding: 10px 13px;
+      border-radius: 16px;
+      font-size: 0.875rem;
+      line-height: 1.58;
+      animation: msgIn 0.22s ease;
+    }
+
+    @keyframes msgIn {
+      from {
+        opacity: 0;
+        transform: translateY(7px);
       }
-      .nav-projects-menu {
-        position: fixed;
-        top: 54px;
-        right: 0.5rem;
-        width: min(250px, calc(100vw - 1rem));
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-  </style>
-  <style>
-    /* Work navigation: grouped dropdown */
-    .nav-projects-menu .nav-menu-label {
-      margin: 0.55rem 0.72rem 0.2rem;
-      font-size: 0.66rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #786A5F;
-      text-align: left;
+    .msg.bot {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border-soft);
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
+      color: var(--text-dark);
     }
-    .nav-projects-menu .nav-menu-group { display: flex; flex-direction: column; gap: 0.1rem; }
-    .nav-projects-menu .nav-menu-group + .nav-menu-label {
-      margin-top: 0.45rem;
-      padding-top: 0.6rem;
-      border-top: 1px solid rgba(140,124,112,0.18);
+
+    .msg.user {
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        #E0B8B4
+      );
+      color: #fff;
+      border-bottom-right-radius: 5px;
+      align-self: flex-end;
     }
-    .site-nav-links .nav-projects-menu .nav-menu-group a:first-child {
-      margin-bottom: 0;
-      border-bottom: 0;
-      border-radius: 9px;
-      font-weight: 500;
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 11px 14px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
+      width: fit-content;
+      animation: msgIn 0.2s ease;
     }
-    .site-nav-links .nav-projects-menu .nav-menu-group a[aria-current="page"] {
-      color: #2E2925;
-      font-weight: 600;
-      background: rgba(178,163,151,0.12);
+
+    .typing-indicator span {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: bounce 1.2s infinite;
     }
-    .site-nav-links .nav-projects-menu a:focus-visible,
-    .nav-projects summary:focus-visible {
-      outline: 2px solid #4A423C;
-      outline-offset: 1px;
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
     }
-    .nav-projects-menu { width: 270px; max-height: calc(100vh - 80px); overflow-y: auto; }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes bounce {
+      0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.6;
+      }
+
+      30% {
+        transform: translateY(-5px);
+        opacity: 1;
+      }
+    }
+
+    .chat-input-area {
+      padding: 11px 13px;
+      border-top: 1px solid var(--border-soft);
+      background: rgba(255,255,255,0.6);
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .chat-input-area textarea {
+      flex: 1;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 9px 11px;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text-dark);
+      background: rgba(255,255,255,0.88);
+      resize: none;
+      outline: none;
+      max-height: 100px;
+      line-height: 1.45;
+      transition: border-color 0.2s;
+    }
+
+    .chat-input-area textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .chat-input-area textarea::placeholder {
+      color: rgba(26,26,26,0.4);
+    }
+
+    .send-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        #E0B8B4
+      );
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        opacity 0.15s;
+      box-shadow: 0 4px 12px rgba(180,140,135,0.32);
+    }
+
+    .send-btn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 16px rgba(180,140,135,0.42);
+    }
+
+    .send-btn:active {
+      transform: scale(0.95);
+    }
+
+    .send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .send-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: white;
+    }
+
+    @media (max-width: 420px) {
+      #chat-window {
+        width: calc(100vw - 28px);
+        right: 14px;
+        bottom: 84px;
+      }
+
+      #chat-toggle {
+        right: 14px;
+        bottom: 14px;
+      }
+    }
+
+    @media (max-width: 374px) {
+      .site-nav-links > a, .nav-projects summary { padding: 0.35rem 0.36rem; font-size: 0.76rem; gap: 0.15rem; }
+    }
+    /* Narrow phones: achievements as compact single-column rows. */
+    @media (max-width: 420px) {
+      .metrics { grid-template-columns: minmax(0, 1fr); padding: 0.4rem 1rem; }
+      .metric, .metric:first-child, .metric:not(:last-child) { flex-direction: row; align-items: center; gap: 0.9rem; padding: 0.85rem 0.25rem; }
+      .metric:nth-child(even) { border-left: 0; }
+      .metric + .metric { border-top: 1px solid var(--line-strong); }
+      .metric__icon { width: 1.6rem; justify-content: center; }
+      .metric__text { flex-direction: row; align-items: baseline; flex-wrap: wrap; column-gap: 0.5rem; row-gap: 0.1rem; }
+      .metric__text strong { font-size: 1.2rem; }
+      .metric__text span { font-size: 0.88rem; }
+    }
+
+
+
+    /* ---------- Principles accordion (shared: homepage principles.md tab and About) ---------- */
+    .pacc { font-family: 'Courier New', monospace; }
+    .pacc { display: flex; flex-direction: column; }
+    .pacc__item + .pacc__item { border-top: 1px solid rgba(255,255,255,0.07); }
+    .pacc__h { margin: 0; font: inherit; }
+    .pacc__btn {
+      appearance: none; width: 100%; display: grid; grid-template-columns: 2.6em minmax(0, 1fr) 1.25rem; align-items: center; gap: 0.25rem;
+      padding: 0.8rem 0.6rem; border: 0; border-radius: 6px; background: transparent; cursor: pointer;
+      color: #E9E2D8; text-align: left; font: inherit; font-size: 0.9rem; line-height: 1.45;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .pacc__btn:hover { background: rgba(255,255,255,0.05); color: #FBF8F3; }
+    .pacc__btn .t-num { color: #A89A8D; }
+    .pacc__btn[aria-expanded="true"] { color: #FBF8F3; font-weight: 700; }
+    .pacc__btn[aria-expanded="true"] .t-num { color: #E2C08D; }
+    .pacc__btn:focus-visible { outline: 2px solid var(--neutral); outline-offset: -2px; }
+    /* Plus / minus drawn with two bars; the vertical bar disappears when expanded. */
+    .pacc__icon { position: relative; justify-self: end; width: 12px; height: 12px; }
+    .pacc__icon::before, .pacc__icon::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; margin-top: -0.75px; background: currentColor; border-radius: 1px; }
+    .pacc__icon::after { transform: rotate(90deg); }
+    .pacc__btn[aria-expanded="true"] .pacc__icon::after { transform: rotate(0deg); opacity: 0; }
+    .pacc__panel { padding: 0 0.6rem 0.9rem calc(0.6rem + 2.6em + 0.25rem); }
+    .pacc__panel p { position: relative; font-size: 0.86rem; line-height: 1.65; color: #D9CFC3; }
+    .pacc__panel p::before { content: "→"; position: absolute; left: -1.5em; color: #B5C7A8; }
     @media (max-width: 640px) {
-      .nav-projects-menu { width: min(270px, calc(100vw - 1rem)); }
+      .pacc__btn { font-size: 0.86rem; padding: 0.75rem 0.45rem; }
+      .pacc__panel { padding-left: calc(0.45rem + 2.6em + 0.25rem); padding-right: 0.45rem; }
     }
+
+    /* ---------- Shared hero heading: same size, weight and leading on every page ---------- */
+    .hero h1, .about-hero h1, .td-hero h1 { font-size: var(--hero-h1-size); font-weight: 800; line-height: var(--hero-h1-leading); letter-spacing: -0.035em; }
+
+    /* ---------- What I do: four outlined cards in one row ---------- */
+    .skills { gap: 1rem; margin-top: 1.5rem; align-items: stretch; }
+    .skill { padding: 1.35rem 1.4rem 1.45rem; border: 1px solid #E2D9CE; border-radius: var(--radius); background: var(--card); }
+    .skill h3 { margin-top: 0.9rem; font-size: 1.2rem; }
+    .skill p { margin-top: 0.4rem; font-size: 0.96rem; }
+    @media (max-width: 640px) { .skills { gap: 0.85rem; } .skill { padding: 1.2rem 1.25rem; } }
+    /* Homepage metrics bar on the content edges, matching the cards below */
+    .hero + .container .metrics { margin-left: 0; margin-right: 0; }
+    /* Closer section: no eyebrow, heading starts the section */
+    .closer__text h2 { margin-top: 0; }
+
+    /* ---------- Shared hero description: same size, weight, leading and spacing on every page ---------- */
+    .hero__lede, .about-hero__lede, .td-hero__lede { margin-top: 1.1rem; font-size: var(--hero-lede-size); font-weight: 400; line-height: var(--hero-lede-leading); }
+    .hero__lede + .hero__lede, .about-hero__lede + .about-hero__lede, .td-hero__lede + .td-hero__lede { margin-top: var(--hero-lede-gap); }
+    .hero__lede { max-width: 33rem; }
+
+    /* ---------- Homepage metrics: four equal columns, labels wrap inside the bar ---------- */
+    @media (min-width: 961px) {
+      .hero + .container .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); justify-content: stretch; padding: 1.35rem 1.25rem; }
+      .hero + .container .metrics .metric { min-width: 0; gap: 0.9rem; padding: 0.3rem 1.25rem; }
+      .hero + .container .metrics .metric__icon { flex: 0 0 1.85rem; justify-content: center; }
+      .hero + .container .metrics .metric__text { min-width: 0; }
+      .hero + .container .metrics .metric__text span { white-space: normal; text-wrap: pretty; }
+      .hero + .container .metrics { align-items: stretch; }
+      .hero + .container .metrics .metric { align-items: flex-start; }
+      .hero + .container .metrics .metric__icon { margin-top: 0.1rem; }
+    }
+
+    /* ---------- Shared hero frame: Home, About and Technical depth line up on desktop ---------- */
+    body .hero + .container .metrics, body .td-hero + .container .metrics, body .about-hero + .section { margin-top: var(--hero-after); }
+    @media (min-width: 1200px) {
+      /* Text stays top-aligned so eyebrows and headings start at the same point; visuals sit centred in the frame */
+      .hero__media img { max-height: var(--hero-frame-h); }
+      body .about-hero__grid, body .td-hero__grid { min-height: var(--hero-frame-h); align-items: center; }
+      body .about-hero__grid > div:first-child, body .td-hero__text { align-self: start; }
+    }
+
+    /* ---------- Shared hero visual area: same footprint as the homepage desk image (desktop) ---------- */
+    .hero-stage { min-width: 0; }
+    @media (min-width: 1200px) {
+      :root {
+        --hero-bleed: calc((100vw - min(100vw, var(--content-max))) / 2 + var(--gutter));
+        /* the desk image's own height: its width at the 626:454 ratio, capped by the shared frame */
+        --hero-visual-h: min(calc((50vw - 2px) * 0.7252), var(--hero-frame-h));
+      }
+      body .about-hero__grid, body .td-hero__grid { grid-template-columns: minmax(0, 540px) minmax(0, 1fr); gap: 1.25rem; align-items: start; min-height: 0; }
+      .hero-stage {
+        display: flex; align-items: center; justify-content: center;
+        min-height: var(--hero-visual-h);
+        margin-right: calc(-1 * var(--hero-bleed));
+        padding: 2rem calc(var(--hero-bleed) + 2rem) 2rem 2.5rem;
+        border-radius: 28px 0 0 28px;
+        background: linear-gradient(155deg, #EFE8DE 0%, #E7DED2 100%);
+      }
+      .hero-stage > .pcode { width: 100%; max-width: 30rem; }
+      .hero-stage > .td-visual { width: 100%; max-width: 31rem; }
+      .hero-stage > .td-visual::before { display: none; }
+    }
+
+    /* ================= Engineering Escalation Engine case study ================= */
+    .nav-projects.active > summary { background: var(--bg-2); color: var(--ink); font-weight: 600; }
+    .cs { --cs-line: #E2D9CE; }
+    .cs .i { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ---------- Hero ---------- */
+    .cs-hero { padding-top: calc(var(--nav-h) + var(--hero-top)); }
+    .cs-crumbs { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.86rem; color: var(--muted); list-style: none; }
+    .cs-crumbs li + li::before { content: "/"; margin-right: 0.5rem; color: #B2A397; }
+    .cs-crumbs a { color: var(--text); text-decoration: none; }
+    .cs-crumbs a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .cs-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 3rem; align-items: center; margin-top: 1.5rem; }
+    .cs-hero h1 { max-width: 14ch; font-size: var(--hero-h1-size); font-weight: 800; line-height: var(--hero-h1-leading); letter-spacing: -0.035em; color: var(--ink); text-wrap: balance; }
+    .cs-hero__lede { margin-top: 1.1rem; max-width: 33rem; font-size: var(--hero-lede-size); line-height: var(--hero-lede-leading); color: var(--text); text-wrap: pretty; }
+    .cs-hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.6rem; }
+    .cs-hero__actions .btn { min-height: 46px; gap: 0.55rem; }
+    .cs-hero__actions .i { width: 1.05rem; height: 1.05rem; stroke-width: 1.8; }
+    .cs-hero__actions .gh { width: 1.15rem; height: 1.15rem; fill: currentColor; stroke: none; }
+    .cs-hero__note { margin-top: 1rem; font-size: 0.86rem; line-height: 1.5; color: var(--muted); }
+
+    /* App preview: illustrative, built from the demo's fictional case */
+    .cs-preview { position: relative; isolation: isolate; margin: 0; }
+    .cs-preview__blob { position: absolute; z-index: -1; inset: -12% -6% -14% -14%; width: 120%; height: 126%; pointer-events: none; }
+    .cs-preview__blob path { fill: #EADFD3; opacity: 0.75; }
+    .app { border: 1px solid var(--cs-line); border-radius: 16px; background: #FDFBF8; box-shadow: 0 18px 40px rgba(46, 41, 37, 0.1); overflow: hidden; }
+    .app__bar { display: flex; gap: 5px; padding: 0.65rem 0.85rem; background: #EFE7DD; }
+    .app__bar span { width: 8px; height: 8px; border-radius: 50%; background: #9C8B7E; }
+    .app__body { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); }
+    .app__side { padding: 0.9rem 0.6rem; border-right: 1px solid #EDE5DB; background: #F8F3EE; }
+    .app__brand { display: flex; align-items: center; gap: 0.45rem; padding: 0 0.45rem 0.7rem; font-size: 0.72rem; font-weight: 700; color: var(--ink); }
+    .app__nav { display: grid; gap: 0.15rem; list-style: none; }
+    .app__nav li { display: flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.45rem; border-radius: 7px; font-size: 0.72rem; color: var(--text); }
+    .app__nav li.is-on { background: #EFE4D8; font-weight: 600; color: var(--ink); }
+    .app__side .i, .app__brand .i { width: 0.9rem; height: 0.9rem; flex-shrink: 0; }
+    .app__main { padding: 1rem; }
+    .app__title { font-size: 0.95rem; font-weight: 700; color: var(--ink); }
+    .app__case { margin-top: 0.15rem; font-size: 0.68rem; color: var(--muted); }
+    .app__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin-top: 0.8rem; }
+    .tile { padding: 0.65rem 0.7rem; border: 1px solid #EDE5DB; border-radius: 10px; background: #fff; }
+    .tile__label { font-size: 0.66rem; font-weight: 600; color: var(--muted); }
+    .tile__score { margin-top: 0.25rem; font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+    .tile__score small { font-size: 0.68rem; font-weight: 600; color: var(--muted); }
+    .meter { position: relative; height: 5px; margin-top: 0.45rem; border-radius: 3px; background: #EDE5DB; }
+    .meter span { position: absolute; inset: 0 auto 0 0; border-radius: 3px; background: #7D8468; }
+    .meter i { position: absolute; top: -3px; bottom: -3px; width: 2px; border-radius: 1px; background: #6E5446; }
+    .tile__hint { margin-top: 0.35rem; font-size: 0.62rem; color: var(--muted); }
+    .pill { display: inline-flex; align-items: center; margin-top: 0.4rem; padding: 0.22rem 0.55rem; border-radius: 6px; background: #F1E6DA; font-size: 0.72rem; font-weight: 700; color: var(--ink); }
+    .tile__head { font-size: 0.72rem; font-weight: 700; color: var(--ink); }
+    .checks { display: grid; gap: 0.3rem; margin-top: 0.45rem; list-style: none; }
+    .checks li { display: flex; align-items: center; gap: 0.4rem; font-size: 0.66rem; color: var(--text); }
+    .checks svg { width: 0.8rem; height: 0.8rem; flex-shrink: 0; fill: none; stroke: #7D8468; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .review { display: flex; align-items: center; gap: 0.45rem; margin-top: 0.45rem; font-size: 0.66rem; color: var(--muted); }
+    .review .i { width: 0.95rem; height: 0.95rem; color: var(--ink); }
+    .approve { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem; padding: 0.42rem 0.55rem; border: 1px solid #CBD1B9; border-radius: 8px; background: #EDF0E3; font-size: 0.68rem; font-weight: 600; color: #3E4430; }
+    .approve .i { width: 0.85rem; height: 0.85rem; }
+
+    /* ---------- Sections ---------- */
+    .cs-section { margin-top: 4.25rem; }
+    .cs-section > h2, .cs-head h2 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.03em; color: var(--ink); text-wrap: balance; }
+    .cs-head p { margin-top: 0.5rem; max-width: 52rem; font-size: 1rem; line-height: 1.55; color: var(--text); }
+
+    /* Challenge and what I built */
+    .cs-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.4rem; }
+    .cs-card { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); column-gap: 1.1rem; padding: 1.6rem 1.75rem; border: 1px solid var(--cs-line); border-radius: var(--radius-lg); background: var(--card); }
+    .cs-card > .i { width: 2rem; height: 2rem; margin-top: 0.1rem; color: var(--ink); stroke-width: 1.4; }
+    .cs-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--ink); }
+    .cs-card p { margin-top: 0.5rem; font-size: 0.97rem; line-height: 1.6; color: var(--text); text-wrap: pretty; }
+    .cs-related { margin-top: 1rem; font-size: 0.92rem; color: var(--muted); }
+    .cs-related a { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: #B2A397; text-underline-offset: 3px; }
+
+    /* How it works */
+    .steps6 { display: grid; grid-template-columns: repeat(11, auto); grid-template-columns: minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr); align-items: stretch; margin-top: 1.4rem; list-style: none; }
+    .step6 { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; min-height: 6.5rem; padding: 0.9rem 0.6rem; border: 1px solid var(--cs-line); border-radius: 14px; background: var(--card); text-align: center; box-sizing: border-box; }
+    .step6 .i { width: 1.6rem; height: 1.6rem; color: var(--ink); stroke-width: 1.5; }
+    .step6 span { font-size: 0.86rem; font-weight: 600; line-height: 1.3; color: var(--ink); text-wrap: balance; }
+
+    .step6-arrow { align-self: center; justify-self: center; color: var(--ink); }
+    .step6-arrow svg { display: block; width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Inside the system: real screenshots from the demo */
+    .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.4rem; }
+    .shot { margin: 0; display: flex; flex-direction: column; border: 1px solid var(--cs-line); border-radius: var(--radius-lg); background: var(--card); overflow: hidden; box-shadow: 0 12px 28px rgba(46, 41, 37, 0.06); }
+    .shot__bar { display: flex; gap: 5px; padding: 0.65rem 0.9rem; background: #EFE7DD; }
+    .shot__bar span { width: 8px; height: 8px; border-radius: 50%; background: #9C8B7E; }
+    .shot__head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem 0.75rem; }
+    .shot__head h3 { font-size: 1.08rem; font-weight: 700; color: var(--ink); }
+    .shot__head a { flex-shrink: 0; font-size: 0.84rem; font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: #B2A397; text-underline-offset: 3px; }
+    .shot__frame { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 17rem; margin: 0 1.25rem; padding: 1.1rem; border: 1px solid #E8E0D6; border-radius: 10px; overflow: hidden; background: #F7F8FA; }
+    .shot__frame img { display: block; width: auto; max-width: min(100%, 420px); height: auto; border-radius: 6px; box-shadow: 0 1px 0 rgba(46, 41, 37, 0.04); }
+    .shot figcaption { padding: 0.85rem 1.25rem 1.2rem; font-size: 0.92rem; line-height: 1.5; color: var(--text); text-wrap: pretty; }
+
+    /* Why I designed it this way + technical build */
+    .principles3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 1.5rem; list-style: none; }
+    .principles3 li { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); column-gap: 1rem; padding: 0.25rem 2rem; }
+    .principles3 li:first-child { padding-left: 0; }
+    .principles3 li + li { border-left: 1px solid rgba(56, 51, 47, 0.12); }
+    .principles3 .i { width: 1.9rem; height: 1.9rem; color: var(--ink); stroke-width: 1.4; }
+    .principles3 h3 { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+    .principles3 p { margin-top: 0.35rem; font-size: 0.93rem; line-height: 1.55; color: var(--text); text-wrap: pretty; }
+    .stack { display: grid; grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.55fr); gap: 1.75rem; align-items: center; margin-top: 2rem; padding: 1.4rem 1.75rem; border: 1px solid var(--cs-line); border-radius: var(--radius-lg); background: var(--card); }
+    .stack__intro { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); column-gap: 1rem; padding-right: 1.75rem; border-right: 1px solid rgba(56, 51, 47, 0.12); }
+    .stack__intro .i { width: 1.9rem; height: 1.9rem; color: var(--ink); stroke-width: 1.5; }
+    .stack__intro h3 { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+    .stack__intro p { margin-top: 0.3rem; font-size: 0.88rem; line-height: 1.5; color: var(--text); }
+    .stack__list { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem 1rem; list-style: none; }
+    .stack__list li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
+    .stack__mark { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 6px; background: #2E2925; color: #fff; font-size: 0.62rem; font-weight: 800; letter-spacing: -0.02em; }
+    .stack__mark--soft { background: #EFE4D8; color: var(--ink); }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1100px) {
+      .steps6 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+      .step6-arrow { display: none; }
+      .stack { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+      .stack__intro { padding-right: 0; border-right: 0; }
+      .stack__list { justify-content: flex-start; }
+    }
+    @media (max-width: 960px) {
+      .cs-hero__grid { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+      .cs-preview { max-width: 36rem; }
+    }
+    @media (max-width: 860px) {
+      .cs-pair, .shots { grid-template-columns: minmax(0, 1fr); }
+      .principles3 { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+      .principles3 li, .principles3 li:first-child { padding: 0; }
+      .principles3 li + li { border-left: 0; padding-top: 1.25rem; border-top: 1px solid rgba(56, 51, 47, 0.12); }
+    }
+    @media (max-width: 640px) {
+      .cs-section { margin-top: 3.25rem; }
+      .cs-card { padding: 1.3rem; grid-template-columns: 1.9rem minmax(0, 1fr); column-gap: 0.85rem; }
+      .cs-card > .i { width: 1.7rem; height: 1.7rem; }
+      .steps6 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+      .step6 { min-height: 5.75rem; }
+      .shot__head { flex-wrap: wrap; padding: 0.9rem 1rem 0.65rem; }
+      .shot__frame { margin: 0 0.6rem; padding: 0.5rem; min-height: 0; }
+      .shot figcaption { padding: 0.8rem 1rem 1.05rem; }
+      .stack { padding: 1.25rem; }
+      .cs-hero__actions .btn { flex: 1 1 auto; justify-content: center; }
+    }
+    @media (max-width: 520px) {
+      .app__body { grid-template-columns: minmax(0, 1fr); }
+      .app__side { display: none; }
+      .app__grid { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media print {
+      .cs-card, .shot, .stack, .step6 { break-inside: avoid; box-shadow: none; }
+      .app, .shot { box-shadow: none; }
+    }
+
+    /* ---------- How it works: interactive stages ---------- */
+    .steps6 { margin-top: 1.4rem; }
+    .step6 { width: 100%; font: inherit; color: inherit; cursor: pointer; appearance: none; -webkit-appearance: none; }
+    .step6 { -webkit-tap-highlight-color: transparent; }
+    @media (hover: hover) { .step6:hover:not([aria-expanded="true"]) { border-color: #CFC3B6; background: #FBF7F2; } }
+    .step6[aria-expanded="true"] { border-color: #D9C6B3; background: #F3E9DE; box-shadow: inset 0 0 0 1px #D9C6B3; }
+    .step6[aria-expanded="true"] span { color: var(--ink); }
+    .step6:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    @media (prefers-reduced-motion: no-preference) { .step6 { transition: background-color 0.15s ease, border-color 0.15s ease; } }
+    .wf-panels { margin-top: 0.9rem; }
+    .wf-panel { padding: 1.15rem 1.4rem 1.25rem; border: 1px solid #E5D7C8; border-radius: 14px; background: #FBF7F2; }
+    .wf-panel:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .wf-panel__step { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6E6158; }
+    .wf-panel h3 { margin-top: 0.3rem; font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+    .wf-panel p:last-child { margin-top: 0.35rem; max-width: 52rem; font-size: 0.98rem; line-height: 1.55; color: var(--text); text-wrap: pretty; }
+
+    /* ---------- Why I designed it this way: one cohesive panel ---------- */
+    .why { margin-top: 1.4rem; padding: 0.4rem 1.75rem; border: 1px solid var(--cs-line); border-radius: var(--radius-lg); background: var(--card); list-style: none; }
+    .why li { display: grid; grid-template-columns: 2.25rem 12.5rem minmax(0, 1fr); column-gap: 1.25rem; align-items: baseline; padding: 1.1rem 0; }
+    .why li + li { border-top: 1px solid rgba(56, 51, 47, 0.1); }
+    .why__icon { align-self: start; color: var(--ink); }
+    .why__icon .i { width: 1.6rem; height: 1.6rem; stroke-width: 1.5; }
+    .why h3 { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+    .why p { font-size: 0.97rem; line-height: 1.6; color: var(--text); text-wrap: pretty; }
+    .why + .stack { margin-top: 1rem; }
+    @media (max-width: 760px) {
+      .why { padding: 0.3rem 1.25rem; }
+      .why li { grid-template-columns: 1.9rem minmax(0, 1fr); row-gap: 0.35rem; align-items: center; }
+      .why p { grid-column: 2; }
+      .why__icon .i { width: 1.4rem; height: 1.4rem; }
+    }
+
+    /* This page only: in print/PDF the fixed header would repeat over each page's first heading */
+    @media print { .site-header { position: absolute; } }
+    .steps6 { grid-auto-rows: 1fr; }
+    @media (max-width: 480px) {
+      .why li { grid-template-columns: 1.9rem minmax(0, 1fr); }
+      .why p { grid-column: 1 / -1; }
+    }
+
+    /* Collapsed-by-default workflow */
+    .wf-hint { margin-top: 0.75rem; font-size: 0.88rem; color: var(--muted); }
+    .wf-hint[hidden] { display: none; }
+    .wf-panels { margin-top: 0; }
+    .wf-panel { margin-top: 0.9rem; }
+    .wf-panel__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .wf-close { display: inline-flex; align-items: center; gap: 0.3rem; min-height: 32px; margin: -0.4rem -0.5rem -0.4rem 0; padding: 0.3rem 0.5rem; border: 0; border-radius: 8px; background: transparent; font: inherit; font-size: 0.82rem; font-weight: 500; color: #5E5650; cursor: pointer; }
+    .wf-close svg { width: 0.9rem; height: 0.9rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+    .wf-close:hover { background: #EFE4D8; color: var(--ink); }
+    .wf-close:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+    .wf-panel .wf-panel__text { margin-top: 0.35rem; max-width: 52rem; font-size: 0.98rem; line-height: 1.6; color: var(--text); text-wrap: pretty; }
+    @media (min-width: 861px) { .wf-panel { min-height: 8.25rem; box-sizing: border-box; } }
+
+    /* ================= Support Ticket Analyser case study (builds on the shared case-study styles) ================= */
+    .sta-sub { margin-top: 1rem; font-size: 1.15rem; font-weight: 700; line-height: 1.4; color: var(--ink); text-wrap: balance; }
+    .sta .cs-hero__lede { margin-top: 0.75rem; }
+
+    /* Hero preview: illustrative, using the demo's own fictional documentation-gap sample */
+    .stp { margin: 0; }
+    .stp__win { border: 1px solid var(--cs-line); border-radius: 16px; background: #FDFBF8; box-shadow: 0 18px 40px rgba(46, 41, 37, 0.1); overflow: hidden; }
+    .stp__bar { display: flex; gap: 5px; padding: 0.65rem 0.85rem; background: #EFE7DD; }
+    .stp__bar span { width: 8px; height: 8px; border-radius: 50%; background: #9C8B7E; }
+    .stp__body { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); }
+    .stp__side { padding: 0.9rem 0.6rem; border-right: 1px solid #EDE5DB; background: #F8F3EE; }
+    .stp__label { padding: 0 0.45rem 0.6rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #6E6158; }
+    .stp__steps { display: grid; gap: 0.15rem; list-style: none; }
+    .stp__steps li { display: flex; align-items: center; gap: 0.45rem; padding: 0.4rem 0.45rem; border-radius: 7px; font-size: 0.72rem; color: var(--text); }
+    .stp__steps li.is-on { background: #EFE4D8; font-weight: 600; color: var(--ink); }
+    .stp__num { display: inline-grid; place-items: center; flex: 0 0 1.05rem; height: 1.05rem; border-radius: 50%; border: 1px solid #B9AA9D; font-size: 0.58rem; font-weight: 700; color: var(--muted); }
+    .stp__steps li.is-done .stp__num { border-color: #6E5446; background: #6E5446; color: #fff; }
+    .stp__steps li.is-on .stp__num { border-color: #6E5446; color: #6E5446; }
+    .stp__main { padding: 1rem; }
+    .stp__title { font-size: 0.95rem; font-weight: 700; color: var(--ink); }
+    .stp__card { margin-top: 0.65rem; padding: 0.65rem 0.75rem; border: 1px solid #EDE5DB; border-radius: 10px; background: #fff; }
+    .stp__card small { display: block; font-size: 0.62rem; font-weight: 600; color: var(--muted); }
+    .stp__card p { margin-top: 0.15rem; font-size: 0.76rem; font-weight: 700; line-height: 1.35; color: var(--ink); }
+    .stp__card span { display: block; margin-top: 0.15rem; font-size: 0.64rem; line-height: 1.4; color: var(--text); }
+    .stp__row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .stp__rel { flex-shrink: 0; padding: 0.15rem 0.45rem; border-radius: 6px; background: #EFE7DD; font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+    .stp__gap { border-color: #E8D3B5; background: #FBF1E2; }
+    .stp__gap p { display: flex; align-items: center; gap: 0.35rem; }
+    .stp__gap svg { width: 0.85rem; height: 0.85rem; flex-shrink: 0; fill: none; stroke: #8A5A21; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .stp__actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.75rem; }
+    .stp__btn { display: inline-flex; align-items: center; padding: 0.38rem 0.65rem; border: 1px solid #CFC3B6; border-radius: 7px; font-size: 0.66rem; font-weight: 600; color: var(--ink); background: #fff; }
+    .stp__btn--dark { border-color: #2E2925; background: #2E2925; color: #fff; }
+    .stp__cap { margin-top: 0.7rem; text-align: right; font-size: 0.82rem; font-style: italic; color: var(--muted); }
+
+    /* Five-stage workflow */
+    .sta .steps6.steps5 { grid-template-columns: minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr); }
+    @media (min-width: 861px) { .sta .wf-panel { min-height: 9.15rem; } }
+
+    /* Inside the system: two equal panels, real crops at a readable scale */
+    .sta .shot__frame { aspect-ratio: auto; min-height: 0; padding: 1rem; }
+    .sta .shot__frame img { width: 100%; max-width: 100%; border-radius: 8px; }
+
+    /* Technical build badges (shared look with Feedback Loop) */
+    .sta .cs-subhead { margin-top: 2.25rem; font-size: 1.15rem; font-weight: 700; color: var(--ink); }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; list-style: none; }
+    .tags li { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.85rem; border: 1px solid var(--cs-line); border-radius: 10px; background: var(--card); font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+    .tags .stack__mark { width: 1.45rem; height: 1.45rem; font-size: 0.58rem; }
+
+    @media (max-width: 1100px) {
+      .sta .steps6.steps5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 960px) { .stp { max-width: 36rem; } .stp__cap { text-align: center; } }
+    @media (max-width: 640px) { .sta .steps6.steps5 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sta .shot__frame { padding: 0.5rem; } }
+    @media (max-width: 520px) {
+      .stp__body { grid-template-columns: minmax(0, 1fr); }
+      .stp__side { display: none; }
+    }
+    /* Stacked so the real screenshots are readable (side by side they rendered at ~8px text) */
+    .sta .shots { grid-template-columns: minmax(0, 1fr); }
+    .sta .shot__frame { padding: 1.1rem; }
+    .sta .shot__frame img { width: 100%; max-width: 1040px; margin: 0 auto; }
+    /* Keep headings clear of the fixed navigation when jumped to (links, find-in-page, focus) */
+    html { scroll-padding-top: calc(var(--nav-h, 72px) + 1rem); }
+    /* Comfortable touch targets for View full size, without changing how it looks */
+    .sta .shot__head { align-items: center; }
+    .sta .shot__head a { display: inline-flex; align-items: center; min-height: 44px; }
+
   </style>
-  <link rel="stylesheet" href="./assets/site-layout.css">
-  <link rel="stylesheet" href="./assets/theme.css">
   <link rel="stylesheet" href="./assets/cta.css">
   <link rel="stylesheet" href="./assets/chat-launcher.css">
   <link rel="stylesheet" href="./assets/nav-menu.css">
   <script src="./assets/chat-launcher.js" defer></script>
 </head>
 
-<body class="case-study">
-  <nav class="site-nav">
-    <a class="site-nav-brand" href="./index.html"><span class="brand-mark" aria-hidden="true"></span>Madiha Khan</a>
-    <div class="site-nav-links">
-      <a href="./index.html">Home</a>
-      <a href="./about.html">About</a>
-      <a href="./skills.html">Technical depth</a>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main">
+      <a class="site-nav-brand" href="./index.html"><span class="brand-mark" aria-hidden="true"></span>Madiha Khan</a>
+
+      <div class="site-nav-links">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./skills.html">Technical depth</a>
       <details class="nav-projects active">
         <summary>Work</summary>
         <div class="nav-projects-menu">
@@ -667,221 +1098,121 @@
           </div>
         </div>
       </details>
-      <a href="./contact.html">Contact</a>
-    </div>
-    <a class="site-nav-cta" href="./contact.html">Let’s connect <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-</nav>
-
-  <section class="hero">
-    <div class="hero-inner">
-      <p class="hero-label">Support Operations · Knowledge Systems · 2026</p>
-      <h1>Support Ticket Analyser</h1>
-      <p class="hero-highlight">An AI-assisted support workflow that turns resolved tickets into reusable knowledge by finding existing documentation, flagging gaps, drafting responses, and creating reviewable KB content.</p>
-      <div class="hero-actions">
-        <a class="hero-action-primary" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer">Open live demo ↗</a>
-        <a class="hero-action-secondary" href="#case-study">Explore the case study ↓</a>
-        <a class="hero-action-secondary" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer">View source on GitHub</a>
+        <a href="./contact.html">Contact</a>
       </div>
-    </div>
-  </section>
 
-  <main class="content" id="case-study">
-    <section class="case-section reveal">
-      <p class="section-label">The problem</p>
-      <div class="intro-card">
-        <p>Support teams solve valuable problems every day, but the knowledge created during those investigations is easy to lose.</p>
-        <p>An engineer resolves a difficult ticket, writes a strong customer response, and moves on. If the resolution is not captured in the knowledge base, the next person who sees the same issue has to rediscover it.</p>
-        <p>The operational problem is therefore bigger than response speed. It is <strong>how to turn solved tickets into reusable organisational knowledge before that context disappears.</strong></p>
-        <p>I built Support Ticket Analyser to explore a repeatable loop from ticket resolution to documentation rather than treating knowledge creation as a separate task someone has to remember later.</p>
-        <p>I designed and built the workflow from documentation matching and gap detection through response drafting, KB generation, human review and Notion publishing, with Cloudflare Workers keeping API credentials outside the browser.</p>
-      </div>
-    </section>
+      <a class="nav-cta" href="./contact.html">Let’s connect <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </nav>
+  </header>
 
-    <section class="case-section reveal">
-      <p class="section-label">The user</p>
-      <div class="intro-card">
-        <p>The workflow is designed around two users who need different things from the same support case.</p>
-        <p><strong>Support engineers</strong> need fast access to trustworthy existing knowledge so they do not repeat investigation work unnecessarily.</p>
-        <p><strong>Support Operations and Knowledge teams</strong> need visibility into where documentation is missing, outdated, or repeatedly recreated inside tickets.</p>
-        <p>The system therefore had to do two jobs at once: help the person handling the ticket now, while capturing a signal that improves the support system for the next person.</p>
-      </div>
-    </section>
+  <main id="main" class="cs sta">
 
-    <section class="case-section reveal">
-      <p class="section-label">What I learned from the workflow</p>
-      <div class="intro-card">
-        <p>This project came from patterns I had seen repeatedly in technical support rather than from a hypothetical product exercise.</p>
-        <p><strong>A solved ticket is not automatically reusable knowledge.</strong> The resolution often lives inside one conversation unless someone deliberately turns it into documentation.</p>
-        <p><strong>Documentation gaps are operational signals.</strong> If engineers repeatedly cannot find a strong knowledge match, that tells the team where the knowledge base is failing to support the work.</p>
-        <p><strong>Trust matters more than automation.</strong> Support engineers need to understand why a document matched, and generated content should remain reviewable before it becomes shared knowledge.</p>
-      </div>
-    </section>
-
-    <section class="case-section reveal">
-      <p class="section-label">Workflow in practice</p>
-
-      <div class="walkthrough">
-        <div class="walkthrough-tabs" role="tablist" aria-label="Support Ticket Analyser walkthrough">
-          <button class="walkthrough-tab active" type="button" role="tab" aria-selected="true" data-step="0">Load ticket</button>
-          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="1">Detect gap</button>
-          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="2">Draft response</button>
-          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="3">Create KB draft</button>
-          <button class="walkthrough-tab" type="button" role="tab" aria-selected="false" data-step="4">Review and publish</button>
-        </div>
-
-        <div class="walkthrough-items">
-          <article class="walkthrough-item active" data-panel="0">
-            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="true" data-step="0"><span>01</span> Load ticket</button>
-            <div class="walkthrough-panel">
-              <div class="walkthrough-copy">
-                <div class="walkthrough-number">01</div>
-                <h3>Start with the resolved support case</h3>
-                <p>The workflow keeps the customer question, investigation context and final resolution together. This gives the analyser enough evidence to search for reusable knowledge without asking the engineer to rewrite the case first.</p>
+    <!-- Hero -->
+    <section class="cs-hero" aria-labelledby="cs-title">
+      <div class="container">
+        <nav aria-label="Breadcrumb"><ol class="cs-crumbs"><li><a href="./projects.html">Work</a></li><li aria-current="page">Support Ticket Analyser</li></ol></nav>
+        <div class="cs-hero__grid">
+          <div>
+            <h1 id="cs-title"><span class="hl">Support</span> Ticket Analyser</h1>
+            <p class="sta-sub">Turning resolved tickets into reusable knowledge.</p>
+            <p class="cs-hero__lede">An AI-assisted workflow that finds existing documentation, identifies knowledge gaps and helps Support create reviewable KB content.</p>
+            <div class="cs-hero__actions">
+              <a class="btn btn--primary" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer">Explore live demo<span class="sr-only"> (opens in a new tab)</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+              <a class="btn btn--secondary" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer"><svg class="gh" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>View GitHub<span class="sr-only"> (opens in a new tab)</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+            </div>
+          </div>
+        <figure class="stp" role="img" aria-label="Illustrative view based on the demo's fictional documentation-gap sample: a resolved ticket checked against existing documentation, no strong match at the 80 per cent keyword relevance threshold, a related article at 50 per cent relevance flagged as a documentation gap, and options to write a response and generate a KB draft.">
+          <div class="stp__win" aria-hidden="true">
+            <div class="stp__bar"><span></span><span></span><span></span></div>
+            <div class="stp__body">
+              <div class="stp__side">
+                <p class="stp__label">Steps</p>
+                <ol class="stp__steps">
+                  <li class="is-done"><span class="stp__num">✓</span>Paste ticket</li>
+                  <li class="is-on"><span class="stp__num">2</span>Match docs</li>
+                  <li><span class="stp__num">3</span>Write response</li>
+                  <li><span class="stp__num">4</span>Generate KB</li>
+                </ol>
               </div>
-              <div class="walkthrough-visual">
-                <div class="shot-frame"><img src="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-1-documentation-gap-loaded.png" alt="Support Ticket Analyser with a resolved ticket loaded for documentation analysis"></div>
-                <div class="shot-caption">A fictional resolved ticket demonstrates the documentation-gap path.</div>
-                <a class="shot-link" href="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-1-documentation-gap-loaded.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
+              <div class="stp__main">
+                <p class="stp__title">Analyse support ticket</p>
+                <div class="stp__card"><small>Ticket (resolved)</small><p>Integration sync issue after a deploy</p><span>Demo sample · Fictional data</span></div>
+                <div class="stp__card"><small>Existing knowledge</small><div class="stp__row"><p>Zendesk and CRM integrations</p><span class="stp__rel">50% relevance</span></div><span>Strong matches need at least 80% keyword relevance.</span></div>
+                <div class="stp__card stp__gap"><p><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4 2.8 19.5h18.4L12 4Z"/><path d="M12 10v4.2M12 17h.01"/></svg>Documentation gap</p><span>No existing article fully covers this resolution.</span></div>
+                <div class="stp__actions"><span class="stp__btn stp__btn--dark">Write response</span><span class="stp__btn">Generate KB draft</span></div>
               </div>
             </div>
-          </article>
-
-          <article class="walkthrough-item" data-panel="1">
-            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="1"><span>02</span> Detect gap</button>
-            <div class="walkthrough-panel">
-              <div class="walkthrough-copy">
-                <div class="walkthrough-number">02</div>
-                <h3>Show why existing documentation is insufficient</h3>
-                <p>The tool compares the case with existing articles, exposes match strength and identifies when no article adequately covers the resolution. The engineer can inspect the evidence instead of trusting a black-box answer.</p>
-              </div>
-              <div class="walkthrough-visual">
-                <div class="shot-frame"><img src="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-2-gap-detected.png" alt="Documentation analysis showing a detected knowledge gap"></div>
-                <div class="shot-caption">A weak documentation match becomes a visible, actionable knowledge gap.</div>
-                <a class="shot-link" href="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-2-gap-detected.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="walkthrough-item" data-panel="2">
-            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="2"><span>03</span> Draft response</button>
-            <div class="walkthrough-panel">
-              <div class="walkthrough-copy">
-                <div class="walkthrough-number">03</div>
-                <h3>Draft from the investigation evidence</h3>
-                <p>AI assists with the repetitive first draft while the support engineer retains responsibility for accuracy. The response remains editable and grounded in the ticket rather than being generated from an isolated prompt.</p>
-              </div>
-              <div class="walkthrough-visual">
-                <div class="shot-frame"><img src="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-3-write-response.png" alt="Support Ticket Analyser showing an editable AI-assisted customer response"></div>
-                <div class="shot-caption">The proposed response is reviewable before it is used or turned into documentation.</div>
-                <a class="shot-link" href="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-3-write-response.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="walkthrough-item" data-panel="3">
-            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="3"><span>04</span> Create KB draft</button>
-            <div class="walkthrough-panel">
-              <div class="walkthrough-copy">
-                <div class="walkthrough-number">04</div>
-                <h3>Convert the resolution into reusable knowledge</h3>
-                <p>When a gap exists, the workflow produces a structured article draft with a title, summary, troubleshooting steps and tags. Knowledge capture becomes part of closing the case instead of a separate future backlog.</p>
-              </div>
-              <div class="walkthrough-visual">
-                <div class="shot-frame"><img src="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-4-kb-draft-top.png" alt="Generated knowledge-base article draft with structured troubleshooting content"></div>
-                <div class="shot-caption">The draft is structured for review, not published automatically.</div>
-                <a class="shot-link" href="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-4-kb-draft-top.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="walkthrough-item" data-panel="4">
-            <button class="walkthrough-mobile-trigger" type="button" aria-expanded="false" data-step="4"><span>05</span> Review and publish</button>
-            <div class="walkthrough-panel">
-              <div class="walkthrough-copy">
-                <div class="walkthrough-number">05</div>
-                <h3>Keep publication under human control</h3>
-                <p>The engineer reviews and edits the article before publication. The public demo simulates the final integration safely, while live mode can send approved knowledge to Notion through a secured Cloudflare Worker.</p>
-              </div>
-              <div class="walkthrough-visual">
-                <div class="shot-frame"><img src="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-5-publish-complete.png" alt="Support Ticket Analyser confirmation after a reviewed article is published"></div>
-                <div class="shot-caption">Only reviewed content reaches the publication step.</div>
-                <a class="shot-link" href="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-5-publish-complete.png" target="_blank" rel="noopener noreferrer">View full size ↗</a>
-              </div>
-            </div>
-          </article>
+          </div>
+          <figcaption class="stp__cap">Illustrative view based on the demo’s fictional sample</figcaption>
+        </figure>
         </div>
       </div>
     </section>
 
-    <section class="case-section reveal" id="decisions">
-      <p class="section-label">Key decisions</p>
-      <div class="intro-card">
-        <p><strong>Why detect gaps instead of just generating an answer?</strong><br>If AI always produces a response, a missing-documentation problem can remain invisible. I wanted the system to distinguish between "we know this" and "we solved this once but have not captured it yet."</p>
-        <p><strong>Why keep matching deterministic?</strong><br>The support engineer needs to see why an article was considered relevant. Explainable matching makes it easier to challenge false positives and tune the workflow over time.</p>
-        <p><strong>Why use AI only for drafting?</strong><br>Drafting structured support content is repetitive and well suited to AI assistance. Deciding whether the content is accurate enough to become shared knowledge still requires human judgment.</p>
-        <p><strong>Why publish into an existing knowledge tool?</strong><br>The workflow should reduce friction, not introduce another repository. Publishing to Notion demonstrates how the output can move into a system a team already uses.</p>
+    <!-- The challenge and what I built -->
+    <section class="container cs-section" aria-labelledby="challenge-title">
+      <h2 id="challenge-title">The challenge and what I built</h2>
+      <div class="cs-pair">
+        <article class="cs-card"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg><div><h3>The challenge</h3><p>Support teams solve valuable problems every day, but the knowledge from those investigations is easy to lose once a ticket closes. If it isn’t captured, the next engineer has to rediscover the same solution.</p></div></article>
+        <article class="cs-card"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3c.6 4.2 2.4 6 6.6 6.6-4.2.6-6 2.4-6.6 6.6-.6-4.2-2.4-6-6.6-6.6C9.6 9 11.4 7.2 12 3Z"/></svg><div><h3>What I built</h3><p>I designed and built a workflow that finds existing documentation, identifies knowledge gaps, drafts a clear response and creates reviewable KB content, with human review before publishing to Notion.</p></div></article>
       </div>
     </section>
 
-    <section class="case-section reveal">
-      <p class="section-label">The outcome</p>
-      <div class="intro-card">
-        <p>The finished prototype connects ticket handling and knowledge operations in one workflow.</p>
-        <p>A support engineer can check existing documentation, understand the evidence behind a match, identify a real gap, draft a response, create a KB article, review it, and move the new knowledge into the shared repository.</p>
-        <p>The outcome I care about is not simply a faster AI-generated reply. It is a support system where useful investigation work is less likely to disappear after a ticket closes.</p>
-        <p><strong>If this were deployed in a real support environment, I would measure:</strong></p>
-        <div class="tag-row">
-          <span class="tag">Repeat issue volume</span>
-          <span class="tag">Knowledge reuse rate</span>
-          <span class="tag">Documentation gaps identified</span>
-          <span class="tag">Time to find relevant knowledge</span>
-          <span class="tag">Time from resolution to KB update</span>
-        </div>
+    <!-- How it works -->
+    <section class="container cs-section" aria-labelledby="how-title">
+      <div class="cs-head">
+        <h2 id="how-title">How it works</h2>
+        <p>Select a step to explore how Support Ticket Analyser turns resolved cases into reusable knowledge.</p>
+      </div>
+      <div class="steps6 steps5" role="group" aria-label="Workflow stages"><button class="step6" type="button" id="wf-tab-1" aria-expanded="false" aria-controls="wf-panel-1"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M9.5 12h5M9.5 15.5h5"/></svg><span>Load ticket</span></button><span class="step6-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step6" type="button" id="wf-tab-2" aria-expanded="false" aria-controls="wf-panel-2"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><span>Check knowledge</span></button><span class="step6-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step6" type="button" id="wf-tab-3" aria-expanded="false" aria-controls="wf-panel-3"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4 2.8 19.5h18.4L12 4Z"/><path d="M12 10v4.2M12 17h.01"/></svg><span>Detect gap</span></button><span class="step6-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step6" type="button" id="wf-tab-4" aria-expanded="false" aria-controls="wf-panel-4"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg><span>Draft response</span></button><span class="step6-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step6" type="button" id="wf-tab-5" aria-expanded="false" aria-controls="wf-panel-5"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v15H5.5c-.8 0-1.5.5-1.5 1.2V5.5Z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v15h5.5c.8 0 1.5.5 1.5 1.2V5.5Z"/></svg><span>Review &amp; publish</span></button></div>
+      <div class="wf-panels">
+        <div class="wf-panel" id="wf-panel-1" role="region" aria-labelledby="wf-title-1" hidden><div class="wf-panel__top"><p class="wf-panel__step">Step 1 of 5</p><button class="wf-close" type="button" aria-label="Close Load ticket"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="wf-title-1">Load ticket</h3><p class="wf-panel__text">Start with the resolved support case, keeping the customer question, investigation context and resolution together.</p></div>
+        <div class="wf-panel" id="wf-panel-2" role="region" aria-labelledby="wf-title-2" hidden><div class="wf-panel__top"><p class="wf-panel__step">Step 2 of 5</p><button class="wf-close" type="button" aria-label="Close Check knowledge"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="wf-title-2">Check knowledge</h3><p class="wf-panel__text">Search existing documentation and surface relevant articles before creating anything new.</p></div>
+        <div class="wf-panel" id="wf-panel-3" role="region" aria-labelledby="wf-title-3" hidden><div class="wf-panel__top"><p class="wf-panel__step">Step 3 of 5</p><button class="wf-close" type="button" aria-label="Close Detect gap"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="wf-title-3">Detect gap</h3><p class="wf-panel__text">Identify when existing documentation is missing, incomplete or doesn’t adequately address the resolved issue.</p></div>
+        <div class="wf-panel" id="wf-panel-4" role="region" aria-labelledby="wf-title-4" hidden><div class="wf-panel__top"><p class="wf-panel__step">Step 4 of 5</p><button class="wf-close" type="button" aria-label="Close Draft response"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="wf-title-4">Draft response</h3><p class="wf-panel__text">Use AI assistance to prepare a clear response grounded in the ticket and available knowledge.</p></div>
+        <div class="wf-panel" id="wf-panel-5" role="region" aria-labelledby="wf-title-5" hidden><div class="wf-panel__top"><p class="wf-panel__step">Step 5 of 5</p><button class="wf-close" type="button" aria-label="Close Review and publish"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="wf-title-5">Review &amp; publish</h3><p class="wf-panel__text">Review the generated KB content, make any necessary changes and publish it to Notion once approved.</p></div>
       </div>
     </section>
 
-    <section class="case-section reveal">
-      <p class="section-label">Reflection</p>
-      <div class="intro-card">
-        <p>I originally thought about this as a way to improve documentation creation.</p>
-        <p>Building it made the broader systems problem clearer: <strong>Support organisations generate knowledge continuously, but most workflows are optimised for closing tickets rather than retaining what was learned.</strong></p>
-        <p>If I continued the project, the next step would be testing the matching and review workflow with real support users. I would want to understand which gap signals are genuinely useful, when engineers trust suggested documentation, and where the workflow creates additional friction.</p>
-        <p>The goal would be to improve the feedback loop before adding more automation.</p>
+    <!-- Inside the system -->
+    <section class="container cs-section" aria-labelledby="inside-title">
+      <div class="cs-head">
+        <h2 id="inside-title">Inside the system</h2>
+        <p>Two screens from the live demo, using its fictional documentation-gap sample.</p>
+      </div>
+      <div class="shots">
+        <figure class="shot">
+          <div class="shot__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="shot__head"><h3>Knowledge gap detection</h3><a href="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-2-gap-detected.png" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only">: Knowledge gap detection screenshot</span><span class="sr-only"> (opens in a new tab)</span> <span aria-hidden="true">↗</span></a></div>
+          <div class="shot__frame"><img src="./assets/sta-gap-detection-crop.png" alt="Match docs step from the demo, with fictional data: No strong documentation match, labelled Documentation gap, explaining that strong matches need at least 80 per cent keyword relevance, with a related article, Zendesk and CRM integrations, at 50 per cent relevance" loading="lazy" width="1720" height="1050"></div>
+          <figcaption>The ticket is checked against existing articles first. When nothing reaches the relevance threshold, the gap is shown alongside the closest article and why it fell short.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="shot__head"><h3>Reviewable KB draft</h3><a href="https://khankmadiha.github.io/support-ticket-analyser/assets/screenshots/step-4-kb-draft-top.png" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only">: Reviewable KB draft screenshot</span><span class="sr-only"> (opens in a new tab)</span> <span aria-hidden="true">↗</span></a></div>
+          <div class="shot__frame"><img src="./assets/sta-kb-draft-crop.png" alt="Generate KB step from the demo, with fictional data: a KB draft article marked Ready for review, with editable title, category, summary and description fields" loading="lazy" width="1720" height="1050"></div>
+          <figcaption>The resolution becomes a structured, editable draft marked ready for review, so nothing reaches Notion until someone has checked it.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="case-section reveal">
-      <p class="section-label">What I learned</p>
-      <div class="learnings-grid">
-        <div class="learning-card"><h3>Quality is a systems problem</h3><p>The strongest workflow does not only improve the current response. It makes the next similar case easier to solve.</p></div>
-        <div class="learning-card"><h3>Gaps are signals</h3><p>A failed knowledge match can tell Support Operations exactly where the knowledge base needs investment.</p></div>
-        <div class="learning-card"><h3>AI should amplify judgment</h3><p>Automation is most useful when it removes repetitive work without hiding evidence or replacing human review.</p></div>
+    <!-- Why I designed it this way -->
+    <section class="container cs-section" aria-labelledby="why-title">
+      <div class="cs-head">
+        <h2 id="why-title">Why I designed it this way</h2>
+        <p>Three decisions shaped how I built Support Ticket Analyser.</p>
       </div>
+      <ul class="why">
+        <li><span class="why__icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg></span><h3>Make documentation gaps visible</h3><p>Resolving tickets doesn’t guarantee reusable knowledge. Highlighting documentation gaps turns repeated questions into a clear signal for where the knowledge base needs improvement.</p></li>
+        <li><span class="why__icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></span><h3>Keep matching explainable</h3><p>Support engineers need to trust the results. I wanted the workflow to show why existing articles were suggested, making it easier to identify incorrect matches and improve the process.</p></li>
+        <li><span class="why__icon"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.8" cy="9.3" r="2.6"/><path d="M16.5 14.1c2.2.2 3.7 1.8 4.1 4.6"/></svg></span><h3>Keep humans in the loop</h3><p>Generated responses and KB drafts remain reviewable so the team can check accuracy, add context and decide what is ready to become shared knowledge.</p></li>
+      </ul>
+
+      <h3 class="cs-subhead" id="stack-title">Technical build</h3>
+      <ul class="tags" aria-labelledby="stack-title"><li title="Development environment"><span class="stack__mark stack__mark--soft" aria-hidden="true">Cu</span>Cursor<span class="sr-only"> (development environment)</span></li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">JS</span>JavaScript</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">AI</span>Anthropic API</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">CF</span>Cloudflare Workers</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">N</span>Notion API</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">GH</span>GitHub Pages</li></ul>
     </section>
 
-    <section class="case-section reveal" id="tools-section">
-      <p class="section-label">Tech stack</p>
-      <div class="tools-grid">
-        <div class="tool-card"><div class="tool-logo">JS</div><p class="tool-name">JavaScript</p><p class="tool-desc">Workflow logic, matching engine, and demo behaviour</p></div>
-        <div class="tool-card"><div class="tool-logo">AI</div><p class="tool-name">Anthropic Claude</p><p class="tool-desc">Structured KB drafting and content generation</p></div>
-        <div class="tool-card"><div class="tool-logo">CF</div><p class="tool-name">Cloudflare Workers</p><p class="tool-desc">Secure API proxy and secret isolation</p></div>
-        <div class="tool-card"><div class="tool-logo">N</div><p class="tool-name">Notion API</p><p class="tool-desc">Knowledge base publishing target</p></div>
-        <div class="tool-card"><div class="tool-logo">GH</div><p class="tool-name">GitHub Pages</p><p class="tool-desc">Public portfolio demo hosting</p></div>
-        <div class="tool-card"><div class="tool-logo">Cu</div><p class="tool-name">Cursor</p><p class="tool-desc">AI-assisted development environment</p></div>
-      </div>
-    </section>
-
-    <div class="try-card reveal">
-      <h3>Try it yourself</h3>
-      <p>Use the strong-match sample to see existing knowledge surfaced, then try the documentation-gap sample to follow the workflow from gap detection through response drafting and KB creation.</p>
-      <div class="try-actions">
-        <a class="nav-btn" href="https://khankmadiha.github.io/support-ticket-analyser/" target="_blank" rel="noopener noreferrer">Open interactive demo →</a>
-        <a class="nav-btn" href="https://github.com/KhanKMadiha/support-ticket-analyser" target="_blank" rel="noopener noreferrer">View source on GitHub →</a>
-      </div>
-    </div>
-    
   </main>
-
 
   <section class="site-cta-wrap" aria-labelledby="site-cta-title">
     <div class="site-cta">
@@ -897,113 +1228,566 @@
     </div>
   </section>
 
-  <footer>
-© <span id="year"></span> Madiha Khan · Built with care</footer>
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Madiha Khan · Built with care</p>
+  </footer>
 
-  <button id="chat-toggle" type="button" class="chat-launcher chat-launcher--edge" onclick="toggleChat()" aria-controls="chat-window" aria-expanded="false">
+  <!-- Chat -->
+
+  <button id="chat-toggle" type="button" class="chat-launcher chat-launcher--edge-wide" onclick="toggleChat()" aria-controls="chat-window" aria-expanded="false">
     <svg class="chat-launcher__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12Z"/></svg>
     <span class="chat-launcher__label chat-launcher__label--long">Ask about my work</span>
     <span class="chat-launcher__label chat-launcher__label--short">Ask AI</span>
   </button>
+
+
   <div id="chat-window">
+
     <div class="chat-header">
-      <div class="chat-avatar">PA</div>
-      <div class="chat-header-info"><h4>Madiha's Portfolio Assistant</h4><p>Ask about my experience, skills, and projects</p></div>
-      <button class="chat-close" onclick="toggleChat()" aria-label="Close chat">✕</button>
+
+      <div class="chat-avatar">
+        PA
+      </div>
+
+      <div class="chat-header-info">
+
+        <h4>
+          Madiha's Portfolio Assistant
+        </h4>
+
+        <p>
+          <span class="online-dot"></span>
+          Ask me anything
+        </p>
+
+      </div>
+
+      <button
+        class="chat-close"
+        onclick="toggleChat()"
+        aria-label="Close chat"
+      >
+        ✕
+      </button>
+
     </div>
-    <div class="chat-messages" id="chat-messages"></div>
+
+
+    <div
+      class="chat-messages"
+      id="chat-messages"
+    ></div>
+
+
     <div class="chat-input-area">
-      <textarea id="chat-input" placeholder="Ask me anything..." rows="1" onkeydown="handleKey(event)"></textarea>
-      <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send">➤</button>
+
+      <textarea
+        id="chat-input"
+        placeholder="Ask about my experience, skills..."
+        rows="1"
+        onkeydown="handleKey(event)"
+        oninput="autoResize(this)"
+      ></textarea>
+
+      <button
+        class="send-btn"
+        id="send-btn"
+        onclick="sendMessage()"
+        aria-label="Send"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+        </svg>
+
+      </button>
+
     </div>
+
   </div>
 
+
   <script>
-    document.getElementById('year').textContent=new Date().getFullYear();
 
-    const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}})},{threshold:.08});
-    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+    /* --------------------------------
+       General
+    -------------------------------- */
 
-    function showPhase(n){
-      document.querySelectorAll('.phase-content').forEach(el=>el.classList.remove('active'));
-      document.querySelectorAll('.phase-btn').forEach(el=>el.classList.remove('active'));
-      document.getElementById('phase-'+n).classList.add('active');
-      document.querySelectorAll('.phase-btn')[n-1].classList.add('active');
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /* --------------------------------
+       Scroll reveal
+    -------------------------------- */
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              const siblings =
+                entry.target.parentElement
+                  .querySelectorAll('.reveal');
+
+              let delay = 0;
+
+              siblings.forEach((el, idx) => {
+
+                if (el === entry.target) {
+                  delay = idx * 80;
+                }
+
+              });
+
+              setTimeout(
+                () => entry.target.classList.add('visible'),
+                delay
+              );
+
+              revealObserver.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.1
+        }
+      );
+
+
+    document
+      .querySelectorAll('.reveal')
+      .forEach(el => revealObserver.observe(el));
+
+
+    /* --------------------------------
+       Number animation
+    -------------------------------- */
+
+    function animateCount(el) {
+
+      const target =
+        parseInt(el.dataset.target);
+
+      const suffix =
+        el.dataset.suffix || '';
+
+      const duration = 1400;
+      const step = 16;
+
+      const increment =
+        target / (duration / step);
+
+      let current = 0;
+
+      const timer =
+        setInterval(() => {
+
+          current += increment;
+
+          if (current >= target) {
+
+            current = target;
+            clearInterval(timer);
+
+          }
+
+          el.textContent =
+            Math.floor(current) + suffix;
+
+        }, step);
+
     }
 
-    function toggleStruggle(header){
-      const body=header.nextElementSibling;
-      const chevron=header.querySelector('.struggle-chevron');
-      const open=body.classList.contains('open');
-      body.classList.toggle('open',!open);
-      chevron.style.transform=open?'rotate(0deg)':'rotate(180deg)';
+
+    const statObserver =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target
+                .querySelectorAll('[data-target]')
+                .forEach(animateCount);
+
+              statObserver.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.3
+        }
+      );
+
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document
+        .querySelectorAll('.stat-strip')
+        .forEach(el => statObserver.observe(el));
     }
 
-    const PROXY_URL=window.PORTFOLIO_ASSISTANT.proxyUrl;
-    const SYSTEM_PROMPT=window.PORTFOLIO_ASSISTANT.systemPrompt;
 
-    function toggleChat(){
-      const chat=document.getElementById('chat-window');
-      chat.classList.toggle('open');
-      if(chat.classList.contains('open')&&!chat.dataset.started){addMessage(window.PORTFOLIO_ASSISTANT.welcomeMessage,'bot');chat.dataset.started='true'}
+    /* --------------------------------
+       Portfolio chatbot
+    -------------------------------- */
+
+    const PROXY_URL = window.PORTFOLIO_ASSISTANT.proxyUrl;
+
+
+    const SYSTEM_PROMPT = window.PORTFOLIO_ASSISTANT.systemPrompt;
+
+
+    const WELCOME_MESSAGE = window.PORTFOLIO_ASSISTANT.welcomeMessage;
+
+
+    const conversationHistory = [];
+
+    let chatOpen = false;
+    let isLoading = false;
+
+
+    function toggleChat() {
+
+      chatOpen = !chatOpen;
+
+      document
+        .getElementById('chat-window')
+        .classList.toggle('open', chatOpen);
+
+
+      if (
+        chatOpen &&
+        conversationHistory.length === 0
+      ) {
+
+        appendMessage(
+          'bot',
+          WELCOME_MESSAGE
+        );
+
+      }
+
+
+      if (chatOpen) {
+
+        setTimeout(
+          () =>
+            document
+              .getElementById('chat-input')
+              .focus(),
+          300
+        );
+
+      }
+
     }
 
-    function addMessage(text,type){
-      const messages=document.getElementById('chat-messages');
-      const div=document.createElement('div');
-      div.className='msg '+type;
-      div.textContent=text;
-      messages.appendChild(div);
-      messages.scrollTop=messages.scrollHeight;
+
+    function appendMessage(role, text) {
+
+      const container =
+        document.getElementById('chat-messages');
+
+      const div =
+        document.createElement('div');
+
+      div.className =
+        `msg ${role}`;
+
+
+      text
+        .split('\n')
+        .forEach((line, i, arr) => {
+
+          div.appendChild(
+            document.createTextNode(line)
+          );
+
+          if (i < arr.length - 1) {
+
+            div.appendChild(
+              document.createElement('br')
+            );
+
+          }
+
+        });
+
+
+      container.appendChild(div);
+
+      container.scrollTop =
+        container.scrollHeight;
+
     }
 
-    async function sendMessage(){
-      const input=document.getElementById('chat-input');
-      const button=document.getElementById('send-btn');
-      const text=input.value.trim();
-      if(!text)return;
-      addMessage(text,'user');
-      input.value='';
-      button.disabled=true;
-      try{
-        const response=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:window.PORTFOLIO_ASSISTANT.model,max_tokens:window.PORTFOLIO_ASSISTANT.maxTokens,system:SYSTEM_PROMPT,messages:[{role:'user',content:text}]})});
-        if(!response.ok)throw new Error('Request failed');
-        const data=await response.json();
-        const reply=data.content?.[0]?.text||data.reply||'I could not generate a response just now.';
-        addMessage(reply,'bot');
-      }catch(error){addMessage('I am having trouble connecting right now. Please try again in a moment.','bot')}
-      finally{button.disabled=false}
+
+    function showTyping() {
+
+      const container =
+        document.getElementById('chat-messages');
+
+      const div =
+        document.createElement('div');
+
+      div.className =
+        'typing-indicator';
+
+      div.id =
+        'typing-indicator';
+
+      div.innerHTML =
+        '<span></span><span></span><span></span>';
+
+      container.appendChild(div);
+
+      container.scrollTop =
+        container.scrollHeight;
+
     }
 
-    function handleKey(event){if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}}
+
+    function removeTyping() {
+
+      const el =
+        document.getElementById(
+          'typing-indicator'
+        );
+
+      if (el) {
+        el.remove();
+      }
+
+    }
+
+
+    async function sendMessage() {
+
+      if (isLoading) return;
+
+
+      const input =
+        document.getElementById('chat-input');
+
+      const text =
+        input.value.trim();
+
+
+      if (!text) return;
+
+
+      appendMessage(
+        'user',
+        text
+      );
+
+
+      conversationHistory.push({
+        role: 'user',
+        content: text
+      });
+
+
+      input.value = '';
+      input.style.height = 'auto';
+
+      setLoading(true);
+      showTyping();
+
+
+      try {
+
+        const response =
+          await fetch(
+            PROXY_URL,
+            {
+              method: 'POST',
+
+              headers: {
+                'Content-Type':
+                  'application/json'
+              },
+
+              body: JSON.stringify({
+                model: window.PORTFOLIO_ASSISTANT.model,
+                max_tokens: window.PORTFOLIO_ASSISTANT.maxTokens,
+                system: SYSTEM_PROMPT,
+                messages: conversationHistory
+              })
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        const reply =
+          data?.content?.[0]?.text ||
+          "I am sorry, I was not able to get a response just now. Please try again in a moment!";
+
+
+        removeTyping();
+
+        appendMessage(
+          'bot',
+          reply
+        );
+
+
+        conversationHistory.push({
+          role: 'assistant',
+          content: reply
+        });
+
+
+      } catch (err) {
+
+        removeTyping();
+
+        appendMessage(
+          'bot',
+          "Something went wrong. Please try again shortly!"
+        );
+
+      }
+
+
+      setLoading(false);
+
+    }
+
+
+    function setLoading(state) {
+
+      isLoading = state;
+
+      document
+        .getElementById('send-btn')
+        .disabled = state;
+
+    }
+
+
+    function handleKey(e) {
+
+      if (
+        e.key === 'Enter' &&
+        !e.shiftKey
+      ) {
+
+        e.preventDefault();
+
+        sendMessage();
+
+      }
+
+    }
+
+
+    function autoResize(el) {
+
+      el.style.height = 'auto';
+
+      el.style.height =
+        Math.min(
+          el.scrollHeight,
+          100
+        ) + 'px';
+
+    }
+
+
+    /*
+      Keep the chatbot available without
+      forcing it open immediately.
+    */
+
+    setTimeout(() => {
+
+      if (!chatOpen) {
+        // Deliberately do not auto-open.
+        // Recruiters should see the page first.
+      }
+
+    }, 2000);
+
   </script>
 
+
+  <!-- Terminal tabs -->
+
   <script>
-    (() => {
-      const tabs = Array.from(document.querySelectorAll('.walkthrough-tab'));
-      const items = Array.from(document.querySelectorAll('.walkthrough-item'));
-      const mobileTriggers = Array.from(document.querySelectorAll('.walkthrough-mobile-trigger'));
 
-      const showStep = (step) => {
-        tabs.forEach((tab, index) => {
-          const active = index === step;
-          tab.classList.toggle('active', active);
-          tab.setAttribute('aria-selected', String(active));
-        });
-        items.forEach((item, index) => {
-          const active = index === step;
-          item.classList.toggle('active', active);
-          const trigger = item.querySelector('.walkthrough-mobile-trigger');
-          if (trigger) trigger.setAttribute('aria-expanded', String(active));
-        });
-      };
+    (function () {
 
-      tabs.forEach((tab) => tab.addEventListener('click', () => showStep(Number(tab.dataset.step))));
-      mobileTriggers.forEach((trigger) => trigger.addEventListener('click', () => showStep(Number(trigger.dataset.step))));
+      const tabs = Array.from(document.querySelectorAll('.t-tab'));
+
+      function select(tab, focus) {
+        tabs.forEach(t => {
+          const on = t === tab;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        });
+        if (focus) tab.focus();
+      }
+
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => select(tab, false));
+        tab.addEventListener('keydown', (e) => {
+          let next = null;
+          if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+          else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+          else if (e.key === 'Home') next = tabs[0];
+          else if (e.key === 'End') next = tabs[tabs.length - 1];
+          if (next) {
+            e.preventDefault();
+            select(next, true);
+          }
+        });
+      });
+
     })();
+
   </script>
+
 
   <script src="./assets/nav-menu.js"></script>
 
+
+  <script>
+    /* How it works: collapsed by default; one stage open at a time; selecting the open stage or Close collapses it. */
+    (function () {
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('.step6[aria-controls]'));
+      function show(tab) {
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute('aria-expanded', on ? 'true' : 'false');
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        });
+      }
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () { show(tab.getAttribute('aria-expanded') === 'true' ? null : tab); });
+        var panel = document.getElementById(tab.getAttribute('aria-controls'));
+        panel.querySelector('.wf-close').addEventListener('click', function () { show(null); tab.focus(); });
+        panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') { show(null); tab.focus(); } });
+      });
+    })();
+  </script>
 </body>
 </html>

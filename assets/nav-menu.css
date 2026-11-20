@@ -77,3 +77,13 @@ body .nav-projects summary:focus-visible { outline: 2px solid #2E2925; outline-o
   }
   body .nav-projects[open]::after { display: none; }
 }
+
+/*
+  Keep section headings clear of the fixed navigation when they are jumped to
+  (in-page links, keyboard focus, find in page). Uses each page's --nav-h where
+  it exists, otherwise the bar's measured height on pages without it.
+*/
+html { scroll-padding-top: calc(var(--nav-h, 68px) + 1rem); }
+@media (max-width: 640px) {
+  html { scroll-padding-top: calc(var(--nav-h, 60px) + 1rem); }
+}

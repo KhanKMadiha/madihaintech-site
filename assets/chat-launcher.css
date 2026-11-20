@@ -153,3 +153,11 @@
 #chat-window .send-btn { background: #38332F; box-shadow: none; }
 #chat-window .send-btn:hover { background: #1F1B18; }
 #chat-window .chat-messages::-webkit-scrollbar-thumb { background: rgba(56, 51, 47, 0.2); }
+
+/* Print: the assistant is interactive only, so leave the launcher and panel out of printed and PDF copies. */
+@media print {
+  #chat-toggle,
+  #chat-window {
+    display: none !important;
+  }
+}

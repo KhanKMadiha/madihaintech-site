@@ -1004,6 +1004,12 @@
       .cs-crumbs li:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
     }
 
+    /* Technical build: a small Development tools row under the application stack */
+    .stack__lists { display: grid; gap: 0.8rem; min-width: 0; }
+    .stack__dev { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; padding-top: 0.75rem; border-top: 1px solid rgba(56, 51, 47, 0.1); }
+    .stack__devlabel { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6E6158; }
+    .stack__dev .stack__list { justify-content: flex-start; }
+
   </style>
   <link rel="stylesheet" href="./assets/cta.css">
   <link rel="stylesheet" href="./assets/chat-launcher.css">
@@ -1177,7 +1183,10 @@
       </ul>
       <div class="stack" aria-labelledby="stack-title">
         <div class="stack__intro"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><div><h3 id="stack-title">Technical build</h3><p>A modern, testable stack focused on a reliable workflow and a clear separation of concerns.</p></div></div>
-        <ul class="stack__list" aria-label="Technologies"><li><span class="stack__mark" aria-hidden="true">NX</span>Next.js</li><li><span class="stack__mark" aria-hidden="true">TS</span>TypeScript</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">SB</span>Supabase</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">ZD</span>Zod</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">AI</span>OpenAI API</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">VT</span>Vitest</li></ul>
+        <div class="stack__lists">
+          <ul class="stack__list" aria-label="Application technologies"><li><span class="stack__mark" aria-hidden="true">NX</span>Next.js</li><li><span class="stack__mark" aria-hidden="true">TS</span>TypeScript</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">SB</span>Supabase</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">ZD</span>Zod</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">AI</span>OpenAI API</li><li><span class="stack__mark stack__mark--soft" aria-hidden="true">VT</span>Vitest</li></ul>
+          <div class="stack__dev"><span class="stack__devlabel" id="eee-devtools">Development tools</span><ul class="stack__list" aria-labelledby="eee-devtools"><li><span class="stack__mark stack__mark--soft" aria-hidden="true">Cu</span>Cursor</li></ul></div>
+        </div>
       </div>
     </section>
 

@@ -3,858 +3,1029 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enterprise Incident &amp; Escalation Management | Madiha Khan</title>
   <meta name="description" content="Madiha Khan's experience coordinating enterprise incidents and Engineering escalations, leading the PagerDuty-to-Rootly migration and developing EMEA escalation processes." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <title>Enterprise Incident & Escalation Management | Madiha Khan</title>
   <script src="./portfolio-assistant-config.js"></script>
-
   <style>
+    /* ---------- Design tokens: warm ivory, espresso, beige and taupe ---------- */
     :root {
-      --bg-base: #F8F6F2;
-      --surface: #EFE9E1;
-      --accent: #786A5F;
-      --accent-deep: #4A423C;
-      --surface-soft: #EAE4DC;
-      --text-dark: #2E2925;
-      --muted-dark: rgba(56,51,47,0.77);
-      --border-soft: rgba(140,124,112,0.2);
-      --border-strong: rgba(140,124,112,0.38);
-      --white-glass: rgba(255, 255, 255, 0.78);
+      --bg: #F8F6F2;            /* primary background */
+      --bg-2: #EAE4DC;          /* secondary background */
+      --panel: #EFE9E1;         /* achievements bar, tags */
+      --card: #FBF9F6;          /* project cards */
+      --neutral: #B2A397;       /* neutral accent */
+      --ink: #2E2925;           /* headings, primary buttons */
+      --text: #38332F;          /* primary text */
+      --muted: #5E5650;         /* secondary text (7:1 on --bg) */
+      --taupe: #786A5F;         /* eyebrows (4.9:1 on --bg) */
+      --sage: #768174;          /* used sparingly */
+      --highlight: #D9D0C5;     /* warm neutral taupe behind highlighted hero words */
+      --line: rgba(56, 51, 47, 0.12);
+      --line-strong: rgba(56, 51, 47, 0.22);
+      --shadow: 0 1px 2px rgba(46, 41, 37, 0.04), 0 8px 24px rgba(46, 41, 37, 0.05);
+      --radius-sm: 10px;
+      --radius: 18px;
+      --radius-lg: 22px;
+      --content-max: 1180px;
+      --gutter: 2rem;
+      --nav-h: 72px;
+      /* Shared hero rhythm (homepage and About): space below the nav, eyebrow-to-headline gap */
+      --hero-top: 1.375rem;
+      --eyebrow-gap: 1.35rem;
+      /* Shared primary hero heading (Technical depth is the reference) */
+      --hero-h1-size: clamp(2.2rem, 3.6vw, 2.85rem);
+      --hero-h1-leading: 1.08;
+      /* Shared hero description (Technical depth is the reference) */
+      --hero-lede-size: 1.02rem;
+      --hero-lede-leading: 1.6;
+      --hero-lede-gap: 0.9rem;
+      /* Shared hero frame (desktop): one bottom boundary and one gap to the next section */
+      --hero-frame-h: clamp(27rem, 33vw, 36rem);
+      --hero-after: 2.25rem;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    @media (max-width: 860px) { :root { --gutter: 1.5rem; } }
+    @media (max-width: 960px) { :root { --hero-top: 2.5rem; } }
+    @media (max-width: 640px) { :root { --eyebrow-gap: 1rem; } }
+    /* Phones: 28px gutters leave a clear lane for the "Ask AI" edge tab. */
+    @media (max-width: 540px) { :root { --gutter: 1.75rem; } }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
 
     body {
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      background: var(--bg-base);
-      color: var(--text-dark);
       margin: 0;
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.55;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
+    button, input, textarea, select { font-family: inherit; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 { color: var(--ink); margin: 0; }
+    p { margin: 0; }
+    ul, ol { margin: 0; padding: 0; list-style: none; }
+    a { color: inherit; }
+    .i { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 
-    a:focus-visible,
-    button:focus-visible,
-    summary:focus-visible,
-    textarea:focus-visible {
-      outline: 2px solid var(--accent-deep);
-      outline-offset: 3px;
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .skip-link { position: absolute; left: 1rem; top: -3rem; z-index: 10000; padding: 0.6rem 1rem; border-radius: var(--radius-sm); background: var(--ink); color: #fff; font-weight: 600; text-decoration: none; }
+    .skip-link:focus { top: 0.75rem; }
+    :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+    .container { width: 100%; max-width: var(--content-max); margin: 0 auto; padding: 0 var(--gutter); }
+    .section { margin-top: 4rem; }
+
+    /* ---------- Navigation ---------- */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(248, 246, 242, 0.92);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
     }
-
     .site-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 999;
-      height: 58px;
-      display: flex;
-      align-items: center;
-      padding: 0 1.75rem;
-      background: rgba(248,246,242,0.9);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-soft);
+      max-width: var(--content-max); margin: 0 auto; padding: 0 var(--gutter);
+      height: var(--nav-h);
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1.5rem;
     }
-
     .site-nav-brand {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      text-decoration: none;
-      margin-right: auto;
+      justify-self: start; display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); text-decoration: none;
+    }
+    .brand-mark { width: 26px; height: 22px; background:
+        linear-gradient(115deg, transparent 38%, var(--neutral) 38%, var(--neutral) 58%, transparent 58%) 0 0 / 13px 22px no-repeat,
+        linear-gradient(115deg, transparent 38%, var(--neutral) 38%, var(--neutral) 58%, transparent 58%) 12px 0 / 13px 22px no-repeat; }
+    .site-nav-links { display: flex; align-items: center; gap: 0.6rem; }
+    .site-nav-links > a, .nav-projects summary {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      padding: 0.5rem 1rem; border-radius: var(--radius-sm);
+      font-size: 0.95rem; font-weight: 500; color: var(--text); text-decoration: none; white-space: nowrap;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .site-nav-links > a:hover, .nav-projects summary:hover { background: rgba(234, 228, 220, 0.6); }
+    .site-nav-links > a.active { background: var(--bg-2); color: var(--ink); font-weight: 600; }
+    .nav-cta {
+      justify-self: end; display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.15rem; border-radius: var(--radius-sm);
+      background: var(--ink); color: #fff; font-size: 0.95rem; font-weight: 600; text-decoration: none;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
+    .nav-cta:hover { background: #1F1B18; transform: translateY(-1px); }
+
+    /* Work dropdown (existing behaviour) */
+    .nav-projects { position: relative; }
+    .nav-projects summary { cursor: pointer; list-style: none; }
+    .nav-projects summary::-webkit-details-marker { display: none; }
+    .nav-projects summary::after { content: "▾"; font-size: 0.7rem; color: var(--muted); transition: transform 0.18s ease; }
+    .nav-projects[open] summary::after { transform: rotate(180deg); }
+    .nav-projects[open] summary { background: rgba(234, 228, 220, 0.6); }
+    .nav-projects-menu {
+      display: none; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); z-index: 1200;
+      width: 280px; max-height: calc(100vh - 90px); overflow-y: auto; padding: 0.55rem;
+      border: 1px solid var(--line); border-radius: 14px; background: #FDFCFA; box-shadow: 0 16px 36px rgba(46, 41, 37, 0.12);
+    }
+    .nav-projects:hover .nav-projects-menu, .nav-projects[open] .nav-projects-menu { display: flex; flex-direction: column; gap: 0.1rem; }
+    .nav-projects-menu a { display: block; padding: 0.6rem 0.75rem; border-radius: 9px; color: var(--text); font-size: 0.86rem; line-height: 1.3; text-decoration: none; }
+    .nav-projects-menu a:hover { background: var(--panel); }
+    .nav-projects-menu > a:first-child { font-weight: 700; border-bottom: 1px solid var(--line); border-radius: 9px 9px 4px 4px; margin-bottom: 0.2rem; }
+    .nav-projects-menu .nav-menu-label { margin: 0.55rem 0.75rem 0.2rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); }
+    .nav-projects-menu .nav-menu-group { display: flex; flex-direction: column; gap: 0.1rem; }
+    .nav-projects-menu .nav-menu-group + .nav-menu-label { margin-top: 0.45rem; padding-top: 0.6rem; border-top: 1px solid var(--line); }
+
+    @media (max-width: 1100px) {
+      .site-nav { grid-template-columns: auto 1fr auto; }
+      .site-nav-links { justify-self: center; gap: 0.2rem; }
+      .site-nav-links > a, .nav-projects summary { padding: 0.45rem 0.7rem; }
+    }
+    @media (max-width: 860px) {
+      .nav-cta { display: none; }
+      .site-nav { grid-template-columns: auto 1fr; }
+      .site-nav-links { justify-self: end; }
+    }
+    @media (max-width: 640px) {
+      :root { --nav-h: 60px; }
+      .site-nav-brand { display: none; }
+      .site-nav { grid-template-columns: 1fr; padding: 0 0.6rem; }
+      .site-nav-links { justify-self: center; gap: 0; }
+      .site-nav-links > a, .nav-projects summary { padding: 0.4rem 0.5rem; font-size: 0.82rem; }
+      .nav-projects-menu { position: fixed; top: 54px; left: auto; right: 0.5rem; transform: none; width: min(280px, calc(100vw - 1rem)); }
     }
 
-    .site-nav-links { display: flex; gap: 0.25rem; }
-    .site-nav-links a {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: rgba(56,51,47,0.7);
-      text-decoration: none;
-      padding: 0.35rem 0.7rem;
-      border-radius: 8px;
+    /* ---------- Buttons and links ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      min-height: 44px; padding: 0.7rem 1.6rem; border-radius: var(--radius-sm);
+      font-size: 0.95rem; font-weight: 600; text-decoration: none;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+    .btn .i { font-size: 1.1rem; }
+    .btn--primary { background: var(--ink); color: #fff; border: 1.5px solid var(--ink); }
+    .btn--primary:hover { background: #1F1B18; transform: translateY(-1px); }
+    .btn--secondary { background: transparent; color: var(--ink); border: 1.5px solid rgba(46, 41, 37, 0.55); }
+    .btn--secondary:hover { border-color: var(--ink); background: rgba(234, 228, 220, 0.45); }
+    .text-link { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--ink); font-weight: 600; font-size: 0.98rem; text-decoration: underline; text-decoration-color: var(--neutral); text-underline-offset: 5px; }
+    .text-link:hover { text-decoration-color: var(--ink); }
+    .eyebrow { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--taupe); }
+
+    /* ---------- Hero ---------- */
+    .hero { padding-top: calc(var(--nav-h) + var(--hero-top)); overflow-x: clip; }
+    .hero__grid { display: grid; grid-template-columns: minmax(0, 540px) minmax(0, 1fr); gap: 1.25rem; align-items: center; }
+    /* Keep the reference's deliberate three-line break on wide screens. */
+    @media (min-width: 961px) { .hero h1 { white-space: nowrap; } }
+    .hero__text { padding: 0; align-self: start; }
+    .hero h1 {
+      margin-top: var(--eyebrow-gap); font-size: clamp(2.6rem, 4.75vw, 3.75rem); font-weight: 800;
+      line-height: 1.02; letter-spacing: -0.035em;
+    }
+    .hl { position: relative; z-index: 0; white-space: nowrap; }
+    .hl::before {
+      content: ""; position: absolute; z-index: -1; left: -0.14em; right: -0.08em; bottom: 0.02em; height: 0.6em;
+      background: var(--highlight); border-radius: 3px; transform: skewX(-14deg) rotate(-1.2deg);
+    }
+    .hero__lede { margin-top: 1.4rem; max-width: 32rem; font-size: 1.05rem; line-height: 1.5; color: var(--text); }
+    /* Scope line: quieter than the lede, set off by a thin neutral rule. */
+    .hero__scope { margin-top: 1rem; max-width: 32rem; padding-left: 0.85rem; border-left: 2px solid var(--neutral); font-size: 0.95rem; line-height: 1.5; font-weight: 500; color: var(--muted); }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: 1.1rem; margin-top: 1.75rem; }
+
+    /* Desk image: slanted, rounded frame that bleeds off the right edge, as in the reference. */
+    .hero__media { position: relative; margin-right: calc(-1 * ((100vw - min(100vw, var(--content-max))) / 2 + var(--gutter))); }
+    .hero__media picture { display: block; }
+    .hero__media img {
+      width: 100%; height: auto; aspect-ratio: 626 / 454; object-fit: cover;
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 626 454' preserveAspectRatio='none'%3E%3Cpath d='M104 2H626V452H38Q5 452 4 418L68 32Q72 2 104 2Z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 626 454' preserveAspectRatio='none'%3E%3Cpath d='M104 2H626V452H38Q5 452 4 418L68 32Q72 2 104 2Z'/%3E%3C/svg%3E");
+      -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
     }
 
-    .site-nav-links a:hover,
-    .site-nav-links a.active { color: var(--text-dark); }
+    /* ---------- Achievements bar ---------- */
+    .metrics {
+      margin: 1.75rem -1.5rem 0; padding: 1.4rem 2.25rem;
+      display: grid; grid-template-columns: repeat(4, auto); justify-content: space-between;
+      background: var(--panel); border-radius: var(--radius-lg);
+    }
+    .metric { display: flex; align-items: center; gap: 1.1rem; padding: 0.35rem 0 0.35rem 2.25rem; }
+    .metric:first-child { padding-left: 0.75rem; }
+    .metric + .metric { border-left: 1px solid var(--line-strong); padding-right: 0; }
+    .metric:not(:last-child) { padding-right: 2.25rem; }
+    .metric__icon { font-size: 1.85rem; color: var(--text); display: inline-flex; }
+    .metric__icon .i { stroke-width: 1.6; }
+    .metric__text { display: flex; flex-direction: column; gap: 0.25rem; }
+    .metric__text strong { font-size: 1.55rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); }
+    .metric__text span { font-size: 0.92rem; line-height: 1.35; color: var(--text); white-space: nowrap; }
 
-    .site-nav-links a.active { font-weight: 700; }
+    /* ---------- Section headings ---------- */
+    .section__head h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+    .section__head--split { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 2.5rem; align-items: center; }
+    .section__head--split p { font-size: 0.97rem; line-height: 1.6; color: var(--text); max-width: 50rem; }
+    .section__head--row { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
 
-    /* Hero */
-    .hero {
-      padding: 6.5rem 1.5rem 2.25rem;
-      background: linear-gradient(180deg, var(--surface) 0%, transparent 100%);
+    /* ---------- What I do ---------- */
+    .skills { margin-top: 2.25rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.75rem; }
+    .skill__icon { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 42px; border-radius: var(--radius-sm); background: var(--bg-2); color: var(--ink); font-size: 1.9rem; }
+    .skill h3 { margin-top: 0.9rem; font-size: 1.3rem; font-weight: 800; letter-spacing: -0.015em; }
+    .skill p { margin-top: 0.45rem; font-size: 0.97rem; line-height: 1.5; color: var(--muted); }
+
+    /* ---------- Featured projects ---------- */
+    .projects { margin-top: 1.75rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; }
+    .project {
+      position: relative; display: flex; flex-direction: column;
+      padding: 1.25rem 1.6rem 1.4rem; border: 1px solid #E2D9CE; border-radius: var(--radius);
+      background: var(--card); box-shadow: var(--shadow);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+    }
+    .project:hover { border-color: var(--neutral); transform: translateY(-2px); box-shadow: 0 2px 4px rgba(46,41,37,0.04), 0 14px 30px rgba(46,41,37,0.08); }
+    .project:focus-within { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .project__top { display: flex; justify-content: space-between; align-items: center; color: var(--text); }
+    .project__icon { font-size: 1.85rem; display: inline-flex; }
+    .project__arrow { font-size: 1.55rem; display: inline-flex; }
+    .project h3 { margin-top: 0.7rem; font-size: 1.28rem; font-weight: 800; letter-spacing: -0.015em; line-height: 1.25; }
+    .project h3 a { text-decoration: none; }
+    .project h3 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }   /* whole card is the link */
+    .project h3 a:focus-visible { outline: none; }
+    .project p { margin-top: 0.6rem; font-size: 0.98rem; line-height: 1.55; color: var(--text); flex: 1; }
+    .project__tags { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .project__tags li { padding: 0.3rem 0.7rem; border-radius: 8px; background: var(--panel); font-size: 0.82rem; color: var(--text); }
+
+    /* ---------- Closer look (existing interactive terminal) ---------- */
+    .closer { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 3.5rem; align-items: center; }
+    .closer__text h2 { margin-top: 0.9rem; font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+    .closer__text p { margin: 1rem 0 1.5rem; font-size: 1.05rem; line-height: 1.6; color: var(--text); max-width: 30rem; }
+
+    .hero-terminal { background: #2B2622; border-radius: var(--radius); overflow: hidden; box-shadow: 0 18px 44px rgba(46, 41, 37, 0.18); }
+    .t-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #36302B; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .t-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .t-dot-r { background: #D97B6C; } .t-dot-y { background: #D9B56C; } .t-dot-g { background: #8FA683; }
+    .t-title { flex: 1; text-align: center; padding-right: 29px; font-size: 0.72rem; color: rgba(255,255,255,0.5); }
+    .t-tabs { display: flex; background: #312B27; border-bottom: 1px solid rgba(255,255,255,0.08); overflow-x: auto; scrollbar-width: none; }
+    .t-tabs::-webkit-scrollbar { display: none; }
+    .t-tab {
+      flex: 0 0 auto; appearance: none; background: transparent; border: 0;
+      border-right: 1px solid rgba(255,255,255,0.06); border-top: 2px solid transparent;
+      padding: 0.6rem 0.9rem; color: rgba(255,255,255,0.6); cursor: pointer;
+      font-family: 'Courier New', monospace; font-size: 0.78rem;
+    }
+    .t-tab:hover { color: rgba(255,255,255,0.88); }
+    .t-tab[aria-selected="true"] { background: #2B2622; color: #FBF8F3; font-weight: 700; border-top-color: var(--neutral); }
+    .t-tab:focus-visible, .t-body:focus-visible { outline: 2px solid var(--neutral); outline-offset: -3px; }
+    .t-body { padding: 18px 20px 22px; min-height: 210px; }
+    .t-body pre, .t-list { margin: 0; font-family: 'Courier New', monospace; font-size: 0.86rem; line-height: 1.75; color: #E9E2D8; overflow-wrap: anywhere; }
+    .t-body pre { white-space: pre-wrap; }   /* only the JSON block keeps its line breaks */
+    .t-list li { display: grid; grid-template-columns: 2.4em 1fr; padding: 0.15rem 0; }
+    .t-num { color: var(--neutral); } .t-key { color: #E2C08D; } .t-str { color: #B5C7A8; } .t-punc { color: rgba(233,226,216,0.55); }
+
+    /* ---------- Toolbox ---------- */
+    .toolbox { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .toolbox li { padding: 0.5rem 0.9rem; border: 1px solid #E2D9CE; border-radius: 999px; background: var(--card); font-size: 0.92rem; color: var(--text); }
+
+    /* ---------- Closing ---------- */
+    .closing { padding: 2.75rem 2.5rem; border-radius: var(--radius-lg); background: var(--panel); text-align: center; }
+    .closing h2 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); font-weight: 800; letter-spacing: -0.02em; }
+    .closing p { margin: 0.75rem auto 1.75rem; max-width: 36rem; color: var(--text); font-size: 1.02rem; line-height: 1.6; }
+    .closing__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; }
+    .tagline { margin: 3.5rem auto 0; max-width: 36rem; text-align: center; font-size: 1.05rem; line-height: 1.7; font-style: italic; color: var(--muted); }
+
+    /* ---------- Footer ---------- */
+    .site-footer { margin: 3rem 0 2.5rem; padding: 0 var(--gutter); text-align: center; font-size: 0.92rem; color: var(--muted); }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 0.6rem; }
+    .footer-links a { color: var(--ink); font-weight: 600; text-decoration: none; }
+    .footer-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1240px) {
+      .metrics { padding: 1.3rem 1.75rem; }
+      .metric { gap: 0.75rem; padding-left: 1.4rem; }
+      .metric:not(:last-child) { padding-right: 1.4rem; }
+    }
+    @media (max-width: 1100px) {
+      .metrics { margin-left: 0; margin-right: 0; padding: 1.3rem 1.5rem; }
+      .metric__text span { white-space: normal; }
+      .metric__text strong { font-size: 1.4rem; }
+      .metric__text span { font-size: 0.88rem; }
+    }
+    @media (max-width: 960px) {
+      .hero__grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+      .hero__text { padding: 0; }
+      .hero__media { margin-right: 0; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: stretch; padding: 0.75rem; }
+      .metric, .metric:first-child, .metric:not(:last-child) { padding: 1rem 1.25rem; }
+      .metric + .metric { border-left: 0; }
+      .metric:nth-child(even) { border-left: 1px solid var(--line-strong); }
+      .metric:nth-child(n+3) { border-top: 1px solid var(--line-strong); }
+      .section__head--split { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+      .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 2rem; }
+      .projects { grid-template-columns: minmax(0, 1fr); }
+      .closer { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+    }
+    @media (max-width: 640px) {
+      .br-wide { display: none; }
+      .section { margin-top: 4rem; }
+      .hero h1 { font-size: clamp(2rem, 10vw, 2.9rem); }
+      .hero__lede { font-size: 1.02rem; }
+      .hero__actions .btn { flex: 1 1 auto; }
+      .metrics { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .metric { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 1rem; }
+      .metric__icon { font-size: 1.5rem; }
+      .metric__text strong { font-size: 1.3rem; }
+      .metric__text span { font-size: 0.86rem; }
+      .skills { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+      .closing { padding: 2rem 1.25rem; }
+      .closing__actions .btn { flex: 1 1 100%; }
+    }
+    /* Narrow phones: let the three terminal file tabs wrap instead of being cut off. */
+    @media (max-width: 374px) {
+      .t-tabs { flex-wrap: wrap; overflow-x: visible; }
+      .t-tab { flex: 1 1 auto; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.72rem; padding: 0.55rem 0.45rem; }
+    }
+    @media (max-width: 540px) {
+      .t-tab { flex: 1 1 auto; font-size: 0.72rem; padding: 0.55rem 0.45rem; }
+      .t-body { padding: 14px 14px 18px; }
+      .site-footer { margin-bottom: 6rem; }
     }
 
-    .hero-inner {
-      max-width: 1020px;
-      margin: 0 auto;
-      width: 100%;
-      text-align: center;
-    }
+    /* ---------- Chat panel layout (carried over unchanged; colours themed in chat-launcher.css) ---------- */
+    /* Chat */
 
-    .hero-label,
-    .section-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .hero-label { margin: 0 0 1rem; }
-    .section-label { margin: 0 0 1.25rem; text-align: center; }
-
-    h1 {
-      margin: 0 auto 0.75rem;
-      max-width: 860px;
-      font-size: clamp(2.1rem, 4.6vw, 3.1rem);
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-    }
-
-    .hero-subtitle {
-      margin: 0 auto;
-      font-size: clamp(1.1rem, 2.3vw, 1.35rem);
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-
-    .hero-highlight {
-      margin: 1rem auto 0;
-      max-width: 760px;
-      font-size: 1.06rem;
-      line-height: 1.7;
-      color: var(--muted-dark);
-    }
-
-    .cta-btn {
-      display: inline-flex;
+    #chat-toggle {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: var(--surface);
+      border: 1.5px solid var(--border-strong);
+      cursor: pointer;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.7rem 1.4rem;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.2s ease;
+      box-shadow: 0 8px 24px rgba(180,140,135,0.28);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+      z-index: 9999;
+      font-size: 24px;
     }
 
-    .cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    .content {
-      max-width: 1020px;
-      margin: 0 auto 4rem;
-      padding: 0 1.5rem;
+    #chat-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(180,140,135,0.4);
     }
 
-    .case-section { margin-bottom: 3.5rem; }
-
-    /* What I've owned */
-    /* The first card carries the most responsibility, so it gets a wider column
-       rather than shorter copy; the three cards then end at similar heights. */
-    .owned-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
-      gap: 1rem;
-    }
-
-    .owned-card {
+    #chat-window {
+      position: fixed;
+      bottom: 92px;
+      right: 22px;
+      width: 360px;
+      max-height: 530px;
+      background: var(--white-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.62);
-      border-radius: 20px;
-      padding: 1.5rem;
-      border-top: 4px solid var(--accent);
-    }
-
-    .owned-card h3 {
-      margin: 0 0 0.6rem;
-      font-size: 1.1rem;
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-    }
-
-    .owned-card p {
-      margin: 0;
-      color: var(--muted-dark);
-      font-size: 0.93rem;
-      line-height: 1.65;
-    }
-
-    .owned-card p + p { margin-top: 0.6rem; }
-
-    /* Featured incident */
-    .featured {
-      border: 1.5px solid var(--border-strong);
-      border-radius: 22px;
-      background: rgba(255,255,255,0.62);
-      padding: 1.8rem 2rem;
-    }
-
-    .featured-head {
+      border-radius: 24px;
+      box-shadow:
+        0 20px 50px rgba(180,140,135,0.15),
+        0 4px 16px rgba(0,0,0,0.06);
       display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 0.5rem 1rem;
-      margin-bottom: 1.3rem;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9998;
+      transform: scale(0.92) translateY(14px);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
+        opacity 0.22s ease;
     }
 
-    .featured-head h3 {
-      margin: 0;
-      font-size: 1.4rem;
-      letter-spacing: -0.02em;
+    #chat-window.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
     }
 
-    .pill {
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.65);
-      color: var(--accent-deep);
-    }
-
-    .incident-flow {
-      display: grid;
-      gap: 1.1rem;
-      margin: 0;
-    }
-
-    .incident-flow dt {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.35rem;
-    }
-
-    .incident-flow dd {
-      margin: 0;
-      max-width: 820px;
-      color: var(--muted-dark);
-      font-size: 0.97rem;
-      line-height: 1.65;
-    }
-
-    .incident-flow .mine {
-      border-radius: 16px;
-      padding: 1.2rem 1.4rem;
-      background: linear-gradient(135deg, rgba(178,163,151,0.2), rgba(255,255,255,0.75));
-      border: 1.5px solid var(--border-strong);
-      border-left: 4px solid var(--accent);
-    }
-
-    .incident-flow .mine dt { color: var(--accent-deep); }
-
-    .incident-flow .mine dd {
-      color: var(--text-dark);
-      font-weight: 600;
-      font-size: 1.06rem;
-    }
-
-    /* Expandable sections */
-    .more {
-      margin-top: 1rem;
-      border-radius: 18px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.45);
-    }
-
-    .more summary {
+    .chat-header {
+      background: linear-gradient(
+        135deg,
+        var(--surface) 0%,
+        var(--surface-soft) 100%
+      );
+      border-bottom: 1px solid var(--border-soft);
+      padding: 15px 16px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1rem 1.3rem;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      list-style: none;
-      border-radius: 18px;
-    }
-
-    .more summary::-webkit-details-marker { display: none; }
-
-    .more summary::after {
-      content: "+";
+      gap: 11px;
       flex-shrink: 0;
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: var(--surface);
-      color: var(--accent-deep);
-      font-size: 1.05rem;
-      font-weight: 700;
     }
 
-    .more[open] summary::after { content: "−"; }
-
-    .more summary:hover { color: var(--accent-deep); }
-
-    .more-body {
-      padding: 0 1.3rem 1.3rem;
-      display: grid;
-      gap: 1rem;
-    }
-
-    .mini-example {
-      border-top: 1px solid var(--border-soft);
-      padding-top: 1rem;
-    }
-
-    .mini-example h4 {
-      margin: 0 0 0.6rem;
-      font-size: 1.02rem;
-    }
-
-    .mini-example dl {
-      margin: 0;
-      display: grid;
-      grid-template-columns: 150px minmax(0, 1fr);
-      gap: 0.45rem 1rem;
-    }
-
-    .mini-example dt {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      padding-top: 0.2rem;
-    }
-
-    .mini-example dd {
-      margin: 0;
-      color: var(--muted-dark);
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    .mini-example dd.mine-text { color: var(--text-dark); font-weight: 600; }
-
-    /* Lifecycle tabs */
-    .stage-tabs {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 0.6rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .stage-tabs[hidden] { display: none; }
-
-    .stage-tab {
-      font: inherit;
-      text-align: center;
-      padding: 0.9rem 0.6rem;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.55);
-      border: 1.5px solid var(--border-soft);
-      color: var(--muted-dark);
-      cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    }
-
-    .stage-tab .num {
-      display: block;
-      font-size: 0.72rem;
+    .chat-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        #E0B8B4
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
       font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 0.25rem;
+      letter-spacing: 0.05em;
+      color: #fff;
+      flex-shrink: 0;
     }
 
-    .stage-tab .name {
-      display: block;
-      font-size: 0.93rem;
+    .chat-header-info h4 {
+      font-size: 0.92rem;
       font-weight: 700;
-      line-height: 1.3;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin: 0;
     }
 
-    .stage-tab:hover { border-color: var(--border-strong); color: var(--text-dark); }
+    .chat-header-info p {
+      font-size: 0.73rem;
+      color: var(--muted-dark);
+      margin: 2px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
 
-    .stage-tab[aria-selected="true"] {
+    .online-dot {
+      width: 7px;
+      height: 7px;
+      background: #4caf82;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .chat-close {
+      margin-left: auto;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted-dark);
+      font-size: 17px;
+      line-height: 1;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    .chat-close:hover {
+      background: rgba(180,140,135,0.12);
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      scroll-behavior: smooth;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: var(--border-soft);
+      border-radius: 4px;
+    }
+
+    .msg {
+      max-width: 84%;
+      padding: 10px 13px;
+      border-radius: 16px;
+      font-size: 0.875rem;
+      line-height: 1.58;
+      animation: msgIn 0.22s ease;
+    }
+
+    @keyframes msgIn {
+      from {
+        opacity: 0;
+        transform: translateY(7px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .msg.bot {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border-soft);
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
       color: var(--text-dark);
-      background: linear-gradient(135deg, rgba(178,163,151,0.22), rgba(255,255,255,0.8));
+    }
+
+    .msg.user {
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        #E0B8B4
+      );
+      color: #fff;
+      border-bottom-right-radius: 5px;
+      align-self: flex-end;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 11px 14px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      border-bottom-left-radius: 5px;
+      align-self: flex-start;
+      width: fit-content;
+      animation: msgIn 0.2s ease;
+    }
+
+    .typing-indicator span {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: bounce 1.2s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes bounce {
+      0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.6;
+      }
+
+      30% {
+        transform: translateY(-5px);
+        opacity: 1;
+      }
+    }
+
+    .chat-input-area {
+      padding: 11px 13px;
+      border-top: 1px solid var(--border-soft);
+      background: rgba(255,255,255,0.6);
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .chat-input-area textarea {
+      flex: 1;
+      border: 1.5px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 9px 11px;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: 0.875rem;
+      color: var(--text-dark);
+      background: rgba(255,255,255,0.88);
+      resize: none;
+      outline: none;
+      max-height: 100px;
+      line-height: 1.45;
+      transition: border-color 0.2s;
+    }
+
+    .chat-input-area textarea:focus {
       border-color: var(--accent);
     }
 
-    .stage-tab[aria-selected="true"] .num { color: var(--accent-deep); }
-
-    .stage-panels {
-      display: grid;
-      gap: 0.6rem;
+    .chat-input-area textarea::placeholder {
+      color: rgba(26,26,26,0.4);
     }
 
-    .stage-panel {
-      border-radius: 16px;
-      padding: 1.1rem 1.4rem;
-      background: rgba(255,255,255,0.6);
-      border: 1.5px solid var(--border-soft);
-    }
-
-    .stage-panel h3 {
-      margin: 0 0 0.3rem;
-      font-size: 0.98rem;
-    }
-
-    .stage-panel p {
-      margin: 0;
-      color: var(--muted-dark);
-      font-size: 0.97rem;
-      line-height: 1.65;
-    }
-
-    /* With JavaScript, one panel shows at a time and the tab names the stage */
-    .tabs-ready .stage-panel h3 { display: none; }
-    .tabs-ready .stage-panel { animation: panel-in 0.25s ease; }
-
-    @keyframes panel-in {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .tabs-ready .stage-panel { animation: none; }
-      .stage-tab { transition: none; }
-    }
-
-    /* Experience to systems */
-    .bridge {
-      border-radius: 22px;
-      background: linear-gradient(135deg, rgba(178,163,151,0.14), rgba(255,255,255,0.72));
-      border: 1.5px solid var(--border-soft);
-      padding: 2rem 2.25rem;
-      text-align: center;
-    }
-
-    .bridge-flow {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
-      align-items: stretch;
-      gap: 0.6rem;
-      margin: 0 0 1.3rem;
-      padding: 0;
-      list-style: none;
-    }
-
-    .bridge-flow li {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0.6rem 0.95rem;
-      border-radius: 14px;
-      line-height: 1.35;
-      background: rgba(255,255,255,0.8);
-      border: 1.5px solid var(--border-soft);
-      font-size: 0.88rem;
-      font-weight: 700;
-    }
-
-    .bridge-kicker {
-      display: block;
-      margin-bottom: 0.2rem;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .bridge-flow .arrow {
-      padding: 0;
-      border: 0;
-      background: none;
-      color: var(--accent);
-    }
-
-    .bridge p {
-      max-width: 700px;
-      margin: 0 auto 1.3rem;
-      color: var(--muted-dark);
-      line-height: 1.75;
-      font-size: 1rem;
-    }
-
-    .bridge strong { color: var(--text-dark); }
-
-    /* Closing */
-    .cta-card {
-      border-radius: 22px;
-      padding: 2.25rem 2rem;
-      text-align: center;
-      background: var(--surface);
-      border: 1.5px solid var(--border-soft);
-    }
-
-    .cta-card h2 {
-      font-size: clamp(1.4rem, 3vw, 1.75rem);
-      letter-spacing: -0.02em;
-      margin: 0 0 0.7rem;
-    }
-
-    .cta-card p {
-      color: var(--muted-dark);
-      line-height: 1.7;
-      max-width: 620px;
-      margin: 0 auto 1.4rem;
-    }
-
-    .cta-card .cta-btn { padding: 0.85rem 1.85rem; font-size: 1.02rem; }
-
-    .related {
-      margin: 2.25rem auto 0;
-      padding-top: 1.75rem;
-      max-width: 640px;
-      border-top: 1px solid var(--border-strong);
-    }
-
-    .related h3 {
-      margin: 0 0 1rem;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent-deep);
-    }
-
-    .related-links {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .related-links a {
-      display: block;
-      height: 100%;
-      padding: 0.95rem 1.1rem;
-      border-radius: 14px;
-      border: 1.5px solid var(--border-soft);
-      background: rgba(255,255,255,0.7);
-      color: var(--text-dark);
-      text-align: left;
-      text-decoration: none;
-      transition: border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .related-links a:hover,
-    .related-links a:focus-visible { border-color: var(--accent); transform: translateY(-1px); }
-
-    .related-links strong { display: block; font-size: 0.95rem; }
-
-    .related-links span {
-      display: block;
-      margin-top: 0.2rem;
-      font-size: 0.84rem;
-      color: var(--muted-dark);
-      line-height: 1.5;
-    }
-
-    .all-projects {
-      display: inline-block;
-      margin-top: 1.1rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--accent-deep);
-      text-decoration: none;
-    }
-
-    .all-projects:hover,
-    .all-projects:focus-visible { text-decoration: underline; }
-
-    .links {
-      text-align: center;
-      padding: 4rem 1.5rem 3rem;
-      background: var(--surface);
-      border-top: 1px solid var(--border-soft);
-    }
-
-    .links h2 {
-      font-size: 1.6rem;
-      margin: 0 0 1rem;
-    }
-
-    .connect-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.1rem;
-      flex-wrap: wrap;
-    }
-
-    .connect-links a {
-      color: var(--text-dark);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .connect-links a:hover { color: var(--accent-deep); }
-
-    footer {
-      text-align: center;
-      padding: 1.3rem;
-      font-size: 0.78rem;
-      color: var(--muted-dark);
-      background: var(--surface);
-    }
-
-    @media (max-width: 900px) {
-      .owned-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 760px) {
-      .stage-tabs {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        padding-bottom: 0.3rem;
-        margin-left: calc(-1 * var(--gutter, 1.5rem));
-        margin-right: calc(-1 * var(--gutter, 1.5rem));
-        padding-left: var(--gutter, 1.5rem);
-        padding-right: var(--gutter, 1.5rem);
-        scrollbar-width: thin;
-      }
-      .stage-tab {
-        flex: 0 0 auto;
-        min-width: 132px;
-        scroll-snap-align: start;
-      }
-    }
-
-    /* Phones: keep the scrolling strip out of the right-edge lane used by the "Ask AI" tab. */
-    @media (max-width: 540px) {
-      .stage-tabs { margin-right: 0; padding-right: 0; }
-    }
-
-    @media (max-width: 640px) {
-      .site-nav-brand { display: none; }
-      .site-nav { padding: 0 0.7rem; justify-content: center; }
-      .site-nav-links a { padding: 0.35rem 0.45rem; font-size: 0.8rem; }
-      .hero { padding-top: 6.8rem; }
-      .featured,
-      .bridge { padding: 1.4rem; }
-      .mini-example dl,
-      .related-links { grid-template-columns: 1fr; gap: 0.15rem; }
-      .related-links { gap: 0.6rem; }
-      .cta-card { padding: 1.8rem 1.25rem; }
-      .mini-example dd { margin-bottom: 0.5rem; }
-      .bridge-flow { grid-template-columns: 1fr; gap: 0.35rem; }
-      .bridge-flow .arrow { transform: rotate(90deg); justify-self: center; }
-    }
-
-    /* Projects navigation dropdown */
-    .site-nav-links { align-items: center; }
-    .nav-projects { position: relative; }
-    .nav-projects summary {
-      display: flex;
-      align-items: center;
-      gap: 0.28rem;
-      padding: 0.35rem 0.7rem;
-      border-radius: 8px;
-      color: rgba(56,51,47,0.7);
-      font-size: 0.875rem;
-      font-weight: 500;
+    .send-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: linear-gradient(
+        135deg,
+        var(--accent),
+        #E0B8B4
+      );
+      border: none;
       cursor: pointer;
-      list-style: none;
-      white-space: nowrap;
-    }
-    .nav-projects summary::-webkit-details-marker { display: none; }
-    .nav-projects summary::after {
-      content: "▾";
-      font-size: 0.68rem;
-      transition: transform 0.18s ease;
-    }
-    .nav-projects[open] summary::after { transform: rotate(180deg); }
-    .nav-projects:hover summary,
-    .nav-projects[open] summary,
-    .nav-projects.active summary {
-      color: #2E2925;
-    }
-    .nav-projects.active summary { font-weight: 700; }
-    .nav-projects-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      z-index: 1200;
-      width: 250px;
-      padding: 0.55rem;
-      border: 1px solid rgba(140,124,112,0.25);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.98);
-      box-shadow: 0 14px 35px rgba(56,51,47,0.12);
-    }
-    .nav-projects:hover .nav-projects-menu,
-    .nav-projects[open] .nav-projects-menu {
       display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        opacity 0.15s;
+      box-shadow: 0 4px 12px rgba(180,140,135,0.32);
     }
-    .site-nav-links .nav-projects-menu a {
-      display: block;
-      padding: 0.62rem 0.72rem;
-      border-radius: 9px;
-      color: rgba(56,51,47,0.83);
-      font-size: 0.82rem;
-      font-weight: 500;
-      line-height: 1.3;
-      text-align: left;
-      text-decoration: none;
+
+    .send-btn:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 16px rgba(180,140,135,0.42);
     }
-    .site-nav-links .nav-projects-menu a:hover {
-      color: #2E2925;
-      background: rgba(178,163,151,0.14);
+
+    .send-btn:active {
+      transform: scale(0.95);
     }
-    .site-nav-links .nav-projects-menu a:first-child {
-      margin-bottom: 0.18rem;
-      border-bottom: 1px solid rgba(140,124,112,0.18);
-      border-radius: 9px 9px 4px 4px;
-      font-weight: 700;
+
+    .send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .send-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: white;
+    }
+
+    @media (max-width: 420px) {
+      #chat-window {
+        width: calc(100vw - 28px);
+        right: 14px;
+        bottom: 84px;
+      }
+
+      #chat-toggle {
+        right: 14px;
+        bottom: 14px;
+      }
+    }
+
+    @media (max-width: 374px) {
+      .site-nav-links > a, .nav-projects summary { padding: 0.35rem 0.36rem; font-size: 0.76rem; gap: 0.15rem; }
+    }
+    /* Narrow phones: achievements as compact single-column rows. */
+    @media (max-width: 420px) {
+      .metrics { grid-template-columns: minmax(0, 1fr); padding: 0.4rem 1rem; }
+      .metric, .metric:first-child, .metric:not(:last-child) { flex-direction: row; align-items: center; gap: 0.9rem; padding: 0.85rem 0.25rem; }
+      .metric:nth-child(even) { border-left: 0; }
+      .metric + .metric { border-top: 1px solid var(--line-strong); }
+      .metric__icon { width: 1.6rem; justify-content: center; }
+      .metric__text { flex-direction: row; align-items: baseline; flex-wrap: wrap; column-gap: 0.5rem; row-gap: 0.1rem; }
+      .metric__text strong { font-size: 1.2rem; }
+      .metric__text span { font-size: 0.88rem; }
+    }
+
+
+
+    /* ---------- Principles accordion (shared: homepage principles.md tab and About) ---------- */
+    .pacc { font-family: 'Courier New', monospace; }
+    .pacc { display: flex; flex-direction: column; }
+    .pacc__item + .pacc__item { border-top: 1px solid rgba(255,255,255,0.07); }
+    .pacc__h { margin: 0; font: inherit; }
+    .pacc__btn {
+      appearance: none; width: 100%; display: grid; grid-template-columns: 2.6em minmax(0, 1fr) 1.25rem; align-items: center; gap: 0.25rem;
+      padding: 0.8rem 0.6rem; border: 0; border-radius: 6px; background: transparent; cursor: pointer;
+      color: #E9E2D8; text-align: left; font: inherit; font-size: 0.9rem; line-height: 1.45;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .pacc__btn:hover { background: rgba(255,255,255,0.05); color: #FBF8F3; }
+    .pacc__btn .t-num { color: #A89A8D; }
+    .pacc__btn[aria-expanded="true"] { color: #FBF8F3; font-weight: 700; }
+    .pacc__btn[aria-expanded="true"] .t-num { color: #E2C08D; }
+    .pacc__btn:focus-visible { outline: 2px solid var(--neutral); outline-offset: -2px; }
+    /* Plus / minus drawn with two bars; the vertical bar disappears when expanded. */
+    .pacc__icon { position: relative; justify-self: end; width: 12px; height: 12px; }
+    .pacc__icon::before, .pacc__icon::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; margin-top: -0.75px; background: currentColor; border-radius: 1px; }
+    .pacc__icon::after { transform: rotate(90deg); }
+    .pacc__btn[aria-expanded="true"] .pacc__icon::after { transform: rotate(0deg); opacity: 0; }
+    .pacc__panel { padding: 0 0.6rem 0.9rem calc(0.6rem + 2.6em + 0.25rem); }
+    .pacc__panel p { position: relative; font-size: 0.86rem; line-height: 1.65; color: #D9CFC3; }
+    .pacc__panel p::before { content: "→"; position: absolute; left: -1.5em; color: #B5C7A8; }
+    @media (max-width: 640px) {
+      .pacc__btn { font-size: 0.86rem; padding: 0.75rem 0.45rem; }
+      .pacc__panel { padding-left: calc(0.45rem + 2.6em + 0.25rem); padding-right: 0.45rem; }
+    }
+
+    /* ---------- Shared hero heading: same size, weight and leading on every page ---------- */
+    .hero h1, .about-hero h1, .td-hero h1 { font-size: var(--hero-h1-size); font-weight: 800; line-height: var(--hero-h1-leading); letter-spacing: -0.035em; }
+
+    /* ---------- What I do: four outlined cards in one row ---------- */
+    .skills { gap: 1rem; margin-top: 1.5rem; align-items: stretch; }
+    .skill { padding: 1.35rem 1.4rem 1.45rem; border: 1px solid #E2D9CE; border-radius: var(--radius); background: var(--card); }
+    .skill h3 { margin-top: 0.9rem; font-size: 1.2rem; }
+    .skill p { margin-top: 0.4rem; font-size: 0.96rem; }
+    @media (max-width: 640px) { .skills { gap: 0.85rem; } .skill { padding: 1.2rem 1.25rem; } }
+    /* Homepage metrics bar on the content edges, matching the cards below */
+    .hero + .container .metrics { margin-left: 0; margin-right: 0; }
+    /* Closer section: no eyebrow, heading starts the section */
+    .closer__text h2 { margin-top: 0; }
+
+    /* ---------- Shared hero description: same size, weight, leading and spacing on every page ---------- */
+    .hero__lede, .about-hero__lede, .td-hero__lede { margin-top: 1.1rem; font-size: var(--hero-lede-size); font-weight: 400; line-height: var(--hero-lede-leading); }
+    .hero__lede + .hero__lede, .about-hero__lede + .about-hero__lede, .td-hero__lede + .td-hero__lede { margin-top: var(--hero-lede-gap); }
+    .hero__lede { max-width: 33rem; }
+
+    /* ---------- Homepage metrics: four equal columns, labels wrap inside the bar ---------- */
+    @media (min-width: 961px) {
+      .hero + .container .metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); justify-content: stretch; padding: 1.35rem 1.25rem; }
+      .hero + .container .metrics .metric { min-width: 0; gap: 0.9rem; padding: 0.3rem 1.25rem; }
+      .hero + .container .metrics .metric__icon { flex: 0 0 1.85rem; justify-content: center; }
+      .hero + .container .metrics .metric__text { min-width: 0; }
+      .hero + .container .metrics .metric__text span { white-space: normal; text-wrap: pretty; }
+      .hero + .container .metrics { align-items: stretch; }
+      .hero + .container .metrics .metric { align-items: flex-start; }
+      .hero + .container .metrics .metric__icon { margin-top: 0.1rem; }
+    }
+
+    /* ---------- Shared hero frame: Home, About and Technical depth line up on desktop ---------- */
+    body .hero + .container .metrics, body .td-hero + .container .metrics, body .about-hero + .section { margin-top: var(--hero-after); }
+    @media (min-width: 1200px) {
+      /* Text stays top-aligned so eyebrows and headings start at the same point; visuals sit centred in the frame */
+      .hero__media img { max-height: var(--hero-frame-h); }
+      body .about-hero__grid, body .td-hero__grid { min-height: var(--hero-frame-h); align-items: center; }
+      body .about-hero__grid > div:first-child, body .td-hero__text { align-self: start; }
+    }
+
+    /* ---------- Shared hero visual area: same footprint as the homepage desk image (desktop) ---------- */
+    .hero-stage { min-width: 0; }
+    @media (min-width: 1200px) {
+      :root {
+        --hero-bleed: calc((100vw - min(100vw, var(--content-max))) / 2 + var(--gutter));
+        /* the desk image's own height: its width at the 626:454 ratio, capped by the shared frame */
+        --hero-visual-h: min(calc((50vw - 2px) * 0.7252), var(--hero-frame-h));
+      }
+      body .about-hero__grid, body .td-hero__grid { grid-template-columns: minmax(0, 540px) minmax(0, 1fr); gap: 1.25rem; align-items: start; min-height: 0; }
+      .hero-stage {
+        display: flex; align-items: center; justify-content: center;
+        min-height: var(--hero-visual-h);
+        margin-right: calc(-1 * var(--hero-bleed));
+        padding: 2rem calc(var(--hero-bleed) + 2rem) 2rem 2.5rem;
+        border-radius: 28px 0 0 28px;
+        background: linear-gradient(155deg, #EFE8DE 0%, #E7DED2 100%);
+      }
+      .hero-stage > .pcode { width: 100%; max-width: 30rem; }
+      .hero-stage > .td-visual { width: 100%; max-width: 31rem; }
+      .hero-stage > .td-visual::before { display: none; }
+    }
+
+    /* ================= Enterprise Incident & Escalation Management ================= */
+    .nav-projects.active > summary { background: var(--bg-2); color: var(--ink); font-weight: 600; }
+    .ic { --ic-line: #E2D9CE; }
+    .ic .i { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ---------- Hero ---------- */
+    .ic-hero { padding-top: calc(var(--nav-h) + var(--hero-top)); }
+    .ic-crumbs { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.86rem; color: var(--muted); list-style: none; }
+    .ic-crumbs li + li::before { content: "/"; margin-right: 0.5rem; color: #B2A397; }
+    .ic-crumbs a { color: var(--text); text-decoration: none; }
+    .ic-crumbs a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .ic-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 3rem; align-items: center; margin-top: 1.5rem; }
+    .ic-hero h1 { max-width: 16ch; font-size: var(--hero-h1-size); font-weight: 800; line-height: var(--hero-h1-leading); letter-spacing: -0.035em; color: var(--ink); text-wrap: balance; }
+    .ic-hero__sub { margin-top: 1rem; font-size: 1.12rem; font-weight: 700; line-height: 1.4; color: var(--ink); }
+    .ic-hero__lede { margin-top: 0.75rem; max-width: 33rem; font-size: var(--hero-lede-size); line-height: var(--hero-lede-leading); color: var(--text); text-wrap: pretty; }
+
+    /* Illustrative incident workspace (generic, fictional) */
+    .ws { margin: 0; }
+    .ws__win { border: 1px solid var(--ic-line); border-radius: 16px; background: #FDFBF8; box-shadow: 0 18px 40px rgba(46, 41, 37, 0.1); overflow: hidden; }
+    .ws__bar { display: flex; gap: 5px; padding: 0.65rem 0.85rem; background: #EFE7DD; }
+    .ws__bar span { width: 8px; height: 8px; border-radius: 50%; background: #9C8B7E; }
+    .ws__head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; padding: 0.95rem 1.1rem 0.7rem; border-bottom: 1px solid #EDE5DB; }
+    .ws__title { flex: 1 1 12rem; font-size: 0.95rem; font-weight: 700; color: var(--ink); }
+    .ws__title small { display: block; margin-top: 0.1rem; font-size: 0.68rem; font-weight: 500; color: var(--muted); }
+    .badge { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.68rem; font-weight: 700; line-height: 1.2; white-space: nowrap; }
+    .badge--sev { background: #F1DDD2; color: #7A3E25; }
+    .badge--status { background: #E6EBDC; color: #3E4430; }
+    .badge--status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #6C7A55; }
+    .ws__tabs { display: flex; gap: 1rem; padding: 0 1.1rem; border-bottom: 1px solid #EDE5DB; list-style: none; }
+    .ws__tabs li { padding: 0.55rem 0 0.5rem; font-size: 0.7rem; font-weight: 600; color: var(--muted); }
+    .ws__tabs li.is-on { color: var(--ink); box-shadow: inset 0 -2px 0 #6E5446; }
+    .ws__body { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+    .ws__col { padding: 0.85rem 1.1rem 1rem; }
+    .ws__col + .ws__col { border-left: 1px solid #EDE5DB; background: #F9F5F0; }
+    .ws__label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6E6158; }
+    .tl { display: grid; gap: 0.5rem; margin-top: 0.55rem; list-style: none; }
+    .tl li { position: relative; display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); column-gap: 0.55rem; font-size: 0.7rem; line-height: 1.35; color: var(--text); }
+    .tl time { font-variant-numeric: tabular-nums; color: var(--muted); }
+    .tl li.is-done span { color: var(--ink); font-weight: 600; }
+    .tl li.is-done span::before { content: "✓ "; color: #6C7A55; }
+    .roles { display: grid; gap: 0.5rem; margin-top: 0.55rem; }
+    .role dt { font-size: 0.62rem; color: var(--muted); }
+    .role dd { margin: 0.05rem 0 0; font-size: 0.72rem; font-weight: 600; line-height: 1.3; color: var(--ink); }
+    .ws__cap { margin-top: 0.7rem; text-align: center; font-size: 0.82rem; font-style: italic; color: var(--muted); }
+
+    /* ---------- Sections ---------- */
+    .ic-section { margin-top: 4rem; }
+    .ic-section > h2, .ic-head h2 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.03em; color: var(--ink); text-wrap: balance; }
+    .ic-head p { margin-top: 0.5rem; max-width: 46rem; font-size: 1rem; line-height: 1.55; color: var(--text); }
+    .ic .ic-rule { margin: 0; display: flex; align-items: center; gap: 1.25rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #4A403A; }
+    .ic-rule::before, .ic-rule::after { content: ""; flex: 1; height: 1px; background: rgba(56, 51, 47, 0.14); }
+
+    /* What I've owned */
+    .owned { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.4rem; list-style: none; }
+    .owned li { display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); column-gap: 1rem; padding: 1.4rem 1.5rem; border: 1px solid var(--ic-line); border-radius: var(--radius-lg); background: var(--card); }
+    .owned .i { width: 1.85rem; height: 1.85rem; color: var(--ink); stroke-width: 1.4; }
+    .owned h3 { font-size: 1.1rem; font-weight: 700; line-height: 1.25; color: var(--ink); }
+    .owned p { margin-top: 0.45rem; font-size: 0.94rem; line-height: 1.55; color: var(--text); text-wrap: pretty; }
+
+    /* Incident leadership in practice */
+    .case { margin-top: 1.4rem; padding: 1.6rem 1.9rem 1.2rem; border: 1px solid var(--ic-line); border-radius: var(--radius-lg); background: var(--card); }
+    .case h3 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+    .case dl { margin-top: 0.8rem; }
+    .case__row { display: grid; grid-template-columns: 11rem minmax(0, 1fr); column-gap: 1.75rem; padding: 0.85rem 1rem; border-radius: 12px; }
+    .case__row dt { padding-top: 0.15rem; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #4A403A; }
+    .case__row dd { margin: 0; padding-left: 1.75rem; border-left: 1px solid rgba(56, 51, 47, 0.14); font-size: 0.98rem; line-height: 1.6; color: var(--text); text-wrap: pretty; }
+    .case__row--key { background: #F3EAE0; }
+    .case__row--key dd { font-weight: 600; color: var(--ink); }
+    .ic-more { display: grid; gap: 0.75rem; margin-top: 0.9rem; }
+    .ic-more details { border: 1px solid var(--ic-line); border-radius: 14px; background: var(--card); }
+    .ic-more summary { display: flex; align-items: center; gap: 0.85rem; min-height: 48px; padding: 0.6rem 1.25rem; cursor: pointer; list-style: none; font-size: 1rem; font-weight: 700; color: var(--ink); }
+    .ic-more summary::-webkit-details-marker { display: none; }
+    .ic-more summary .i { width: 1.3rem; height: 1.3rem; flex-shrink: 0; }
+    .ic-more summary .chev { margin-left: auto; width: 1.1rem; height: 1.1rem; transition: transform 0.15s ease; }
+    .ic-more details[open] summary .chev { transform: rotate(180deg); }
+    .ic-more summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 14px; }
+    .ic-more dl { padding: 0 1.25rem 1rem; }
+    .ic-more .case__row { padding: 0.6rem 0.25rem; }
+    @media (prefers-reduced-motion: reduce) { .ic-more summary .chev { transition: none; } }
+
+    /* How I approach incidents: interactive, collapsed by default */
+    .steps5 { display: grid; grid-template-columns: minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr); grid-auto-rows: 1fr; align-items: stretch; margin-top: 1.4rem; }
+    .step5 { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.55rem; width: 100%; min-height: 6.25rem; padding: 0.9rem 0.6rem; border: 1px solid var(--ic-line); border-radius: 14px; background: var(--card); font: inherit; color: inherit; text-align: center; cursor: pointer; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    .step5 .i { width: 1.6rem; height: 1.6rem; color: var(--ink); stroke-width: 1.5; }
+    .step5 span { font-size: 0.9rem; font-weight: 600; line-height: 1.3; color: var(--ink); text-wrap: balance; }
+    .step5[aria-expanded="true"] { border-color: #D9C6B3; background: #F3E9DE; box-shadow: inset 0 0 0 1px #D9C6B3; }
+    .step5:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    @media (hover: hover) { .step5:hover:not([aria-expanded="true"]) { border-color: #CFC3B6; background: #FBF7F2; } }
+    @media (prefers-reduced-motion: no-preference) { .step5 { transition: background-color 0.15s ease, border-color 0.15s ease; } }
+    .step5-arrow { align-self: center; justify-self: center; color: var(--ink); }
+    .step5-arrow svg { display: block; width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .ap-panel { margin-top: 0.9rem; padding: 1.1rem 1.4rem 1.2rem; border: 1px solid #E5D7C8; border-radius: 14px; background: #FBF7F2; }
+    @media (min-width: 861px) { .ap-panel { min-height: 9.15rem; box-sizing: border-box; } }
+    .ap-panel__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .ap-panel__step { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6E6158; }
+    .ap-panel h3 { margin-top: 0.3rem; font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+    .ap-panel__text { margin-top: 0.35rem; max-width: 52rem; font-size: 0.98rem; line-height: 1.6; color: var(--text); text-wrap: pretty; }
+    .ap-close { display: inline-flex; align-items: center; gap: 0.3rem; min-height: 32px; margin: -0.4rem -0.5rem -0.4rem 0; padding: 0.3rem 0.5rem; border: 0; border-radius: 8px; background: transparent; font: inherit; font-size: 0.82rem; font-weight: 500; color: #5E5650; cursor: pointer; }
+    .ap-close svg { width: 0.9rem; height: 0.9rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+    .ap-close:hover { background: #EFE4D8; color: var(--ink); }
+    .ap-close:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+    /* From experience to systems */
+    .bridge { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1.5rem; align-items: center; margin-top: 1.4rem; padding: 1.1rem 1.4rem; border-radius: var(--radius-lg); background: var(--panel); }
+    .bridge__path { display: flex; align-items: center; gap: 0.75rem; }
+    .bridge__chip { padding: 0.6rem 0.95rem; border: 1px solid var(--ic-line); border-radius: 10px; background: #FDFBF8; font-size: 0.86rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
+    .bridge__path > svg { width: 1rem; height: 1rem; flex-shrink: 0; fill: none; stroke: var(--ink); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .bridge p { padding-left: 1.5rem; border-left: 1px solid rgba(56, 51, 47, 0.14); font-size: 0.94rem; line-height: 1.55; color: var(--text); text-wrap: pretty; }
+    .bridge .btn { min-height: 44px; gap: 0.45rem; white-space: nowrap; }
+    .bridge .btn .i { width: 1rem; height: 1rem; stroke-width: 1.8; }
+
+    /* Closing reflection and related work */
+    .reflect { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 2rem; margin-top: 1.25rem; padding: 1.6rem 1.75rem; border: 1px solid var(--ic-line); border-radius: var(--radius-lg); background: var(--card); }
+    .reflect h2 { font-size: clamp(1.35rem, 2vw, 1.6rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); }
+    .reflect__text p { margin-top: 0.6rem; font-size: 0.97rem; line-height: 1.6; color: var(--text); text-wrap: pretty; }
+    .reflect__related { padding-left: 2rem; border-left: 1px solid rgba(56, 51, 47, 0.14); }
+    .reflect__label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #4A403A; }
+    .ic-rel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.85rem; margin-top: 0.75rem; list-style: none; }
+    .ic-rel li { position: relative; padding: 0.9rem 1rem; border: 1px solid var(--ic-line); border-radius: 12px; background: #FDFBF8; }
+    .ic-rel a { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.95rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+    .ic-rel a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+    .ic-rel a .i { width: 0.95rem; height: 0.95rem; stroke-width: 1.8; }
+    .ic-rel p { margin-top: 0.3rem; font-size: 0.86rem; line-height: 1.45; color: var(--text); }
+    .ic-rel li:focus-within { outline: 2px solid var(--ink); outline-offset: 2px; }
+    .ic-rel a:focus-visible { outline: none; }
+    @media (hover: hover) { .ic-rel li:hover { border-color: #CFC3B6; } }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1100px) {
+      .steps5 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+      .step5-arrow { display: none; }
+    }
+    @media (max-width: 960px) {
+      .ic-hero__grid { grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
+      .ws { max-width: 36rem; }
+      .reflect { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
+      .reflect__related { padding-left: 0; padding-top: 1.4rem; border-left: 0; border-top: 1px solid rgba(56, 51, 47, 0.14); }
+    }
+    @media (max-width: 860px) {
+      .owned { grid-template-columns: minmax(0, 1fr); }
     }
     @media (max-width: 640px) {
-      .nav-projects summary {
-        padding: 0.35rem 0.38rem;
-        font-size: 0.8rem;
-      }
-      .nav-projects-menu {
-        position: fixed;
-        top: 54px;
-        right: 0.5rem;
-        width: min(250px, calc(100vw - 1rem));
-      }
+      .ic-section { margin-top: 3.25rem; }
+      .case { padding: 1.3rem 1.2rem 0.9rem; }
+      .case h3 { font-size: 1.25rem; }
+      .case__row { grid-template-columns: minmax(0, 1fr); row-gap: 0.35rem; padding: 0.75rem 0.75rem; }
+      .case__row dd { padding-left: 0; border-left: 0; }
+      .ic-more summary { padding: 0.6rem 1rem; font-size: 0.96rem; }
+      .ic-more dl { padding: 0 0.75rem 0.85rem; }
+      .steps5 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+      .bridge__path { flex-wrap: wrap; }
+      .ic-rel { grid-template-columns: minmax(0, 1fr); }
+      .owned li { padding: 1.2rem; grid-template-columns: 1.8rem minmax(0, 1fr); column-gap: 0.85rem; }
+      .owned .i { width: 1.6rem; height: 1.6rem; }
+      .reflect { padding: 1.3rem 1.2rem; }
     }
-
-    #chat-toggle {
-      position: fixed; bottom: 22px; right: 22px; width: 58px; height: 58px;
-      border-radius: 18px; background: var(--surface); border: 1.5px solid var(--border-strong);
-      cursor: pointer; z-index: 9999; font-size: 24px;
-      box-shadow: 0 8px 24px rgba(140,124,112,0.28);
+    @media (max-width: 520px) {
+      .ws__body { grid-template-columns: minmax(0, 1fr); }
+      .ws__col + .ws__col { border-left: 0; border-top: 1px solid #EDE5DB; }
+      .ws__tabs { gap: 0.8rem; overflow: hidden; }
     }
-    #chat-window {
-      position: fixed; bottom: 92px; right: 22px; width: 360px; max-height: 530px;
-      background: var(--white-glass); backdrop-filter: blur(14px);
-      border: 1.5px solid var(--border-soft); border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(140,124,112,0.15), 0 4px 16px rgba(0,0,0,0.06);
-      display: none; flex-direction: column; overflow: hidden; z-index: 9998;
-    }
-    #chat-window.open { display: flex; }
-    .chat-header { padding: 14px 16px; background: var(--surface); border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; gap: 10px; }
-    .chat-avatar { width: 38px; height: 38px; border-radius: 12px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
-    .chat-header-info h4 { margin: 0; font-size: 0.92rem; }
-    .chat-header-info p { margin: 2px 0 0; font-size: 0.73rem; color: var(--muted-dark); }
-    .chat-close { margin-left: auto; background: none; border: 0; cursor: pointer; font-size: 17px; }
-    .chat-messages { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 9px; }
-    .msg { max-width: 84%; padding: 10px 13px; border-radius: 16px; font-size: 0.875rem; line-height: 1.58; }
-    .msg.bot { align-self: flex-start; background: #fff; border: 1px solid var(--border-soft); }
-    .msg.user { align-self: flex-end; background: var(--accent); color: #fff; }
-    .chat-input-area { padding: 11px 13px; border-top: 1px solid var(--border-soft); display: flex; gap: 8px; }
-    .chat-input-area textarea { flex: 1; border: 1.5px solid var(--border-soft); border-radius: 12px; padding: 9px 11px; font: inherit; resize: none; }
-    .send-btn { width: 36px; border: 0; border-radius: 11px; background: var(--accent); color: #fff; cursor: pointer; }
-    @media (max-width: 760px) {
-      #chat-window { width: calc(100vw - 28px); right: 14px; }
-      #chat-toggle { right: 14px; }
-    }
-
-    /* Print / PDF: remove fixed and interactive elements, keep cards whole */
     @media print {
-      @page { margin: 16mm 14mm; }
-      html { scroll-behavior: auto; }
-      body {
-        background: #fff;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-      .site-nav,
-      #chat-toggle,
-      #chat-window { display: none !important; }
-      .hero { padding: 0 0 1.5rem; background: none; }
-      .content { margin-bottom: 1.5rem; padding: 0; max-width: none; }
-      .case-section { margin-bottom: 1.75rem; }
-      .section-label { break-after: avoid; page-break-after: avoid; }
-      .more summary::after { display: none; }
-      .stage-tabs { display: none !important; }
-      .stage-panel[hidden] { display: block !important; }
-      .tabs-ready .stage-panel h3 { display: block; }
-      .tabs-ready .stage-panel { animation: none; }
-      .owned-card,
-      .featured,
-      .mini-example,
-      .stage-panel,
-      .bridge,
-      .cta-card { break-inside: avoid; page-break-inside: avoid; }
-      .links { padding: 1.5rem 0; background: none; border-top: 1px solid var(--border-soft); break-inside: avoid; }
-      footer { background: none; }
+      .case, .owned li, .reflect, .bridge, .ws__win { break-inside: avoid; box-shadow: none; }
+      .site-header { position: absolute; }
     }
-  </style>
-  <style>
-    /* Work navigation: grouped dropdown */
-    .nav-projects-menu .nav-menu-label {
-      margin: 0.55rem 0.72rem 0.2rem;
-      font-size: 0.66rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #786A5F;
-      text-align: left;
+    .ic .ic-rule { font-size: 0.8rem; line-height: 1.3; }
+
+    /* ---------- Refinements ---------- */
+    /* What I've owned: shared rows so headings and descriptions line up across cards */
+    .owned { grid-template-rows: auto auto; row-gap: 0; }
+    .owned li { grid-row: span 2; display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); grid-template-rows: subgrid; column-gap: 1rem; row-gap: 0.45rem; align-content: start; }
+    .owned li > .i { grid-column: 1; grid-row: 1; }
+    .owned li > h3 { grid-column: 2; grid-row: 1; align-self: start; }
+    .owned li > p { grid-column: 2; grid-row: 2; margin-top: 0; }
+    @media (max-width: 860px) {
+      .owned { grid-template-rows: none; row-gap: 1.25rem; }
+      .owned li { grid-row: auto; grid-template-rows: auto auto; }
     }
-    .nav-projects-menu .nav-menu-group { display: flex; flex-direction: column; gap: 0.1rem; }
-    .nav-projects-menu .nav-menu-group + .nav-menu-label {
-      margin-top: 0.45rem;
-      padding-top: 0.6rem;
-      border-top: 1px solid rgba(140,124,112,0.18);
-    }
-    .site-nav-links .nav-projects-menu .nav-menu-group a:first-child {
-      margin-bottom: 0;
-      border-bottom: 0;
-      border-radius: 9px;
-      font-weight: 500;
-    }
-    .site-nav-links .nav-projects-menu .nav-menu-group a[aria-current="page"] {
-      color: #2E2925;
-      font-weight: 600;
-      background: rgba(178,163,151,0.12);
-    }
-    .site-nav-links .nav-projects-menu a:focus-visible,
-    .nav-projects summary:focus-visible {
-      outline: 2px solid #4A423C;
-      outline-offset: 1px;
-    }
-    .nav-projects-menu { width: 270px; max-height: calc(100vh - 80px); overflow-y: auto; }
+
+    /* From experience to systems: one panel; challenge, what I built, explanation, reflection */
+    .bridge { display: block; padding: 1.6rem 1.75rem; }
+    .bridge__path { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 1rem; align-items: end; max-width: 46rem; list-style: none; }
+    .bridge__stage { display: grid; gap: 0.45rem; }
+    .bridge__label { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #4A403A; }
+    .bridge__chip { display: block; padding: 0.75rem 1rem; border: 1px solid var(--ic-line); border-radius: 12px; background: #FDFBF8; font-size: 0.95rem; font-weight: 600; line-height: 1.35; color: var(--ink); white-space: normal; }
+    .bridge__chip--built { border-color: #D9C6B3; background: #F7EEE4; }
+    .bridge__arrow { align-self: end; padding-bottom: 0.95rem; color: var(--ink); }
+    .bridge__arrow svg { display: block; width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .bridge .bridge__text { margin-top: 1.15rem; max-width: 52rem; padding: 0; border: 0; font-size: 0.98rem; line-height: 1.6; color: var(--text); }
+    .bridge .bridge__cta { display: inline-flex; margin-top: 1.1rem; }
+    .bridge__close { margin-top: 1.4rem; padding-top: 1.1rem; border-top: 1px solid rgba(56, 51, 47, 0.12); }
+    .bridge .bridge__close p { max-width: 52rem; padding: 0; border: 0; font-size: 0.96rem; line-height: 1.6; font-style: italic; color: var(--text); }
+    .bridge__related { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1.25rem; margin-top: 0.75rem; font-size: 0.9rem; }
+    .bridge__related span { font-weight: 600; color: #4A403A; }
+    .bridge__related a { display: inline-flex; align-items: center; min-height: 32px; font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: #B2A397; text-underline-offset: 3px; }
+    .bridge__related a:hover { text-decoration-color: var(--ink); }
     @media (max-width: 640px) {
-      .nav-projects-menu { width: min(270px, calc(100vw - 1rem)); }
+      .bridge { padding: 1.3rem 1.2rem; }
+      .bridge__path { grid-template-columns: minmax(0, 1fr); gap: 0.4rem; }
+      .bridge__arrow { justify-self: start; padding: 0 0 0 1rem; transform: rotate(90deg); }
+      .bridge .bridge__cta { display: flex; justify-content: center; white-space: normal; text-align: center; }
     }
+    .bridge__path { align-items: stretch; }
+    .bridge__stage { grid-template-rows: auto 1fr; }
+    .bridge__chip { display: flex; align-items: center; }
+    .bridge__arrow { align-self: end; padding-bottom: 1.3rem; }
+    @media (max-width: 640px) { .bridge__arrow { padding: 0 0 0 1rem; } }
+    @media (max-width: 640px) { .bridge__arrow { padding: 0.15rem 0 0.45rem 1rem; } }
+
   </style>
-  <link rel="stylesheet" href="./assets/site-layout.css">
-  <link rel="stylesheet" href="./assets/theme.css">
   <link rel="stylesheet" href="./assets/cta.css">
   <link rel="stylesheet" href="./assets/chat-launcher.css">
   <link rel="stylesheet" href="./assets/nav-menu.css">
   <script src="./assets/chat-launcher.js" defer></script>
 </head>
 
-<body class="case-study">
-  <nav class="site-nav" aria-label="Main">
-    <a class="site-nav-brand" href="./index.html"><span class="brand-mark" aria-hidden="true"></span>Madiha Khan</a>
-    <div class="site-nav-links">
-      <a href="./index.html">Home</a>
-      <a href="./about.html">About</a>
-      <a href="./skills.html">Technical depth</a>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main">
+      <a class="site-nav-brand" href="./index.html"><span class="brand-mark" aria-hidden="true"></span>Madiha Khan</a>
+
+      <div class="site-nav-links">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./skills.html">Technical depth</a>
       <details class="nav-projects active">
         <summary>Work</summary>
         <div class="nav-projects-menu">
           <a href="./projects.html">View all work</a>
           <p class="nav-menu-label" id="nav-label-experience">Professional experience</p>
           <div class="nav-menu-group" role="group" aria-labelledby="nav-label-experience">
-            <a href="./incident-escalation-management.html" aria-current="page">Enterprise Incident &amp; Escalation Management</a>
+            <a aria-current="page" href="./incident-escalation-management.html">Enterprise Incident &amp; Escalation Management</a>
           </div>
           <p class="nav-menu-label" id="nav-label-systems">Systems &amp; tools</p>
           <div class="nav-menu-group" role="group" aria-labelledby="nav-label-systems">
@@ -866,174 +1037,101 @@
           </div>
         </div>
       </details>
-      <a href="./contact.html">Contact</a>
-    </div>
-    <a class="site-nav-cta" href="./contact.html">Let’s connect <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-</nav>
+        <a href="./contact.html">Contact</a>
+      </div>
 
-  <header class="hero">
-    <div class="hero-inner">
-      <p class="hero-label">Operational Leadership</p>
-      <h1>Enterprise Incident & Escalation Management</h1>
-      <p class="hero-subtitle">From customer impact to coordinated resolution.</p>
-      <p class="hero-highlight">
-        I own EMEA technical support across 100+ enterprise accounts at Stack Overflow, coordinating incidents and improving escalation processes across Support and Engineering.
-      </p>
-    </div>
+      <a class="nav-cta" href="./contact.html">Let’s connect <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </nav>
   </header>
 
-  <main class="content">
+  <main id="main" class="ic">
+
+    <!-- Hero -->
+    <section class="ic-hero" aria-labelledby="ic-title">
+      <div class="container">
+        <nav aria-label="Breadcrumb"><ol class="ic-crumbs"><li><a href="./projects.html">Work</a></li><li aria-current="page">Enterprise Incident &amp; Escalation Management</li></ol></nav>
+        <div class="ic-hero__grid">
+          <div>
+            <h1 id="ic-title"><span class="hl">Enterprise</span> Incident &amp; Escalation Management</h1>
+            <p class="ic-hero__sub">From customer impact to coordinated resolution.</p>
+            <p class="ic-hero__lede">I own EMEA technical support across 100+ enterprise accounts at Stack Overflow, coordinating incidents and improving escalation processes across Support and Engineering.</p>
+          </div>
+        <figure class="ws" role="img" aria-label="Illustrative incident workspace with fictional details: a P2 production access issue marked resolved, multiple enterprise customers affected, Support leading the incident and updating the customer, Engineering providing the technical response and Customer Success involved in cross-functional coordination, with a timeline from the reproduced customer report to recovery confirmed with the customer.">
+          <div class="ws__win" aria-hidden="true">
+            <div class="ws__bar"><span></span><span></span><span></span></div>
+            <div class="ws__head">
+              <p class="ws__title">Production access issue<small>Example incident · Fictional data</small></p>
+              <span class="badge badge--sev">P2</span><span class="badge badge--status">Resolved</span>
+            </div>
+            <ul class="ws__tabs"><li>Overview</li><li class="is-on">Timeline</li><li>Updates</li><li>Post-incident</li></ul>
+            <div class="ws__body">
+              <div class="ws__col"><p class="ws__label">Timeline</p><ol class="tl"><li class="is-done"><time>09:12</time><span>Customer report reproduced</span></li><li class="is-done"><time>09:20</time><span>Severity raised to P2</span></li><li class="is-done"><time>09:24</time><span>Engineering engaged</span></li><li class="is-done"><time>09:40</time><span>Customer updated</span></li><li class="is-done"><time>10:55</time><span>Recovery confirmed with customer</span></li></ol></div>
+              <div class="ws__col"><p class="ws__label">Roles and impact</p><dl class="roles"><div class="role"><dt>Customer impact</dt><dd>Multiple enterprise customers</dd></div><div class="role"><dt>Incident lead</dt><dd>Support, EMEA</dd></div><div class="role"><dt>Technical response</dt><dd>Engineering</dd></div><div class="role"><dt>Customer updates</dt><dd>Support</dd></div><div class="role"><dt>Cross-functional coordination</dt><dd>Customer Success</dd></div></dl></div>
+            </div>
+          </div>
+          <figcaption class="ws__cap">Illustrative incident workspace</figcaption>
+        </figure>
+        </div>
+      </div>
+    </section>
 
     <!-- What I've owned -->
-    <section class="case-section" aria-labelledby="owned-heading">
-      <h2 class="section-label" id="owned-heading">What I've owned</h2>
-      <div class="owned-grid">
-        <article class="owned-card">
-          <h3>Incident & Escalation Coordination</h3>
-          <p>Coordinated enterprise incidents and Engineering escalations, including serving as Incident Commander.</p>
-          <p>Assessed customer impact, brought the right teams together and kept everyone updated through resolution.</p>
-        </article>
-        <article class="owned-card">
-          <h3>PagerDuty-to-Rootly Migration</h3>
-          <p>Led the move from PagerDuty to Rootly and created guidance to help the team manage incidents using the new tooling.</p>
-        </article>
-        <article class="owned-card">
-          <h3>EMEA Escalation Processes</h3>
-          <p>Developed EMEA escalation processes and on-call guidance to make it easier to route incidents to the right Engineering teams.</p>
-        </article>
-      </div>    </section>
+    <section class="container ic-section" aria-labelledby="owned-title">
+      <h2 class="ic-rule" id="owned-title">What I’ve owned</h2>
+      <ul class="owned">
+        <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg><h3>Incident &amp; escalation coordination</h3><p>Coordinated enterprise incidents and Engineering escalations, including serving as Incident Commander. Assessed customer impact, brought the right teams together and kept everyone updated through resolution.</p></li>
+        <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 2.5 4.5 13.5H12l-1 8 8.5-11H12l1-8Z"/></svg><h3>PagerDuty-to-Rootly migration</h3><p>Led the move from PagerDuty to Rootly and created guidance to help the team manage incidents using the new tooling.</p></li>
+        <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.8" cy="9.3" r="2.6"/><path d="M16.5 14.1c2.2.2 3.7 1.8 4.1 4.6"/></svg><h3>EMEA escalation processes</h3><p>Developed EMEA escalation processes and on-call guidance to make it easier to route incidents to the right Engineering teams.</p></li>
+      </ul>
+    </section>
 
     <!-- Incident leadership in practice -->
-    <section class="case-section" aria-labelledby="practice-heading">
-      <h2 class="section-label" id="practice-heading">Incident leadership in practice</h2>
-
-      <article class="featured">
-        <div class="featured-head">
-          <h3>Production Access Incident</h3>
-        </div>
-        <dl class="incident-flow">
-          <div>
-            <dt>Situation</dt>
-            <dd>A customer-facing access failure was reproduced, with evidence of wider impact emerging during the investigation.</dd>
-          </div>
-          <div class="mine">
-            <dt>My decisions &amp; actions</dt>
-            <dd>I initiated the incident and Engineering escalation, provided reproduction evidence and updated the severity when I identified a wider impact. I then coordinated the handoff to the response team.</dd>
-          </div>
-          <div>
-            <dt>Outcome</dt>
-            <dd>Engineering resolved the issue, restoring customer access.</dd>
-          </div>
-        </dl>
+    <section class="container ic-section" aria-labelledby="practice-title">
+      <h2 id="practice-title">Incident leadership in practice</h2>
+      <article class="case" aria-labelledby="case-title">
+        <h3 id="case-title">Production access incident</h3>
+        <dl><div class="case__row"><dt>Situation</dt><dd>A customer submitted a support ticket reporting a production access failure. I reproduced the issue and identified evidence that the impact was wider than initially reported.</dd></div><div class="case__row case__row--key"><dt>My decisions &amp; actions</dt><dd>I reproduced the issue, initiated the incident and Engineering escalation, reassessed its severity when I identified wider impact and coordinated the response with the relevant teams.</dd></div><div class="case__row"><dt>Outcome</dt><dd>Engineering deployed a fix, and I followed up with the customer to confirm that it was live and verify that they could access the platform without further issues.</dd></div></dl>
       </article>
-
-      <details class="more">
-        <summary>Explore two more incident examples</summary>
-        <div class="more-body">
-          <article class="mini-example">
-            <h4>Cross-Customer Search Failure</h4>
-            <dl>
-              <dt>The situation</dt>
-              <dd>Multiple enterprise customers reported the same search problem.</dd>
-              <dt>My actions</dt>
-              <dd class="mine-text">I connected the separate reports to one shared incident, documented the common symptoms, coordinated the Engineering escalation and followed up on customer recovery.</dd>
-              <dt>Outcome</dt>
-              <dd>Engineering resolved the issue, and a customer confirmed that search functionality was restored.</dd>
-            </dl>
-          </article>
-          <article class="mini-example">
-            <h4>Reopening an Investigation</h4>
-            <dl>
-              <dt>The situation</dt>
-              <dd>A customer reported symptoms matching an issue that had previously been addressed.</dd>
-              <dt>My actions</dt>
-              <dd class="mine-text">I recognised the link to the earlier investigation, reopened it with updated evidence and brought it back to the incident channel, keeping Engineering and the customer updated throughout.</dd>
-              <dt>Outcome</dt>
-              <dd>Engineering made further changes, and the customer confirmed that performance was acceptable.</dd>
-            </dl>
-          </article>
-        </div>
-      </details>
+      <div class="ic-more" aria-label="Another incident example">
+        <details><summary><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg><span>Reopening an investigation</span><svg class="i chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></summary><dl><div class="case__row"><dt>The situation</dt><dd>A customer reported symptoms matching an issue that had previously been addressed.</dd></div><div class="case__row"><dt>My actions</dt><dd>I recognised the link to the earlier investigation, reopened it with updated evidence and brought it back to the incident channel, keeping Engineering and the customer updated throughout.</dd></div><div class="case__row"><dt>Outcome</dt><dd>Engineering made further changes, and the customer confirmed that performance was acceptable.</dd></div></dl></details>
+      </div>
     </section>
 
     <!-- How I approach incidents -->
-    <section class="case-section" aria-labelledby="approach-heading">
-      <h2 class="section-label" id="approach-heading">How I approach incidents</h2>
-      <div class="stage-tabs" role="tablist" aria-label="Incident stages" hidden>
-        <button class="stage-tab" type="button" role="tab" id="stage-tab-1" aria-controls="stage-panel-1"><span class="num">01</span><span class="name">Identify &amp; Assess</span></button>
-        <button class="stage-tab" type="button" role="tab" id="stage-tab-2" aria-controls="stage-panel-2"><span class="num">02</span><span class="name">Initiate &amp; Escalate</span></button>
-        <button class="stage-tab" type="button" role="tab" id="stage-tab-3" aria-controls="stage-panel-3" data-default><span class="num">03</span><span class="name">Coordinate</span></button>
-        <button class="stage-tab" type="button" role="tab" id="stage-tab-4" aria-controls="stage-panel-4"><span class="num">04</span><span class="name">Validate Recovery</span></button>
-        <button class="stage-tab" type="button" role="tab" id="stage-tab-5" aria-controls="stage-panel-5"><span class="num">05</span><span class="name">Improve the Process</span></button>
+    <section class="container ic-section" aria-labelledby="approach-title">
+      <div class="ic-head">
+        <h2 id="approach-title">How I approach incidents</h2>
+        <p>Select a step to explore how I approach incidents.</p>
       </div>
-      <div class="stage-panels">
-        <div class="stage-panel" id="stage-panel-1">
-          <h3>01 · Identify &amp; Assess</h3>
-          <p>Validate customer reports, reproduce the issue where possible and establish the scope of impact.</p>
-        </div>
-        <div class="stage-panel" id="stage-panel-2">
-          <h3>02 · Initiate &amp; Escalate</h3>
-          <p>Open the right incident or Engineering escalation, attach the evidence and reassess severity as the picture changes.</p>
-        </div>
-        <div class="stage-panel" id="stage-panel-3">
-          <h3>03 · Coordinate</h3>
-          <p>Bring the right teams together, keep communications moving, clarify ownership of next steps and follow up on blockers.</p>
-        </div>
-        <div class="stage-panel" id="stage-panel-4">
-          <h3>04 · Validate Recovery</h3>
-          <p>Track the investigation, share technical findings with stakeholders and confirm recovery with customers wherever possible.</p>
-        </div>
-        <div class="stage-panel" id="stage-panel-5">
-          <h3>05 · Improve the Process</h3>
-          <p>Capture what slowed the response and turn it into reusable guidance for the next incident.</p>
-        </div>
+      <div class="steps5" role="group" aria-label="Incident approach stages"><button class="step5" type="button" id="ap-tab-1" aria-expanded="false" aria-controls="ap-panel-1"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><span>Identify &amp; assess</span></button><span class="step5-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step5" type="button" id="ap-tab-2" aria-expanded="false" aria-controls="ap-panel-2"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 2.5 4.5 13.5H12l-1 8 8.5-11H12l1-8Z"/></svg><span>Initiate &amp; escalate</span></button><span class="step5-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step5" type="button" id="ap-tab-3" aria-expanded="false" aria-controls="ap-panel-3"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.8" cy="9.3" r="2.6"/><path d="M16.5 14.1c2.2.2 3.7 1.8 4.1 4.6"/></svg><span>Coordinate</span></button><span class="step5-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step5" type="button" id="ap-tab-4" aria-expanded="false" aria-controls="ap-panel-4"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.8-5"/></svg><span>Validate recovery</span></button><span class="step5-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step5" type="button" id="ap-tab-5" aria-expanded="false" aria-controls="ap-panel-5"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 20v-6M10 20V10M15 20v-8M20 20V5"/></svg><span>Improve the process</span></button></div>
+      <div>
+        <div class="ap-panel" id="ap-panel-1" role="region" aria-labelledby="ap-title-1" hidden><div class="ap-panel__top"><p class="ap-panel__step">Step 1 of 5</p><button class="ap-close" type="button" aria-label="Close Identify and assess"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="ap-title-1">Identify &amp; assess</h3><p class="ap-panel__text">Validate customer reports, reproduce the issue where possible and establish the scope of impact.</p></div>
+        <div class="ap-panel" id="ap-panel-2" role="region" aria-labelledby="ap-title-2" hidden><div class="ap-panel__top"><p class="ap-panel__step">Step 2 of 5</p><button class="ap-close" type="button" aria-label="Close Initiate and escalate"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="ap-title-2">Initiate &amp; escalate</h3><p class="ap-panel__text">Open the right incident or Engineering escalation, attach the evidence and reassess severity as the picture changes.</p></div>
+        <div class="ap-panel" id="ap-panel-3" role="region" aria-labelledby="ap-title-3" hidden><div class="ap-panel__top"><p class="ap-panel__step">Step 3 of 5</p><button class="ap-close" type="button" aria-label="Close Coordinate"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="ap-title-3">Coordinate</h3><p class="ap-panel__text">Bring the right teams together, keep communications moving, clarify ownership of next steps and follow up on blockers.</p></div>
+        <div class="ap-panel" id="ap-panel-4" role="region" aria-labelledby="ap-title-4" hidden><div class="ap-panel__top"><p class="ap-panel__step">Step 4 of 5</p><button class="ap-close" type="button" aria-label="Close Validate recovery"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="ap-title-4">Validate recovery</h3><p class="ap-panel__text">Track the investigation, share technical findings with stakeholders and confirm recovery with customers wherever possible.</p></div>
+        <div class="ap-panel" id="ap-panel-5" role="region" aria-labelledby="ap-title-5" hidden><div class="ap-panel__top"><p class="ap-panel__step">Step 5 of 5</p><button class="ap-close" type="button" aria-label="Close Improve the process"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="ap-title-5">Improve the process</h3><p class="ap-panel__text">Capture what slowed the response and turn it into reusable guidance for the next incident.</p></div>
       </div>
     </section>
 
     <!-- From experience to systems -->
-    <section class="case-section" aria-labelledby="bridge-heading">
-      <h2 class="section-label" id="bridge-heading">From experience to systems</h2>
+    <section class="container ic-section" aria-labelledby="systems-title">
+      <h2 id="systems-title">From experience to systems</h2>
       <div class="bridge">
-        <ol class="bridge-flow" aria-label="How incident experience led to the Engineering Escalation Engine">
-          <li><span class="bridge-kicker">The problem</span>Time lost on escalations</li>
-          <li class="arrow" aria-hidden="true">→</li>
-          <li><span class="bridge-kicker">What I noticed</span>Unclear evidence and incomplete handoffs</li>
-          <li class="arrow" aria-hidden="true">→</li>
-          <li><span class="bridge-kicker">What I built</span>Engineering Escalation Engine</li>
+        <ol class="bridge__path" aria-label="From the challenge to what I built">
+          <li class="bridge__stage"><span class="bridge__label">The challenge</span><span class="bridge__chip">Engineering escalations missing key evidence</span></li>
+          <li class="bridge__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></li>
+          <li class="bridge__stage"><span class="bridge__label">What I built</span><span class="bridge__chip bridge__chip--built">Engineering Escalation Engine</span></li>
         </ol>
-        <p>When handling escalations, I noticed how much time could be lost when the evidence wasn't clear or the handoff to Engineering was missing information. That's what led me to build Engineering Escalation Engine, a tool to help Support assess cases and prepare better handoffs.</p>
-        <a class="cta-btn" href="./engineering-escalation-engine.html">Explore Engineering Escalation Engine →</a>
+        <p class="bridge__text">I noticed how much time could be lost when Engineering escalations were missing key evidence or context. That led me to build Engineering Escalation Engine, a tool to help Support assess escalation readiness and prepare clearer, more complete handoffs.</p>
+        <a class="btn btn--primary bridge__cta" href="./engineering-escalation-engine.html">Explore Engineering Escalation Engine<svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="bridge__close">
+          <p>Working on incidents has made me realise how much difference a clear process can make. I enjoy spotting what’s slowing teams down and finding ways to make things work better.</p>
+          <nav class="bridge__related" aria-label="Related work"><span>Related work:</span> <a href="./engineering-escalation-engine.html">Engineering Escalation Engine</a> <a href="./feedback-loop.html">Feedback Loop</a> <a href="./projects.html">View all work</a></nav>
+        </div>
       </div>
     </section>
 
-    <!-- Closing -->
-    <section class="case-section" aria-labelledby="closing-heading">
-      <div class="cta-card">
-        <h2 id="closing-heading">Owning the workflow, not just the ticket</h2>
-        <p>Working on incidents has made me realise how much difference a clear process can make. That's the part of Support I enjoy most: spotting what's slowing teams down and finding ways to make things work better.</p>
-        
-        <nav class="related" aria-labelledby="related-heading">
-          <h3 id="related-heading">Explore related work</h3>
-          <ul class="related-links">
-            <li>
-              <a href="./engineering-escalation-engine.html">
-                <strong>Engineering Escalation Engine&nbsp;→</strong>
-                <span>Structured escalation assessment and Engineering handoffs.</span>
-              </a>
-            </li>
-            <li>
-              <a href="./feedback-loop.html">
-                <strong>Feedback Loop&nbsp;→</strong>
-                <span>Turning recurring support requests into evidence-backed Product insight.</span>
-              </a>
-            </li>
-          </ul>
-          <a class="all-projects" href="./projects.html">View all work</a>
-        </nav>
-      </div>
-    </section>
   </main>
-
 
   <section class="site-cta-wrap" aria-labelledby="site-cta-title">
     <div class="site-cta">
@@ -1049,154 +1147,567 @@
     </div>
   </section>
 
-  <footer>
-© <span id="year"></span> Madiha Khan · Built with care</footer>
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Madiha Khan · Built with care</p>
+  </footer>
 
-  <button id="chat-toggle" type="button" class="chat-launcher chat-launcher--edge" onclick="toggleChat()" aria-controls="chat-window" aria-expanded="false">
+  <!-- Chat -->
+
+  <button id="chat-toggle" type="button" class="chat-launcher chat-launcher--edge-wide" onclick="toggleChat()" aria-controls="chat-window" aria-expanded="false">
     <svg class="chat-launcher__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12Z"/></svg>
     <span class="chat-launcher__label chat-launcher__label--long">Ask about my work</span>
     <span class="chat-launcher__label chat-launcher__label--short">Ask AI</span>
   </button>
+
+
   <div id="chat-window">
+
     <div class="chat-header">
-      <div class="chat-avatar">PA</div>
-      <div class="chat-header-info">
-        <h4>Madiha's Portfolio Assistant</h4>
-        <p>Ask about my experience, skills, and projects</p>
+
+      <div class="chat-avatar">
+        PA
       </div>
-      <button class="chat-close" onclick="toggleChat()" aria-label="Close chat">✕</button>
+
+      <div class="chat-header-info">
+
+        <h4>
+          Madiha's Portfolio Assistant
+        </h4>
+
+        <p>
+          <span class="online-dot"></span>
+          Ask me anything
+        </p>
+
+      </div>
+
+      <button
+        class="chat-close"
+        onclick="toggleChat()"
+        aria-label="Close chat"
+      >
+        ✕
+      </button>
+
     </div>
-    <div class="chat-messages" id="chat-messages"></div>
+
+
+    <div
+      class="chat-messages"
+      id="chat-messages"
+    ></div>
+
+
     <div class="chat-input-area">
-      <textarea id="chat-input" placeholder="Ask me anything..." rows="1" onkeydown="handleKey(event)" aria-label="Message the portfolio assistant"></textarea>
-      <button class="send-btn" id="send-btn" onclick="sendMessage()" aria-label="Send">➤</button>
+
+      <textarea
+        id="chat-input"
+        placeholder="Ask about my experience, skills..."
+        rows="1"
+        onkeydown="handleKey(event)"
+        oninput="autoResize(this)"
+      ></textarea>
+
+      <button
+        class="send-btn"
+        id="send-btn"
+        onclick="sendMessage()"
+        aria-label="Send"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/>
+        </svg>
+
+      </button>
+
     </div>
+
   </div>
 
+
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* --------------------------------
+       General
+    -------------------------------- */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /* --------------------------------
+       Scroll reveal
+    -------------------------------- */
+
+    const revealObserver =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              const siblings =
+                entry.target.parentElement
+                  .querySelectorAll('.reveal');
+
+              let delay = 0;
+
+              siblings.forEach((el, idx) => {
+
+                if (el === entry.target) {
+                  delay = idx * 80;
+                }
+
+              });
+
+              setTimeout(
+                () => entry.target.classList.add('visible'),
+                delay
+              );
+
+              revealObserver.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.1
+        }
+      );
+
+
+    document
+      .querySelectorAll('.reveal')
+      .forEach(el => revealObserver.observe(el));
+
+
+    /* --------------------------------
+       Number animation
+    -------------------------------- */
+
+    function animateCount(el) {
+
+      const target =
+        parseInt(el.dataset.target);
+
+      const suffix =
+        el.dataset.suffix || '';
+
+      const duration = 1400;
+      const step = 16;
+
+      const increment =
+        target / (duration / step);
+
+      let current = 0;
+
+      const timer =
+        setInterval(() => {
+
+          current += increment;
+
+          if (current >= target) {
+
+            current = target;
+            clearInterval(timer);
+
+          }
+
+          el.textContent =
+            Math.floor(current) + suffix;
+
+        }, step);
+
+    }
+
+
+    const statObserver =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target
+                .querySelectorAll('[data-target]')
+                .forEach(animateCount);
+
+              statObserver.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.3
+        }
+      );
+
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document
+        .querySelectorAll('.stat-strip')
+        .forEach(el => statObserver.observe(el));
+    }
+
+
+    /* --------------------------------
+       Portfolio chatbot
+    -------------------------------- */
 
     const PROXY_URL = window.PORTFOLIO_ASSISTANT.proxyUrl;
+
+
     const SYSTEM_PROMPT = window.PORTFOLIO_ASSISTANT.systemPrompt;
 
+
+    const WELCOME_MESSAGE = window.PORTFOLIO_ASSISTANT.welcomeMessage;
+
+
+    const conversationHistory = [];
+
+    let chatOpen = false;
+    let isLoading = false;
+
+
     function toggleChat() {
-      const chat = document.getElementById('chat-window');
-      chat.classList.toggle('open');
-      if (chat.classList.contains('open') && !chat.dataset.started) {
-        addMessage(window.PORTFOLIO_ASSISTANT.welcomeMessage, 'bot');
-        chat.dataset.started = 'true';
+
+      chatOpen = !chatOpen;
+
+      document
+        .getElementById('chat-window')
+        .classList.toggle('open', chatOpen);
+
+
+      if (
+        chatOpen &&
+        conversationHistory.length === 0
+      ) {
+
+        appendMessage(
+          'bot',
+          WELCOME_MESSAGE
+        );
+
       }
+
+
+      if (chatOpen) {
+
+        setTimeout(
+          () =>
+            document
+              .getElementById('chat-input')
+              .focus(),
+          300
+        );
+
+      }
+
     }
 
-    function addMessage(text, type) {
-      const messages = document.getElementById('chat-messages');
-      const message = document.createElement('div');
-      message.className = 'msg ' + type;
-      message.textContent = text;
-      messages.appendChild(message);
-      messages.scrollTop = messages.scrollHeight;
+
+    function appendMessage(role, text) {
+
+      const container =
+        document.getElementById('chat-messages');
+
+      const div =
+        document.createElement('div');
+
+      div.className =
+        `msg ${role}`;
+
+
+      text
+        .split('\n')
+        .forEach((line, i, arr) => {
+
+          div.appendChild(
+            document.createTextNode(line)
+          );
+
+          if (i < arr.length - 1) {
+
+            div.appendChild(
+              document.createElement('br')
+            );
+
+          }
+
+        });
+
+
+      container.appendChild(div);
+
+      container.scrollTop =
+        container.scrollHeight;
+
     }
+
+
+    function showTyping() {
+
+      const container =
+        document.getElementById('chat-messages');
+
+      const div =
+        document.createElement('div');
+
+      div.className =
+        'typing-indicator';
+
+      div.id =
+        'typing-indicator';
+
+      div.innerHTML =
+        '<span></span><span></span><span></span>';
+
+      container.appendChild(div);
+
+      container.scrollTop =
+        container.scrollHeight;
+
+    }
+
+
+    function removeTyping() {
+
+      const el =
+        document.getElementById(
+          'typing-indicator'
+        );
+
+      if (el) {
+        el.remove();
+      }
+
+    }
+
 
     async function sendMessage() {
-      const input = document.getElementById('chat-input');
-      const button = document.getElementById('send-btn');
-      const text = input.value.trim();
+
+      if (isLoading) return;
+
+
+      const input =
+        document.getElementById('chat-input');
+
+      const text =
+        input.value.trim();
+
+
       if (!text) return;
 
-      addMessage(text, 'user');
-      input.value = '';
-      button.disabled = true;
 
-      try {
-        const response = await fetch(PROXY_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            model: window.PORTFOLIO_ASSISTANT.model,
-            max_tokens: window.PORTFOLIO_ASSISTANT.maxTokens,
-            system: SYSTEM_PROMPT,
-            messages: [{ role: 'user', content: text }]
-          })
-        });
-        if (!response.ok) throw new Error('Request failed');
-        const data = await response.json();
-        addMessage(data.content?.[0]?.text || data.reply || 'I could not generate a response just now.', 'bot');
-      } catch (error) {
-        addMessage('I am having trouble connecting right now. Please try again in a moment.', 'bot');
-      } finally {
-        button.disabled = false;
-      }
-    }
+      appendMessage(
+        'user',
+        text
+      );
 
-    function handleKey(event) {
-      if (event.key === 'Enter' && !event.shiftKey) {
-        event.preventDefault();
-        sendMessage();
-      }
-    }
-  </script>
 
-  <script src="./assets/nav-menu.js"></script>
-  <script>
-    // Incident lifecycle tabs. Without JavaScript, every stage panel stays visible.
-    (() => {
-      const tablist = document.querySelector('.stage-tabs');
-      if (!tablist) return;
-      const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
-      const panels = tabs.map((tab) => document.getElementById(tab.getAttribute('aria-controls')));
-
-      panels.forEach((panel, i) => {
-        panel.setAttribute('role', 'tabpanel');
-        panel.setAttribute('aria-labelledby', tabs[i].id);
-        panel.tabIndex = 0;
+      conversationHistory.push({
+        role: 'user',
+        content: text
       });
 
-      const select = (index, focus) => {
-        tabs.forEach((tab, i) => {
-          const active = i === index;
-          tab.setAttribute('aria-selected', String(active));
-          tab.tabIndex = active ? 0 : -1;
-          panels[i].hidden = !active;
+
+      input.value = '';
+      input.style.height = 'auto';
+
+      setLoading(true);
+      showTyping();
+
+
+      try {
+
+        const response =
+          await fetch(
+            PROXY_URL,
+            {
+              method: 'POST',
+
+              headers: {
+                'Content-Type':
+                  'application/json'
+              },
+
+              body: JSON.stringify({
+                model: window.PORTFOLIO_ASSISTANT.model,
+                max_tokens: window.PORTFOLIO_ASSISTANT.maxTokens,
+                system: SYSTEM_PROMPT,
+                messages: conversationHistory
+              })
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        const reply =
+          data?.content?.[0]?.text ||
+          "I am sorry, I was not able to get a response just now. Please try again in a moment!";
+
+
+        removeTyping();
+
+        appendMessage(
+          'bot',
+          reply
+        );
+
+
+        conversationHistory.push({
+          role: 'assistant',
+          content: reply
         });
-        if (focus) {
-          tabs[index].focus();
-          tabs[index].scrollIntoView({ block: 'nearest', inline: 'nearest' });
-        }
-      };
+
+
+      } catch (err) {
+
+        removeTyping();
+
+        appendMessage(
+          'bot',
+          "Something went wrong. Please try again shortly!"
+        );
+
+      }
+
+
+      setLoading(false);
+
+    }
+
+
+    function setLoading(state) {
+
+      isLoading = state;
+
+      document
+        .getElementById('send-btn')
+        .disabled = state;
+
+    }
+
+
+    function handleKey(e) {
+
+      if (
+        e.key === 'Enter' &&
+        !e.shiftKey
+      ) {
+
+        e.preventDefault();
+
+        sendMessage();
+
+      }
+
+    }
+
+
+    function autoResize(el) {
+
+      el.style.height = 'auto';
+
+      el.style.height =
+        Math.min(
+          el.scrollHeight,
+          100
+        ) + 'px';
+
+    }
+
+
+    /*
+      Keep the chatbot available without
+      forcing it open immediately.
+    */
+
+    setTimeout(() => {
+
+      if (!chatOpen) {
+        // Deliberately do not auto-open.
+        // Recruiters should see the page first.
+      }
+
+    }, 2000);
+
+  </script>
+
+
+  <!-- Terminal tabs -->
+
+  <script>
+
+    (function () {
+
+      const tabs = Array.from(document.querySelectorAll('.t-tab'));
+
+      function select(tab, focus) {
+        tabs.forEach(t => {
+          const on = t === tab;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        });
+        if (focus) tab.focus();
+      }
 
       tabs.forEach((tab, i) => {
-        tab.addEventListener('click', () => select(i, false));
-        tab.addEventListener('keydown', (event) => {
-          const last = tabs.length - 1;
+        tab.addEventListener('click', () => select(tab, false));
+        tab.addEventListener('keydown', (e) => {
           let next = null;
-          if (event.key === 'ArrowRight') next = i === last ? 0 : i + 1;
-          if (event.key === 'ArrowLeft') next = i === 0 ? last : i - 1;
-          if (event.key === 'Home') next = 0;
-          if (event.key === 'End') next = last;
-          if (next !== null) {
-            event.preventDefault();
+          if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+          else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+          else if (e.key === 'Home') next = tabs[0];
+          else if (e.key === 'End') next = tabs[tabs.length - 1];
+          if (next) {
+            e.preventDefault();
             select(next, true);
           }
         });
       });
 
-      const initial = Math.max(0, tabs.findIndex((tab) => tab.hasAttribute('data-default')));
-      tablist.hidden = false;
-      document.querySelector('.stage-panels').classList.add('tabs-ready');
-      select(initial, false);
     })();
 
-    // Expand optional sections when printing so the PDF includes them
-    (() => {
-      const sections = Array.from(document.querySelectorAll('details.more'));
-      let wasOpen = [];
-      window.addEventListener('beforeprint', () => {
-        wasOpen = sections.map((d) => d.open);
-        sections.forEach((d) => { d.open = true; });
+  </script>
+
+
+  <script src="./assets/nav-menu.js"></script>
+
+
+  <script>
+    /* How I approach incidents: collapsed by default; one stage open at a time. */
+    (function () {
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('.step5[aria-controls]'));
+      function show(tab) {
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute('aria-expanded', on ? 'true' : 'false');
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        });
+      }
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () { show(tab.getAttribute('aria-expanded') === 'true' ? null : tab); });
+        var panel = document.getElementById(tab.getAttribute('aria-controls'));
+        panel.querySelector('.ap-close').addEventListener('click', function () { show(null); tab.focus(); });
+        panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') { show(null); tab.focus(); } });
       });
-      window.addEventListener('afterprint', () => {
-        sections.forEach((d, i) => { d.open = wasOpen[i]; });
-      });
+      /* Print and PDF: show the additional incident example */
+      window.addEventListener('beforeprint', function () { document.querySelectorAll('.ic-more details').forEach(function (d) { d.open = true; }); });
     })();
   </script>
 </body>

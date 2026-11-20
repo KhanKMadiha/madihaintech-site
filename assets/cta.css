@@ -153,3 +153,29 @@
   .site-cta { padding: 1.6rem 1.35rem 1.45rem; }
   .site-cta__actions { align-self: stretch; }
 }
+
+/* ---------- CTA v4: text across the full width; one action row (buttons left, social links right) ---------- */
+.site-cta {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "text text" "actions social";
+  align-items: center;
+  column-gap: 2rem;
+  padding: 1.85rem 2.25rem 1.85rem;
+}
+.site-cta > div:first-child { grid-area: text !important; }
+.site-cta__actions { grid-area: actions !important; align-self: center; margin-top: 1.25rem; }
+.site-cta__social { grid-area: social !important; align-self: center; justify-content: flex-end; margin-top: 1.25rem; padding: 0; gap: 0.5rem 1.4rem; }
+.site-cta__text { max-width: none; }
+.site-cta__social a { min-height: 44px; }
+@media (max-width: 700px) {
+  .site-cta { grid-template-columns: minmax(0, 1fr); grid-template-areas: "text" "actions" "social"; }
+  .site-cta__social { justify-content: flex-start; margin-top: 0.6rem; }
+}
+@media (max-width: 640px) {
+  .site-cta { padding: 1.6rem 1.35rem 1.25rem; }
+}
+
+/* Homepage closing statement, inside the footer above the copyright */
+.site-footer .tagline { margin: 0 auto 0.6rem; max-width: 48rem; text-align: center; font-size: 1.05rem; line-height: 1.6; font-style: italic; color: #5E5650; text-wrap: balance; }
+@media (max-width: 899px) { .site-footer .tagline { max-width: 36rem; } }

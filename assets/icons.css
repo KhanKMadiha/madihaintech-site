@@ -1,0 +1,72 @@
+/*
+  Shared icon styles for the case studies.
+  - Technology badges: a genuine logo in a compact white tile with a thin
+    neutral border (the tile size comes from each page's .stack__mark rule).
+  - Functional icons: a muted line icon on a pale tile, toned by meaning:
+      lavender  AI analysis and AI-assisted features
+      blue      investigation, evidence, rules and structured analysis
+      sage      human judgement, approval, security and reliability
+      amber     customer insight, product feedback and knowledge
+  Loaded after each page's own styles. Colour only; no layout changes beyond
+  fitting the tile.
+*/
+
+/* Technology logos */
+.stack__mark--logo {
+  background: #FFFFFF;
+  box-shadow: inset 0 0 0 1px #E6DCD1;
+}
+.stack__mark--logo svg {
+  display: block;
+  width: 70%;
+  height: 70%;
+}
+/* Compound labels (e.g. Node.js / Express): one tile per technology, set slightly closer */
+.stack__mark--logo + .stack__mark--logo {
+  margin-left: -0.2rem;
+}
+
+/* Functional icon tiles */
+.tone {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 10px;
+}
+.tone .i {
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+  margin: 0 !important;
+  color: inherit !important;
+  stroke-width: 1.6;
+}
+.tone--lavender { background: #EDE9F5; color: #6A5A94; }
+.tone--blue { background: #E4ECF4; color: #4A6A8A; }
+.tone--sage { background: #E5EFE2; color: #4E7A4C; }
+.tone--amber { background: #FBEEDD; color: #A8641A; }
+
+/* Incident case study: the 'What I've owned' cards hold the slightly larger tile */
+.owned li:has(> .tone) {
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+}
+
+@media (max-width: 640px) {
+  .tone {
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 9px;
+  }
+  .tone .i {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+  }
+}
+
+@media print {
+  .stack__mark--logo,
+  .tone {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

@@ -1000,6 +1000,16 @@
     @media (max-width: 640px) { .bridge__arrow { padding: 0 0 0 1rem; } }
     @media (max-width: 640px) { .bridge__arrow { padding: 0.15rem 0 0.45rem 1rem; } }
 
+    /* Hero alignment: start the text at the top of the grid (as on Home, About and Technical depth)
+       instead of centring it against the taller workspace, which pushed the heading down */
+    .ic-hero__grid > div:first-child { align-self: start; }
+    /* Narrow screens: keep the long breadcrumb to one line so the heading isn't pushed down */
+    @media (max-width: 640px) {
+      .ic-crumbs { flex-wrap: nowrap; }
+      .ic-crumbs li { white-space: nowrap; }
+      .ic-crumbs li:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    }
+
   </style>
   <link rel="stylesheet" href="./assets/cta.css">
   <link rel="stylesheet" href="./assets/chat-launcher.css">
@@ -1049,7 +1059,7 @@
     <!-- Hero -->
     <section class="ic-hero" aria-labelledby="ic-title">
       <div class="container">
-        <nav aria-label="Breadcrumb"><ol class="ic-crumbs"><li><a href="./projects.html">Work</a></li><li aria-current="page">Enterprise Incident &amp; Escalation Management</li></ol></nav>
+        <nav aria-label="Breadcrumb"><ol class="ic-crumbs"><li><a href="./projects.html">Work</a></li><li aria-current="page" title="Enterprise Incident &amp; Escalation Management">Enterprise Incident &amp; Escalation Management</li></ol></nav>
         <div class="ic-hero__grid">
           <div>
             <h1 id="ic-title"><span class="hl">Enterprise</span> Incident &amp; Escalation Management</h1>

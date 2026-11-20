@@ -994,6 +994,16 @@
     .wf-panel .wf-panel__text { margin-top: 0.35rem; max-width: 52rem; font-size: 0.98rem; line-height: 1.6; color: var(--text); text-wrap: pretty; }
     @media (min-width: 861px) { .wf-panel { min-height: 8.25rem; box-sizing: border-box; } }
 
+    /* Hero alignment (shared by the case studies): start the text at the top of the grid
+       rather than centring it against a taller preview, which pushed the heading down */
+    .cs-hero__grid > div:first-child { align-self: start; }
+    /* Narrow screens: a long current-page breadcrumb stays on one line (full text kept for assistive tech) */
+    @media (max-width: 640px) {
+      .cs-crumbs { flex-wrap: nowrap; }
+      .cs-crumbs li { white-space: nowrap; }
+      .cs-crumbs li:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+    }
+
   </style>
   <link rel="stylesheet" href="./assets/cta.css">
   <link rel="stylesheet" href="./assets/chat-launcher.css">

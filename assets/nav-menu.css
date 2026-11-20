@@ -87,3 +87,12 @@ html { scroll-padding-top: calc(var(--nav-h, 68px) + 1rem); }
 @media (max-width: 640px) {
   html { scroll-padding-top: calc(var(--nav-h, 60px) + 1rem); }
 }
+
+/* Work menu: "Explore my work" leads to the overview page, with a subtle arrow */
+body .nav-projects-menu > a:first-child { display: flex; align-items: center; gap: 0.4rem; }
+body .nav-menu-arrow { width: 0.9rem; height: 0.9rem; flex-shrink: 0; fill: none; stroke: #786A5F; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Brand mark: the two diagonal lines in the warm taupe highlight colour (same shape, size and spacing) */
+body .brand-mark { background:
+    linear-gradient(115deg, transparent 38%, #BEA28F 38%, #BEA28F 58%, transparent 58%) 0 0 / 13px 22px no-repeat,
+    linear-gradient(115deg, transparent 38%, #BEA28F 38%, #BEA28F 58%, transparent 58%) 12px 0 / 13px 22px no-repeat; }

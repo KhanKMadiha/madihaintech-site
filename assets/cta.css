@@ -220,3 +220,7 @@
 /* Homepage closing statement, inside the footer above the copyright */
 .site-footer .tagline { margin: 0 auto 0.6rem; max-width: 48rem; text-align: center; font-size: 1.05rem; line-height: 1.6; font-style: italic; color: #5E5650; text-wrap: balance; }
 @media (max-width: 899px) { .site-footer .tagline { max-width: 36rem; } }
+
+/* "Ask my AI assistant": a third, outlined action that opens the existing portfolio assistant (see chat-launcher.js) */
+button.site-cta__btn { margin: 0; cursor: pointer; -webkit-appearance: none; appearance: none; }
+.site-cta__btn--assistant svg { width: 1.15rem; height: 1.15rem; }

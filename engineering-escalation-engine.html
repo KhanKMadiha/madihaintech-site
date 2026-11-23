@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Engineering Escalation Engine | Madiha Khan</title>
-  <meta name="description" content="A Support Operations case study on investigating technical cases, scoring escalation readiness and creating Engineering handoffs after a human decision." />
+  <meta name="description" content="An interactive Support Operations project for reviewing technical evidence, assessing escalation readiness and preparing Engineering handoffs after human approval." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -802,7 +802,7 @@
     .cs-crumbs li + li::before { content: "/"; margin-right: 0.5rem; color: #B2A397; }
     .cs-crumbs a { color: var(--text); text-decoration: none; }
     .cs-crumbs a:hover { text-decoration: underline; text-underline-offset: 3px; }
-    .cs-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 3rem; align-items: center; margin-top: 1.5rem; }
+    .cs-hero__grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr); gap: 3rem; align-items: center; margin-top: 1.5rem; }
     .cs-hero h1 { max-width: 14ch; font-size: var(--hero-h1-size); font-weight: 800; line-height: var(--hero-h1-leading); letter-spacing: -0.035em; color: var(--ink); text-wrap: balance; }
     .cs-hero__lede { margin-top: 1.1rem; max-width: 33rem; font-size: var(--hero-lede-size); line-height: var(--hero-lede-leading); color: var(--text); text-wrap: pretty; }
     .cs-hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.6rem; }
@@ -847,13 +847,12 @@
     /* Inside the system: real screenshots from the demo */
     .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.4rem; }
     .shot { margin: 0; display: flex; flex-direction: column; border: 1px solid var(--cs-line); border-radius: var(--radius-lg); background: var(--card); overflow: hidden; box-shadow: 0 12px 28px rgba(46, 41, 37, 0.06); }
-    .shot__bar { display: flex; gap: 5px; padding: 0.65rem 0.9rem; background: #EFE7DD; }
-    .shot__bar span { width: 8px; height: 8px; border-radius: 50%; background: #9C8B7E; }
+    .shot--wide { grid-column: 1 / -1; width: min(100%, 47rem); justify-self: center; }
     .shot__head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem 0.75rem; }
     .shot__head h3 { font-size: 1.08rem; font-weight: 700; color: var(--ink); }
     .shot__head a { flex-shrink: 0; font-size: 0.84rem; font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: #B2A397; text-underline-offset: 3px; }
-    .shot__frame { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 17rem; margin: 0 1.25rem; padding: 1.1rem; border: 1px solid #E8E0D6; border-radius: 10px; overflow: hidden; background: #F7F8FA; }
-    .shot__frame img { display: block; width: auto; max-width: min(100%, 420px); height: auto; border-radius: 6px; box-shadow: 0 1px 0 rgba(46, 41, 37, 0.04); }
+    .shot__frame { margin: 0 1.25rem; border: 1px solid #E8E0D6; border-radius: 10px; overflow: hidden; background: #fff; }
+    .shot__frame img { display: block; width: 100%; height: auto; }
     .shot figcaption { padding: 0.85rem 1.25rem 1.2rem; font-size: 0.92rem; line-height: 1.5; color: var(--text); text-wrap: pretty; }
 
     /* Why I designed it this way + technical build */
@@ -900,7 +899,7 @@
       .workflow-step { min-height: 5.75rem; }
       .workflow-step:last-child { grid-column: 1 / -1; }
       .shot__head { flex-wrap: wrap; padding: 0.9rem 1rem 0.65rem; }
-      .shot__frame { margin: 0 0.6rem; padding: 0.5rem; min-height: 0; }
+      .shot__frame { margin: 0 0.75rem; }
       .shot figcaption { padding: 0.8rem 1rem 1.05rem; }
       .stack { padding: 1.25rem; }
       .cs-hero__actions .btn { flex: 1 1 auto; justify-content: center; }
@@ -1031,19 +1030,23 @@
         <div class="cs-hero__grid">
           <div>
             <h1 id="cs-title"><span class="hl">Engineering</span> Escalation Engine</h1>
-            <p class="cs-hero__lede">I built a Support workflow that turns investigation evidence into a clear escalation recommendation and prepares an Engineering handoff after human approval.</p>
+            <p class="cs-hero__lede">I built an interactive workspace for Support engineers to review technical evidence, decide whether to escalate and prepare a handoff that Engineering can pick up.</p>
             <div class="cs-hero__actions">
               <a class="btn btn--primary" href="https://engineering-escalation-engine.vercel.app/" target="_blank" rel="noopener noreferrer">Explore live demo<span class="sr-only"> (opens in a new tab)</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
               <a class="btn btn--secondary" href="https://github.com/KhanKMadiha/engineering-escalation-engine" target="_blank" rel="noopener noreferrer"><svg class="gh" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>View GitHub<span class="sr-only"> (opens in a new tab)</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
             </div>
-            <p class="cs-hero__note">The live demo uses fictional enterprise cases. Jira issues and Rootly incidents are simulated.</p>
+            <p class="cs-hero__note">Explore fictional cases in the live demo. It creates simulated Jira and Rootly records within the app.</p>
           </div>
         <figure class="art-hero-shot">
           <div class="art-hero-shot__frame">
-            <img src="./assets/eee-approval-orchid.webp" alt="Orchid Health’s approval screen, showing a readiness score of 98 out of 100, an editable rationale and the option to approve or continue investigating." width="1550" height="1343" fetchpriority="high">
+            <img src="./assets/escalation-engine/case-queue.webp"
+                 srcset="./assets/escalation-engine/case-queue-673.webp 673w, ./assets/escalation-engine/case-queue.webp 1346w"
+                 sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 960px) 576px, 600px"
+                 alt="Live Case Queue with charcoal navigation, teal controls and a filterable table of fictional cases with their statuses and recommendations."
+                 width="1346" height="856" fetchpriority="high">
           </div>
-          <figcaption class="art-hero-shot__cap">Orchid Health’s escalation approval screen in the live demo.</figcaption>
-          <p class="art-hero-shot__full"><a href="./assets/eee-approval-orchid.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only">: Engineering Escalation Engine screenshot (opens in a new tab)</span> <span aria-hidden="true">↗</span></a></p>
+          <figcaption class="art-hero-shot__cap">The Case Queue in the live demo.</figcaption>
+          <p class="art-hero-shot__full"><a href="./assets/escalation-engine/case-queue.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only">: Engineering Escalation Engine screenshot (opens in a new tab)</span> <span aria-hidden="true">↗</span></a></p>
         </figure>
         </div>
       </div>
@@ -1051,10 +1054,10 @@
 
     <!-- The challenge and what I built -->
     <section class="container cs-section" aria-labelledby="challenge-title">
-      <h2 id="challenge-title">The challenge and what I built</h2>
+      <h2 id="challenge-title">The problem and what I built</h2>
       <div class="cs-pair">
-        <article class="cs-card"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><div><h3>The challenge</h3><p>Support cases often reached Engineering with inconsistent evidence, which could slow triage, create rework and make it harder to prioritise urgent issues.</p></div></article>
-        <article class="cs-card"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg><div><h3>What I built</h3><p>A workspace where Support can review the case, work through the evidence and see what drove the recommendation. Once a reviewer approves the escalation, the engine prepares a structured handoff for Engineering.</p></div></article>
+        <article class="cs-card"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><div><h3>The problem</h3><p>Before escalating a case, Support has to pull together logs, reproduction steps and customer impact. When that evidence arrives piecemeal, Engineering has to ask for context or repeat parts of the investigation.</p></div></article>
+        <article class="cs-card"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg><div><h3>What I built</h3><p>I built one workspace for the case, its evidence and the escalation decision. It explains the recommendation and carries the investigation findings into a structured handoff once a reviewer approves.</p></div></article>
       </div>
       <p class="cs-related">The real-world escalation work behind this project is covered in my <a href="./incident-escalation-management.html">Enterprise Incident &amp; Escalation Management</a> case study.</p>
     </section>
@@ -1106,7 +1109,7 @@
             <button class="wf-close" type="button" aria-label="Close Investigation"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button>
           </div>
           <h3 id="wf-title-2">Investigation</h3>
-          <p class="wf-panel__text">Review reproduction steps, troubleshooting, impact and technical evidence such as logs, request IDs or screenshots. Record newly collected evidence here.</p>
+          <p class="wf-panel__text">Review reproduction steps, troubleshooting, impact and technical evidence such as logs, request IDs or screenshots. The evidence panel keeps source material alongside the investigation findings.</p>
         </div>
         <div class="wf-panel" id="wf-panel-3" role="region" aria-labelledby="wf-title-3" hidden>
           <div class="wf-panel__top">
@@ -1114,7 +1117,7 @@
             <button class="wf-close" type="button" aria-label="Close Assessment"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button>
           </div>
           <h3 id="wf-title-3">Assessment</h3>
-          <p class="wf-panel__text">AI helps organise evidence and identify gaps. Predefined rules score validated escalation signals, explain the recommendation and show the next action. The fictional example cases use predefined analysis data rather than making a new OpenAI request at every step. If the evidence is insufficient, the case stays in Investigation.</p>
+          <p class="wf-panel__text">AI analysis helps organise findings and surface gaps. Fixed rules score validated signals and explain the recommendation. If the evidence is insufficient, the case stays in Investigation. The shared examples use predefined analysis.</p>
         </div>
         <div class="wf-panel" id="wf-panel-4" role="region" aria-labelledby="wf-title-4" hidden>
           <div class="wf-panel__top">
@@ -1130,30 +1133,67 @@
             <button class="wf-close" type="button" aria-label="Close Create escalation"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button>
           </div>
           <h3 id="wf-title-5">Create escalation</h3>
-          <p class="wf-panel__text">Approval prepares the Engineering handoff. From here, you can preview and create a simulated Jira issue or Rootly incident, then reopen the saved record by its reference.</p>
+          <p class="wf-panel__text">Approval prepares the Engineering handoff. Preview a simulated Jira issue or Rootly incident, then save and reopen the demo record in your workspace. The app makes no calls to Jira or Rootly.</p>
         </div>
       </div>
       <p class="cs-related">In the demo, open <a href="https://engineering-escalation-engine.vercel.app/cases/ea1437f9-588f-418b-8222-c11079d246c2" target="_blank" rel="noopener noreferrer">Orchid Health<span class="sr-only"> (opens in a new tab)</span></a> to try approval, <a href="https://engineering-escalation-engine.vercel.app/cases/997f45ad-f686-4724-a3c1-094d659a3741" target="_blank" rel="noopener noreferrer">Meridian Systems<span class="sr-only"> (opens in a new tab)</span></a> to see an investigation with insufficient evidence, or <a href="https://engineering-escalation-engine.vercel.app/cases/b04a05d3-9bbb-45c2-8abc-43b2f70bcd15" target="_blank" rel="noopener noreferrer">Vertex Media<span class="sr-only"> (opens in a new tab)</span></a> to open a prepared handoff.</p>
     </section>
 
-    <!-- Inside the system -->
     <section class="container cs-section" aria-labelledby="inside-title">
       <div class="cs-head">
-        <h2 id="inside-title">Inside the system</h2>
-        <p>Meridian and Vertex show what happens when a case needs more evidence and when an approved handoff is ready to use.</p>
+        <h2 id="inside-title">From evidence to handoff</h2>
+        <p>Orchid Health shows how Support reviews and approves a case. Vertex Media shows what Engineering would receive.</p>
       </div>
       <div class="shots">
         <figure class="shot">
-          <div class="shot__bar" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="shot__head"><h3>Insufficient evidence</h3><a href="./assets/eee-assessment-meridian.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only"> (opens in a new tab)</span> ↗</a></div>
-          <div class="shot__frame"><img src="./assets/eee-assessment-meridian.webp" alt="Meridian’s assessment shows a readiness score of 20 out of 100 and asks Support to collect missing authentication evidence." loading="lazy" width="975" height="653"></div>
-          <figcaption>Meridian stays in Investigation. Support can add the missing authentication evidence, and the existing assessment stays as recorded.</figcaption>
+          <div class="shot__head">
+            <h3>Investigation</h3>
+            <a href="./assets/escalation-engine/investigation-evidence.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only">: Investigation screenshot (opens in a new tab)</span> <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="shot__frame">
+            <img src="./assets/escalation-engine/investigation-evidence.webp" alt="Orchid Health’s investigation displays impact, expected and actual behaviour, and evidence cards for authentication errors and logs." loading="lazy" decoding="async" width="1060" height="769">
+          </div>
+          <figcaption>Support can see the impact, reproduction steps and technical evidence together.</figcaption>
         </figure>
         <figure class="shot">
-          <div class="shot__bar" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="shot__head"><h3>Prepared handoff</h3><a href="./assets/eee-handoff-vertex.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only"> (opens in a new tab)</span> ↗</a></div>
-          <div class="shot__frame"><img src="./assets/eee-handoff-vertex.webp" alt="Vertex’s approved handoff shows the case context, escalation rationale and buttons to create simulated Jira and Rootly records." loading="lazy" width="975" height="783"></div>
-          <figcaption>Vertex already has human approval. The prepared handoff captures the impact, reproduction and rationale before a reviewer creates a simulated record.</figcaption>
+          <div class="shot__head">
+            <h3>Assessment</h3>
+            <a href="./assets/escalation-engine/assessment-readiness.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only">: Assessment screenshot (opens in a new tab)</span> <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="shot__frame">
+            <img src="./assets/escalation-engine/assessment-readiness.webp" alt="Orchid Health’s assessment recommends escalation to Engineering and shows a readiness score of 98 out of 100." loading="lazy" decoding="async" width="1060" height="641">
+          </div>
+          <figcaption>The recommendation shows why Orchid is ready for review. A score alone cannot advance the case.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot__head">
+            <h3>Escalation approval</h3>
+            <a href="./assets/escalation-engine/escalation-approval.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only">: Escalation approval screenshot (opens in a new tab)</span> <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="shot__frame">
+            <img src="./assets/escalation-engine/escalation-approval.webp" alt="Orchid Health’s approval screen shows an editable rationale and buttons to continue investigating or approve escalation." loading="lazy" decoding="async" width="1060" height="693">
+          </div>
+          <figcaption>The reviewer can edit the rationale before deciding whether to escalate.</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot__head">
+            <h3>Prepared handoff</h3>
+            <a href="./assets/escalation-engine/prepared-handoff.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only">: Prepared handoff screenshot (opens in a new tab)</span> <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="shot__frame">
+            <img src="./assets/escalation-engine/prepared-handoff.webp" alt="Vertex Media’s approved handoff shows customer impact, reproduction status and the reason for escalation, with Jira and Rootly options." loading="lazy" decoding="async" width="1060" height="651">
+          </div>
+          <figcaption>Vertex already has approval, so its investigation findings are ready for an Engineering handoff.</figcaption>
+        </figure>
+        <figure class="shot shot--wide">
+          <div class="shot__head">
+            <h3>Simulated Jira preview</h3>
+            <a href="./assets/escalation-engine/simulated-jira-preview.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only">: Simulated Jira preview screenshot (opens in a new tab)</span> <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="shot__frame">
+            <img src="./assets/escalation-engine/simulated-jira-preview.webp" alt="Vertex Media’s simulated Jira issue preview shows the issue title, affected accounts, product, priority and a description of the gateway timeouts." loading="lazy" decoding="async" width="1060" height="772">
+          </div>
+          <figcaption>The preview turns the approved handoff into a Jira-shaped issue. Rootly has its own incident preview. Both are saved only as demo records.</figcaption>
         </figure>
       </div>
     </section>
@@ -1162,15 +1202,15 @@
     <section class="container cs-section" aria-labelledby="why-title">
       <div class="cs-head">
         <h2 id="why-title">Why I designed it this way</h2>
-        <p>Three decisions shaped how I built the system.</p>
       </div>
       <ul class="why">
-        <li><span class="why__icon tone tone--lavender"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3c.6 4.2 2.4 6 6.6 6.6-4.2.6-6 2.4-6.6 6.6-.6-4.2-2.4-6-6.6-6.6C9.6 9 11.4 7.2 12 3Z"/><path d="M19 15.5c.25 1.6.9 2.25 2.5 2.5-1.6.25-2.25.9-2.5 2.5-.25-1.6-.9-2.25-2.5-2.5 1.6-.25 2.25-.9 2.5-2.5Z"/></svg></span><h3>AI for analysis</h3><p>I wanted AI to help Support make sense of complex investigations, organise the evidence and identify what might be missing, without relying on it to make escalation decisions.</p></li>
-        <li><span class="why__icon tone tone--blue"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg></span><h3>Deterministic rules</h3><p>I used predefined signals, weights and thresholds so a reviewer can see how the evidence contributed to the readiness score and recommendation.</p></li>
-        <li><span class="why__icon tone tone--sage"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg></span><h3>Human judgement</h3><p>I deliberately kept a human approval step because AI can support an investigation, but it shouldn’t replace the experience and judgement of the person responsible for an escalation.</p></li>
+        <li><span class="why__icon tone tone--lavender"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3c.6 4.2 2.4 6 6.6 6.6-4.2.6-6 2.4-6.6 6.6-.6-4.2-2.4-6-6.6-6.6C9.6 9 11.4 7.2 12 3Z"/><path d="M19 15.5c.25 1.6.9 2.25 2.5 2.5-1.6.25-2.25.9-2.5 2.5-.25-1.6-.9-2.25-2.5-2.5 1.6-.25 2.25-.9 2.5-2.5Z"/></svg></span><h3>AI for analysis</h3><p>I used AI to organise findings and surface gaps. The evidence validation step checks what the model extracts against the recorded input before the rules use it.</p></li>
+        <li><span class="why__icon tone tone--blue"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg></span><h3>Deterministic rules</h3><p>I used fixed signals, weights and thresholds so the same inputs produce the same readiness score. A reviewer can see which factors contributed to it.</p></li>
+        <li><span class="why__icon tone tone--sage"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg></span><h3>Human judgement</h3><p>I kept approval with the person accountable for the escalation. Their decision and rationale are recorded, and approval is required before the app prepares the handoff.</p></li>
       </ul>
+      <p class="cs-related">Anyone can browse the fictional examples without signing in. Recording a decision or creating a simulated Jira or Rootly record uses a temporary visitor workspace and leaves the shared template untouched for those actions.</p>
       <div class="stack" aria-labelledby="stack-title">
-        <div class="stack__intro"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><div><h3 id="stack-title">Technical build</h3><p>A modern, testable stack focused on a reliable workflow and a clear separation of concerns.</p></div></div>
+        <div class="stack__intro"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><div><h3 id="stack-title">Technical build</h3><p>Next.js and TypeScript run the interface and server logic. Zod validates structured OpenAI responses, and Supabase Postgres stores cases, assessments, decisions, handoffs and activity.</p></div></div>
         <div class="stack__lists">
           <ul class="stack__list" aria-label="Application technologies"><li><span class="stack__mark stack__mark--logo" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#000000" d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"/></svg></span>Next.js</li><li><span class="stack__mark stack__mark--logo" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#3178C6" d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg></span>TypeScript</li><li><span class="stack__mark stack__mark--logo" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#3FCF8E" d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"/></svg></span>Supabase</li><li><span class="stack__mark stack__mark--logo" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#3E67B1" d="M19.088 2.477 24 7.606 12.521 20.485l-.925 1.038L0 7.559l5.108-5.082h13.98Zm-17.434 5.2 6.934-4.003H5.601L1.619 7.636l.035.041Zm12.117-4.003L3.333 9.7l2.149 2.588 10.809-6.241-.2-.346 2.851-1.646-.365-.381h-4.806Zm7.52 2.834L8.257 14.034h5.101v-.4h3.667l5.346-5.998-1.08-1.128Zm-7.129 10.338H9.268l2.36 2.843 2.534-2.843Z"/></svg></span>Zod</li><li><span class="stack__mark stack__mark--logo" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#000000" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span>OpenAI API</li><li><span class="stack__mark stack__mark--logo" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#6E9F18" d="M13.74024 1.05293a.49504.49504 0 0 0-.1569.02512.49338.49338 0 0 0-.25056.1876L7.59513 9.56159a.4895.4895 0 0 0-.08373.22327.48846.48846 0 0 0 .03163.23629.4893.4893 0 0 0 .13985.19319.4927.4927 0 0 0 .2149.10481l3.70685.78609-.22947 4.58007a.48834.48834 0 0 0 .08466.30017.49205.49205 0 0 0 .24931.18854c.10157.03398.21174.03444.3135.00064a.49387.49387 0 0 0 .25056-.18761l5.73735-8.29594a.4884.4884 0 0 0 .08404-.22327c.009-.08015-.0016-.16137-.03163-.23629a.48835.48835 0 0 0-.13985-.19319.49318.49318 0 0 0-.2149-.1048l-3.70686-.7861.22947-4.58008a.48802.48802 0 0 0-.08466-.30017.4913.4913 0 0 0-.24931-.18853.49439.49439 0 0 0-.1566-.02574zM1.15697 9.78795c-.30647.0012-.60009.12378-.81679.34048a1.16107 1.16107 0 0 0-.34017.81648 1.162 1.162 0 0 0 .33366.81957l10.84241 10.8421a1.15762 1.15762 0 0 0 .37677.25211 1.1583 1.1583 0 0 0 .44467.08838c.00084 0 .0016-.00031.0025-.00031.00073 0 .0014.00031.0022.00031a1.15827 1.15827 0 0 0 .44467-.08838 1.15731 1.15731 0 0 0 .37677-.2521l10.84236-10.8421a1.16272 1.16272 0 0 0 .33397-.81958c-.0013-.30647-.12376-.59976-.34048-.81648a1.1616 1.1616 0 0 0-.81679-.34048 1.16114 1.16114 0 0 0-.81926.33366l-5.4012 5.4009c-.0078.0074-.01718.01255-.02482.02015L12 20.14011l-4.59776-4.59745c-.0074-.0074-.01659-.01238-.02419-.01954l-5.4015-5.40151a1.162 1.162 0 0 0-.81958-.33366Z"/></svg></span>Vitest</li></ul>
           <div class="stack__dev"><span class="stack__devlabel" id="eee-devtools">Development tools</span><ul class="stack__list" aria-labelledby="eee-devtools"><li><span class="stack__mark stack__mark--logo" aria-hidden="true"><svg viewBox="0 0 466.73 532.09" aria-hidden="true" focusable="false"><path fill="#26251E" d="M457.43,125.94L244.42,2.96c-6.84-3.95-15.28-3.95-22.12,0L9.3,125.94c-5.75,3.32-9.3,9.46-9.3,16.11v247.99c0,6.65,3.55,12.79,9.3,16.11l213.01,122.98c6.84,3.95,15.28,3.95,22.12,0l213.01-122.98c5.75-3.32,9.3-9.46,9.3-16.11v-247.99c0-6.65-3.55-12.79-9.3-16.11h-.01ZM444.05,151.99l-205.63,356.16c-1.39,2.4-5.06,1.42-5.06-1.36v-233.21c0-4.66-2.49-8.97-6.53-11.31L24.87,145.67c-2.4-1.39-1.42-5.06,1.36-5.06h411.26c5.84,0,9.49,6.33,6.57,11.39h-.01Z"/></svg></span>Cursor</li></ul></div>

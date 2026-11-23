@@ -1,8 +1,7 @@
 /*
   Portfolio assistant launcher.
-  A small, outlined secondary button: "Ask about my work" in the corner on wide
-  screens, a slim vertical edge tab where the corner would cover content, and
-  "Ask AI" on phones.
+  A small, outlined secondary button anchored to the bottom-right corner on
+  every screen, with the shorter "Ask AI" label on phones.
   Loaded after each page's own styles; the id + class selector outranks the
   older per-page #chat-toggle rules. The panel's colours are themed below;
   its markup and behaviour are unchanged.
@@ -65,67 +64,19 @@
 .chat-launcher__label--short { display: none; }
 
 /*
-  Slim vertical edge tab on the right edge, used wherever the corner button
-  would sit over content while scrolling:
-  - Interior pages (980px content) below 1380px: class chat-launcher--edge
-  - Homepage (1180px content) below 1640px: class chat-launcher--edge-wide
-  - Every page at phone widths (≤540px), with the shorter "Ask AI" label
-  The tab is 24px wide and sits in the side gutter, so it stays clear of content.
+  Keep a conventional bottom-right launcher at every viewport width.
+  Legacy --edge / --edge-wide classes remain harmless in the page markup.
+  A compact mobile label avoids the tall vertical edge tab and improves
+  discoverability without changing chat functionality.
 */
-@media (max-width: 1379px) {
-  #chat-toggle.chat-launcher--edge {
-    right: 0;
-    bottom: 22px;
-    width: 24px;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.4rem;
-    min-height: 0;
-    padding: 0.7rem 0;
-    border-right: 0;
-    border-radius: 10px 0 0 10px;
-  }
-  #chat-toggle.chat-launcher--edge:hover { transform: translateX(-1px); }
-  #chat-toggle.chat-launcher--edge:focus-visible { outline-offset: -3px; }
-  #chat-toggle.chat-launcher--edge .chat-launcher__icon { width: 14px; height: 14px; }
-  #chat-toggle.chat-launcher--edge .chat-launcher__label { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.75rem; }
-}
-@media (max-width: 1639px) {
-  #chat-toggle.chat-launcher--edge-wide {
-    right: 0;
-    bottom: 22px;
-    width: 24px;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.4rem;
-    min-height: 0;
-    padding: 0.7rem 0;
-    border-right: 0;
-    border-radius: 10px 0 0 10px;
-  }
-  #chat-toggle.chat-launcher--edge-wide:hover { transform: translateX(-1px); }
-  #chat-toggle.chat-launcher--edge-wide:focus-visible { outline-offset: -3px; }
-  #chat-toggle.chat-launcher--edge-wide .chat-launcher__icon { width: 14px; height: 14px; }
-  #chat-toggle.chat-launcher--edge-wide .chat-launcher__label { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.75rem; }
-}
 @media (max-width: 540px) {
   #chat-toggle.chat-launcher {
-    right: 0;
-    bottom: 22px;
-    width: 24px;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.4rem;
-    min-height: 0;
-    padding: 0.7rem 0;
-    border-right: 0;
-    border-radius: 10px 0 0 10px;
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    min-height: 44px;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.82rem;
   }
-  #chat-toggle.chat-launcher:hover { transform: translateX(-1px); }
-  #chat-toggle.chat-launcher:focus-visible { outline-offset: -3px; }
-  #chat-toggle.chat-launcher .chat-launcher__icon { width: 14px; height: 14px; }
-  #chat-toggle.chat-launcher .chat-launcher__label { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.75rem; }
-  #chat-toggle.chat-launcher { bottom: 14px; }
   .chat-launcher__label--long { display: none; }
   .chat-launcher__label--short { display: inline; }
 }

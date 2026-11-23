@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Engineering Escalation Engine | Madiha Khan</title>
-  <meta name="description" content="Case study: a Support workflow that analyses technical cases, recommends escalation with deterministic rules and creates structured Engineering handoffs with human approval." />
+  <meta name="description" content="A Support Operations case study on investigating technical cases, scoring escalation readiness and creating Engineering handoffs after a human decision." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -836,13 +836,13 @@
     .cs-related a { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: #B2A397; text-underline-offset: 3px; }
 
     /* How it works */
-    .steps6 { display: grid; grid-template-columns: repeat(11, auto); grid-template-columns: minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr) 1.5rem minmax(0, 1fr); align-items: stretch; margin-top: 1.4rem; list-style: none; }
-    .step6 { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; min-height: 6.5rem; padding: 0.9rem 0.6rem; border: 1px solid var(--cs-line); border-radius: 14px; background: var(--card); text-align: center; box-sizing: border-box; }
-    .step6 .i { width: 1.6rem; height: 1.6rem; color: var(--ink); stroke-width: 1.5; }
-    .step6 span { font-size: 0.86rem; font-weight: 600; line-height: 1.3; color: var(--ink); text-wrap: balance; }
+    .workflow-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr) 1.5rem) minmax(0, 1fr); align-items: stretch; margin-top: 1.4rem; list-style: none; }
+    .workflow-step { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; min-height: 6.5rem; padding: 0.9rem 0.6rem; border: 1px solid var(--cs-line); border-radius: 14px; background: var(--card); text-align: center; box-sizing: border-box; }
+    .workflow-step .i { width: 1.6rem; height: 1.6rem; color: var(--ink); stroke-width: 1.5; }
+    .workflow-step span { font-size: 0.86rem; font-weight: 600; line-height: 1.3; color: var(--ink); text-wrap: balance; }
 
-    .step6-arrow { align-self: center; justify-self: center; color: var(--ink); }
-    .step6-arrow svg { display: block; width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .workflow-step-arrow { align-self: center; justify-self: center; color: var(--ink); }
+    .workflow-step-arrow svg { display: block; width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
     /* Inside the system: real screenshots from the demo */
     .shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.4rem; }
@@ -876,8 +876,8 @@
 
     /* ---------- Responsive ---------- */
     @media (max-width: 1100px) {
-      .steps6 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
-      .step6-arrow { display: none; }
+      .workflow-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.75rem; }
+      .workflow-step-arrow { display: none; }
       .stack { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
       .stack__intro { padding-right: 0; border-right: 0; }
       .stack__list { justify-content: flex-start; }
@@ -896,8 +896,9 @@
       .cs-section { margin-top: 3.25rem; }
       .cs-card { padding: 1.3rem; grid-template-columns: 1.9rem minmax(0, 1fr); column-gap: 0.85rem; }
       .cs-card > .i { width: 1.7rem; height: 1.7rem; }
-      .steps6 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
-      .step6 { min-height: 5.75rem; }
+      .workflow-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+      .workflow-step { min-height: 5.75rem; }
+      .workflow-step:last-child { grid-column: 1 / -1; }
       .shot__head { flex-wrap: wrap; padding: 0.9rem 1rem 0.65rem; }
       .shot__frame { margin: 0 0.6rem; padding: 0.5rem; min-height: 0; }
       .shot figcaption { padding: 0.8rem 1rem 1.05rem; }
@@ -906,19 +907,19 @@
     }
 
     @media print {
-      .cs-card, .shot, .stack, .step6 { break-inside: avoid; box-shadow: none; }
+      .cs-card, .shot, .stack, .workflow-step { break-inside: avoid; box-shadow: none; }
       .art-hero-shot__frame, .shot { box-shadow: none; }
     }
 
     /* ---------- How it works: interactive stages ---------- */
-    .steps6 { margin-top: 1.4rem; }
-    .step6 { width: 100%; font: inherit; color: inherit; cursor: pointer; appearance: none; -webkit-appearance: none; }
-    .step6 { -webkit-tap-highlight-color: transparent; }
-    @media (hover: hover) { .step6:hover:not([aria-expanded="true"]) { border-color: #CFC3B6; background: #FBF7F2; } }
-    .step6[aria-expanded="true"] { border-color: #D9C6B3; background: #F3E9DE; box-shadow: inset 0 0 0 1px #D9C6B3; }
-    .step6[aria-expanded="true"] span { color: var(--ink); }
-    .step6:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
-    @media (prefers-reduced-motion: no-preference) { .step6 { transition: background-color 0.15s ease, border-color 0.15s ease; } }
+    .workflow-steps { margin-top: 1.4rem; }
+    .workflow-step { width: 100%; font: inherit; color: inherit; cursor: pointer; appearance: none; -webkit-appearance: none; }
+    .workflow-step { -webkit-tap-highlight-color: transparent; }
+    @media (hover: hover) { .workflow-step:hover:not([aria-expanded="true"]) { border-color: #CFC3B6; background: #FBF7F2; } }
+    .workflow-step[aria-expanded="true"] { border-color: #D9C6B3; background: #F3E9DE; box-shadow: inset 0 0 0 1px #D9C6B3; }
+    .workflow-step[aria-expanded="true"] span { color: var(--ink); }
+    .workflow-step:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    @media (prefers-reduced-motion: no-preference) { .workflow-step { transition: background-color 0.15s ease, border-color 0.15s ease; } }
     .wf-panels { margin-top: 0.9rem; }
     .wf-panel { padding: 1.15rem 1.4rem 1.25rem; border: 1px solid #E5D7C8; border-radius: 14px; background: #FBF7F2; }
     .wf-panel:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
@@ -944,15 +945,13 @@
 
     /* This page only: in print/PDF the fixed header would repeat over each page's first heading */
     @media print { .site-header { position: absolute; } }
-    .steps6 { grid-auto-rows: 1fr; }
+    .workflow-steps { grid-auto-rows: 1fr; }
     @media (max-width: 480px) {
       .why li { grid-template-columns: 1.9rem minmax(0, 1fr); }
       .why p { grid-column: 1 / -1; }
     }
 
     /* Collapsed-by-default workflow */
-    .wf-hint { margin-top: 0.75rem; font-size: 0.88rem; color: var(--muted); }
-    .wf-hint[hidden] { display: none; }
     .wf-panels { margin-top: 0; }
     .wf-panel { margin-top: 0.9rem; }
     .wf-panel__top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
@@ -1032,19 +1031,19 @@
         <div class="cs-hero__grid">
           <div>
             <h1 id="cs-title"><span class="hl">Engineering</span> Escalation Engine</h1>
-            <p class="cs-hero__lede">A Support workflow that analyses technical cases, recommends escalation and creates structured Engineering handoffs with human approval.</p>
+            <p class="cs-hero__lede">I built a Support workflow that turns investigation evidence into a clear escalation recommendation and prepares an Engineering handoff after human approval.</p>
             <div class="cs-hero__actions">
               <a class="btn btn--primary" href="https://engineering-escalation-engine.vercel.app/" target="_blank" rel="noopener noreferrer">Explore live demo<span class="sr-only"> (opens in a new tab)</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
               <a class="btn btn--secondary" href="https://github.com/KhanKMadiha/engineering-escalation-engine" target="_blank" rel="noopener noreferrer"><svg class="gh" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>View GitHub<span class="sr-only"> (opens in a new tab)</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
             </div>
-            <p class="cs-hero__note">The live demo uses fictional enterprise cases and simulated downstream integrations.</p>
+            <p class="cs-hero__note">The live demo uses fictional enterprise cases. Jira issues and Rootly incidents are simulated.</p>
           </div>
         <figure class="art-hero-shot">
           <div class="art-hero-shot__frame">
-            <img src="./assets/eee-hero-case-approval.png" alt="The live Engineering Escalation Engine showing a fictional case, SAML SSO failing for some users, marked High, Production and Awaiting Decision. Case details, Investigation and Assessment are complete and the case is at the Escalation approval step. The engine recommends Escalate to Engineering with an escalation readiness score of 98 out of 100, a written reason for escalation is shown, and the reviewer can choose Continue investigation or Approve escalation." width="1640" height="1610" fetchpriority="high">
+            <img src="./assets/eee-approval-orchid.webp" alt="Orchid Health’s approval screen, showing a readiness score of 98 out of 100, an editable rationale and the option to approve or continue investigating." width="1550" height="1343" fetchpriority="high">
           </div>
-          <figcaption class="art-hero-shot__cap">Screenshot from the live Engineering Escalation Engine, using fictional case data.</figcaption>
-          <p class="art-hero-shot__full"><a href="./assets/eee-hero-case-approval.png" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only">: Engineering Escalation Engine screenshot (opens in a new tab)</span> <span aria-hidden="true">↗</span></a></p>
+          <figcaption class="art-hero-shot__cap">Orchid Health’s escalation approval screen in the live demo.</figcaption>
+          <p class="art-hero-shot__full"><a href="./assets/eee-approval-orchid.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only">: Engineering Escalation Engine screenshot (opens in a new tab)</span> <span aria-hidden="true">↗</span></a></p>
         </figure>
         </div>
       </div>
@@ -1055,7 +1054,7 @@
       <h2 id="challenge-title">The challenge and what I built</h2>
       <div class="cs-pair">
         <article class="cs-card"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><div><h3>The challenge</h3><p>Support cases often reached Engineering with inconsistent evidence, which could slow triage, create rework and make it harder to prioritise urgent issues.</p></div></article>
-        <article class="cs-card"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg><div><h3>What I built</h3><p>A workflow that structures case intake, analyses the evidence, applies a rules-based assessment and gives Support reviewers the context they need to make a confident escalation decision.</p></div></article>
+        <article class="cs-card"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg><div><h3>What I built</h3><p>A workspace where Support can review the case, work through the evidence and see what drove the recommendation. Once a reviewer approves the escalation, the engine prepares a structured handoff for Engineering.</p></div></article>
       </div>
       <p class="cs-related">The real-world escalation work behind this project is covered in my <a href="./incident-escalation-management.html">Enterprise Incident &amp; Escalation Management</a> case study.</p>
     </section>
@@ -1064,37 +1063,97 @@
     <section class="container cs-section" aria-labelledby="how-title">
       <div class="cs-head">
         <h2 id="how-title">How it works</h2>
-        <p>Explore each step to see how a support case moves from investigation to an Engineering handoff.</p>
+        <p>Open a case from the Case Queue to explore these five stages. The evidence and the reviewer’s decision determine whether the case advances to handoff.</p>
       </div>
-      <div class="steps6" role="group" aria-label="Workflow stages"><button class="step6" type="button" id="wf-tab-1" aria-expanded="false" aria-controls="wf-panel-1"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M9.5 12h5M9.5 15.5h5"/></svg><span>Case intake</span></button><span class="step6-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step6" type="button" id="wf-tab-2" aria-expanded="false" aria-controls="wf-panel-2"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg><span>Investigation</span></button><span class="step6-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step6" type="button" id="wf-tab-3" aria-expanded="false" aria-controls="wf-panel-3"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3c.6 4.2 2.4 6 6.6 6.6-4.2.6-6 2.4-6.6 6.6-.6-4.2-2.4-6-6.6-6.6C9.6 9 11.4 7.2 12 3Z"/><path d="M19 15.5c.25 1.6.9 2.25 2.5 2.5-1.6.25-2.25.9-2.5 2.5-.25-1.6-.9-2.25-2.5-2.5 1.6-.25 2.25-.9 2.5-2.5Z"/></svg><span>AI analysis</span></button><span class="step6-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step6" type="button" id="wf-tab-4" aria-expanded="false" aria-controls="wf-panel-4"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg><span>Rules-based assessment</span></button><span class="step6-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step6" type="button" id="wf-tab-5" aria-expanded="false" aria-controls="wf-panel-5"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg><span>Human approval</span></button><span class="step6-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><button class="step6" type="button" id="wf-tab-6" aria-expanded="false" aria-controls="wf-panel-6"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><span>Engineering handoff</span></button></div>
+      <div class="workflow-steps" role="group" aria-label="Workflow stages">
+        <button class="workflow-step" type="button" id="wf-tab-1" aria-expanded="false" aria-controls="wf-panel-1">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M9.5 12h5M9.5 15.5h5"/></svg>
+          <span>Case details</span>
+        </button>
+        <span class="workflow-step-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <button class="workflow-step" type="button" id="wf-tab-2" aria-expanded="false" aria-controls="wf-panel-2">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+          <span>Investigation</span>
+        </button>
+        <span class="workflow-step-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <button class="workflow-step" type="button" id="wf-tab-3" aria-expanded="false" aria-controls="wf-panel-3">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg>
+          <span>Assessment</span>
+        </button>
+        <span class="workflow-step-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <button class="workflow-step" type="button" id="wf-tab-4" aria-expanded="false" aria-controls="wf-panel-4">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg>
+          <span>Escalation approval</span>
+        </button>
+        <span class="workflow-step-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <button class="workflow-step" type="button" id="wf-tab-5" aria-expanded="false" aria-controls="wf-panel-5">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>
+          <span>Create escalation</span>
+        </button>
+      </div>
       <div class="wf-panels">
-        <div class="wf-panel" id="wf-panel-1" role="region" aria-labelledby="wf-title-1" hidden><div class="wf-panel__top"><p class="wf-panel__step">Step 1 of 6</p><button class="wf-close" type="button" aria-label="Close Case intake"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="wf-title-1">Case intake</h3><p class="wf-panel__text">Capture the reported issue, customer impact and available case details in a structured format.</p></div>
-        <div class="wf-panel" id="wf-panel-2" role="region" aria-labelledby="wf-title-2" hidden><div class="wf-panel__top"><p class="wf-panel__step">Step 2 of 6</p><button class="wf-close" type="button" aria-label="Close Investigation"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="wf-title-2">Investigation</h3><p class="wf-panel__text">Gather and validate reproduction steps, logs and technical evidence before assessing the case.</p></div>
-        <div class="wf-panel" id="wf-panel-3" role="region" aria-labelledby="wf-title-3" hidden><div class="wf-panel__top"><p class="wf-panel__step">Step 3 of 6</p><button class="wf-close" type="button" aria-label="Close AI analysis"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="wf-title-3">AI analysis</h3><p class="wf-panel__text">Organise case evidence, identify possible signals and highlight missing information for further investigation.</p></div>
-        <div class="wf-panel" id="wf-panel-4" role="region" aria-labelledby="wf-title-4" hidden><div class="wf-panel__top"><p class="wf-panel__step">Step 4 of 6</p><button class="wf-close" type="button" aria-label="Close Rules-based assessment"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="wf-title-4">Rules-based assessment</h3><p class="wf-panel__text">Score validated escalation signals using predefined weights and thresholds to produce a recommendation.</p></div>
-        <div class="wf-panel" id="wf-panel-5" role="region" aria-labelledby="wf-title-5" hidden><div class="wf-panel__top"><p class="wf-panel__step">Step 5 of 6</p><button class="wf-close" type="button" aria-label="Close Human approval"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="wf-title-5">Human approval</h3><p class="wf-panel__text">A Support reviewer considers the evidence and recommendation before deciding whether to escalate.</p></div>
-        <div class="wf-panel" id="wf-panel-6" role="region" aria-labelledby="wf-title-6" hidden><div class="wf-panel__top"><p class="wf-panel__step">Step 6 of 6</p><button class="wf-close" type="button" aria-label="Close Engineering handoff"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button></div><h3 id="wf-title-6">Engineering handoff</h3><p class="wf-panel__text">After approval, generate a structured Engineering handoff with supporting evidence and an audit trail.</p></div>
+        <div class="wf-panel" id="wf-panel-1" role="region" aria-labelledby="wf-title-1" hidden>
+          <div class="wf-panel__top">
+            <p class="wf-panel__step">Step 1 of 5</p>
+            <button class="wf-close" type="button" aria-label="Close Case details"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button>
+          </div>
+          <h3 id="wf-title-1">Case details</h3>
+          <p class="wf-panel__text">Review the reported issue, the customer’s expected and actual behaviour, and the case context.</p>
+        </div>
+        <div class="wf-panel" id="wf-panel-2" role="region" aria-labelledby="wf-title-2" hidden>
+          <div class="wf-panel__top">
+            <p class="wf-panel__step">Step 2 of 5</p>
+            <button class="wf-close" type="button" aria-label="Close Investigation"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button>
+          </div>
+          <h3 id="wf-title-2">Investigation</h3>
+          <p class="wf-panel__text">Review reproduction steps, troubleshooting, impact and technical evidence such as logs, request IDs or screenshots. Record newly collected evidence here.</p>
+        </div>
+        <div class="wf-panel" id="wf-panel-3" role="region" aria-labelledby="wf-title-3" hidden>
+          <div class="wf-panel__top">
+            <p class="wf-panel__step">Step 3 of 5</p>
+            <button class="wf-close" type="button" aria-label="Close Assessment"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button>
+          </div>
+          <h3 id="wf-title-3">Assessment</h3>
+          <p class="wf-panel__text">AI helps organise the evidence and identify gaps. Predefined rules score the escalation signals, explain the recommendation and show the next action. If the evidence is insufficient, the case stays in Investigation.</p>
+        </div>
+        <div class="wf-panel" id="wf-panel-4" role="region" aria-labelledby="wf-title-4" hidden>
+          <div class="wf-panel__top">
+            <p class="wf-panel__step">Step 4 of 5</p>
+            <button class="wf-close" type="button" aria-label="Close Escalation approval"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button>
+          </div>
+          <h3 id="wf-title-4">Escalation approval</h3>
+          <p class="wf-panel__text">When the engine recommends escalation, a Support reviewer can edit the suggested rationale and choose Approve escalation or Continue investigation. A decision on a shared example is saved to a private copy.</p>
+        </div>
+        <div class="wf-panel" id="wf-panel-5" role="region" aria-labelledby="wf-title-5" hidden>
+          <div class="wf-panel__top">
+            <p class="wf-panel__step">Step 5 of 5</p>
+            <button class="wf-close" type="button" aria-label="Close Create escalation"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg><span>Close</span></button>
+          </div>
+          <h3 id="wf-title-5">Create escalation</h3>
+          <p class="wf-panel__text">Approval prepares the Engineering handoff. From here, you can preview and create a simulated Jira issue or Rootly incident, then reopen the saved record by its reference.</p>
+        </div>
       </div>
+      <p class="cs-related">In the demo, open <a href="https://engineering-escalation-engine.vercel.app/cases/ea1437f9-588f-418b-8222-c11079d246c2" target="_blank" rel="noopener noreferrer">Orchid Health<span class="sr-only"> (opens in a new tab)</span></a> to try approval, <a href="https://engineering-escalation-engine.vercel.app/cases/997f45ad-f686-4724-a3c1-094d659a3741" target="_blank" rel="noopener noreferrer">Meridian Systems<span class="sr-only"> (opens in a new tab)</span></a> to see an investigation with insufficient evidence, or <a href="https://engineering-escalation-engine.vercel.app/cases/b04a05d3-9bbb-45c2-8abc-43b2f70bcd15" target="_blank" rel="noopener noreferrer">Vertex Media<span class="sr-only"> (opens in a new tab)</span></a> to open a prepared handoff.</p>
     </section>
 
     <!-- Inside the system -->
     <section class="container cs-section" aria-labelledby="inside-title">
       <div class="cs-head">
         <h2 id="inside-title">Inside the system</h2>
-        <p>A closer look at key screens in the workflow, from evidence review to the escalation decision.</p>
+        <p>Meridian and Vertex show what happens when a case needs more evidence and when an approved handoff is ready to use.</p>
       </div>
       <div class="shots">
         <figure class="shot">
           <div class="shot__bar" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="shot__head"><h3>Evidence review</h3><a href="./assets/engineering-escalation-investigation.png" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only"> (opens in a new tab)</span> ↗</a></div>
-          <div class="shot__frame" style="--pos: center"><img src="./assets/engineering-escalation-evidence-crop.png" alt="Technical evidence panel from the demo, with fictional data: logs showing HTTP status 500 and an internal server error, a request ID, when the issue was first observed and an affected customer count of 3" loading="lazy" width="420" height="370"></div>
-          <figcaption>Technical evidence such as logs, request IDs and customer impact is captured before a case can be assessed.</figcaption>
+          <div class="shot__head"><h3>Insufficient evidence</h3><a href="./assets/eee-assessment-meridian.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only"> (opens in a new tab)</span> ↗</a></div>
+          <div class="shot__frame"><img src="./assets/eee-assessment-meridian.webp" alt="Meridian’s assessment shows a readiness score of 20 out of 100 and asks Support to collect missing authentication evidence." loading="lazy" width="975" height="653"></div>
+          <figcaption>Meridian stays in Investigation. Support can add the missing authentication evidence, and the existing assessment stays as recorded.</figcaption>
         </figure>
         <figure class="shot">
           <div class="shot__bar" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="shot__head"><h3>Escalation decision</h3><a href="./assets/engineering-escalation-assessment-escalate.png" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only"> (opens in a new tab)</span> ↗</a></div>
-          <div class="shot__frame" style="--pos: center"><img src="./assets/engineering-escalation-decision-crop.png" alt="Decision authority panel from the demo: AI analysis is advisory, the rules-based assessment recommends, and a human reviewer makes the final decision. AI cannot approve an escalation." loading="lazy" width="420" height="330"></div>
-          <figcaption>AI analysis is advisory and rules recommend the outcome. Only a human reviewer can approve an escalation.</figcaption>
+          <div class="shot__head"><h3>Prepared handoff</h3><a href="./assets/eee-handoff-vertex.webp" target="_blank" rel="noopener noreferrer">View full size<span class="sr-only"> (opens in a new tab)</span> ↗</a></div>
+          <div class="shot__frame"><img src="./assets/eee-handoff-vertex.webp" alt="Vertex’s approved handoff shows the case context, escalation rationale and buttons to create simulated Jira and Rootly records." loading="lazy" width="975" height="783"></div>
+          <figcaption>Vertex already has human approval. The prepared handoff captures the impact, reproduction and rationale before a reviewer creates a simulated record.</figcaption>
         </figure>
       </div>
     </section>
@@ -1107,7 +1166,7 @@
       </div>
       <ul class="why">
         <li><span class="why__icon tone tone--lavender"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3c.6 4.2 2.4 6 6.6 6.6-4.2.6-6 2.4-6.6 6.6-.6-4.2-2.4-6-6.6-6.6C9.6 9 11.4 7.2 12 3Z"/><path d="M19 15.5c.25 1.6.9 2.25 2.5 2.5-1.6.25-2.25.9-2.5 2.5-.25-1.6-.9-2.25-2.5-2.5 1.6-.25 2.25-.9 2.5-2.5Z"/></svg></span><h3>AI for analysis</h3><p>I wanted AI to help Support make sense of complex investigations, organise the evidence and identify what might be missing, without relying on it to make escalation decisions.</p></li>
-        <li><span class="why__icon tone tone--blue"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg></span><h3>Deterministic rules</h3><p>I used predefined signals, weights and thresholds so escalation recommendations are based on validated evidence, not inconsistent AI judgement.</p></li>
+        <li><span class="why__icon tone tone--blue"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg></span><h3>Deterministic rules</h3><p>I used predefined signals, weights and thresholds so a reviewer can see how the evidence contributed to the readiness score and recommendation.</p></li>
         <li><span class="why__icon tone tone--sage"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/></svg></span><h3>Human judgement</h3><p>I deliberately kept a human approval step because AI can support an investigation, but it shouldn’t replace the experience and judgement of the person responsible for an escalation.</p></li>
       </ul>
       <div class="stack" aria-labelledby="stack-title">
@@ -1681,15 +1740,13 @@
   <script>
     /* How it works: collapsed by default; one stage open at a time; selecting the open stage or Close collapses it. */
     (function () {
-      var tabs = Array.prototype.slice.call(document.querySelectorAll('.step6[aria-controls]'));
-      var hint = document.getElementById('wf-hint');
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('.workflow-step[aria-controls]'));
       function show(tab) {
         tabs.forEach(function (t) {
           var on = t === tab;
           t.setAttribute('aria-expanded', on ? 'true' : 'false');
           document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
         });
-        if (hint) hint.hidden = !!tab;
       }
       tabs.forEach(function (tab) {
         tab.addEventListener('click', function () {

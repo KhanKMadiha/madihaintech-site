@@ -843,18 +843,7 @@
     .pj-vis__bar { display: flex; gap: 5px; padding: 0.6rem 0.8rem; background: #EFE7DD; }
     .pj-vis__bar span { width: 7px; height: 7px; border-radius: 50%; background: #9C8B7E; }
     .pj-vis__body { padding: 0.7rem 0.65rem; min-height: 13.5rem; box-sizing: border-box; }
-    .pj-vis__body:has(.flow) { display: flex; flex-direction: column; justify-content: center; }
-
-    /* Escalation Engine: a tidy vertical checklist */
-    .flow { position: relative; display: grid; gap: 0.3rem; list-style: none; }
-    .flow li { position: relative; display: flex; align-items: center; gap: 0.65rem; min-height: 2.35rem; padding: 0 0.6rem; border-radius: 9px; font-size: 0.82rem; font-weight: 500; color: var(--ink); }
-    .flow li:not(:last-child)::after { content: ""; position: absolute; left: calc(0.6rem + 0.6rem - 0.5px); top: calc(50% + 0.6rem); height: calc(0.3rem + 2.35rem - 1.2rem); width: 1px; background: #CDBFB2; }
-    .flow__dot { flex: 0 0 1.2rem; height: 1.2rem; border-radius: 50%; border: 1.5px solid #B9AA9D; background: #FBF8F4; display: grid; place-items: center; position: relative; z-index: 1; box-sizing: border-box; }
-    .flow__dot svg { width: 0.72rem; height: 0.72rem; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-    .flow li.is-done .flow__dot { border-color: #7D8468; background: #7D8468; }
-    .flow li.is-now { background: #F1E6DA; }
-    .flow li.is-now .flow__dot { border: 4px solid #6E5446; background: #fff; }
-    .flow__name { line-height: 1.25; }
+    .pj-vis--escalation img { width: 100%; height: auto; }
 
     /* Feedback Loop: feedback, a small prioritisation chart and grouped themes */
     .fbv { display: flex; flex-direction: column; }
@@ -1035,11 +1024,12 @@
             <p class="pj-label"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 16.5 9 5 9-5"/></svg>Support systems · Escalation management</p>
             <div class="pj-card__text">
               <h2>Engineering Escalation Engine</h2>
-              <p class="pj-desc">Guides investigations, explains evidence-based escalation recommendations and prepares Engineering handoffs after human approval.</p>
+              <p class="pj-desc">An interactive Support workspace for reviewing evidence, assessing escalation readiness and preparing Engineering handoffs after human approval.</p>
             </div>
-            <figure class="pj-vis" role="img" aria-label="Illustrative workflow: case intake, then AI-assisted analysis that is advisory only, then deterministic rules-based escalation scoring, then human approval of the recommendation, and finally a structured Engineering handoff.">
-              <div class="pj-vis__bar" aria-hidden="true"><span></span><span></span><span></span></div>
-              <div class="pj-vis__body" aria-hidden="true"><ol class="flow"><li class="is-done"><span class="flow__dot"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m4 8.5 2.5 2.5L12 5.5"/></svg></span><span class="flow__name">Case intake</span></li><li class="is-done"><span class="flow__dot"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m4 8.5 2.5 2.5L12 5.5"/></svg></span><span class="flow__name">AI-assisted analysis</span></li><li class="is-now"><span class="flow__dot"></span><span class="flow__name">Human approval</span></li><li class=""><span class="flow__dot"></span><span class="flow__name">Engineering handoff</span></li></ol></div>
+            <figure class="pj-vis pj-vis--escalation">
+              <img src="./assets/escalation-engine/case-queue-673.webp"
+                   alt="Engineering Escalation Engine Case Queue with charcoal navigation and a table of fictional support cases."
+                   width="673" height="428" loading="lazy" decoding="async">
             </figure>
             <div class="pj-actions">
               <a class="btn btn--primary" href="./engineering-escalation-engine.html">View case study<svg class="i" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M9 7h8v8"/></svg><span class="sr-only">: Engineering Escalation Engine</span></a>
